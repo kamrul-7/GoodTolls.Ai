@@ -10,6 +10,7 @@ function App() {
     <>
       <h2>Test for github update</h2>
       <p>djhvgdhvdgh</p>
+      <h1>Test push pull</h1>
     </>
   )
 }
