@@ -1,12 +1,51 @@
-import React from 'react';
+import { NavLink } from "react-router-dom";
 import './Navbar.css';
 const Navbar = () => {
   const ourNavOption = (
     <>
-      <li className='mx-6'>Ai Tools Finder</li>
-      <li className='mx-6'>About</li>
-      <li className='mx-6'>Contact</li>
-      <li className='mx-6'>News</li>
+      <li className='mx-6'>
+
+        <NavLink to="/" style={{background: 'transparent'}} className={({ isActive}) => isActive ? "block" : ""}>
+          {({ isActive }) => (
+            <>
+              <span className={isActive ? "text-[#2970FF] font-semibold" : "block"}>AI Tools Finder</span>
+              <hr className={isActive ? "border-[1.5px] rounded-full w-4 mx-auto border-[#2970FF]" : "hidden"} />
+            </>
+          )}
+
+        </NavLink>
+      </li>
+      <li className='mx-6'>
+        <NavLink to="/about" style={{background: 'transparent'}} className={({ isActive}) => isActive ? "block" : ""}>
+          {({ isActive }) => (
+            <>
+              <span className={isActive ? "text-[#2970FF] font-semibold" : "block"}>About</span>
+              <hr className={isActive ? "border-[1.5px] rounded-full w-4 mx-auto border-[#2970FF]" : "hidden"} />
+            </>
+          )}
+
+        </NavLink>
+      </li>
+      <li className='mx-6'>
+        <NavLink to="/" style={{background: 'transparent'}} className={({ isActive}) => isActive ? "block" : ""}>
+          {({ isActive }) => (
+            <>
+              <span className={isActive ? "text-[#2970FF] font-semibold" : "block"}>Contact</span>
+              <hr className={isActive ? "border-[1.5px] rounded-full w-4 mx-auto border-[#2970FF]" : "hidden"} />
+            </>
+          )}
+
+        </NavLink></li>
+      <li className='mx-6'>
+      <NavLink to="/" style={{background: 'transparent'}} className={({ isActive}) => isActive ? "block" : ""}>
+          {({ isActive }) => (
+            <>
+              <span className={isActive ? "text-[#2970FF] font-semibold" : "block"}>News</span>
+              <hr className={isActive ? "border-[1.5px] rounded-full w-4 mx-auto border-[#2970FF]" : "hidden"} />
+            </>
+          )}
+
+        </NavLink></li>
     </>
   );
 
@@ -17,7 +56,7 @@ const Navbar = () => {
           <a className="btn btn-ghost normal-case text-xl">GoodTools.ai</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 text-base">
             {ourNavOption}
           </ul>
         </div>
