@@ -1,0 +1,52 @@
+.button{
+    width:334px;
+    height:  40px;
+    padding: 16px, 34px, 16px, 34px;
+    border-radius: 12px;
+    border: 1px solid #E5E7EB;
+    
+
+}
+
+.size{
+    width:374px;
+height:547px;
+padding: 20px;
+border-radius: 16px;
+
+
+}
+.image{
+    width: 334px;
+    height: 240px;
+    padding: 16px, 20px, 178px, 268px;
+    border-radius: 12px;
+    
+
+}
+.Title{
+    font-family: Space Grotesk;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 0em;
+    text-align: left;
+    
+
+}
+
+.subscription{
+    width:109px;
+height:34px;
+padding: 8px, 16px, 8px, 16px;
+border-radius: 100px;
+gap: 10px;
+background: #F3F4F6;
+
+}
+.lock{
+   padding: 5px 0px 5px 10px;
+
+}
+
+

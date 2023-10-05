@@ -1,12 +1,52 @@
 import React from 'react';
 import './Navbar.css';
+import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const ourNavOption = (
     <>
-      <li className='mx-6'>Ai Tools Finder</li>
-      <li className='mx-6'>About</li>
-      <li className='mx-6'>Contact</li>
-      <li className='mx-6'>News</li>
+      <li className='mx-6'>
+
+        <NavLink to="/" style={{background: 'transparent'}} className={({ isActive}) => isActive ? "block" : ""}>
+          {({ isActive }) => (
+            <>
+              <span className={isActive ? "text-[#2970FF] font-semibold" : "block"}>AI Tools Finder</span>
+              <hr className={isActive ? "border-[1.5px] rounded-full w-4 mx-auto border-[#2970FF]" : "hidden"} />
+            </>
+          )}
+
+        </NavLink>
+      </li>
+      <li className='mx-6'>
+        <NavLink to="/" style={{background: 'transparent'}} className={({ isActive}) => isActive ? "block" : ""}>
+          {({ isActive }) => (
+            <>
+              <span className={isActive ? "text-[#2970FF] font-semibold" : "block"}>About</span>
+              <hr className={isActive ? "border-[1.5px] rounded-full w-4 mx-auto border-[#2970FF]" : "hidden"} />
+            </>
+          )}
+
+        </NavLink>
+      </li>
+      <li className='mx-6'>
+        <NavLink to="/" style={{background: 'transparent'}} className={({ isActive}) => isActive ? "block" : ""}>
+          {({ isActive }) => (
+            <>
+              <span className={isActive ? "text-[#2970FF] font-semibold" : "block"}>Contact</span>
+              <hr className={isActive ? "border-[1.5px] rounded-full w-4 mx-auto border-[#2970FF]" : "hidden"} />
+            </>
+          )}
+
+        </NavLink></li>
+      <li className='mx-6'>
+      <NavLink to="/" style={{background: 'transparent'}} className={({ isActive}) => isActive ? "block" : ""}>
+          {({ isActive }) => (
+            <>
+              <span className={isActive ? "text-[#2970FF] font-semibold" : "block"}>News</span>
+              <hr className={isActive ? "border-[1.5px] rounded-full w-4 mx-auto border-[#2970FF]" : "hidden"} />
+            </>
+          )}
+
+        </NavLink></li>
     </>
   );
 
