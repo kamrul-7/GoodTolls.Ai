@@ -5,9 +5,9 @@ import {
 import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home";
 import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
-import About from "../Component/About/About";
 import Contact from "../Pages/Contact/Contact";
 import News from "../Pages/News/News";
+import About from "../Pages/About/About";
 export const router = createBrowserRouter([
     {
       path: "/",
