@@ -33,6 +33,10 @@ export const router = createBrowserRouter([
           path: "/news",
           element: <News/>
         },
+        {
+          path: "/privacypolicy",
+          element: <PrivacyPolicy/>
+        },
       ]
       
     },
