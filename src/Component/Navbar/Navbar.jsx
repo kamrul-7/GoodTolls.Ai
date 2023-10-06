@@ -16,7 +16,6 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li className='mx-6'>
-        <NavLink to="/about" style={{background: 'transparent'}} className={({ isActive}) => isActive ? "block" : ""}>
         <NavLink to="/about" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "block" : ""}>
           {({ isActive }) => (
             <>
@@ -90,12 +89,12 @@ const Navbar = () => {
                 </NavLink>
               </li>
             <li className='mx-6'>
-                <NavLink to="/none" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] font-semibold p-0 hover:text-[#2970FF]" : "p-0"}>
+                <NavLink to="/contact" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] font-semibold p-0 hover:text-[#2970FF]" : "p-0"}>
                   Contacts
               </NavLink>
             </li>
             <li className='mx-6'>
-              <NavLink to="/npne" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] font-semibold p-0 hover:text-[#2970FF]" : "p-0"}>
+              <NavLink to="/news" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] font-semibold p-0 hover:text-[#2970FF]" : "p-0"}>
                 News
               </NavLink>
             </li>
