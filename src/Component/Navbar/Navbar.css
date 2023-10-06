@@ -15,8 +15,8 @@ background: var(--Primary, #2970FF);
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
     .hide-menu {
-      display: none;
+      display: none !important;
     }
   }
