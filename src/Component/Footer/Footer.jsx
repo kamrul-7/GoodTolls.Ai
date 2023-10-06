@@ -1,17 +1,18 @@
 import React from 'react';
 import './Footer.css'
+import { Link } from 'react-router-dom';
 const Footer = () => {
-  return (
-    <div>
-      <footer className="footer p-10 text-base-content">
-        <nav>
-          <a href='/privacypolicy' className="link link-hover nav-text">Privacy Policy</a>
-          <a className="link link-hover nav-text">Term of Service</a>
-          <a className="link link-hover nav-text">About us</a>
-        </nav>
-        <nav>
-          <a className="link link-hover nav-text">Submit tool</a>
-          <a className="link link-hover nav-text">Request a feature</a>
+    return (
+        <div>
+            <footer className="footer p-10 text-base-content">
+  <nav>
+    <Link to='/privacypolicy' className="link link-hover nav-text">Privacy Policy</Link> 
+    <a className="link link-hover nav-text">Term of Service</a> 
+    <a className="link link-hover nav-text">About us</a> 
+  </nav> 
+  <nav>
+    <a className="link link-hover nav-text">Submit tool</a> 
+    <a className="link link-hover nav-text">Request a feature</a> 
 
         </nav>
         <nav>
