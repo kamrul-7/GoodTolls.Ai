@@ -3,7 +3,7 @@ import Footer from "../../Component/Footer/Footer";
 import { Link } from "react-router-dom";
 const About = () => {
   return (
-    <div>
+    <div className="">
       <div className="text-sm breadcrumbs">
         <ul>
           <li>
