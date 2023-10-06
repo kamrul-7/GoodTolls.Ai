@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import './Navbar.css';
+import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const ourNavOption = (
     <>
@@ -16,7 +17,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li className='mx-6'>
-        <NavLink to="/about" style={{background: 'transparent'}} className={({ isActive}) => isActive ? "block" : ""}>
+        <NavLink to="/" style={{background: 'transparent'}} className={({ isActive}) => isActive ? "block" : ""}>
           {({ isActive }) => (
             <>
               <span className={isActive ? "text-[#2970FF] font-semibold" : "block"}>About</span>
