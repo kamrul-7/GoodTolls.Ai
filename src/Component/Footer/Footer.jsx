@@ -5,7 +5,7 @@ const Footer = () => {
         <div>
             <footer className="footer p-10 text-base-content">
   <nav>
-    <a className="link link-hover nav-text">Privacy Policy</a> 
+    <a href='/privacypolicy' className="link link-hover nav-text">Privacy Policy</a> 
     <a className="link link-hover nav-text">Term of Service</a> 
     <a className="link link-hover nav-text">About us</a> 
   </nav> 

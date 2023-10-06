@@ -25,6 +25,8 @@ line-height: 150%; /* 24px */
   height: 52px;
   margin: 0 auto;
   text-align: center;
+  border-radius: 12px;
+background: var(--neutral-100, #F3F4F6);
 }
 
 .search-icon {
