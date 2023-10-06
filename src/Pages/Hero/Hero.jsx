@@ -4,8 +4,8 @@ import { FaSearch } from 'react-icons/fa';
 import './Hero.css'
 const Hero = () => {
   return (
-    <div className='text-center flex'>
-      <div className="hero min-h-[491px] bg-base-200">
+    <div className='text-center'>
+      <div className="hero min-h-[491px]">
         <div className="hero-content text-center">
           <div className="max-w-3xl">
             <h1 className="text-5xl font-bold hero-title ">We are listing the best AI 
