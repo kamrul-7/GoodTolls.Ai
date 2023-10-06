@@ -5,6 +5,7 @@ import {
 import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home";
 import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
+import About from "../Component/About/About";
 
 
 
@@ -24,8 +25,8 @@ export const router = createBrowserRouter([
           element: <></>
         },
         {
-          path: "/privacypolicy",
-          element: <PrivacyPolicy></PrivacyPolicy>
+          path: "/about",
+          element: <About></About>
         }
       ]
       
