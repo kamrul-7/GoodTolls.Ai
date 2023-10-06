@@ -4,6 +4,7 @@ import {
 } from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home";
+import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
 
 
 
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
         {
           path: "/login",
           element: <></>
+        },
+        {
+          path: "/privacypolicy",
+          element: <PrivacyPolicy></PrivacyPolicy>
         }
       ]
       
