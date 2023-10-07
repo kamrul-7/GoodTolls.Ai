@@ -1,4 +1,4 @@
-import React from "react";
+
 import Footer from "../../Component/Footer/Footer";
 import { Link } from "react-router-dom";
 const About = () => {
@@ -17,7 +17,7 @@ const About = () => {
   <div className="card-body">
     <h2 className="card-title text-5xl font-bold">About us</h2>
     <h2 className="text-xl font-medium">About us:</h2>
-    <p className="text-base font-normal">ToolsFinder is a collective of entrepreneurs with global perspectives who believe in AI for good. We believe in a future where AI enhances every professional's toolkit. Our team delves deep into tools, plugins and apps to deliver high quality content with transformative potential right to your screens. Tailored for the proactive modern professional, we provide comprehensive resources that illuminate the path to AI integration in the workplace. Create a free account and elevate your professional journey with ToolsFinder.</p>
+    <p className="text-base font-normal">ToolsFinder is a collective of entrepreneurs with global perspectives who believe in AI for good. We believe in a future where AI enhances every professionals toolkit. Our team delves deep into tools, plugins and apps to deliver high quality content with transformative potential right to your screens. Tailored for the proactive modern professional, we provide comprehensive resources that illuminate the path to AI integration in the workplace. Create a free account and elevate your professional journey with ToolsFinder.</p>
     <div className="card-actions justify-end">
     </div>
   </div>

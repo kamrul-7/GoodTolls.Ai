@@ -1,4 +1,4 @@
-import React from "react";
+
 import "./Card.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUnlock } from "@fortawesome/free-solid-svg-icons"; // Import the unlock icon
