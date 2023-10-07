@@ -8,6 +8,7 @@ import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
 import Contact from "../Pages/Contact/Contact";
 import News from "../Pages/News/News";
 import About from "../Pages/About/About";
+import Terms from "../Pages/Terms/Terms";
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
           path: "/privacypolicy",
           element: <PrivacyPolicy/>
         },
+        {
+          path: "/termsofservice",
+          element: <Terms></Terms>
+        }
       ]
       
     },
