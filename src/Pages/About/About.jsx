@@ -3,8 +3,8 @@ import Footer from "../../Component/Footer/Footer";
 import { Link } from "react-router-dom";
 const About = () => {
   return (
-    <div>
-      <div className="breadcrumbs mb-5 text-xl font-normal">
+    <div className="">
+      <div className="text-sm breadcrumbs">
         <ul>
           <li>
             <Link to='/'>Home</Link>
