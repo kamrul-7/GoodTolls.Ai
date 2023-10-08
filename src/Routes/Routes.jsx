@@ -9,6 +9,7 @@ import Contact from "../Pages/Contact/Contact";
 import News from "../Pages/News/News";
 import About from "../Pages/About/About";
 import Terms from "../Pages/Terms/Terms";
+import NewsCard from "../Pages/News/NewsCard/NewsCard";
 export const router = createBrowserRouter([
     {
       path: "/",
