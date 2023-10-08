@@ -24,7 +24,7 @@ const Card = () => {
               <div className="">
                 <FontAwesomeIcon icon={faUnlock} />
               </div>
-              <div className="">
+              <div className="pr-4">
                 <button className="">Free Trial</button>
               </div>
             </div>

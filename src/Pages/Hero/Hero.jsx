@@ -6,9 +6,9 @@ const Hero = () => {
       <div className="hero min-h-[491px]">
         <div className="hero-content text-center">
           <div className="max-w-3xl">
-            <h1 className="text-5xl font-bold hero-title ">We are listing the best AI
+            <h1 className="md:text-5xl text-4xl font-bold hero-title ">We are listing the best AI
               <br /> tools Everyday.</h1>
-            <p className="hero-subtitle my-6">Find the best AI tools for your needs. Go to the filter and choose your <br /> Category.  </p>
+            <p className="hero-subtitle my-6">Find the best AI tools for your needs. Go to the filter <br /> and choose your  Category.  </p>
             <div className="relative input-container mx-auto lg:w-[478px] h-[52px] w-[343px]">
               <div className='h-full w-full flex justify-between'>
                 <input type="text" placeholder="Search" className="input w-full h-full bg-[#F3F4F6] focus:outline-0 pr-1" />

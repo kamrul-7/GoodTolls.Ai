@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import './Navbar.css';
 const Navbar = () => {
   const ourNavOption = (
@@ -53,7 +53,7 @@ const Navbar = () => {
     <div>
       <div className="navbar bg-base-100">
         <div className="navbar-start">
-          <a className="btn btn-ghost normal-case text-xl">GoodTools.ai</a>
+          <Link to='/' className="btn btn-ghost normal-case text-xl">GoodTools.ai</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-base">
