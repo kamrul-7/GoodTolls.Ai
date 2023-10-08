@@ -3,8 +3,8 @@ import Footer from "../../Component/Footer/Footer";
 import { Link } from "react-router-dom";
 const About = () => {
   return (
-    <div className="mx-6">
-      <div className="text-sm breadcrumbs">
+    <div>
+      <div className="breadcrumbs  mb-5 text-sm font-normal mx-6">
         <ul>
           <li>
             <Link to='/'>Home</Link>
@@ -13,7 +13,7 @@ const About = () => {
         </ul>
       </div>
       <div>
-      <div className="card" style={{border:"1px solid #E5E7EB"}}>
+      <div className="card mb-16 md:mb-24 mx-6 rounded-xl" style={{border:"1px solid #E5E7EB"}}>
   <div className="card-body">
     <h2 className="card-title text-3xl md:text-5xl font-bold mb-8 md:mb-10">About us</h2>
     <h2 className="text-xl font-medium mb-4">About us:</h2>

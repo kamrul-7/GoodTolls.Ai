@@ -36,18 +36,16 @@ border-radius: 16px;
 }
 
 .subscription{
-    width:109px;
+    width:120px;
 height:34px;
-padding: 8px, 16px, 8px, 16px;
+padding-left: 15px;
+/* padding: 8px, 20px, 8px, 20px; */
 border-radius: 100px;
-gap: 10px;
+/* gap: 10px; */
 background: #F3F4F6;
 
 }
-.lock{
-   padding: 5px 0px 5px 10px;
 
-}
 .card-category{
     display: flex;
 justify-content: space-between;
@@ -72,11 +70,11 @@ border: 0.5px solid var(--neutral-200, #E5E7EB);
 }
 .card-category-text{
     color: var(--neutral-600, #4D5761);
-    leading-trim: both;
-    text-edge: cap;
+    /* leading-trim: both;
+    text-edge: cap; */
     
     /* Body Text/Inter 10px/Regular */
-    font-family: Inter;
+    /* font-family: Inter; */
     font-size: 10px;
     font-style: normal;
     font-weight: 400;

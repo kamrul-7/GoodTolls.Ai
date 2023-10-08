@@ -6,7 +6,7 @@ import { faUnlock } from "@fortawesome/free-solid-svg-icons"; // Import the unlo
 const Card = () => {
   return (
     <div>
-      <div className="card size bg-base-100 shadow-xl">
+      <div className="card size bg-base-100 shadow-xl mb-24 md:mx-0 mx-auto">
         <figure>
           <img
             src="https://images.ctfassets.net/7bkqs8vgq34y/42mnpPRa0kPvgZ4tMynP9O/85562d29f3bc54d6c20c3ee4d211c2ca/Website_Insight_Adobe_An-AI-for-design.jpg?w=1200&h=800&fit=fill&f=faces"
@@ -15,13 +15,13 @@ const Card = () => {
             style={{ width: "344px", height: "240px" }}
           />
         </figure>
-        <div className="card-body">
+        <div className="h-[243] mt-8">
           <div className="flex justify-between">
             <div className="Title">
               <h2>Tools</h2>
             </div>
             <div className="flex justify-between  subscription items-center">
-              <div className="lock">
+              <div className="">
                 <FontAwesomeIcon icon={faUnlock} />
               </div>
               <div className="">
@@ -29,7 +29,7 @@ const Card = () => {
               </div>
             </div>
           </div>
-          <div>
+          <div className="mt-4 mb-4">
           In contrast, formatted text, like a Microsoft Word document or an HTML webpage, includes instructions.
           </div>
          
@@ -37,10 +37,9 @@ const Card = () => {
             <div className="card-category-item"> <p className="card-category-text px-3 py-2">Photos</p></div>
             <div className="card-category-item"><p className="card-category-text px-3 py-2">Transcriber</p></div>
             <div className="card-category-item "><p className="card-category-text px-3 py-2">Audioedeting</p></div>
-            <div className="card-category-item"><p className="card-category-text px-3 py-2">See</p></div>
+            <div className="card-category-item"><p className="card-category-text px-3 py-2">See more</p></div>
         </div>
-        </div>
-        <button className="button flex justify-center items-center">
+        <button className="button flex justify-center items-center mt-6">
             <svg
               width="20px"
               height="20px"
@@ -54,6 +53,8 @@ const Card = () => {
               />
             </svg>
           </button>
+        </div>
+        
       </div>
     </div>
   );
