@@ -20,7 +20,7 @@ const Card = () => {
             <div className="Title">
               <h2>Tools</h2>
             </div>
-            <div className="flex justify-betwen subscription items-center">
+            <div className="flex justify-between  subscription items-center">
               <div className="lock">
                 <FontAwesomeIcon icon={faUnlock} />
               </div>
@@ -33,6 +33,12 @@ const Card = () => {
           In contrast, formatted text, like a Microsoft Word document or an HTML webpage, includes instructions.
           </div>
          
+        <div className="flex justify-between grid-cols-4 gap-1">
+            <div className="card-category-item"> <p className="card-category-text px-3 py-2">Photos</p></div>
+            <div className="card-category-item"><p className="card-category-text px-3 py-2">Transcriber</p></div>
+            <div className="card-category-item "><p className="card-category-text px-3 py-2">Audioedeting</p></div>
+            <div className="card-category-item"><p className="card-category-text px-3 py-2">See</p></div>
+        </div>
         </div>
         <button className="button flex justify-center items-center">
             <svg

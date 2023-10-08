@@ -8,7 +8,7 @@ const Footer = () => {
 
         <div className='h-[94px] border-r-2 w-full my-auto'>
           <Link to='/privacypolicy' className="link link-hover nav-text block">Privacy Policy</Link>
-          <a className="link link-hover nav-text block">Term of Service</a>
+          <Link to="/termsofservice" className="link link-hover nav-text block">Term of Service</Link>
           <a className="link link-hover nav-text block">About us</a>
         </div>
 
