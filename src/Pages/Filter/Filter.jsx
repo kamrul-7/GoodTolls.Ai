@@ -5,7 +5,7 @@ const Filter = () => {
     const [toggle, setToggle] = useState(true)
     return (
         <div className=''>
-            <button id="dropdownNavbarLink" onClick={() => setToggle(!toggle)} data-dropdown-toggle="dropdownNavbar" className=" text-base text-[#081120] rounded-xl border border-[#E5E7EB] md:w-[200px] w-11/12">
+            <button id="dropdownNavbarLink" onClick={() => setToggle(!toggle)} data-dropdown-toggle="dropdownNavbar" className=" text-base text-[#081120] rounded-xl border border-[#E5E7EB] md:w-[200px] w-full">
 
                 <div className='flex items-center justify-between px-4 py-2'>
 
