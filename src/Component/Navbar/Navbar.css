@@ -9,6 +9,10 @@ color: var(--neutral-white, #FFF);
 border-radius: 8px;
 background: var(--Primary, #2970FF);
 }
+
+.remove:hover{
+  background-color: transparent !important;
+}
 @media (max-width: 640px) {
     .hide-button {
       display: none;
