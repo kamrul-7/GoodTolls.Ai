@@ -10,7 +10,7 @@ import News from "../Pages/News/NewsPage/News";
 import About from "../Pages/About/About";
 import Terms from "../Pages/Terms/Terms";
 import SingleNews from"../Pages/SingleNews/SingleNews"
-import NewsCard from "../Pages/News/NewsCard/NewsCard";
+import StarRating from "../Pages/Rating/StarRating";
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -47,6 +47,10 @@ export const router = createBrowserRouter([
         {
           path:'/single',
           element: <SingleNews></SingleNews>
+        },
+        {
+          path: '/rt',
+          element: <StarRating></StarRating>
         }
       ]
       
