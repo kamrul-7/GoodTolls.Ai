@@ -9,6 +9,7 @@ import Contact from "../Pages/Contact/Contact";
 import News from "../Pages/News/NewsPage/News";
 import About from "../Pages/About/About";
 import Terms from "../Pages/Terms/Terms";
+import SingleNews from"../Pages/SingleNews/SingleNews"
 import NewsCard from "../Pages/News/NewsCard/NewsCard";
 export const router = createBrowserRouter([
     {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
         {
           path: "/termsofservice",
           element: <Terms></Terms>
+        },
+        {
+          path:'/single',
+          element: <SingleNews></SingleNews>
         }
       ]
       
