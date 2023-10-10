@@ -11,6 +11,7 @@ import About from "../Pages/About/About";
 import Terms from "../Pages/Terms/Terms";
 import SingleNews from"../Pages/SingleNews/SingleNews"
 import NewsCard from "../Pages/News/NewsCard/NewsCard";
+import Review from "../Pages/Review/Review";
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
         {
           path:'/single',
           element: <SingleNews></SingleNews>
+        },
+        {
+          path:'/review',
+          element: <Review/>
         }
       ]
       
