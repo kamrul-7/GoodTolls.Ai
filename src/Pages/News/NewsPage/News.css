@@ -111,12 +111,21 @@ font-weight: 500;
 line-height: 150%; /* 24px */
 }
 
-
-@media (min-width: 640px) {
-    .news-card{
-        background-color:red;
+@media (max-width: 640px) {
+    .news{
         display: flex;
+        width: 375px;
+        padding: 0px 16px 40px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+    .news-card{
+       width: 311px;
+       height: 628px;
+       display: flex;
 padding: 16px;
+margin-bottom: 16px;
 flex-direction: column;
 align-items: center;
 gap: 16px;
@@ -127,4 +136,107 @@ background: var(--neutral-white, #FFF);
 /* 02 */
 box-shadow: 0px 8px 24px 0px rgba(41, 59, 85, 0.08);
     }
+    .news-card-image{
+        height: 210px;
+        width: 279px;
+    align-self: stretch;
+    border-radius: 12px;
+    background: url(<path-to-image>), lightgray -94.025px -37.932px / 138.773% 120.53% no-repeat;
+    }
+    .news-div{
+        display: flex;
+padding: 24px 16px 16px 16px;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 24px;
+align-self: stretch;
+border-radius: 16px;
+border: 1px solid var(--neutral-200, #E5E7EB);
+background: var(--neutral-white, #FFF);
+    }
+    .date-title{
+        display: flex;
+align-items: center;
+gap: 18px;
+width: 280px;
+height: 30px;
+align-self: stretch;
+    }
+    .date{
+        display: flex;
+align-items: center;
+width:279px ;
+height: 192px;
+gap: 18px;
+align-self: stretch;
+    }
+
+    .date-title{
+        color: var(--neutral-950, #081120);
+
+/* Body Text/Inter 20px/Medium */
+font-family: Inter;
+font-size: 16px;
+
+font-style: normal;
+font-weight: 500;
+width: 25%;
+line-height: 150%; /* 30px */
+    }
+    .date-dates{
+        color: var(--neutral-500, #6C737F);
+    
+        /* Body Text/Inter 20px/Regular */
+        font-family: Inter;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 150%; /* 30px */
+    }
+    .vertical-line {
+        width: 1px;
+height: 14px;
+    }
+
+.title{
+    color: var(--neutral-950, #081120);
+    text-align: center;
+    background-color: ;
+    width: 311px;
+    margin-top: -55px;
+    margin-bottom: -10px;
+    height: 76px;
+    /* Heading Mobile/Heading 2 */
+    font-family: Space Grotesk;
+    font-style: normal;
+    font-size: small;
+    font-weight: 700;
+    line-height: 120%; /* 38.4px */
+    letter-spacing: -0.32px;
+}
+.rs-title{
+    font-style: italic;
+    font-size: 32px;
+}
+
+.see-button{
+    display: none;
+}
+
+btn-section {
+    justify-content: center !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
   }

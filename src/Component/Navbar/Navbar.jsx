@@ -5,10 +5,10 @@ const Navbar = () => {
     <>
       <li className='mx-6'>
 
-        <NavLink to="/" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "block" : ""}>
+        <NavLink to="/" style={{ background: 'transparent', }} className={({ isActive }) => isActive ? "block remove" : "remove"}>
           {({ isActive }) => (
             <>
-              <span className={isActive ? "text-[#2970FF] font-semibold" : "block"}>AI Tools Finder</span>
+              <span className={isActive ? "text-[#2970FF] font-semibold" : "block hover:bg-transparent"}>AI Tools Finder</span>
               <hr className={isActive ? "border-[1.5px] rounded-full w-4 mx-auto border-[#2970FF]" : "hidden"} />
             </>
           )}
@@ -16,7 +16,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li className='mx-6'>
-        <NavLink to="/about" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "block" : ""}>
+        <NavLink to="/about" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "block remove" : "remove"}>
           {({ isActive }) => (
             <>
               <span className={isActive ? "text-[#2970FF] font-semibold" : "block"}>About</span>
@@ -27,7 +27,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li className='mx-6'>
-        <NavLink to="/contact" style={{background: 'transparent'}} className={({ isActive}) => isActive ? "block" : ""}>
+        <NavLink to="/contact" style={{background: 'transparent'}} className={({ isActive}) => isActive ? "block remove" : "remove"}>
           {({ isActive }) => (
             <>
               <span className={isActive ? "text-[#2970FF] font-semibold" : "block"}>Contact</span>
@@ -37,7 +37,7 @@ const Navbar = () => {
 
         </NavLink></li>
       <li className='mx-6'>
-      <NavLink to="/news" style={{background: 'transparent'}} className={({ isActive}) => isActive ? "block" : ""}>
+      <NavLink to="/news" style={{background: 'transparent'}} className={({ isActive}) => isActive ? "block remove" : "remove"}>
           {({ isActive }) => (
             <>
               <span className={isActive ? "text-[#2970FF] font-semibold" : "block"}>News</span>
