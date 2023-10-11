@@ -3,7 +3,7 @@ import Rate from '../Rate/Rate';
 
 const SingleTool = () => {
     return (
-        <div className='p-10'>
+        <div className=''>
             <Rate></Rate>
         </div>
     );

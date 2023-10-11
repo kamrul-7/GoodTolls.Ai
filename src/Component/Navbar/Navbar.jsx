@@ -50,7 +50,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="border">
+    <div className="">
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <Link to='/' className="w-[168px] h-[40px] flex items-center">
