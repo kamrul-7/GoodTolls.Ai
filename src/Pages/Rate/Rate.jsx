@@ -13,7 +13,7 @@ const Rate = () => {
     const [ratingCount, setRatingCount] = useState(2);
     const [itemName, setItemName] = useState("Chapple");
     const user = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-    const review = "Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate."
+    const review = "Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate.Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate.Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate.Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate.Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate."
 
 
     const StarDrawing = (
@@ -56,26 +56,26 @@ const Rate = () => {
 
 
     return (
-        <div className=" ">
+        <div className="p-10 ">
 
             {/* Rating section */}
-            <div className="grid grid-cols-2 mb-24 h-[375px]">
-                <div className="md:w-[505px] ">
+            <div className="md:grid grid-cols-2 mb-20 md:h-[375px] gap-x-20">
+                <div className=" ">
 
                     {/* Average rating */}
-                    <div className="flex items-center pb-4 mb-5 border-b border-[#E5E7EB]">
+                    <div className="md:flex items-center pb-7 mb-7 border-b border-[#E5E7EB]">
                         <span className="font-bold text-[32px]">{avgRating}</span>
                         <Rating
-                            style={{ maxWidth: "126px", maxHeight: "22px", gap: "4px", margin: "0px 12px 0px 12px" }}
+                            style={{display:"inline-flex" ,maxWidth: "126px", maxHeight: "22px", gap: "4px", margin: "0px 12px 0px 12px" }}
                             value={rating}
                             onChange={setRating}
                             itemStyles={customStyles}
                             readOnly
                         />
-                        <span className="text[#4D5761] text-base Body">Based on {ratingCount} rating</span>
+                        <span className="text[#4D5761] text-base block">Based on {ratingCount} rating</span>
                     </div>
 
-                    <p className="text-[#081120] text-xl font-medium my-5">Overall Rating</p>
+                    <p className="text-[#081120] text-xl font-medium my-7">Overall Rating</p>
 
 
                     {/* Progress bars */}
@@ -91,9 +91,9 @@ const Rate = () => {
 
                 <div className="relative">
                     {/* Rate item */}
-                    <div className="absolute top-0 right-0 p-10 border rounded-[20px] w-[505px] h-[375px]">
+                    <div className="md:absolute top-0 right-0 p-11 border rounded-[20px] w-[535px]  h-[375px]">
                         <div className="text-2xl font-bold mb-[20px]">What do you think about {itemName}?</div>
-                        <div className="text-sm mb-[20px]">If you have a moment, it would be greatly appreciated if you<br />could leave a review to share your thoughts with the<br />community. Your feedback is valuable to us and helps us<br />improve our services. Thank you!</div>
+                        <div className="text-sm mb-[32px]">If you have a moment, it would be greatly appreciated if you<br />could leave a review to share your thoughts with the<br />community. Your feedback is valuable to us and helps us<br />improve our services. Thank you!</div>
                         {/* Stars */}
                         <div className=" w-full">
                             <Rating
@@ -123,11 +123,36 @@ const Rate = () => {
 
             {/* Review section */}
             <div className="">
-                <div className="text-[32px] font-bold pb-5 border-b border-[#E5E7EB]">
+                <div className="text-[32px] font-bold pb-7 mb-7 border-b border-[#E5E7EB]">
                     Customers Review
                 </div>
-                <div>
-                    <SingleReview name="Novák Réka" rating={5} date={date()} comment = {review}></SingleReview>
+                {/* user reviews */}
+                <div className="md:grid grid-cols-2 mb-14 relative">
+                    <SingleReview name="Novák Réka" rating={5} date={date()} comment={review}></SingleReview>
+
+                    <div className="md:absolute top-0 right-0">
+                        <SingleReview name="Novák Réka" rating={5} date={date()} comment={review}></SingleReview>
+                    </div>
+                </div>
+
+                {/* prev/next button */}
+                <div className="w-full">
+                    <div className="flex justify-center items-center">
+                        {/* Prev button */}
+                        <button className="h-12 w-12 flex items-center justify-center border border-[#2970FF] rounded-full mr-5">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15.0001 19.9201L8.48009 13.4001C7.71009 12.6301 7.71009 11.3701 8.48009 10.6001L15.0001 4.08008" stroke="#2970FF" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </button>
+
+                        {/* Next button */}
+                        <button className="h-12 w-12 flex items-center justify-center border border-[#2970FF] bg-[#2970FF] rounded-full">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.90991 19.9201L15.4299 13.4001C16.1999 12.6301 16.1999 11.3701 15.4299 10.6001L8.90991 4.08008" stroke="white" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+
+                        </button>
+                    </div>
                 </div>
             </div>
 
