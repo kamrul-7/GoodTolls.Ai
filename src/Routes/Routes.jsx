@@ -10,8 +10,9 @@ import News from "../Pages/News/NewsPage/News";
 import About from "../Pages/About/About";
 import Terms from "../Pages/Terms/Terms";
 import SingleNews from"../Pages/SingleNews/SingleNews"
-import NewsCard from "../Pages/News/NewsCard/NewsCard";
-import Review from "../Pages/Review/Review";
+import Review from '../Pages/Review/Review'
+import Rate from "../Pages/Rate/Rate";
+import SingleTool from "../Pages/SingleTool.jsx/SingleTool";
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -50,8 +51,12 @@ export const router = createBrowserRouter([
           element: <SingleNews></SingleNews>
         },
         {
-          path:'/review',
+          path: '/review',
           element: <Review/>
+        },
+        {
+          path: '/tool',
+          element: <SingleTool></SingleTool>
         }
       ]
       

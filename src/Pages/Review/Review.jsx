@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+
 import { Rating } from "@smastrom/react-rating";
 
 import "@smastrom/react-rating/style.css";
+import { useState } from "react";
 
 const Review = () => {
   const StarDrawing = (
@@ -22,7 +23,6 @@ const Review = () => {
   };
 
   const [rating, setRating] = useState(4);
-console.log(rating)
   const [message, setMessage] = useState("");
 
   const handleSubmit = (e) => {
