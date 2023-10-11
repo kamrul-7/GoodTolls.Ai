@@ -1,5 +1,6 @@
 import React from 'react';
 import './SingleNews.css'
+import Footer from '../../Component/Footer/Footer';
 const SingleNews = () => {
     return (
         <div className='mx-auto'>
@@ -101,6 +102,7 @@ const SingleNews = () => {
                             </div>
                 </div>
             </div>
+            <Footer></Footer>
         </div>
     );
 };

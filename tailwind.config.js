@@ -8,6 +8,16 @@ export default {
   theme: {
     extend: {},
   },
+  daisyui: {
+    themes: [
+      {
+        light: {
+          ...require("daisyui/src/theming/themes")["[data-theme=light]"],
+          "warning":"#FAAF00"
+        },
+      },
+    ],
+  },
   plugins: [require("daisyui", 'flowbite/plugin')],
 }
 
