@@ -2,8 +2,6 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Pages/Context/AuthProvider';
 
-// TODO: Import saveUser utility and toast here.
-
 const Login = () => {
     const { user, googleSignIn, logOut } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -12,13 +10,13 @@ const Login = () => {
         googleSignIn()
             .then((userCredential) => {
                 const user = userCredential.user;
-                saveUser(user.displayName, user.email); // Ensure saveUser is imported or defined
-                toast.success("Google Log in Successful"); // Ensure toast is imported or defined
+                saveUser(user.displayName, user.email); 
+                toast.success("Google Log in Successful"); 
                 navigate('/');
             })
             .catch((error) => {
                 const errorCode = error.code;
-                toast.error(errorCode.substring(5)); // Ensure toast is imported or defined
+                toast.error(errorCode.substring(5)); 
             });
     };
 
@@ -26,7 +24,7 @@ const Login = () => {
         logOut()
             .then(() => {
                 toast.success("Logged out successfully");
-                navigate('/');  // navigate to the desired page after logout
+                navigate('/');  
             })
             .catch((error) => {
                 toast.error("Error logging out");
