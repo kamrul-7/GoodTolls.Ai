@@ -7,7 +7,7 @@
     },
     {
       "name": "2 Bob Smith",
-      "rating": 3.2,
+      "rating": 5,
       "date": "Feb 14, 2023",
       "comment": "Average service, but the food was excellent."
     },
@@ -31,7 +31,7 @@
     },
     {
       "name": "6 James Lee",
-      "rating": 3.7,
+      "rating": 4.7,
       "date": "Jun 16, 2023",
       "comment": "Decent place with reasonable prices."
     },
@@ -43,7 +43,7 @@
     },
     {
       "name": "8 Michael Harris",
-      "rating": 2.9,
+      "rating": 4.9,
       "date": "Aug 9, 2023",
       "comment": "Service was slow, and the food was just okay."
     },
@@ -58,6 +58,12 @@
       "rating": 4.3,
       "date": "Sep 25, 2023",
       "comment": "Lovely place with a nice ambiance. I enjoyed my meal."
+    },
+    {
+      "name": "11 Kamrul",
+      "rating": 3.3,
+      "date": "Oct 13, 2023",
+      "comment": "not good"
     }
   ]
   
