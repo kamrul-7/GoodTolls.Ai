@@ -8,9 +8,12 @@ import SingleReview from "../SingleReview/SingleReview";
 
 
 const Rate = () => {
-    const [avgRating, setAvgRating] = useState(5.9)
-    const [rating, setRating] = useState(5);
-    const [ratingCount, setRatingCount] = useState(2);
+    const [avgRating, setAvgRating] = useState(0)
+    const [istar, setIstar] = useState(0)
+    const [iistar, setIistar] = useState(0)
+    const [iiistar, setIiistar] = useState(0)
+    const [ivstar, setIvstar] = useState(0)
+    const [vstar, setVstar] = useState(0)
     const [itemName, setItemName] = useState("Chapple");
     const [reviews, setReviews] = useState([])
 
@@ -51,12 +54,13 @@ const Rate = () => {
             setReviewCount(reviewCount - 1)
         }
         if (isMobile == true && reviewCount % 2 == 0) {
-            if (reviewCount + 1 < reviews.length) {
-                setReviewCount(reviewCount + 1)
+            if (reviewCount < reviews.length) {
+                setReviewCount(reviewCount)
             }
         }
     }, [isMobile])
 
+    // next review
     const handleNext = () => {
         if (!isMobile) {
             if (reviewCount < reviews.length - 2) {
@@ -70,6 +74,8 @@ const Rate = () => {
         }
     }
 
+
+    // previous review
     const handlePrev = () => {
         if (!isMobile) {
             if (reviewCount - 2 >= 0) {
@@ -90,10 +96,53 @@ const Rate = () => {
     useEffect(() => {
         fetch('/rating.json')
             .then(data => data.json())
-            .then(x => setReviews(x))
+            .then(info => setReviews(info.reverse()))
     }, [])
 
-    const review = "Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate.Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate.Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate.Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate.Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate."
+    useEffect(() => {
+        const numRating = reviews.length
+        const totalRating = reviews.reduce((accumulator, review) => accumulator + review.rating, 0)
+        const ratingsCount = [0, 0, 0, 0, 0]
+
+        reviews.map((review) => {
+            const rating = review.rating;
+            if (rating > 4) {
+                ratingsCount[0]++;
+            }
+            else if (rating > 3) {
+                ratingsCount[1]++;
+            }
+            else if (rating > 2) {
+                ratingsCount[2]++;
+            }
+            else if (rating > 1) {
+                ratingsCount[3]++;
+            }
+            else if (rating > 0) {
+                ratingsCount[4]++;
+            }
+        })
+
+        setAvgRating((totalRating / numRating).toFixed(1))
+        setVstar(Math.round(ratingsCount[0] / numRating * 100))
+        setIvstar(Math.round(ratingsCount[1] / numRating * 100))
+        setIiistar(Math.round(ratingsCount[2] / numRating * 100))
+        setIistar(Math.round(ratingsCount[3] / numRating * 100))
+        setIstar(Math.round(ratingsCount[4] / numRating * 100))
+
+    }, [reviews])
+
+    const date = () => {
+        const months = [
+            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+        ];
+        const today = new Date();
+        const month = months[today.getMonth()];
+        const day = today.getDate();
+        const year = today.getFullYear();
+        return `${month} ${day}, ${year}`
+    }
 
 
     const StarDrawing = (
@@ -122,17 +171,7 @@ const Rate = () => {
         inactiveFillColor: "#E5E7EB",
     };
 
-    const date = () => {
-        const months = [
-            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-        ];
-        const today = new Date();
-        const month = months[today.getMonth()];
-        const day = today.getDate();
-        const year = today.getFullYear();
-        return `${month} ${day}, ${year}`
-    }
+
 
 
     return (
@@ -144,15 +183,14 @@ const Rate = () => {
 
                     {/* Average rating */}
                     <div className="md:flex items-center pb-7 mb-7 border-b border-[#E5E7EB]">
-                        <span className="font-bold text-[32px]">{avgRating}</span>
+                        <span className="font-bold text-[32px]">{avgRating ? avgRating : '5.9'}</span>
                         <Rating
                             style={{ display: "inline-flex", maxWidth: "126px", maxHeight: "22px", gap: "4px", margin: "0px 12px 0px 12px" }}
-                            value={rating}
-                            onChange={setRating}
+                            value={avgRating}
                             itemStyles={customStyles}
                             readOnly
                         />
-                        <span className="text[#4D5761] text-base block">Based on {ratingCount} rating</span>
+                        <span className="text[#4D5761] text-base block">Based on {reviews.length} rating</span>
                     </div>
 
                     <p className="text-[#081120] text-xl font-medium my-7">Overall Rating</p>
@@ -160,11 +198,11 @@ const Rate = () => {
 
                     {/* Progress bars */}
                     <div className="gap-4">
-                        <Progress rating="5" val={100}></Progress>
-                        <Progress rating="4" val={90}></Progress>
-                        <Progress rating="3" val={0}></Progress>
-                        <Progress rating="2" val={0}></Progress>
-                        <Progress rating="1" val={0}></Progress>
+                        <Progress rating="5" val={vstar}></Progress>
+                        <Progress rating="4" val={ivstar}></Progress>
+                        <Progress rating="3" val={iiistar}></Progress>
+                        <Progress rating="2" val={iistar}></Progress>
+                        <Progress rating="1" val={istar}></Progress>
 
                     </div>
                 </div>
