@@ -16,7 +16,7 @@ const Card = () => {
               style={{ width: "344px", height: "240px" }}
             />
 
-            <div className="bg-white md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] md:left-[268px] left-[237px]">
+            <div className="bg-white md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] left-[268px]">
               <div className="">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clipPath="url(#clip0_1203_1345)">
