@@ -12,7 +12,87 @@ const Rate = () => {
     const [rating, setRating] = useState(5);
     const [ratingCount, setRatingCount] = useState(2);
     const [itemName, setItemName] = useState("Chapple");
-    const user = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    const [reviews, setReviews] = useState([])
+
+
+
+
+    //Responsive rating part
+
+    const [isMobile, setIsMobile] = useState(false)
+    const [reviewCount, setReviewCount] = useState(0)
+
+    // initialize screen size type
+    useEffect(() => {
+        window.innerWidth < 768 ? setIsMobile(true) : setIsMobile(false);
+    }, [])
+
+    // create an event listener to listen screen size changes
+    useEffect(() => {
+        //choose the screen size 
+        const handleResize = () => {
+            if (window.innerWidth < 768) {
+                setIsMobile(true)
+            } else {
+                setIsMobile(false)
+            }
+        }
+
+        window.addEventListener("resize", handleResize)
+
+        return () => {
+            window.removeEventListener("resize", handleResize)
+        }
+    })
+
+    // handle review to be shown in per frame for different screen size
+    useEffect(() => {
+        if (isMobile == false && reviewCount % 2 == 1) {
+            setReviewCount(reviewCount - 1)
+        }
+        if (isMobile == true && reviewCount % 2 == 0) {
+            if (reviewCount + 1 < reviews.length) {
+                setReviewCount(reviewCount + 1)
+            }
+        }
+    }, [isMobile])
+
+    const handleNext = () => {
+        if (!isMobile) {
+            if (reviewCount < reviews.length - 2) {
+                setReviewCount(reviewCount + 2);
+            }
+        }
+        else {
+            if (reviewCount < reviews.length - 1) {
+                setReviewCount(reviewCount + 1);
+            }
+        }
+    }
+
+    const handlePrev = () => {
+        if (!isMobile) {
+            if (reviewCount - 2 >= 0) {
+                setReviewCount(reviewCount - 2);
+            }
+        }
+        else {
+            if (reviewCount - 1 >= 0) {
+                setReviewCount(reviewCount - 1);
+            }
+
+        }
+    }
+
+
+
+
+    useEffect(() => {
+        fetch('/rating.json')
+            .then(data => data.json())
+            .then(x => setReviews(x))
+    }, [])
+
     const review = "Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate.Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate.Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate.Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate.Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate."
 
 
@@ -66,7 +146,7 @@ const Rate = () => {
                     <div className="md:flex items-center pb-7 mb-7 border-b border-[#E5E7EB]">
                         <span className="font-bold text-[32px]">{avgRating}</span>
                         <Rating
-                            style={{display:"inline-flex" ,maxWidth: "126px", maxHeight: "22px", gap: "4px", margin: "0px 12px 0px 12px" }}
+                            style={{ display: "inline-flex", maxWidth: "126px", maxHeight: "22px", gap: "4px", margin: "0px 12px 0px 12px" }}
                             value={rating}
                             onChange={setRating}
                             itemStyles={customStyles}
@@ -128,25 +208,29 @@ const Rate = () => {
                 </div>
                 {/* user reviews */}
                 <div className="md:grid grid-cols-2 mb-14 relative">
-                    <SingleReview name="Novák Réka" rating={5} date={date()} comment={review}></SingleReview>
+                    <SingleReview name={reviews[reviewCount]?.name} rating={reviews[reviewCount]?.rating} date={reviews[reviewCount]?.date} comment={reviews[reviewCount]?.comment}></SingleReview>
 
-                    <div className="md:absolute top-0 right-0">
-                        <SingleReview name="Novák Réka" rating={5} date={date()} comment={review}></SingleReview>
-                    </div>
+
+                    {
+                        reviews[reviewCount + 1] ?
+                            <div className="md:absolute top-0 right-0 hidden md:block">
+                                <SingleReview name={reviews[reviewCount + 1]?.name} rating={reviews[reviewCount + 1]?.rating} date={reviews[reviewCount + 1]?.date} comment={reviews[reviewCount + 1]?.comment}></SingleReview>
+                            </div> : <div></div>
+                    }
                 </div>
 
                 {/* prev/next button */}
                 <div className="w-full">
                     <div className="flex justify-center items-center">
                         {/* Prev button */}
-                        <button className="h-12 w-12 flex items-center justify-center border border-[#2970FF] rounded-full mr-5">
+                        <button onClick={handlePrev} className="h-12 w-12 flex items-center justify-center border border-[#2970FF] rounded-full mr-5">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M15.0001 19.9201L8.48009 13.4001C7.71009 12.6301 7.71009 11.3701 8.48009 10.6001L15.0001 4.08008" stroke="#2970FF" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                         </button>
 
                         {/* Next button */}
-                        <button className="h-12 w-12 flex items-center justify-center border border-[#2970FF] bg-[#2970FF] rounded-full">
+                        <button onClick={handleNext} className="h-12 w-12 flex items-center justify-center border border-[#2970FF] bg-[#2970FF] rounded-full">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8.90991 19.9201L15.4299 13.4001C16.1999 12.6301 16.1999 11.3701 15.4299 10.6001L8.90991 4.08008" stroke="white" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
