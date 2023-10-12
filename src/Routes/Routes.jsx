@@ -13,6 +13,7 @@ import SingleNews from"../Pages/SingleNews/SingleNews"
 import Review from '../Pages/Review/Review'
 import Rate from "../Pages/Rate/Rate";
 import SingleTool from "../Pages/SingleTool.jsx/SingleTool";
+import Test from "../test";
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
         {
           path: '/tool',
           element: <SingleTool></SingleTool>
+        },
+        {
+          path: '/tst',
+          element: <Test></Test>
         }
       ]
       
