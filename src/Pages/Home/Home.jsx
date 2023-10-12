@@ -33,6 +33,7 @@ const Home = () => {
 
     return (
         <div>
+           
             <Hero></Hero>
             <div className='md:flex items-center justify-between mt-7 mb-5'>
                 <div className='md:flex items-center '>
