@@ -1,0 +1,26 @@
+.ai-btn{
+display: flex;
+height: 48px;
+padding: 12px 24px;
+justify-content: center;
+align-items: center;
+gap: 12px;
+color: var(--neutral-white, #FFF);
+border-radius: 8px;
+background: var(--Primary, #2970FF);
+}
+
+.remove:hover{
+  background-color: transparent !important;
+}
+@media (max-width: 640px) {
+    .hide-button {
+      display: none;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .hide-menu {
+      display: none !important;
+    }
+  }
