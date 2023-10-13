@@ -1,13 +1,10 @@
 
 import { Rating } from "@smastrom/react-rating";
-import './Review.css'
 import "@smastrom/react-rating/style.css";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../Context/AuthProvider";
-import ModalContext from "../Context/modalContext";
 
 const Review = () => {
-  const { isModalOpen, setIsModalOpen } = useContext(ModalContext);
 let x=true
   const modalRef = useRef(null);
   const StarDrawing = (
