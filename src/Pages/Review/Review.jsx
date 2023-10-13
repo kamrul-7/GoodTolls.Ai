@@ -1,9 +1,9 @@
 
 import { Rating } from "@smastrom/react-rating";
-
+import './Review.css'
 import "@smastrom/react-rating/style.css";
-import { useContext, useEffect, useRef, useState } from "react";
-import ModalContext from "../Context/modalContext";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../Context/AuthProvider";
 
 const Review = () => {
   const { isModalOpen, setIsModalOpen } = useContext(ModalContext);
@@ -25,7 +25,7 @@ let x=true
     activeFillColor: "#FAAF00",
     inactiveFillColor: "#E5E7EB",
   };
-
+  const { toggle, setTrue, setFalse } = useContext(AuthContext);
   const [rating, setRating] = useState(4);
   const [message, setMessage] = useState("");
 
@@ -40,19 +40,9 @@ let x=true
       modalRef.current.close();
     }
     setMessage(""); // Reset the message state
+    setFalse()
   };
 
-  useEffect(() => {
-    if (modalRef.current) {
-      modalRef.current.showModal();
-    }
-  }, []);
-
-  useEffect(() => {
-    if (isModalOpen && modalRef.current) {
-      modalRef.current.showModal();
-    }
-  }, [isModalOpen]);
   return (
     <div className="">
       {/* <button
@@ -60,9 +50,8 @@ let x=true
         onClick={() => document.getElementById("my_modal_5").showModal()}
       >
         Send
-      </button> */}
-      {x && document.getElementById("my_modal_5").showModal()}
-      <dialog ref={modalRef} id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+      </button>
+      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-2xl mb-4">What is Your Rating?</h3>
           <div>

@@ -4,16 +4,19 @@ import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import Progress from "../Progress/Progress";
 import SingleReview from "../SingleReview/SingleReview";
+import { AuthContext } from "../Context/AuthProvider";
 import Review from "../Review/Review";
-// import ModalContext from "../Context/modalContext";
-// import Review from "../Review/Review";
 
 
 
 const Rate = () => {
-    const [avgRating, setAvgRating] = useState(5.9)
-    const [rating, setRating] = useState(5);
-    const [ratingCount, setRatingCount] = useState(2);
+    const { toggle, setTrue, setFalse } = useContext(AuthContext);
+    const [avgRating, setAvgRating] = useState(0)
+    const [istar, setIstar] = useState(0)
+    const [iistar, setIistar] = useState(0)
+    const [iiistar, setIiistar] = useState(0)
+    const [ivstar, setIvstar] = useState(0)
+    const [vstar, setVstar] = useState(0)
     const [itemName, setItemName] = useState("Chapple");
     const [reviews, setReviews] = useState([])
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -53,12 +56,13 @@ const Rate = () => {
             setReviewCount(reviewCount - 1)
         }
         if (isMobile == true && reviewCount % 2 == 0) {
-            if (reviewCount + 1 < reviews.length) {
-                setReviewCount(reviewCount + 1)
+            if (reviewCount < reviews.length) {
+                setReviewCount(reviewCount)
             }
         }
     }, [isMobile])
 
+    // next review
     const handleNext = () => {
         if (!isMobile) {
             if (reviewCount < reviews.length - 2) {
@@ -72,6 +76,8 @@ const Rate = () => {
         }
     }
 
+
+    // previous review
     const handlePrev = () => {
         if (!isMobile) {
             if (reviewCount - 2 >= 0) {
@@ -92,10 +98,53 @@ const Rate = () => {
     useEffect(() => {
         fetch('/rating.json')
             .then(data => data.json())
-            .then(x => setReviews(x))
+            .then(info => setReviews(info.reverse()))
     }, [])
 
-    const review = "Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate.Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate.Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate.Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate.Nibh feugiat amet lectus amet a. Pretium magna parturient eget tortor odio facilisis posuere tortor. Leo orci morbi venenatis tellus ut. Tellus fusce aliquet integer nisl pellentesque elementum sed sed eu. Ipsum justo lectus rhoncus ut morbi commodo Vulputate."
+    useEffect(() => {
+        const numRating = reviews.length
+        const totalRating = reviews.reduce((accumulator, review) => accumulator + review.rating, 0)
+        const ratingsCount = [0, 0, 0, 0, 0]
+
+        reviews.map((review) => {
+            const rating = review.rating;
+            if (rating > 4) {
+                ratingsCount[0]++;
+            }
+            else if (rating > 3) {
+                ratingsCount[1]++;
+            }
+            else if (rating > 2) {
+                ratingsCount[2]++;
+            }
+            else if (rating > 1) {
+                ratingsCount[3]++;
+            }
+            else if (rating > 0) {
+                ratingsCount[4]++;
+            }
+        })
+
+        setAvgRating((totalRating / numRating).toFixed(1))
+        setVstar(Math.round(ratingsCount[0] / numRating * 100))
+        setIvstar(Math.round(ratingsCount[1] / numRating * 100))
+        setIiistar(Math.round(ratingsCount[2] / numRating * 100))
+        setIistar(Math.round(ratingsCount[3] / numRating * 100))
+        setIstar(Math.round(ratingsCount[4] / numRating * 100))
+
+    }, [reviews])
+
+    const date = () => {
+        const months = [
+            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+        ];
+        const today = new Date();
+        const month = months[today.getMonth()];
+        const day = today.getDate();
+        const year = today.getFullYear();
+        return `${month} ${day}, ${year}`
+    }
 
 
     const StarDrawing = (
@@ -124,29 +173,10 @@ const Rate = () => {
         inactiveFillColor: "#E5E7EB",
     };
 
-    const date = () => {
-        const months = [
-            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-        ];
-        const today = new Date();
-        const month = months[today.getMonth()];
-        const day = today.getDate();
-        const year = today.getFullYear();
-        return `${month} ${day}, ${year}`
+
+    const handleClick =()=>{
+        setTrue();
     }
-
-
-    const handleSend = () => {
-        console.log("Button was clicked!");
-        setIsModalOpen(true);
-    }
-
-    const reset = () => {
-        setIsModalOpen(false);
-    }
-    
-
 
     return (
         <div className="p-10 ">
@@ -157,15 +187,14 @@ const Rate = () => {
 
                     {/* Average rating */}
                     <div className="md:flex items-center pb-7 mb-7 border-b border-[#E5E7EB]">
-                        <span className="font-bold text-[32px]">{avgRating}</span>
+                        <span className="font-bold text-[32px]">{avgRating ? avgRating : '5.9'}</span>
                         <Rating
                             style={{ display: "inline-flex", maxWidth: "126px", maxHeight: "22px", gap: "4px", margin: "0px 12px 0px 12px" }}
-                            value={rating}
-                            onChange={setRating}
+                            value={avgRating}
                             itemStyles={customStyles}
                             readOnly
                         />
-                        <span className="text[#4D5761] text-base block">Based on {ratingCount} rating</span>
+                        <span className="text[#4D5761] text-base block">Based on {reviews.length} rating</span>
                     </div>
 
                     <p className="text-[#081120] text-xl font-medium my-7">Overall Rating</p>
@@ -173,11 +202,11 @@ const Rate = () => {
 
                     {/* Progress bars */}
                     <div className="gap-4">
-                        <Progress rating="5" val={100}></Progress>
-                        <Progress rating="4" val={90}></Progress>
-                        <Progress rating="3" val={0}></Progress>
-                        <Progress rating="2" val={0}></Progress>
-                        <Progress rating="1" val={0}></Progress>
+                        <Progress rating="5" val={vstar}></Progress>
+                        <Progress rating="4" val={ivstar}></Progress>
+                        <Progress rating="3" val={iiistar}></Progress>
+                        <Progress rating="2" val={iistar}></Progress>
+                        <Progress rating="1" val={istar}></Progress>
 
                     </div>
                 </div>
@@ -199,8 +228,8 @@ const Rate = () => {
                         </div>
 
                         {/* Rate button */}
-                        <div className="w-full flex justify-center">
-                        <button onClick={handleSend} className="border border-[#E5E7EB] rounded-xl px-[34px] py-[16px] flex items-center justify-center w-fit">
+                        <div onClick={handleClick} className="w-full flex justify-center">
+                            <button className="border border-[#E5E7EB] rounded-xl px-[34px] py-[16px] flex items-center justify-center w-fit">
                                 <span className="text-base font-medium mr-4">Rate {itemName}</span>
                                 <svg className="h-5" width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M0.326234 1.94821L0.293166 1.85842C0.149117 1.46766 0.171251 1.13289 0.359132 0.863644C0.517803 0.635893 0.780383 0.5 1.06137 0.5C1.28963 0.5 1.51241 0.584108 1.74131 0.756758L15.2421 9.39944L15.3054 9.44469C15.6199 9.69366 15.801 10.0554 15.8022 10.4372C15.8035 10.819 15.6246 11.1818 15.3117 11.4329L15.2813 11.4574L1.7427 20.2389C1.51299 20.4145 1.28896 20.5 1.05884 20.5C0.778961 20.5 0.51716 20.3646 0.358388 20.1381C0.170609 19.8699 0.147322 19.536 0.289409 19.1453L0.321733 19.0563L5.948 10.6871C5.97717 10.5466 5.9768 10.3354 5.94708 10.1947L0.326234 1.94821ZM3.34021 17.3509L13.9905 10.4428L13.9181 10.3964H7.521C7.52598 10.7117 7.48289 11.0297 7.38927 11.2873L7.35685 11.3763L3.34021 17.3509Z" fill="#4D5761" />
@@ -219,6 +248,7 @@ const Rate = () => {
         
                             
                         </div>
+                        {toggle && <Review ></Review>}
                     </div>
 
                 </div>

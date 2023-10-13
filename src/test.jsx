@@ -87,6 +87,8 @@ const Test = () => {
         }
     }
 
+
+
     return (
         
         <div>
@@ -100,6 +102,7 @@ const Test = () => {
                 <button onClick={handlePrev}>prev</button>
                 
             </div>
+            <p>{test}</p>
         </div>
     );
 };
