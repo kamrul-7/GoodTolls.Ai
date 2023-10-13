@@ -2,9 +2,13 @@
 import { Rating } from "@smastrom/react-rating";
 
 import "@smastrom/react-rating/style.css";
-import { useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import ModalContext from "../Context/modalContext";
 
 const Review = () => {
+  const { isModalOpen, setIsModalOpen } = useContext(ModalContext);
+let x=true
+  const modalRef = useRef(null);
   const StarDrawing = (
     <svg
       width="36"
@@ -32,19 +36,33 @@ const Review = () => {
   };
 
   const closeModal = () => {
-    document.getElementById("my_modal_5").close();
+    if (modalRef.current) {
+      modalRef.current.close();
+    }
     setMessage(""); // Reset the message state
   };
 
+  useEffect(() => {
+    if (modalRef.current) {
+      modalRef.current.showModal();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isModalOpen && modalRef.current) {
+      modalRef.current.showModal();
+    }
+  }, [isModalOpen]);
   return (
     <div className="">
-      <button
+      {/* <button
         className="btn"
         onClick={() => document.getElementById("my_modal_5").showModal()}
       >
         Send
-      </button>
-      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+      </button> */}
+      {x && document.getElementById("my_modal_5").showModal()}
+      <dialog ref={modalRef} id="my_modal_5" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-2xl mb-4">What is Your Rating?</h3>
           <div>

@@ -1,14 +1,19 @@
 import { Outlet } from "react-router-dom";
+import ModalContext from '../Pages/Context/modalContext';
 import Navbar from "../Component/Navbar/Navbar";
 import AuthProvider from '../Pages/Context/AuthProvider';
-const Main = () => {
+import { useState } from "react";
 
+const Main = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="max-w-screen-xl mx-auto">
       <AuthProvider>
-      <Navbar />
-      <Outlet></Outlet>
+        <Navbar />
+        <ModalContext.Provider value={{ isModalOpen, setIsModalOpen }}>
+          <Outlet />
+        </ModalContext.Provider>
       </AuthProvider>
     </div>
   );

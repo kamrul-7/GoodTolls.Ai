@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Rating } from "@smastrom/react-rating";
 
 import "@smastrom/react-rating/style.css";
 import Progress from "../Progress/Progress";
 import SingleReview from "../SingleReview/SingleReview";
+import Review from "../Review/Review";
+// import ModalContext from "../Context/modalContext";
+// import Review from "../Review/Review";
 
 
 
@@ -13,8 +16,7 @@ const Rate = () => {
     const [ratingCount, setRatingCount] = useState(2);
     const [itemName, setItemName] = useState("Chapple");
     const [reviews, setReviews] = useState([])
-
-
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
 
     //Responsive rating part
@@ -135,6 +137,17 @@ const Rate = () => {
     }
 
 
+    const handleSend = () => {
+        console.log("Button was clicked!");
+        setIsModalOpen(true);
+    }
+
+    const reset = () => {
+        setIsModalOpen(false);
+    }
+    
+
+
     return (
         <div className="p-10 ">
 
@@ -187,13 +200,24 @@ const Rate = () => {
 
                         {/* Rate button */}
                         <div className="w-full flex justify-center">
-                            <button className="border border-[#E5E7EB] rounded-xl px-[34px] py-[16px] flex items-center justify-center w-fit">
+                        <button onClick={handleSend} className="border border-[#E5E7EB] rounded-xl px-[34px] py-[16px] flex items-center justify-center w-fit">
                                 <span className="text-base font-medium mr-4">Rate {itemName}</span>
                                 <svg className="h-5" width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M0.326234 1.94821L0.293166 1.85842C0.149117 1.46766 0.171251 1.13289 0.359132 0.863644C0.517803 0.635893 0.780383 0.5 1.06137 0.5C1.28963 0.5 1.51241 0.584108 1.74131 0.756758L15.2421 9.39944L15.3054 9.44469C15.6199 9.69366 15.801 10.0554 15.8022 10.4372C15.8035 10.819 15.6246 11.1818 15.3117 11.4329L15.2813 11.4574L1.7427 20.2389C1.51299 20.4145 1.28896 20.5 1.05884 20.5C0.778961 20.5 0.51716 20.3646 0.358388 20.1381C0.170609 19.8699 0.147322 19.536 0.289409 19.1453L0.321733 19.0563L5.948 10.6871C5.97717 10.5466 5.9768 10.3354 5.94708 10.1947L0.326234 1.94821ZM3.34021 17.3509L13.9905 10.4428L13.9181 10.3964H7.521C7.52598 10.7117 7.48289 11.0297 7.38927 11.2873L7.35685 11.3763L3.34021 17.3509Z" fill="#4D5761" />
                                 </svg>
-
+                                
                             </button>
+                            
+                            {/* <button className="border border-[#E5E7EB] rounded-xl px-[34px] py-[16px] flex items-center justify-center w-fit" onClick={handleSend}>
+                <span className="text-base font-medium mr-4">click here for try</span> */}
+                {/* ... SVG ... */}
+            {/* </button> */}
+
+            {/* Conditional rendering of modal */}
+        {isModalOpen && <Review/>}
+        {/* {isModalOpen && setIsModalOpen(false)} */}
+        
+                            
                         </div>
                     </div>
 
