@@ -1,0 +1,10 @@
+.hide-scrollbar {
+    overflow-y: hidden;
+    scrollbar-width: none; /* For Firefox */
+    background-color: yellowgreen;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari and Opera */
+}
+

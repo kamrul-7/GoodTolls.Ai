@@ -1,12 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { Rating } from "@smastrom/react-rating";
-
 import "@smastrom/react-rating/style.css";
 import Progress from "../Progress/Progress";
 import SingleReview from "../SingleReview/SingleReview";
 import { AuthContext } from "../Context/AuthProvider";
 import Review from "../Review/Review";
-
+import './Rate.css'
 
 
 const Rate = () => {
@@ -179,11 +178,11 @@ const Rate = () => {
     }
 
     return (
-        <div className="p-10 ">
+        <div className="p-10">
 
             {/* Rating section */}
-            <div className="md:grid grid-cols-2 mb-20 md:h-[375px] gap-x-20">
-                <div className=" ">
+            <div className="md:grid grid-cols-2 mb-20 md:h-[375px] gap-x-20 hide-scrollbar">
+                <div className="hide-scrollbar ">
 
                     {/* Average rating */}
                     <div className="md:flex items-center pb-7 mb-7 border-b border-[#E5E7EB]">
@@ -215,7 +214,7 @@ const Rate = () => {
                     {/* Rate item */}
                     <div className="md:absolute top-0 right-0 p-11 border rounded-[20px] w-[535px]  h-[375px]">
                         <div className="text-2xl font-bold mb-[20px]">What do you think about {itemName}?</div>
-                        <div className="text-sm mb-[32px]">If you have a moment, it would be greatly appreciated if you<br />could leave a review to share your thoughts with the<br />community. Your feedback is valuable to us and helps us<br />improve our services. Thank you!</div>
+                        <div className="text-sm mb-[32px] test">If you have a moment, it would be greatly appreciated if you<br />could leave a review to share your thoughts with the<br />community. Your feedback is valuable to us and helps us<br />improve our services. Thank you!</div>
                         {/* Stars */}
                         <div className=" w-full">
                             <Rating
@@ -256,7 +255,7 @@ const Rate = () => {
 
 
             {/* Review section */}
-            <div className="">
+            <div className="hide-scrollbar">
                 <div className="text-[32px] font-bold pb-7 mb-7 border-b border-[#E5E7EB]">
                     Customers Review
                 </div>

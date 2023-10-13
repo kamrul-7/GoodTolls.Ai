@@ -2,8 +2,9 @@
 import { Rating } from "@smastrom/react-rating";
 import './Review.css'
 import "@smastrom/react-rating/style.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../Context/AuthProvider";
+import ModalContext from "../Context/modalContext";
 
 const Review = () => {
   const { isModalOpen, setIsModalOpen } = useContext(ModalContext);
@@ -42,7 +43,10 @@ let x=true
     setMessage(""); // Reset the message state
     setFalse()
   };
-
+  useEffect(() => {
+    document.getElementById("my_modal_5").showModal()
+    
+  }, [])
   return (
     <div className="">
       {/* <button
@@ -50,7 +54,7 @@ let x=true
         onClick={() => document.getElementById("my_modal_5").showModal()}
       >
         Send
-      </button>
+      </button> */}
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-2xl mb-4">What is Your Rating?</h3>
