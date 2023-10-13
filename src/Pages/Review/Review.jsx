@@ -23,7 +23,7 @@ let x=true
     activeFillColor: "#FAAF00",
     inactiveFillColor: "#E5E7EB",
   };
-  const { toggle, setTrue, setFalse } = useContext(AuthContext);
+  const { setFalse } = useContext(AuthContext);
   const [rating, setRating] = useState(4);
   const [message, setMessage] = useState("");
 

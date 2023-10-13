@@ -5,15 +5,17 @@ import Progress from "../Progress/Progress";
 import SingleReview from "../SingleReview/SingleReview";
 import { AuthContext } from "../Context/AuthProvider";
 import Review from "../Review/Review";
-const Rate = () => {
-    const { toggle, setTrue, setFalse } = useContext(AuthContext);
+
+
+
+const Rate = ({ item }) => {
+    const { toggle, setTrue } = useContext(AuthContext);
     const [avgRating, setAvgRating] = useState(0)
     const [istar, setIstar] = useState(0)
     const [iistar, setIistar] = useState(0)
     const [iiistar, setIiistar] = useState(0)
     const [ivstar, setIvstar] = useState(0)
     const [vstar, setVstar] = useState(0)
-    const [itemName, setItemName] = useState("Chapple");
     const [reviews, setReviews] = useState([])
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -169,84 +171,86 @@ const Rate = () => {
         inactiveFillColor: "#E5E7EB",
     };
 
+    const starSvgSm = (
+        <svg width="28" height="25" viewBox="0 0 28 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.8003 1.47524C13.1938 0.335182 14.8062 0.335184 15.1997 1.47524L17.5216 8.20068C17.6982 8.71239 18.18 9.05573 18.7213 9.05573H26.0632C27.3113 9.05573 27.8099 10.6682 26.7797 11.3727L20.9749 15.342C20.5029 15.6647 20.305 16.2633 20.4916 16.8039L22.7396 23.3154C23.1386 24.4714 21.8329 25.4676 20.8234 24.7773L14.7164 20.6014C14.2845 20.306 13.7155 20.306 13.2836 20.6014L7.1766 24.7773C6.16714 25.4676 4.86135 24.4714 5.26042 23.3154L7.5084 16.8039C7.69501 16.2633 7.49711 15.6647 7.02507 15.342L1.22034 11.3727C0.190093 10.6682 0.68868 9.05573 1.93676 9.05573H9.2787C9.82003 9.05573 10.3018 8.71239 10.4784 8.20068L12.8003 1.47524Z" fill="#FAAF00" />
+        </svg>
 
-    const handleClick =()=>{
+
+    )
+
+    const starStyleSm = {
+        itemShapes: starSvgSm,
+        activeFillColor: "#FAAF00",
+        inactiveFillColor: "#E5E7EB",
+    };
+
+
+    const handleClick = () => {
         setTrue();
     }
 
     return (
-        <div>
-            <div className="p-10 w-[343px] md:w-full mt-24 ">
+        <div className="p-10 w-[343px] md:w-full ">
 
-{/* Rating section */}
-<div className="md:grid grid-cols-2 mb-20 md:h-[375px] gap-x-20 hide-scrollbar">
-    <div className="hide-scrollbar ">
+            {/* Rating section */}
+            <div className="md:grid grid-cols-2 mb-20 md:h-[375px] gap-x-20">
+                <div className=" ">
 
-        {/* Average rating */}
-        <div className="md:flex items-center pb-7 mb-7 border-b border-[#E5E7EB]">
-            <span className="font-bold text-[32px]">{avgRating ? avgRating : '5.9'}</span>
-            <Rating
-                style={{ display: "inline-flex", maxWidth: "126px", maxHeight: "22px", gap: "4px", margin: "0px 12px 0px 12px" }}
-                value={avgRating}
-                itemStyles={customStyles}
-                readOnly
-            />
-            <span className="text[#4D5761] text-base block">Based on {reviews.length} rating</span>
-        </div>
+                    {/* Average rating */}
+                    <div className="md:flex items-center pb-7 mb-7 border-b border-[#E5E7EB]">
+                        <span className="font-bold text-[32px]">{avgRating ? avgRating : '5.9'}</span>
+                        <Rating
+                            style={{ display: "inline-flex", maxWidth: "126px", maxHeight: "22px", gap: "4px", margin: "0px 12px 0px 12px" }}
+                            value={avgRating}
+                            itemStyles={customStyles}
+                            readOnly
+                        />
+                        <span className="text[#4D5761] text-base block">Based on {reviews.length} rating</span>
+                    </div>
 
         <p className="text-[#081120] text-xl font-medium my-7">Overall Rating</p>
 
 
-        {/* Progress bars */}
-        <div className="gap-4">
-            <Progress rating="5" val={vstar}></Progress>
-            <Progress rating="4" val={ivstar}></Progress>
-            <Progress rating="3" val={iiistar}></Progress>
-            <Progress rating="2" val={iistar}></Progress>
-            <Progress rating="1" val={istar}></Progress>
+                    {/* Progress bars */}
+                    <div className="gap-4">
+                        <Progress rating="5" val={vstar}></Progress>
+                        <Progress rating="4" val={ivstar}></Progress>
+                        <Progress rating="3" val={iiistar}></Progress>
+                        <Progress rating="2" val={iistar}></Progress>
+                        <Progress rating="1" val={istar}></Progress>
 
         </div>
     </div>
 
-    <div className="relative">
-        {/* Rate item */}
-        <div className="md:absolute top-0 right-0 p-11 border rounded-[20px] w-[535px]  h-[375px]">
-            <div className="text-2xl font-bold mb-[20px]">What do you think about {itemName}?</div>
-            <div className="text-sm mb-[32px] test">If you have a moment, it would be greatly appreciated if you<br />could leave a review to share your thoughts with the<br />community. Your feedback is valuable to us and helps us<br />improve our services. Thank you!</div>
-            {/* Stars */}
-            <div className=" w-full">
-                <Rating
-                    style={{ maxWidth: '260px', maxHeight: '44px', gap: '7px', margin: '0px auto 24px auto' }}
-                    itemStyles={starStyle}
-                    value={4}
-                    items={5}
-                    readOnly
-                />
-            </div>
+                <div className="relative">
+                    {/* Rate item */}
+                    <div className="md:absolute top-0 right-0 p-11 border rounded-[20px] w-[535px]  h-[375px]">
+                        <div className="text-2xl font-bold mb-[20px]">What do you think about {itemName}?</div>
+                        <div className="text-sm mb-[32px]">If you have a moment, it would be greatly appreciated if you<br />could leave a review to share your thoughts with the<br />community. Your feedback is valuable to us and helps us<br />improve our services. Thank you!</div>
+                        {/* Stars */}
+                        <div className=" w-full">
+                            <Rating
+                                style={{ maxWidth: '260px', maxHeight: '44px', gap: '7px', margin: '0px auto 24px auto' }}
+                                itemStyles={starStyle}
+                                value={4}
+                                items={5}
+                                readOnly
+                            />
+                        </div>
 
-            {/* Rate button */}
-            <div onClick={handleClick} className="w-full flex justify-center">
-                <button className="border border-[#E5E7EB] rounded-xl px-[34px] py-[16px] flex items-center justify-center w-fit">
-                    <span className="text-base font-medium mr-4">Rate {itemName}</span>
-                    <svg className="h-5" width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0.326234 1.94821L0.293166 1.85842C0.149117 1.46766 0.171251 1.13289 0.359132 0.863644C0.517803 0.635893 0.780383 0.5 1.06137 0.5C1.28963 0.5 1.51241 0.584108 1.74131 0.756758L15.2421 9.39944L15.3054 9.44469C15.6199 9.69366 15.801 10.0554 15.8022 10.4372C15.8035 10.819 15.6246 11.1818 15.3117 11.4329L15.2813 11.4574L1.7427 20.2389C1.51299 20.4145 1.28896 20.5 1.05884 20.5C0.778961 20.5 0.51716 20.3646 0.358388 20.1381C0.170609 19.8699 0.147322 19.536 0.289409 19.1453L0.321733 19.0563L5.948 10.6871C5.97717 10.5466 5.9768 10.3354 5.94708 10.1947L0.326234 1.94821ZM3.34021 17.3509L13.9905 10.4428L13.9181 10.3964H7.521C7.52598 10.7117 7.48289 11.0297 7.38927 11.2873L7.35685 11.3763L3.34021 17.3509Z" fill="#4D5761" />
-                    </svg>
-                    
-                </button>
-                
-                {/* <button className="border border-[#E5E7EB] rounded-xl px-[34px] py-[16px] flex items-center justify-center w-fit" onClick={handleSend}>
-    <span className="text-base font-medium mr-4">click here for try</span> */}
-    {/* ... SVG ... */}
-{/* </button> */}
+                        {/* Rate button */}
+                        <div onClick={handleClick} className="w-full flex justify-center">
+                            <button className="border border-[#E5E7EB] rounded-xl px-[34px] py-[16px] flex items-center justify-center w-fit">
+                                <span className="text-base font-medium mr-4">Rate {itemName}</span>
+                                <svg className="h-5" width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.326234 1.94821L0.293166 1.85842C0.149117 1.46766 0.171251 1.13289 0.359132 0.863644C0.517803 0.635893 0.780383 0.5 1.06137 0.5C1.28963 0.5 1.51241 0.584108 1.74131 0.756758L15.2421 9.39944L15.3054 9.44469C15.6199 9.69366 15.801 10.0554 15.8022 10.4372C15.8035 10.819 15.6246 11.1818 15.3117 11.4329L15.2813 11.4574L1.7427 20.2389C1.51299 20.4145 1.28896 20.5 1.05884 20.5C0.778961 20.5 0.51716 20.3646 0.358388 20.1381C0.170609 19.8699 0.147322 19.536 0.289409 19.1453L0.321733 19.0563L5.948 10.6871C5.97717 10.5466 5.9768 10.3354 5.94708 10.1947L0.326234 1.94821ZM3.34021 17.3509L13.9905 10.4428L13.9181 10.3964H7.521C7.52598 10.7117 7.48289 11.0297 7.38927 11.2873L7.35685 11.3763L3.34021 17.3509Z" fill="#4D5761" />
+                                </svg>
 
-{/* Conditional rendering of modal */}
-{isModalOpen && <Review/>}
-{/* {isModalOpen && setIsModalOpen(false)} */}
-
-                
-            </div>
-            {toggle && <Review ></Review>}
-        </div>
+                            </button>
+                        </div>
+                        {toggle && <Review ></Review>}
+                    </div>
 
     </div>
 </div>
