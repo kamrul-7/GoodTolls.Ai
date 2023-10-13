@@ -1,10 +1,13 @@
-
+import { useState } from "react";
 import Rate from '../Rate/Rate';
 
 const SingleTool = () => {
+    const [itemName, setItemName] = useState("Chapple");
     return (
-        <div className=''>
-            <Rate></Rate>
+        <div className="md:my-7 my-4">
+            <div className='m-4 md:m-0 border border-[#E5E7EB] rounded-2xl'>
+                <Rate item={itemName}></Rate>
+            </div>
         </div>
     );
 };

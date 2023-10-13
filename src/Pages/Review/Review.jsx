@@ -1,6 +1,5 @@
 
 import { Rating } from "@smastrom/react-rating";
-import './Review.css'
 import "@smastrom/react-rating/style.css";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthProvider";
@@ -22,7 +21,7 @@ const Review = () => {
     activeFillColor: "#FAAF00",
     inactiveFillColor: "#E5E7EB",
   };
-  const { toggle, setTrue, setFalse } = useContext(AuthContext);
+  const { setFalse } = useContext(AuthContext);
   const [rating, setRating] = useState(4);
   const [message, setMessage] = useState("");
 
