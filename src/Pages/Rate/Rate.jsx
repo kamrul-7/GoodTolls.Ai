@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { Rating } from "@smastrom/react-rating";
-
 import "@smastrom/react-rating/style.css";
 import Progress from "../Progress/Progress";
 import SingleReview from "../SingleReview/SingleReview";
@@ -180,7 +179,7 @@ const Rate = () => {
     }
 
     return (
-        <div className="p-10 ">
+        <div className="p-10 w-[343px] md:w-full ">
 
             {/* Rating section */}
             <div className="md:grid grid-cols-2 mb-20 md:h-[375px] gap-x-20">
