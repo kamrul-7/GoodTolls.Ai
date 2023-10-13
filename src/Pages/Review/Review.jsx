@@ -1,8 +1,9 @@
 
 import { Rating } from "@smastrom/react-rating";
-
+import './Review.css'
 import "@smastrom/react-rating/style.css";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../Context/AuthProvider";
 
 const Review = () => {
   const StarDrawing = (
@@ -21,7 +22,7 @@ const Review = () => {
     activeFillColor: "#FAAF00",
     inactiveFillColor: "#E5E7EB",
   };
-
+  const { toggle, setTrue, setFalse } = useContext(AuthContext);
   const [rating, setRating] = useState(4);
   const [message, setMessage] = useState("");
 
@@ -34,16 +35,20 @@ const Review = () => {
   const closeModal = () => {
     document.getElementById("my_modal_5").close();
     setMessage(""); // Reset the message state
+    setFalse()
   };
-
+  useEffect(() => {
+    document.getElementById("my_modal_5").showModal()
+    
+  }, [])
   return (
     <div className="">
-      <button
+      {/* <button
         className="btn"
         onClick={() => document.getElementById("my_modal_5").showModal()}
       >
         Send
-      </button>
+      </button> */}
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-2xl mb-4">What is Your Rating?</h3>

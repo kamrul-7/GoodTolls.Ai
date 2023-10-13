@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Rating } from "@smastrom/react-rating";
 
 import "@smastrom/react-rating/style.css";
 import Progress from "../Progress/Progress";
 import SingleReview from "../SingleReview/SingleReview";
+import { AuthContext } from "../Context/AuthProvider";
+import Review from "../Review/Review";
 
 
 
 const Rate = () => {
+    const { toggle, setTrue, setFalse } = useContext(AuthContext);
     const [avgRating, setAvgRating] = useState(0)
     const [istar, setIstar] = useState(0)
     const [iistar, setIistar] = useState(0)
@@ -172,7 +175,9 @@ const Rate = () => {
     };
 
 
-
+    const handleClick =()=>{
+        setTrue();
+    }
 
     return (
         <div className="p-10 ">
@@ -224,7 +229,7 @@ const Rate = () => {
                         </div>
 
                         {/* Rate button */}
-                        <div className="w-full flex justify-center">
+                        <div onClick={handleClick} className="w-full flex justify-center">
                             <button className="border border-[#E5E7EB] rounded-xl px-[34px] py-[16px] flex items-center justify-center w-fit">
                                 <span className="text-base font-medium mr-4">Rate {itemName}</span>
                                 <svg className="h-5" width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -233,6 +238,7 @@ const Rate = () => {
 
                             </button>
                         </div>
+                        {toggle && <Review ></Review>}
                     </div>
 
                 </div>
