@@ -16,6 +16,14 @@ const provider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [toggle,setToggle] = useState(false);
+
+    const setTrue=()=>{
+        setToggle(true)
+    }
+    const setFalse=()=>{
+        setToggle(false)
+    }
 
     const googleSignIn = () => {
         setLoading(true);
@@ -42,6 +50,9 @@ const AuthProvider = ({ children }) => {
         user,
         loading,
         googleSignIn,
+        toggle,
+        setTrue,
+        setFalse
     };
 
     return (
