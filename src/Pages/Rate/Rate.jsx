@@ -178,7 +178,7 @@ const Rate = () => {
     }
 
     return (
-        <div className="p-10">
+        <div className="p-10 w-[343px] md:w-full ">
 
             {/* Rating section */}
             <div className="md:grid grid-cols-2 mb-20 md:h-[375px] gap-x-20 hide-scrollbar">
