@@ -13,6 +13,7 @@ import SingleNews from"../Pages/SingleNews/SingleNews"
 import Review from '../Pages/Review/Review'
 import SingleTool from "../Pages/SingleTool.jsx/SingleTool";
 import Test from "../test";
+import Db from "../Admin/Db/Db"
 import Dashboard from "../Admin/Dashboard/Dashboard";
 import Category from "../Admin/Category/Category";
 export const router = createBrowserRouter([
@@ -78,6 +79,10 @@ export const router = createBrowserRouter([
         {
           path:'category',
           element:<Category></Category>
+        },
+        {
+          path:'db',
+          element:<Db></Db>
         }
       ]
     }
