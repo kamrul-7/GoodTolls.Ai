@@ -63,7 +63,11 @@ export const router = createBrowserRouter([
         {
           path: '/tst',
           element: <Test></Test>
-        }
+        },
+        {
+          path: '/rating',
+          element: <Rating/>
+        },
       ]
       
     },

@@ -13,6 +13,8 @@ import purify from 'dompurify';
 import './Review.css'
 
 const Review = () => {
+let x=true
+  const modalRef = useRef(null);
   const StarDrawing = (
     <svg
       width="36"
@@ -40,7 +42,9 @@ const Review = () => {
   };
 
   const closeModal = () => {
-    document.getElementById("my_modal_5").close();
+    if (modalRef.current) {
+      modalRef.current.close();
+    }
     setMessage(""); // Reset the message state
     setFalse()
   };
