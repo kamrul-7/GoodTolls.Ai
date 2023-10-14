@@ -15,6 +15,7 @@ import SingleTool from "../Pages/SingleTool.jsx/SingleTool";
 import Test from "../test";
 import Dashboard from "../Admin/Dashboard/Dashboard";
 import Category from "../Admin/Category/Category";
+import Rating from "../Pages/Rating/Rating";
 export const router = createBrowserRouter([
     {
       path: "/",
