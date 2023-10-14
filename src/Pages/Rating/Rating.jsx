@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Rating = () => {
   return (
-    <div>
+    <div >
       <div className="breadcrumbs text-sm font-normal mb-8 md:mb-14 pl-6">
         <ul>
           <li>
@@ -15,7 +15,7 @@ const Rating = () => {
         </ul>
       </div>
 
-      <div className="className='md:px-10 px-6">
+      <div className="className='md:px-10 px-6 mb-56">
         <div>
           <p className="text-base font-normal">Product Information</p>
           <h1 className="md:text-5xl text-3xl font-bold mt-4">Chapple</h1>
