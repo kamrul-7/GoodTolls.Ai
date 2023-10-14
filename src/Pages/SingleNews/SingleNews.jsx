@@ -73,20 +73,35 @@ const SingleNews = () => {
                                 <button className='explore-btn explore-btn-text mt-6 '>
                                     Explore Now
                                 </button>
-
                             </div>
-
                         </div>
-                    <div className='popular'>
-
-                    </div>
-                    <div className='tags'>
-                    </div>
-                    
+                        {/* Popular */}
+                        <div className='category mt-10 mb-10'>
+                           <div>Popular Categories</div> 
+                           <div className='grid grid-cols-3 mt-4' >
+                                <p className='category-item mb-4 '>hello</p>
+                                <p className='category-item mb-4 '>hello</p>
+                                <p className='category-item mb-4 '>hello</p>
+                                <p className='category-item mb-4 '>hello</p>
+                                <p className='category-item mb-4 '>hello</p>
+                                <p className='category-item mb-4 '>hello</p>
+                           </div>
+                        </div>
+                        <div className='category mt-10 mb-10'>
+                           <div>Tags</div> 
+                           <div className='grid grid-cols-3 mt-4' >
+                                <p className='category-item mb-4 '>hello</p>
+                                <p className='category-item mb-4 '>hello</p>
+                                <p className='category-item mb-4 '>hello</p>
+                                <p className='category-item mb-4 '>hello</p>
+                                <p className='category-item mb-4 '>hello</p>
+                                <p className='category-item mb-4 '>hello</p>
+                           </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className='large-card mx-auto'>
+
+                <div className='large-card mt-10 mb-40 mx-auto'>
                 <div className='large-right'>
                 Let’s Contact With Us.
                 </div>
@@ -102,6 +117,8 @@ const SingleNews = () => {
                             </div>
                 </div>
             </div>
+            </div>
+            
             <Footer></Footer>
         </div>
     );
