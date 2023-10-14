@@ -16,6 +16,7 @@ import Test from "../test";
 import Db from "../Admin/Db/Db"
 import Dashboard from "../Admin/Dashboard/Dashboard";
 import Category from "../Admin/Category/Category";
+import Rating from "../Pages/Rating/Rating";
 export const router = createBrowserRouter([
     {
       path: "/",
