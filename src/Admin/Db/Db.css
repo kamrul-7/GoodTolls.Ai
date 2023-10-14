@@ -1,0 +1,106 @@
+.db-section{
+    display: flex;
+padding: 32px 0px 48px 0px;
+flex-direction: column;
+align-items: flex-start;
+gap: 32px;
+flex: 1 0 0;
+background: var(--base-white, #FFF);
+}
+.title-section{
+    display: flex;
+padding: 0px 32px;
+flex-direction: column;
+align-items: flex-start;
+gap: 24px;
+align-self: stretch;
+}
+.mini-title{
+    display: flex;
+align-items: center;
+}
+.title{
+    color: var(--gray-900, #101828);
+
+/* Display sm/Semibold */
+font-family: Inter;
+font-size: 30px;
+font-style: normal;
+font-weight: 600;
+line-height: 38px; /* 126.667% */
+}
+.month-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-self: stretch;
+}
+.month-btn{
+    display: flex;
+min-height: 40px;
+padding: 8px 16px;
+justify-content: center;
+align-items: center;
+gap: 8px;
+width: 103px;
+border-right: 1px solid var(--gray-300, #D0D5DD);
+background: var(--gray-50, #F9FAFB);
+}
+.month{
+    display: flex;
+align-items: flex-start;
+border-radius: 8px;
+border: 1px solid var(--gray-300, #D0D5DD);
+}
+
+.single-card{
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    flex: 1 0 0;
+    width: 262px;
+    border-radius: 12px;
+    border: 1px solid var(--gray-200, #EAECF0);
+    background: var(--base-white, #FFF);
+    
+    /* Shadows/shadow-xs */
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+.card-title{
+    color: var(--gray-600, #475467);
+
+/* Text sm/Medium */
+font-family: Inter;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px; /* 142.857% */
+}
+.number{
+    color: var(--gray-900, #101828);
+
+/* Display md/Semibold */
+font-family: Inter;
+font-size: 36px;
+font-style: normal;
+font-weight: 600;
+line-height: 44px; /* 122.222% */
+letter-spacing: -0.72px;
+}
+.card{
+    display: flex;
+align-items: flex-start;
+gap: 16px;
+align-self: stretch;
+}
+.card-section{
+    display: flex;
+    max-width: 1280px;
+    padding: 0px 32px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
+}
