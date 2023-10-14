@@ -82,7 +82,12 @@
 }
 
 .modal-custom{
-    min-width: fit-content;
+    /* min-width: fit-content;
     min-height: 70%;
-    padding: 40px;
+    padding: 40px; */
+    height: 726px;
+    width: 698px;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: white;
 }

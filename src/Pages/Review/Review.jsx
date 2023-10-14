@@ -1,7 +1,7 @@
 
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 
 import draftToHtml from "draftjs-to-html";
@@ -13,6 +13,8 @@ import purify from 'dompurify';
 import './Review.css'
 
 const Review = () => {
+let x=true
+  const modalRef = useRef(null);
   const StarDrawing = (
     <svg
       width="36"
@@ -40,7 +42,9 @@ const Review = () => {
   };
 
   const closeModal = () => {
-    document.getElementById("my_modal_5").close();
+    if (modalRef.current) {
+      modalRef.current.close();
+    }
     setMessage(""); // Reset the message state
     setFalse()
   };
@@ -100,8 +104,8 @@ const Review = () => {
       >
         Send
       </button> */}
-      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-        <div className="modal-custom modal-box">
+      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle ">
+        <div className="modal-custom relative">
           <h3 className="font-bold text-2xl mb-4">What is Your Rating?</h3>
           <div>
             <Rating
@@ -116,13 +120,10 @@ const Review = () => {
             <form method="dialog" className="w-full" onSubmit={handleSubmit}>
               <div>
                 <label className="label">
-                  <span className="text-xl font-medium">
+                  <span className="text-xl font-medium md:mt-20 mb-4">
                     What is your review of the tool?
                   </span>
                 </label>
-
-
-
                 <Editor
                   placeholder="Tell us about your opinon"
                   toolbar={tool}
@@ -131,23 +132,18 @@ const Review = () => {
                   wrapperClassName="full-wrap"
                   editorClassName="editor-wrap"
                   toolbarClassName="toolbar-wrap"> </Editor>
-
-
-
               </div>
-
               <button
-                className="btn-circle btn-ghost absolute right-2 top-2"
+                className="btn-circle btn-ghost absolute top-4 right-4"
                 type="button"
                 onClick={closeModal}
               >
                 ✕
               </button>
-              <div className="flex justify-end">
+              <div className="flex justify-between w-[618px] mx-auto">
                 <div>
-                  {" "}
                   <button
-                    className="btn my-6 mb-44"
+                  className="btn my-6 w-[303px] border-2"
                     type="button"
                     onClick={closeModal}
                   >
@@ -156,7 +152,7 @@ const Review = () => {
                 </div>
                 <div>
                   <button
-                    className="btn btn-primary text-white btn-active my-6 mb-44"
+                    className="btn btn-primary text-white btn-active my-6 w-[303px]"
                     type="submit"
                   >
                     Submit

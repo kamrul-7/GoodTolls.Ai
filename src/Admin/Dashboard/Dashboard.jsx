@@ -9,10 +9,10 @@ const Dashboard = () => {
         <div>
             <div className="drawer lg:drawer-open sm:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col ">
+                <div className="drawer-content">
                     <Outlet></Outlet>
                 </div>
-                <div className="sidebar">
+                <div className="sidebar w-[280px] h-[960px]">
                     <div className='logo mt-8'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="136" height="35" viewBox="0 0 136 35" fill="none">
                             <path d="M35.0248 25.588H31.0819C30.9795 25.588 30.9283 25.5312 30.9283 25.4176V5.50846H26.3881C26.2743 5.50846 26.2174 5.45164 26.2174 5.33801L26.2515 1.4346C26.2515 1.34369 26.297 1.29823 26.3881 1.29823H39.6675C39.7926 1.29823 39.8552 1.34369 39.8552 1.4346V5.33801C39.8552 5.45164 39.8097 5.50846 39.7187 5.50846H35.1272L35.1613 25.4176C35.1613 25.5312 35.1158 25.588 35.0248 25.588Z" fill="#081120" />
@@ -33,11 +33,11 @@ const Dashboard = () => {
                         {/* Sidebar content here */}
                         <div className='flex items-center '>
                         <FaImage style={{ height: '24px', width: '24px' }} />
-                            <NavLink className="ms-3">Dashboard</NavLink>
+                            <NavLink to="/dashboard/db" className="ms-3">Dashboard</NavLink>
                         </div>
                         <div className='flex items-center '>
                         <BsLayers style={{ height: '24px', width: '24px' }} />
-                            <NavLink className="ms-3">Categories</NavLink>
+                            <NavLink to="/dashboard/category" className="ms-3">Categories</NavLink>
                         </div> 
                         <div className='flex items-center '>
                         <FaLayerGroup style={{ height: '24px', width: '24px' }} />
@@ -55,22 +55,24 @@ const Dashboard = () => {
                         <FiUsers style={{ height: '24px', width: '24px' }} />
                             <NavLink className="ms-3">Categories</NavLink>
                         </div> 
+                        
                         {/* User */}
+                    
+                    </div>
+                    </div>
                     <div className='user fixed bottom-0 left-0 mx-4'>
                          <div className='user-item'>
                                <div>
                                <img className='img-section' src="https://www.w3schools.com/howto/img_avatar2.png" alt="" />
                                </div>
                                <div className='info'>
-                                    <div> <b>Olivia Rhye</b></div>
+                                    <div><b>Olivia Rhye</b></div>
                                     <div>olivia@untitledui.com</div>
                                </div>
-                               <div>
+                               <div className=''>
                                 <FiLogOut></FiLogOut>
                                </div>
                          </div>
-                    </div>
-                    </div>
                     </div>
                 </div>
             </div>
