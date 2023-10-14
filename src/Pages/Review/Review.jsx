@@ -1,8 +1,16 @@
 
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { AuthContext } from "../Context/AuthProvider";
+
+import draftToHtml from "draftjs-to-html";
+import { Editor } from 'react-draft-wysiwyg';
+import { ContentState, EditorState, convertFromHTML, convertToRaw } from "draft-js";
+import htmlToDraft from 'html-to-draftjs';
+import purify from 'dompurify';
+
+import './Review.css'
 
 const Review = () => {
   const StarDrawing = (
@@ -38,8 +46,52 @@ const Review = () => {
   };
   useEffect(() => {
     document.getElementById("my_modal_5").showModal()
-    
+
   }, [])
+
+
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const [init, setInit] = useState('')
+  const [final, setFinal] = useState('')
+
+  useEffect(() => {
+    const contentBlock = htmlToDraft(init)
+
+    if (contentBlock) {
+      const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
+      const editorState = EditorState.createWithContent(contentState);
+      setEditorState(editorState)
+    }
+  }, [init])
+
+  const handleChange = (data) => {
+    setEditorState(data);
+  };
+
+
+  useMemo(
+    () => setFinal(draftToHtml(convertToRaw(editorState.getCurrentContent()))),
+    [editorState]
+  )
+
+
+  const tool = {
+    options: ['inline'],
+    inline: {
+      inDropdown: false,
+      className: undefined,
+      component: undefined,
+      dropdownClassName: undefined,
+      options: ['bold', 'italic'],
+      bold: {
+        icon: '../public/bold.svg', className: 'bold'
+      },
+      italic: { icon: '../public/italic.svg', className: 'italic' }
+
+    }
+  }
+
+
   return (
     <div className="">
       {/* <button
@@ -49,7 +101,7 @@ const Review = () => {
         Send
       </button> */}
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
+        <div className="modal-custom modal-box">
           <h3 className="font-bold text-2xl mb-4">What is Your Rating?</h3>
           <div>
             <Rating
@@ -68,11 +120,20 @@ const Review = () => {
                     What is your review of the tool?
                   </span>
                 </label>
-                <textarea
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  className="textarea input-bordered w-full focus:outline-none"
-                ></textarea>
+
+
+
+                <Editor
+                  placeholder="Tell us about your opinon"
+                  toolbar={tool}
+                  editorState={editorState}
+                  onEditorStateChange={handleChange}
+                  wrapperClassName="full-wrap"
+                  editorClassName="editor-wrap"
+                  toolbarClassName="toolbar-wrap"> </Editor>
+
+
+
               </div>
 
               <button
