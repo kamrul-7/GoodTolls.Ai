@@ -8,6 +8,7 @@ const SingleTool = () => {
         <div className="md:my-7 my-4 border rounded-md m-2">
             <Rattingg/>
             <div className='m-4 md:m-0 border border-[#E5E7EB] rounded-2xl'>
+               
                 <Rate item={itemName}></Rate>
             </div>
         </div>

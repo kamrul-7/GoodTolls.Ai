@@ -2,6 +2,7 @@
 import "./Card.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUnlock } from "@fortawesome/free-solid-svg-icons"; // Import the unlock icon
+import { Link } from "react-router-dom";
 
 const Card = () => {
   return (
@@ -55,7 +56,7 @@ const Card = () => {
             <div className="card-category-item "><p className="card-category-text px-3 py-2">Audioedeting</p></div>
             <div className="card-category-item"><p className="card-category-text px-3 py-2">See more</p></div>
           </div>
-          <button className="button flex justify-center items-center mt-6">
+          <Link to='/tool' className="button flex justify-center items-center mt-6">
             <svg
               width="20px"
               height="20px"
@@ -68,7 +69,7 @@ const Card = () => {
                 fill="#4D5761"
               />
             </svg>
-          </button>
+          </Link>
         </div>
 
       </div>
