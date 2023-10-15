@@ -21,7 +21,7 @@ const SingleNews = () => {
             {/* Single News Section */}
             <div className='mx-10 my-10 mb-26'>
                 {/* Hero section */}
-                <div className="hero mb-10 img-section lg:h-[394px]  mx-auto  " style={{ backgroundImage: 'url(https://images.ctfassets.net/7bkqs8vgq34y/42mnpPRa0kPvgZ4tMynP9O/85562d29f3bc54d6c20c3ee4d211c2ca/Website_Insight_Adobe_An-AI-for-design.jpg?w=1200&h=800&fit=fill&f=faces)' }}>
+                <div className="hero mb-10 rounded-lg lg:h-[394px]  mx-auto  " style={{ backgroundImage: 'url(https://images.ctfassets.net/7bkqs8vgq34y/42mnpPRa0kPvgZ4tMynP9O/85562d29f3bc54d6c20c3ee4d211c2ca/Website_Insight_Adobe_An-AI-for-design.jpg?w=1200&h=800&fit=fill&f=faces)' }}>
                 </div>
                 <div className='text-section '>
                     {/* right-div */}

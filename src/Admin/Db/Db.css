@@ -55,6 +55,8 @@ border: 1px solid var(--gray-300, #D0D5DD);
 
 .single-card{
     display: flex;
+    margin-left: 16px;
+    margin-right: 16px;
     padding: 24px;
     flex-direction: column;
     align-items: flex-start;
@@ -97,10 +99,112 @@ align-self: stretch;
 }
 .card-section{
     display: flex;
-    max-width: 1280px;
-    padding: 0px 32px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
+max-width: 1280px;
+
+flex-direction: column;
+align-items: flex-start;
+gap: 24px;
+align-self: stretch;
+}
+.activity-section{
+    display: flex;
+padding: 0px 32px;
+flex-direction: column;
+align-items: flex-start;
+gap: 24px;
+align-self: stretch;
+}
+.activity{
+    display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+gap: 4px;
+flex: 1 0 0;
+align-self: stretch;
+}
+.activity-text{
     align-self: stretch;
+    color: var(--gray-900, #101828);
+
+/* Text lg/Semibold */
+font-family: Inter;
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: 28px; /* 155.556% */
+}
+.activity-sub{
+    overflow: hidden;
+color: var(--gray-600, #475467);
+text-overflow: ellipsis;
+
+/* Text sm/Regular */
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 1;
+align-self: stretch;
+font-family: Inter;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+}
+.graph-section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex: 1 0 0;
+    align-self: stretch;
+    background-color: aqua;
+}
+.quick{
+    display: flex;
+
+flex-direction: column;
+align-items: flex-start;
+gap: 24px;
+align-self: stretch;
+}
+.quick-action{
+    color: var(--gray-900, #101828);
+
+/* Text lg/Semibold */
+font-family: Inter;
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: 28px; /* 155.556% */
+}
+.quick-grid{
+    display: flex;
+align-items: flex-start;
+gap: 32px;
+align-self: stretch;
+}
+.quick-single{
+    display: flex;
+min-width: 320px;
+padding: 20px;
+align-items: flex-start;
+gap: 12px;
+flex: 1 0 0;
+border-radius: 12px;
+border: 1px solid var(--gray-200, #EAECF0);
+background: var(--base-white, #FFF);
+
+/* Shadows/shadow-xs */
+box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+.quick-text{
+    overflow: hidden;
+color: var(--gray-600, #475467);
+text-overflow: ellipsis;
+
+/* Text sm/Regular */
+font-family: Inter;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
 }
