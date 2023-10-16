@@ -1,5 +1,7 @@
 
+import CookiePopup from '../Popup/Popup';
 import './Footer.css'
+
 import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
@@ -86,7 +88,7 @@ const Footer = () => {
           <button className='btn m-10 my-auto'><p className='btn-text'>OK</p></button>
         </div>
       </footer>
-
+      <CookiePopup></CookiePopup>
     </div>
   );
 };
