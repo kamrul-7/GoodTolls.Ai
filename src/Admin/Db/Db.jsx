@@ -3,7 +3,7 @@ import { RiHome3Line } from 'react-icons/ri';
 import './Db.css'
 const Db = () => {
     return (
-        <div className='db-section mt-8 mx-3'>
+        <div className='db-section w-full mt-8 mx-3'>
             <div className='title-section'>
                 <div className='mini-title flex items-center '>
                     <RiHome3Line style={{ height: '24px', width: '24px' }}></RiHome3Line>
