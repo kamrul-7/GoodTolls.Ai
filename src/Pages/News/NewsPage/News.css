@@ -152,8 +152,7 @@ align-items: center;
 gap: 24px;
 align-self: stretch;
 border-radius: 16px;
-border: 1px solid var(--neutral-200, #E5E7EB);
-background: var(--neutral-white, #FFF);
+
     }
     .date-title{
         display: flex;

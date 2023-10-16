@@ -3,6 +3,7 @@ import Card from '../Card/Card';
 import Hero from '../Hero/Hero';
 import Filter from '../Filter/Filter';
 import { useState } from 'react';
+import CookiePopup from '../../Component/Popup/Popup';
 
 
 const Home = () => {
@@ -64,7 +65,7 @@ const Home = () => {
                 </div>
             </div>
             <Card />
-
+            <CookiePopup></CookiePopup>
         </div>
     );
 };
