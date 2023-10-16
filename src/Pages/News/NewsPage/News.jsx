@@ -20,12 +20,12 @@ const News = () => {
                 <p>News</p>
             </div>
             {/* News Section */}
-            <div className='mx-10 my-10 mb-26 news-div'>
+            <div className='mx-10 my-10 mb-26 md:rounded-xl md:border news-div'>
                 <div className='title mb-10'>
-                    <p className='rs-title'>Latest Our AI News & Articles</p>
+                    <p className='rs-title md:ms-10 md:mt-10 md:text-5xl'>Latest Our AI News & Articles</p>
                 </div>
                 <div className=' grid ms-2 me-2 md:grid-cols-2 gap-4 mt-2 max-w-screen-xl mx-auto'>
-                <div className='news-card'>
+                <div className='news-card '>
                 <div className='news-card-image'>
                     <img className='news-card-image' src="https://images.ctfassets.net/7bkqs8vgq34y/42mnpPRa0kPvgZ4tMynP9O/85562d29f3bc54d6c20c3ee4d211c2ca/Website_Insight_Adobe_An-AI-for-design.jpg?w=1200&h=800&fit=fill&f=faces" alt="" />
                 </div>
