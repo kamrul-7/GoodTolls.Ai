@@ -1,7 +1,6 @@
-import Pagination from "./Pagination";
+import Pagination from "../Category/Pagination";
 
-
-const Category = () => {
+const ManageNews = () => {
     return (
         <div className='mt-[35px] w-full px-8'>
             <div>
@@ -16,14 +15,14 @@ const Category = () => {
                     </svg>
 
                     <span className='font-medium text-sm px-2 py-1 rounded-md hover:bg-[#F9FAFB]'>
-                         Category Management
+                    News Management
                     </span>
                 </div>
 
                 {/* Page Name section */}
                 <div className='w-full flex items-center justify-between'>
                     <span className='text-[30px] font-semibold'>
-                        Category Management
+                    News Management
                     </span>
                     <button className='py-[10px] px-[14px] border rounded-lg bg-[#7F56D9] hover:bg-[#6d4ab8] shadow-sm duration-300 text-white text-sm font-semibold'>
                         Add Category
@@ -35,18 +34,16 @@ const Category = () => {
 
                     {/* Table heading row */}
                     <tr className='h-[44px] border-b border-[#EAECF0] bg-[#F9FAFB] text-xs font-medium'>
-                        <td className='py-3 px-6 hover:bg-[#F9FAFB]'>Category Name</td>
-                        <td className='py-3 px-6 hover:bg-[#F9FAFB]'>Category Title</td>
-                        <td className='py-3 px-6 hover:bg-[#F9FAFB]'>Sub Categories</td>
-                        <td className='py-3 px-6 hover:bg-[#F9FAFB]'>Total Tools</td>
+                        <td className='py-3 px-6 hover:bg-[#F9FAFB]'>News Title</td>
+                        <td className='py-3 px-6 hover:bg-[#F9FAFB]'>Publish Date</td>
+                        <td className='py-3 px-6 hover:bg-[#F9FAFB]'>Comments</td>
                         <td className='py-3 px-6 w-[116px] hover:bg-[#F9FAFB]'>Action</td>
                     </tr>
 
                     {/* Table regular row */}
                     <tr className='border-b h-[64px] border-[#EAECF0] text-sm font-medium'>
-                        <td className='py-4 px-6 hover:bg-[#F9FAFB]'>Audio Tool</td>
-                        <td className='py-4 px-6 hover:bg-[#F9FAFB]'>Audio Tool</td>
-                        <td className='py-4 px-6 hover:bg-[#F9FAFB] font-normal'>10</td>
+                        <td className='py-4 px-6 hover:bg-[#F9FAFB]'>Vestibulum quam egestas integer cursus</td>
+                        <td className='py-4 px-6 hover:bg-[#F9FAFB]'>30/01/2020</td>
                         <td className='py-4 px-6 hover:bg-[#F9FAFB] font-normal'>10</td>
                         {/* Action buttons */}
                         <td className='px-4 py-4 flex items-center justify-center hover:mt-[1px] hover:-mb-[1px] hover:-translate-y-[0.5px] hover:bg-[#F9FAFB]'>
@@ -79,4 +76,4 @@ const Category = () => {
     );
 };
 
-export default Category;
+export default ManageNews;

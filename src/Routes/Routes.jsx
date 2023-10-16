@@ -17,6 +17,10 @@ import Db from "../Admin/Db/Db"
 import Dashboard from "../Admin/Dashboard/Dashboard";
 import Category from "../Admin/Category/Category";
 import Rating from "../Pages/Rating/Rating";
+import Subcategory from "../Admin/Subcategoty/Subcategory";
+import ManageTools from "../Admin/ManageTools/ManageTools";
+import ManageNews from "../Admin/ManageNews/ManageNews";
+import UserManagement from "../Admin/UserManagement/UserManagement";
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -80,6 +84,22 @@ export const router = createBrowserRouter([
         {
           path:'/dashboard/category',
           element:<Category></Category>
+        },
+        {
+          path:'/dashboard/subcategory',
+          element:<Subcategory/>
+        },
+        {
+          path:'/dashboard/manageTools',
+          element:<ManageTools/>
+        },
+        {
+          path:'/dashboard/manageNews',
+          element:<ManageNews/>
+        },
+        {
+          path:'/dashboard/userManagement',
+          element:<UserManagement/>
         },
         {
           path:'db',
