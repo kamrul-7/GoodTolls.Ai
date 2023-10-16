@@ -29,6 +29,15 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+.editor-wrap h1 {
+    display: block;
+    font-size: 2em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+  }
 
 .editor-wrap::-webkit-scrollbar{
     display: none;
@@ -80,3 +89,9 @@
 .italic:active{
     background-color: rgb(248, 248, 248);
 }
+
+
+
+
+
+

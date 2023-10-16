@@ -12,8 +12,7 @@ import purify from 'dompurify';
 
 import './Review.css'
 
-const Review = () => {
-let x=true
+const Review = ({userRating}) => {
   const modalRef = useRef(null);
   const StarDrawing = (
     <svg
@@ -32,7 +31,7 @@ let x=true
     inactiveFillColor: "#E5E7EB",
   };
   const { setFalse } = useContext(AuthContext);
-  const [rating, setRating] = useState(4);
+  const [rating, setRating] = useState(userRating);
   const [message, setMessage] = useState("");
 
   const handleSubmit = (e) => {
