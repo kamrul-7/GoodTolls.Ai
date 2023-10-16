@@ -6,7 +6,7 @@ import { FiUsers, FiLogOut } from 'react-icons/fi';
 import './Dashboard.css'
 const Dashboard = () => {
     return (
-        <div>
+        <div className='h-screen overflow-y-scroll hide-scrollbar'>
             <div className="drawer lg:drawer-open sm:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
@@ -41,19 +41,19 @@ const Dashboard = () => {
                         </div> 
                         <div className='flex items-center '>
                         <FaLayerGroup style={{ height: '24px', width: '24px' }} />
-                            <NavLink className="ms-3">Sub Categories</NavLink>
+                            <NavLink to='/dashboard/subcategory' className="ms-3">Sub Categories</NavLink>
                         </div> 
                         <div className='flex items-center '>
                         <FaTools style={{ height: '24px', width: '24px' }} />
-                            <NavLink className="ms-3">Manage Tools</NavLink>
+                            <NavLink to='/dashboard/manageTools' className="ms-3">Manage Tools</NavLink>
                         </div> 
                         <div className='flex items-center '>
                         <FaNewspaper style={{ height: '24px', width: '24px' }} />
-                            <NavLink className="ms-3">Manage News</NavLink>
+                            <NavLink to='/dashboard/manageNews' className="ms-3">Manage News</NavLink>
                         </div> 
                         <div className='flex items-center '>
                         <FiUsers style={{ height: '24px', width: '24px' }} />
-                            <NavLink className="ms-3">Categories</NavLink>
+                            <NavLink to='/dashboard/userManagement' className="ms-3">Categories</NavLink>
                         </div> 
                         
                         {/* User */}

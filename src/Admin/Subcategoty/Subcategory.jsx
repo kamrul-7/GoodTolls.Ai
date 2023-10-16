@@ -1,7 +1,8 @@
-import Pagination from "./Pagination";
+import Pagination from "../Category/Pagination";
 
 
-const Category = () => {
+
+const Subcategory = () => {
     return (
         <div className='mt-[35px] w-full px-8'>
             <div>
@@ -16,14 +17,14 @@ const Category = () => {
                     </svg>
 
                     <span className='font-medium text-sm px-2 py-1 rounded-md hover:bg-[#F9FAFB]'>
-                         Category Management
+                       Sub Category Management
                     </span>
                 </div>
 
                 {/* Page Name section */}
                 <div className='w-full flex items-center justify-between'>
                     <span className='text-[30px] font-semibold'>
-                        Category Management
+                       Sub Category Management
                     </span>
                     <button className='py-[10px] px-[14px] border rounded-lg bg-[#7F56D9] hover:bg-[#6d4ab8] shadow-sm duration-300 text-white text-sm font-semibold'>
                         Add Category
@@ -35,8 +36,8 @@ const Category = () => {
 
                     {/* Table heading row */}
                     <tr className='h-[44px] border-b border-[#EAECF0] bg-[#F9FAFB] text-xs font-medium'>
-                        <td className='py-3 px-6 hover:bg-[#F9FAFB]'>Category Name</td>
-                        <td className='py-3 px-6 hover:bg-[#F9FAFB]'>Category Title</td>
+                        <td className='py-3 px-6 hover:bg-[#F9FAFB]'>Sub Category Name</td>
+                        <td className='py-3 px-6 hover:bg-[#F9FAFB]'>Sub Category Title</td>
                         <td className='py-3 px-6 hover:bg-[#F9FAFB]'>Sub Categories</td>
                         <td className='py-3 px-6 hover:bg-[#F9FAFB]'>Total Tools</td>
                         <td className='py-3 px-6 w-[116px] hover:bg-[#F9FAFB]'>Action</td>
@@ -79,4 +80,5 @@ const Category = () => {
     );
 };
 
-export default Category;
+export default Subcategory;
+
