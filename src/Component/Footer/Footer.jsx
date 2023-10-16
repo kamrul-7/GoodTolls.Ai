@@ -82,12 +82,7 @@ const Footer = () => {
       <div className='h-[44px] flex place-items-end'>
         <p className='text-center w-full text-base'>Copyright © 2023 - ToolsFinder</p>
       </div>
-      <footer className=" mt-[44px] p-4 md:h-[80px] bg-[#081120] text-neutral-content md:text-center">
-        <div className='flex md:items-center md:justify-center justify-between'>
-          <p className=' text-base md:text-center py-auto'>We use cookies to improve your  experience on our site. If you continue to use this site we will assume that you are happy with it.</p>
-          <button className='btn m-10 my-auto'><p className='btn-text'>OK</p></button>
-        </div>
-      </footer>
+      
       <CookiePopup></CookiePopup>
     </div>
   );
