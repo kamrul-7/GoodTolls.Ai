@@ -7,7 +7,6 @@ import htmlToDraft from 'html-to-draftjs';
 import en from './Pages/Custom/en'
 import purify from 'dompurify';
 
-
 import './Test.css'
 
 
