@@ -245,11 +245,11 @@ const Test = () => {
         }
     }
 
-    const handleRemove = (value)=>{
+    const handleRemove = (value) => {
         const arr = [...selected]
         const newSelected = arr.filter(item => item !== value)
         setSelected(newSelected)
-        if(!suggestions.includes(value)){
+        if (!suggestions.includes(value)) {
             const arr = [...suggestions]
             arr.push(value)
             setSuggestions(arr.sort())
@@ -306,7 +306,7 @@ const Test = () => {
                                 <li key={index}><button className="w-fit" onClick={() => handleAdd(value)}>
                                     {value}
                                 </button></li>
-                            )): <li>No item </li>}
+                            )) : <li>No item </li>}
                         </ul>
                     </div>
                 </div>
