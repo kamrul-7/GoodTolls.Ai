@@ -1,15 +1,28 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../Component/Navbar/Navbar";
 import AuthProvider from '../Pages/Context/AuthProvider';
 import './Main.css'
+import Footer from "../Component/Footer/Footer";
+
 const Main = () => {
+  // Get the current location using the useLocation hook
+  const location = useLocation();
+
+  // Determine the condition to hide the footer (e.g., on the home page)
+  const isHomePage = location.pathname === '/';
 
   return (
-    <div className="max-w-screen-xl mx-auto h-screen overflow-y-scroll hide-scrollbar">
-      <AuthProvider>
-        <Navbar />
-          <Outlet />
-      </AuthProvider>
+    <div>
+      <div className="h-screen overflow-y-scroll hide-scrollbar">
+        <AuthProvider>
+          <div className="max-w-screen-xl mx-auto">
+            <Navbar />
+            <Outlet />
+          </div>
+          {/* Conditionally render the Footer based on the condition */}
+          {!isHomePage && <Footer />}
+        </AuthProvider>
+      </div>
     </div>
   );
 };
