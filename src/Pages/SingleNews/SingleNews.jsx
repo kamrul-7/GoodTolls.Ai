@@ -118,8 +118,7 @@ const SingleNews = () => {
                 </div>
             </div>
             </div>
-            
-            <Footer></Footer>
+    
         </div>
     );
 };

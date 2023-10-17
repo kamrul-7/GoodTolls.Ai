@@ -37,3 +37,9 @@ font-style: normal;
 font-weight: 700;
 line-height: 150%; /* 24px */
 }
+@media (min-width: 768px) {
+    .footer-container {
+      max-width: 1170px; /* Set the desired max width for larger screens */
+    }
+  }
+  

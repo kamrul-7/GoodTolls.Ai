@@ -79,7 +79,7 @@ We have no control over, and assume no responsibility for the content, privacy p
                 Collect, use, copy, download, or transfer any information, including, but not limited to, personal information obtained from ToolsFinder except as expressly permitted in these Terms or as the owner of such information may expressly permit; Record, process or mine information about other users; Use manual or automated software, devices, scripts robots, other means or processes to access, “scrape,” “crawl” “spider,” or index any web pages or any other portion of the Services.
                 </div>
             </div>
-            <Footer></Footer>
+            
         </div>
     );
 };
