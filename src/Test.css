@@ -91,7 +91,20 @@
 }
 
 
+.outer{
+    min-height: 25px;
+    max-height: 100px;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
 
+.outer::-webkit-scrollbar {
+    display: none;
+}
 
+.test{
+    background-color: red;
+}
 
 

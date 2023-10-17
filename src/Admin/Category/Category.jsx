@@ -47,7 +47,7 @@ const Category = () => {
                 {/* Page Name section */}
                 <div className='w-full flex items-center justify-between'>
                     <span className='text-[30px] font-semibold'>
-                        Category Management
+                    Add New Tool
                     </span>
                     <button
                      onClick={() => document.getElementById("my_modal_22").showModal()}

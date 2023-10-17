@@ -1,13 +1,15 @@
-import { useEffect, useMemo, useState, useCallback } from "react";
+import { useEffect, useMemo, useState, useCallback, useRef } from "react";
 import draftToHtml from "draftjs-to-html";
 import { Editor } from 'react-draft-wysiwyg';
 import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { ContentState, EditorState, convertFromHTML, convertToRaw } from "draft-js";
 import htmlToDraft from 'html-to-draftjs';
+import { FileUploader } from "react-drag-drop-files";
 import en from './Pages/Custom/en'
 import purify from 'dompurify';
 
 import './Test.css'
+import Category from "./Admin/Category/Category";
 
 
 const Test = () => {
@@ -201,14 +203,64 @@ const Test = () => {
     const [allSuggestions, setAllSuggestions] = useState([])
     const [suggestions, setSuggestions] = useState([]);
     const [selected, setSelected] = useState([])
+    const inputRef = useRef(null);
 
     useEffect(() => {
-        const items = ["Mango", "Apple", "Banana", "Papaya"];
+        const items = [
+            "Socks",
+            "Shoes",
+            "Sandals",
+            "Slippers",
+            "Orthotic Insoles",
+            "Flip-flops",
+            "Athletic Shoes",
+            "Boots",
+            "High Heels",
+            "Sneakers",
+            "Arch Support Inserts",
+            "Toe Rings",
+            "Anklets",
+            "Toe Separators",
+            "Foot Massager",
+            "Foot Bath",
+            "Foot Cream",
+            "Pedicure Kit",
+            "Callus Remover",
+            "Foot Deodorant",
+            "Foot Scrub",
+            "Foot Pumice Stone",
+            "Foot Exfoliating Mask",
+            "Nail Clippers",
+            "Nail File",
+            "Nail Polish",
+            "Foot Powder",
+            "Orthopedic Sandals",
+            "Shoe Inserts",
+            "Foot Orthotics",
+            "Foot Brace",
+            "Foot Splint",
+            "Foot Roller",
+            "Foot Stool",
+            "Shoe Horn",
+            "Foot Massage Oil",
+            "Foot Spa",
+            "Foot Spray",
+            "Foot Warmer",
+            "Gel Cushion Inserts",
+            "Foot Massaging Slippers",
+            "Compression Socks",
+            "Toe Socks",
+            "Bunion Corrector",
+            "Foot Soak",
+            "Foot Lotion",
+            "Heel Cups",
+        ];
         setAllSuggestions(items)
         setSuggestions(items.sort())
     }, [])
 
     const setBlur = (event) => {
+        console.log(event.currentTarget.contains(event.relatedTarget), event.currentTarget, event.relatedTarget);
         if (!event.currentTarget.contains(event.relatedTarget)) {
             setIsOpen(false)
         }
@@ -229,15 +281,18 @@ const Test = () => {
                 innerSuggestions.push(data)
             }
         })
-        if (innerSuggestions.length == 0) {
-            innerSuggestions.push(`0 match for '${eventData}'`)
-        }
-        setSuggestions(innerSuggestions.sort());
+        const arr = [...selected]
+        const newSuggested = innerSuggestions.filter(item => !arr.includes(item));
+        // if (innerSuggestions.length == 0) {
+        //     innerSuggestions.push(`0 match for '${eventData}'`)
+        // }
+        setSuggestions(newSuggested.sort());
     }
 
     const handleAdd = (value) => {
+        // console.log(event.currentTarget,event.relatedTarget);
         const arr = [...selected]
-        if (!selected.includes(value) && !value.includes('0 match for')) {
+        if (!selected.includes(value)) {
             arr.push(value);
             setSelected(arr);
             const newSuggested = suggestions.filter(item => !arr.includes(item));
@@ -246,6 +301,7 @@ const Test = () => {
     }
 
     const handleRemove = (value) => {
+        setFocus()
         const arr = [...selected]
         const newSelected = arr.filter(item => item !== value)
         setSelected(newSelected)
@@ -257,11 +313,16 @@ const Test = () => {
     }
 
 
+    
+    const fileTypes = ["JPG", "PNG", "GIF"];
 
-    useEffect(() => console.log(selected), [selected])
+    const [file, setFile] = useState(null);
+    const handleFileChange = (file) => {
+        console.log(file);
+      setFile(URL.createObjectURL(file));
+    };
 
-
-
+    useEffect(()=>console.log(file),[file])
 
     return (
 
@@ -291,26 +352,40 @@ const Test = () => {
             </div>
 
 
-            <div onBlur={setBlur} onFocus={setFocus} className=" border border-blue-500 flex 
-            w-[400px] h-[44px] p-2">
-                <div>
+            <div className="w-[400px] border px-[14px] py-[10px] my-40 flex flex-wrap gap-2 border-[#D0D5DD] rounded-lg" tabIndex={0} onFocus={() => {inputRef.current.focus()}}>
+                <div className="flex flex-wrap gap-2 outer ">
                     {selected.map((value, index) => (
-                        <button key={index} onClick={() => handleRemove(value)}>{value}</button>
+                        <button className="h-6 px-2 py-1 text-sm font-medium flex items-center gap-[3px] border border-[#D0D5DD] rounded-md "  key={index} onClick={() => handleRemove(value)}>
+                            <span>{value}</span>
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 3L3 9M3 3L9 9" stroke="#98A2B3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+
+                        </button>
                     ))}
                 </div>
-                <div className="relative">
-                    <input className="w-6/12 h-10 border border-red-500" onKeyUp={handleKeyPress} type="text" />
-                    <div className={`${isOpen ? 'block absolute' : 'hidden'}`}>
-                        <ul className="p-2 shadow z-10 bg-base-100 rounded-box w-52">
-                            {suggestions.length != 0 ? suggestions.map((value, index) => (
-                                <li key={index}><button className="w-fit" onClick={() => handleAdd(value)}>
-                                    {value}
-                                </button></li>
-                            )) : <li>No item </li>}
-                        </ul>
+                <div onBlur={setBlur}  className={`w-6/12`}>
+                    <div className="relative">
+                        <input ref={inputRef} onFocus={setFocus} className={`w-full h-6 focus:border-0 focus:outline-0 `} onKeyUp={handleKeyPress} type="text" />
+                        <div className={`${isOpen ? 'block absolute top-10 left-0' : 'hidden'}`}>
+                            <ul className="p-2 shadow z-10 bg-base-100 border w-52 h-28 overflow-y-scroll">
+                                {suggestions.length != 0 ? suggestions.map((value, index) => (
+                                    <li key={index}><button className="w-fit" onClick={() => {
+                                        inputRef.current.focus()
+                                        handleAdd(value)
+                                    }}>
+                                        {value}
+                                    </button></li>
+                                )) : <li>No Item</li>}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <FileUploader classes="test"  handleChange={handleFileChange} name="file" types={fileTypes} chilldren="hello world"><Category></Category></FileUploader>
+
+            <img src={file}/>
 
             {/* <div className="h-[500px]"><Dropdown></Dropdown></div> */}
 

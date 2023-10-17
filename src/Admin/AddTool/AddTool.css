@@ -1,0 +1,17 @@
+.outer{
+    min-height: 25px;
+    max-height: 70px;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.outer::-webkit-scrollbar {
+    display: none;
+}
+
+.dropdown{
+    min-height: 25px;
+    max-height: 112px;
+}
+
