@@ -4,10 +4,12 @@ import { Editor } from 'react-draft-wysiwyg';
 import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { ContentState, EditorState, convertFromHTML, convertToRaw } from "draft-js";
 import htmlToDraft from 'html-to-draftjs';
+import { FileUploader } from "react-drag-drop-files";
 import en from './Pages/Custom/en'
 import purify from 'dompurify';
 
 import './Test.css'
+import Category from "./Admin/Category/Category";
 
 
 const Test = () => {
@@ -311,7 +313,16 @@ const Test = () => {
     }
 
 
+    
+    const fileTypes = ["JPG", "PNG", "GIF"];
 
+    const [file, setFile] = useState(null);
+    const handleFileChange = (file) => {
+        console.log(file);
+      setFile(URL.createObjectURL(file));
+    };
+
+    useEffect(()=>console.log(file),[file])
 
     return (
 
@@ -371,6 +382,10 @@ const Test = () => {
                     </div>
                 </div>
             </div>
+
+            <FileUploader classes="test"  handleChange={handleFileChange} name="file" types={fileTypes} chilldren="hello world"><Category></Category></FileUploader>
+
+            <img src={file}/>
 
             {/* <div className="h-[500px]"><Dropdown></Dropdown></div> */}
 
