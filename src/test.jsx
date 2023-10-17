@@ -6,7 +6,6 @@ import { ContentState, EditorState, convertFromHTML, convertToRaw } from "draft-
 import htmlToDraft from 'html-to-draftjs';
 import en from './Pages/Custom/en'
 import purify from 'dompurify';
-import { ReactTags } from 'react-tag-autocomplete'
 
 import './Test.css'
 
