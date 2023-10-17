@@ -21,6 +21,7 @@ import Subcategory from "../Admin/Subcategoty/Subcategory";
 import ManageTools from "../Admin/ManageTools/ManageTools";
 import ManageNews from "../Admin/ManageNews/ManageNews";
 import UserManagement from "../Admin/UserManagement/UserManagement";
+import AddTool from "../Admin/AddTool/AddTool";
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -104,6 +105,10 @@ export const router = createBrowserRouter([
         {
           path:'db',
           element:<Db></Db>
+        },
+        {
+          path:'addtool',
+          element:<AddTool></AddTool>
         }
       ]
     }

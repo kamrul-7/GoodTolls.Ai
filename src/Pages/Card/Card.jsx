@@ -25,7 +25,7 @@ const Card = () => {
                   </g>
                   <defs>
                     <clipPath id="clip0_1203_1345">
-                      <rect width="20" height="20" fill="white" />
+                      <rect width="20" height="20" fill="#FF0000" />
                     </clipPath>
                   </defs>
                 </svg>
