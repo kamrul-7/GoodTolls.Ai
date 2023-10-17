@@ -257,7 +257,6 @@ The ToolsFinder Service and its contents are provided "as is" and "as available"
                 </div>
             </div>
 
-            <Footer></Footer>
         </div> 
         </div>
     );

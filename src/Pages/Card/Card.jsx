@@ -1,10 +1,26 @@
-
+import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import "./Card.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { faUnlock } from "@fortawesome/free-solid-svg-icons"; // Import the unlock icon
 import { Link } from "react-router-dom";
 
 const Card = () => {
+  const [isClicked, setIsClicked] = useState(Cookies.get("myHeartCookie") === "true");
+
+  useEffect(() => {
+
+    setIsClicked(Cookies.get("myHeartCookie") === "true");
+  }, []);
+
+  const handleClick = () => {
+
+    setIsClicked(!isClicked);
+    Cookies.set("myHeartCookie", !isClicked, { expires: 365 });
+  };
+  const divClass = `md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] left-[268px] ${isClicked ? "bg-[#FF0000]" : "bg-white"}`;
+
   return (
     <div>
       <div className="card size bg-base-100 shadow-xl mb-24 md:mx-0 mx-auto">
@@ -17,18 +33,9 @@ const Card = () => {
               style={{ width: "344px", height: "240px" }}
             />
 
-            <div className="bg-white md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] left-[268px]">
+            <div onClick={handleClick} className="md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] left-[268px] bg-white">
               <div className="">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g clipPath="url(#clip0_1203_1345)">
-                    <path d="M14.5833 1.59711C13.6449 1.6117 12.727 1.87365 11.9223 2.3565C11.1175 2.83935 10.4544 3.526 9.99998 4.34711C9.54551 3.526 8.88242 2.83935 8.07767 2.3565C7.27293 1.87365 6.35502 1.6117 5.41664 1.59711C3.92076 1.6621 2.5114 2.31649 1.49646 3.4173C0.481525 4.51812 -0.0564834 5.97588 -2.45855e-05 7.47211C-2.45855e-05 11.2613 3.98831 15.3996 7.33331 18.2054C8.08016 18.833 9.02444 19.1771 9.99998 19.1771C10.9755 19.1771 11.9198 18.833 12.6666 18.2054C16.0116 15.3996 20 11.2613 20 7.47211C20.0564 5.97588 19.5184 4.51812 18.5035 3.4173C17.4886 2.31649 16.0792 1.6621 14.5833 1.59711ZM11.5958 16.9304C11.1491 17.3066 10.5839 17.5129 9.99998 17.5129C9.41601 17.5129 8.85082 17.3066 8.40414 16.9304C4.12248 13.3379 1.66664 9.89127 1.66664 7.47211C1.60968 6.4177 1.97195 5.38355 2.67444 4.59519C3.37694 3.80683 4.36267 3.32823 5.41664 3.26377C6.47061 3.32823 7.45634 3.80683 8.15884 4.59519C8.86134 5.38355 9.22361 6.4177 9.16664 7.47211C9.16664 7.69312 9.25444 7.90508 9.41072 8.06136C9.567 8.21764 9.77896 8.30544 9.99998 8.30544C10.221 8.30544 10.433 8.21764 10.5892 8.06136C10.7455 7.90508 10.8333 7.69312 10.8333 7.47211C10.7763 6.4177 11.1386 5.38355 11.8411 4.59519C12.5436 3.80683 13.5293 3.32823 14.5833 3.26377C15.6373 3.32823 16.623 3.80683 17.3255 4.59519C18.028 5.38355 18.3903 6.4177 18.3333 7.47211C18.3333 9.89127 15.8775 13.3379 11.5958 16.9271V16.9304Z" fill="#081120" />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_1203_1345">
-                      <rect width="20" height="20" fill="#FF0000" />
-                    </clipPath>
-                  </defs>
-                </svg>
+              {isClicked? <AiOutlineHeart className="w-5 h-5 "/> : <AiFillHeart className="w-5 h-5 " color="red"/>}
               </div>
             </div>
           </figure>

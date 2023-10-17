@@ -1,6 +1,16 @@
+import { useRef } from "react";
 import Pagination from "../Category/Pagination";
 
 const UserManagement = () => {
+    const modalRef = useRef(null);
+
+const closeModal = () => {
+    console.log("Attempting to close modal");
+    if (modalRef.current) {
+        modalRef.current.close();
+    }
+}
+
     
     return (
         <div className='mt-[35px] w-full px-8'>
@@ -127,32 +137,37 @@ const UserManagement = () => {
             </div>
 {/* Add user to the list of users */}
 <div>
-<dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+<dialog ref={modalRef} id="my_modal_5" className="modal modal-bottom sm:modal-middle">
   <div className="modal-box p-4 bg-white rounded-lg shadow-lg">
-    <h3 className="font-bold text-lg mb-4">Hello!</h3>
-    <p className="py-4">Add New Users</p>
+  <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="4" y="4" width="48" height="48" rx="24" fill="#DCFAE6"/>
+<path d="M23.5 28L26.5 31L32.5 25M38 28C38 33.5228 33.5228 38 28 38C22.4772 38 18 33.5228 18 28C18 22.4772 22.4772 18 28 18C33.5228 18 38 22.4772 38 28Z" stroke="#079455" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="4" y="4" width="48" height="48" rx="24" stroke="#ECFDF3" stroke-width="8"/>
+</svg>
+
+    <p className="py-4 text-lg font-semibold">Add New User</p>
 
     <form>
-      <div className="space-y-4">
-        <label className="block">
+      <div className="space-y-4 relative">
+        <label className="block font-medium text-sm">
           User Name
-          <input className="mt-1 p-2 w-full border rounded-md" type="text" placeholder="Enter User Name" />
+          <input className="mt-1 p-2 w-full border rounded-md text-base font-normal" type="text" placeholder="Enter User Name" />
         </label>
 
-        <label className="block">
+        <label className="block font-medium text-sm">
           Email Address
-          <input className="mt-1 p-2 w-full border rounded-md" type="email" placeholder="Enter Email" />
+          <input className="mt-1 p-2 w-full border rounded-md text-base font-normal" type="email" placeholder="Enter Email" />
         </label>
 
-        <label className="block">
+        <label className="block font-medium text-sm">
           Set Password
-          <input className="mt-1 p-2 w-full border rounded-md" type="password" placeholder="Enter Password" />
+          <input className="mt-1 p-2 w-full border rounded-md text-base font-normal" type="password" placeholder="Enter Password" />
         </label>
 
-        <label className="block">
+        <label className="block font-medium text-sm">
           User Type
-          <select className="mt-1 p-2 w-full border rounded-md">
-            <option>Admin</option>
+          <select className="mt-1 p-2 w-full border rounded-md text-base font-normal">
+            <option >Admin</option>
             <option>Content Editor</option>
             {/* Add other user types here */}
           </select>
@@ -160,8 +175,15 @@ const UserManagement = () => {
       </div>
 
       <footer className="mt-4 flex justify-end space-x-2">
-        <button  className="px-4 py-2 border rounded-md hover:bg-gray-200">Cancel</button>
-        <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Save</button>
+        <button  onClick={closeModal} className="px-4 py-2 border rounded-md hover:bg-gray-200">Cancel</button>
+        <button
+                className="btn-circle btn-ghost absolute top-4 right-4 text-2xl"
+                type="button"
+                onClick={closeModal}
+              >
+                ✕
+              </button>
+        <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Save</button>
       </footer>
     </form>
 
