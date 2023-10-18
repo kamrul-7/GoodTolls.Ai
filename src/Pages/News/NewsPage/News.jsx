@@ -111,13 +111,11 @@ const News = () => {
             </div>
                 </div>
             </div>
-            <div className="flex mx-auto  justify-center .centered-div">
+            <div className="flex mx-auto mb-8 justify-center .centered-div">
     <button className="btn-section main-btn">
         See More
     </button>
 </div>
-
-            <Footer />
         </div>
     );
 };
