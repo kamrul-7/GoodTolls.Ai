@@ -1,6 +1,11 @@
 import Pagination from "../Category/Pagination";
+import { useNavigate } from "react-router-dom";
 
 const ManageNews = () => {
+    const navigate = useNavigate();
+    const handleClick =()=>{
+        navigate('/dashboard/addnews')
+    }
     return (
         <div className='mt-[35px] w-full px-8'>
             <div>
@@ -20,12 +25,12 @@ const ManageNews = () => {
                 </div>
 
                 {/* Page Name section */}
-                <div className='w-full flex items-center justify-between'>
+                <div onClick={handleClick} className='w-full flex items-center justify-between'>
                     <span className='text-[30px] font-semibold'>
                     News Management
                     </span>
                     <button className='py-[10px] px-[14px] border rounded-lg bg-[#7F56D9] hover:bg-[#6d4ab8] shadow-sm duration-300 text-white text-sm font-semibold'>
-                        Add Category
+                        Add News
                     </button>
                 </div>
 

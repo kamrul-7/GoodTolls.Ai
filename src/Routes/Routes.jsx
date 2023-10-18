@@ -23,6 +23,7 @@ import ManageTools from "../Admin/ManageTools/ManageTools";
 import ManageNews from "../Admin/ManageNews/ManageNews";
 import UserManagement from "../Admin/UserManagement/UserManagement";
 import AddTool from "../Admin/AddTool/AddTool";
+import AddNews from "../Admin/AddNews/AddNews";
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -114,6 +115,10 @@ export const router = createBrowserRouter([
         {
           path:'addtool',
           element:<AddTool></AddTool>
+        },
+        {
+          path:'addnews',
+          element:<AddNews></AddNews>
         }
         
       ]
