@@ -126,7 +126,6 @@ const Contact = () => {
           </button>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
