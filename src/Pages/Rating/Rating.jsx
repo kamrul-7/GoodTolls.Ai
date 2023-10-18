@@ -596,7 +596,7 @@ const Rating = () => {
           )}
         </div>
       </div>
-      <div className="flex justify-center my-10">
+      <div className="flex justify-center mt-10 border-b w-11/12 mx-auto pb-10 md:pb-24">
         <button>
           <svg
             width="172"
