@@ -492,8 +492,8 @@ const AddTool = () => {
                             placeholder="Write product description"
                             editorState={editorDesState}
                             onEditorStateChange={handleDesChange}
-                            wrapperClassName="full-wrap"
-                            editorClassName="editor-wrap"
+                            wrapperClassName="full-wrap-tool"
+                            editorClassName="editor-wrap-tool"
                             toolbarClassName="toolbar-wrap"> </Editor>
 
 
@@ -512,8 +512,8 @@ const AddTool = () => {
                             placeholder="Write working description"
                             editorState={editorWorkState}
                             onEditorStateChange={handlWorkChange}
-                            wrapperClassName="full-wrap"
-                            editorClassName="editor-wrap"
+                            wrapperClassName="full-wrap-tool"
+                            editorClassName="editor-wrap-tool"
                             toolbarClassName="toolbar-wrap"> </Editor>
 
 
