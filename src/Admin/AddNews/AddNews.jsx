@@ -168,8 +168,8 @@ const AddNews = () => {
                             placeholder="Write product description"
                             editorState={editorDesState}
                             onEditorStateChange={handleDesChange}
-                            wrapperClassName="full-wrap"
-                            editorClassName="editor-wrap"
+                            wrapperClassName="full-wrap-news"
+                            editorClassName="editor-wrap-news"
                             toolbarClassName="toolbar-wrap"> </Editor>
 
 
