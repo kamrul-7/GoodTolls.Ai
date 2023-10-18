@@ -7,6 +7,7 @@ import { AuthContext } from "../Context/AuthProvider";
 import Review from "../Review/Review";
 
 const Rate = () => {
+    const { user } = useContext(AuthContext);
     const { toggle, setTrue, setFalse } = useContext(AuthContext);
     const [rating, setRating] = useState(0);
     const [avgRating, setAvgRating] = useState(0)
@@ -132,17 +133,7 @@ const Rate = () => {
 
     }, [reviews])
 
-    const date = () => {
-        const months = [
-            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-        ];
-        const today = new Date();
-        const month = months[today.getMonth()];
-        const day = today.getDate();
-        const year = today.getFullYear();
-        return `${month} ${day}, ${year}`
-    }
+
 
 
     const StarDrawing = (
@@ -173,19 +164,24 @@ const Rate = () => {
 
 
     const handleClick = () => {
-        setTrue();
+        if(user){
+            setTrue();
+        }else{
+            alert('Login to proceed')
+        }
+        
     }
 
     return (
         <div>
-            <div className="p-10 w-[343px] md:w-full mt-24 ">
+            <div className="p-10 w-full mt-24 ">
 
                 {/* Rating section */}
                 <div className="md:grid grid-cols-2 mb-20 md:h-[375px] gap-x-20 hide-scrollbar">
                     <div className="hide-scrollbar ">
 
                         {/* Average rating */}
-                        <div className="md:flex items-center pb-7 mb-7 border-b border-[#E5E7EB]">
+                        <div className="md:flex text-center items-center pb-7 mb-7 border-b border-[#E5E7EB]">
                             <span className="font-bold text-[32px]">{avgRating ? avgRating : '5.9'}</span>
                             <Rating
                                 style={{ display: "inline-flex", maxWidth: "126px", maxHeight: "22px", gap: "4px", margin: "0px 12px 0px 12px" }}
@@ -193,7 +189,7 @@ const Rate = () => {
                                 itemStyles={customStyles}
                                 readOnly
                             />
-                            <span className="text[#4D5761] text-base block">Based on {reviews.length} rating</span>
+                            <span className="text[#4D5761] text-base block text-center">Based on {reviews.length} rating</span>
                         </div>
 
                         <p className="text-[#081120] text-xl font-medium my-7">Overall Rating</p>
@@ -212,9 +208,9 @@ const Rate = () => {
 
                     <div className="relative">
                         {/* Rate item */}
-                        <div className="md:absolute top-0 right-0 p-11 border rounded-[20px] w-[535px]  h-[375px]">
+                        <div className="md:absolute top-0 right-0 p-11 mt-7 md:mt-0 border rounded-[20px] w-full md:w-[535px] h-fit md:h-[375px]">
                             <div className="text-2xl font-bold mb-[20px]">What do you think about {itemName}?</div>
-                            <div className="text-sm mb-[32px] test">If you have a moment, it would be greatly appreciated if you<br />could leave a review to share your thoughts with the<br />community. Your feedback is valuable to us and helps us<br />improve our services. Thank you!</div>
+                            <div className="text-sm mb-[32px]">If you have a moment, it would be greatly appreciated if you<br />could leave a review to share your thoughts with the<br />community. Your feedback is valuable to us and helps us<br />improve our services. Thank you!</div>
                             {/* Stars */}
                             <div className=" w-full">
                                 <Rating
@@ -236,18 +232,12 @@ const Rate = () => {
 
                                 </button>
 
-                                {/* <button className="border border-[#E5E7EB] rounded-xl px-[34px] py-[16px] flex items-center justify-center w-fit" onClick={handleSend}>
-    <span className="text-base font-medium mr-4">click here for try</span> */}
-                                {/* ... SVG ... */}
-                                {/* </button> */}
-
                                 {/* Conditional rendering of modal */}
                                 {isModalOpen && <Review />}
-                                {/* {isModalOpen && setIsModalOpen(false)} */}
 
 
                             </div>
-                            {toggle && <Review userRating={rating}></Review>}
+                            { toggle && <Review userRating={rating}></Review>}
                         </div>
 
                     </div>
@@ -256,7 +246,7 @@ const Rate = () => {
 
                 {/* Review section */}
                 <div className="hide-scrollbar">
-                    <div className="text-[32px] font-bold pb-7 mb-7 border-b border-[#E5E7EB]">
+                    <div className="text-[32px] text-center md:text-left font-bold pb-7 mb-7 border-b border-[#E5E7EB]">
                         Customers Review
                     </div>
                     {/* user reviews */}

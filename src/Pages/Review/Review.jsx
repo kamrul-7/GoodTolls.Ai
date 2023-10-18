@@ -2,18 +2,31 @@
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
-import { AuthContext } from "../Context/AuthProvider";
 
 import draftToHtml from "draftjs-to-html";
 import { Editor } from 'react-draft-wysiwyg';
 import { ContentState, EditorState, convertFromHTML, convertToRaw } from "draft-js";
 import htmlToDraft from 'html-to-draftjs';
+
 import purify from 'dompurify';
 
 import './Review.css'
+import { AuthContext } from "../Context/AuthProvider";
 
-const Review = ({userRating}) => {
+const Review = ({ userRating }) => {
   const modalRef = useRef(null);
+
+  const date = () => {
+    const months = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
+    const today = new Date();
+    const month = months[today.getMonth()];
+    const day = today.getDate();
+    const year = today.getFullYear();
+    return `${month} ${day}, ${year}`
+  }
   const StarDrawing = (
     <svg
       width="36"
@@ -30,13 +43,18 @@ const Review = ({userRating}) => {
     activeFillColor: "#FAAF00",
     inactiveFillColor: "#E5E7EB",
   };
-  const { setFalse } = useContext(AuthContext);
+  const { setFalse, user } = useContext(AuthContext);
   const [rating, setRating] = useState(userRating);
   const [message, setMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(message);
+    const userName = user.displayName;
+    const userRating = rating;
+    const publishDate = date();
+    const review = JSON.stringify(final);
+    const data = { userName, userRating, publishDate, review }
     closeModal(); // Close the modal and reset state when submitted
   };
 
@@ -119,7 +137,7 @@ const Review = ({userRating}) => {
             <form method="dialog" className="w-full" onSubmit={handleSubmit}>
               <div>
                 <label className="label">
-                  <span className="text-xl font-medium md:mt-20 mb-4">
+                  <span className="text-xl font-medium mb-4">
                     What is your review of the tool?
                   </span>
                 </label>
@@ -128,9 +146,9 @@ const Review = ({userRating}) => {
                   toolbar={tool}
                   editorState={editorState}
                   onEditorStateChange={handleChange}
-                  wrapperClassName="full-wrap"
-                  editorClassName="editor-wrap"
-                  toolbarClassName="toolbar-wrap"> </Editor>
+                  wrapperClassName="full-wrap-review"
+                  editorClassName="editor-wrap-review"
+                  toolbarClassName="toolbar-wrap-review"> </Editor>
               </div>
               <button
                 className="btn-circle btn-ghost absolute top-4 right-4"
@@ -139,10 +157,10 @@ const Review = ({userRating}) => {
               >
                 ✕
               </button>
-              <div className="flex justify-between w-[618px] mx-auto">
+              <div className="flex justify-between md:w-[618px] w-full md:mx-auto">
                 <div>
                   <button
-                  className="btn my-6 w-[303px] border-2"
+                    className="btn my-6 w-fit md:w-[303px] border-2"
                     type="button"
                     onClick={closeModal}
                   >
@@ -151,7 +169,7 @@ const Review = ({userRating}) => {
                 </div>
                 <div>
                   <button
-                    className="btn btn-primary text-white btn-active my-6 w-[303px]"
+                    className="btn btn-primary text-white btn-active my-6 w-fit md:w-[303px]"
                     type="submit"
                   >
                     Submit
@@ -162,6 +180,7 @@ const Review = ({userRating}) => {
           </div>
         </div>
       </dialog>
+
     </div>
   );
 };
