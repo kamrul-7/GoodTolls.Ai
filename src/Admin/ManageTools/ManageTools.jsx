@@ -1,9 +1,14 @@
 import Pagination from "../Category/Pagination";
-
+import { useNavigate } from "react-router-dom";
 
 
 
 const ManageTools = () => {
+    const navigate = useNavigate();
+    const handleClick =()=>{
+        navigate('/dashboard/addtool')
+    }
+    
     return (
         <div className='mt-[35px] w-full px-8'>
             <div>
@@ -27,8 +32,8 @@ const ManageTools = () => {
                     <span className='text-[30px] font-semibold'>
                        Tools Management
                     </span>
-                    <button className='py-[10px] px-[14px] border rounded-lg bg-[#7F56D9] hover:bg-[#6d4ab8] shadow-sm duration-300 text-white text-sm font-semibold'>
-                        Add Category
+                    <button onClick={handleClick} className='py-[10px] px-[14px] border rounded-lg bg-[#7F56D9] hover:bg-[#6d4ab8] shadow-sm duration-300 text-white text-sm font-semibold'>
+                        Add Tool
                     </button>
                 </div>
 

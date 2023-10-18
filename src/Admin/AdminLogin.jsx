@@ -7,6 +7,9 @@ const AdminLogin = () => {
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
+
+
+
     return (
 
         <div className='flex justify-center items-center h-screen'>
@@ -30,8 +33,8 @@ const AdminLogin = () => {
                                     <label className="label">
                                         <span className="password">Password</span>
                                     </label>
-                                    <div className='flex'>
-                                        <input className="w-full" type={showPassword ? 'text' : 'password'} name='password' placeholder="password" className="input input-bordered" />
+                                    <div className='flex justify-between'>
+                                        <input type={showPassword ? 'text' : 'password'} name='password' placeholder="password" className="input input-bordered w-[75%]" />
                                         <button type="button" className="btn btn-outline ms-4" onClick={togglePasswordVisibility}>
                                             <span><FaEye /></span>
                                         </button>
