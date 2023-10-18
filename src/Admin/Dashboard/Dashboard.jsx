@@ -1,10 +1,13 @@
-import React from 'react';
+import { useNavigate } from "react-router-dom";
 import { Outlet, NavLink } from 'react-router-dom';
 import { FaImage, FaLayerGroup, FaTools, FaNewspaper,  } from 'react-icons/fa';
 import { BsLayers  } from 'react-icons/bs';
 import { FiUsers, FiLogOut } from 'react-icons/fi';
 import './Dashboard.css'
+import { useEffect } from "react";
 const Dashboard = () => {
+    const navigate = useNavigate();
+    useEffect(()=>navigate('/dashboard/db'),[])
     return (
         <div className='h-screen overflow-y-scroll hide-scrollbar'>
             <div className="drawer lg:drawer-open sm:drawer-open">
