@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Pages/Context/AuthProvider';
 
@@ -10,24 +10,26 @@ const Login = () => {
         googleSignIn()
             .then((userCredential) => {
                 const user = userCredential.user;
-                saveUser(user.displayName, user.email); 
-                toast.success("Google Log in Successful"); 
-                navigate('/');
+                // saveUser(user.displayName, user.email); 
+                // toast.success("Google Log in Successful"); 
+                // navigate('/');
             })
             .catch((error) => {
                 const errorCode = error.code;
-                toast.error(errorCode.substring(5)); 
+                // toast.error(errorCode.substring(5)); 
             });
     };
+
+    useEffect(()=>console.log(user),[user])
 
     const handleLogOut = () => {
         logOut()
             .then(() => {
-                toast.success("Logged out successfully");
+                // toast.success("Logged out successfully");
                 navigate('/');  
             })
             .catch((error) => {
-                toast.error("Error logging out");
+                // toast.error("Error logging out");
             });
     }
 
