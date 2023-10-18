@@ -12,7 +12,7 @@ import './AddNews.css'
 const AddNews = () => {
     const navigate = useNavigate();
     const handleClick =()=>{
-        navigate('/dashboard/manageTools')
+        navigate('/dashboard/manageNews')
     }
 
     const [editorDesState, setEditorDesState] = useState(EditorState.createEmpty());
