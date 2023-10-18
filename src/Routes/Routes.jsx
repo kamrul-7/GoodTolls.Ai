@@ -8,6 +8,7 @@ import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
 import Contact from "../Pages/Contact/Contact";
 import News from "../Pages/News/NewsPage/News";
 import About from "../Pages/About/About";
+import AdminLogin from "../Admin/AdminLogin"
 import Terms from "../Pages/Terms/Terms";
 import SingleNews from"../Pages/SingleNews/SingleNews"
 import Review from '../Pages/Review/Review'
@@ -87,6 +88,10 @@ export const router = createBrowserRouter([
           element:<Category></Category>
         },
         {
+          path:'/dashboard/login',
+          element:<AdminLogin></AdminLogin>
+        },
+        {
           path:'/dashboard/subcategory',
           element:<Subcategory/>
         },
@@ -110,6 +115,7 @@ export const router = createBrowserRouter([
           path:'addtool',
           element:<AddTool></AddTool>
         }
+        
       ]
     }
   ]);

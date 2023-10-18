@@ -53,7 +53,7 @@ const Dashboard = () => {
                         </div> 
                         <div className='flex items-center '>
                         <FiUsers style={{ height: '24px', width: '24px' }} />
-                            <NavLink to='/dashboard/userManagement' className="ms-3">Categories</NavLink>
+                            <NavLink to='/dashboard/userManagement' className="ms-3">Users</NavLink>
                         </div> 
                         
                         {/* User */}

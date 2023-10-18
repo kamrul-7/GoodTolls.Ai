@@ -1,8 +1,34 @@
 import Pagination from "../Category/Pagination";
-
-
+import { useRef } from "react";
+import React, { useState } from "react";
 
 const Subcategory = () => {
+    const [Category, setCategory] = useState("");
+    const [SubCategory, setSubCategory] = useState("");
+    const [message, setMessage] = useState("");
+    const [Title, setTitle] = useState("");
+  
+
+  const modalRef = useRef(null);
+  const closeModal = () => {
+    console.log("Attempting to close modal");
+    if (modalRef.current) {
+      modalRef.current.close();
+    }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Now you have the values, you can handle them as you wish, like sending to a server
+    console.log({ Category, SubCategory,Title,message });
+
+    
+  setCategory('');
+  setSubCategory('');
+  setMessage('');
+  setTitle('');
+  closeModal();
+  };
     return (
         <div className='mt-[35px] w-full px-8'>
             <div>
@@ -26,8 +52,8 @@ const Subcategory = () => {
                     <span className='text-[30px] font-semibold'>
                        Sub Category Management
                     </span>
-                    <button className='py-[10px] px-[14px] border rounded-lg bg-[#7F56D9] hover:bg-[#6d4ab8] shadow-sm duration-300 text-white text-sm font-semibold'>
-                        Add Category
+                    <button  onClick={() => document.getElementById("my_modal_16").showModal()} className='py-[10px] px-[14px] border rounded-lg bg-[#7F56D9] hover:bg-[#6d4ab8] shadow-sm duration-300 text-white text-sm font-semibold'>
+                        Add Sub Category
                     </button>
                 </div>
 
@@ -60,7 +86,7 @@ const Subcategory = () => {
                             </button>
 
                             {/* Edit button */}
-                            <button className="p-[10px] w-[40px] hover:-translate-y-[0.5px]">
+                            <button  onClick={() => document.getElementById("my_modal_17").showModal()} className="p-[10px] w-[40px] hover:-translate-y-[0.5px]">
                                 <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.39662 15.0964C1.43491 14.7518 1.45405 14.5795 1.50618 14.4185C1.55243 14.2756 1.61778 14.1396 1.70045 14.0142C1.79363 13.8729 1.91621 13.7504 2.16136 13.5052L13.1666 2.49999C14.0871 1.57951 15.5795 1.57951 16.4999 2.49999C17.4204 3.42046 17.4204 4.91285 16.4999 5.83332L5.49469 16.8386C5.24954 17.0837 5.12696 17.2063 4.98566 17.2995C4.86029 17.3821 4.72433 17.4475 4.58146 17.4937C4.42042 17.5459 4.24813 17.565 3.90356 17.6033L1.08325 17.9167L1.39662 15.0964Z" stroke="#475467" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
@@ -75,6 +101,226 @@ const Subcategory = () => {
                 <div >
                     <Pagination totalPages={10} />
                 </div>
+            </div>
+
+            <div>
+                            {/* Add new category */}
+            <div>
+        <dialog
+          ref={modalRef}
+          id="my_modal_16"
+          className="modal modal-bottom sm:modal-middle"
+        >
+          <div className="modal-box p-4 bg-white rounded-lg shadow-lg">
+            <svg
+              width="56"
+              height="56"
+              viewBox="0 0 56 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect x="4" y="4" width="48" height="48" rx="24" fill="#DCFAE6" />
+              <path
+                d="M23.5 28L26.5 31L32.5 25M38 28C38 33.5228 33.5228 38 28 38C22.4772 38 18 33.5228 18 28C18 22.4772 22.4772 18 28 18C33.5228 18 38 22.4772 38 28Z"
+                stroke="#079455"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <rect
+                x="4"
+                y="4"
+                width="48"
+                height="48"
+                rx="24"
+                stroke="#ECFDF3"
+                stroke-width="8"
+              />
+            </svg>
+
+            <p className="py-4 text-lg font-semibold">Add New Sub Category</p>
+
+            <form onSubmit={handleSubmit}>
+      <div className="space-y-4 relative">
+        <label className="block font-medium text-sm">
+        Parent Category
+          <input
+            value={Category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="mt-1 p-2 w-full border rounded-md text-base font-normal"
+            type="text"
+            placeholder="Enter Category Name"
+          />
+        </label>
+        <label className="block font-medium text-sm">
+        Sub Category Name
+          <input
+            value={SubCategory}
+            onChange={(e) => setSubCategory(e.target.value)}
+            className="mt-1 p-2 w-full border rounded-md text-base font-normal"
+            type="text"
+            placeholder="Enter Sub Category Title"
+          />
+        </label>
+       
+      </div>
+      <div className="space-y-4 relative">
+        <label className="block font-medium text-sm">
+        Sub Category Title
+          <input
+            value={Title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="mt-1 p-2 w-full border rounded-md text-base font-normal"
+            type="text"
+            placeholder="Enter Sub Category Title"
+          />
+        </label>
+      </div>
+      <label className="block font-medium text-sm">
+        Category Description
+        <textarea
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+      className="textarea mt-3 textarea-bordered p-2 w-full border rounded-md text-base font-normal"  type="text"
+      placeholder="Category Description"/>
+        </label>
+      <footer className="mt-4 flex justify-end space-x-2">
+        <button
+          className="btn-circle btn-ghost absolute top-4 right-4 text-2xl"
+          type="button"
+          onClick={() => {
+            const modal = document.getElementById("my_modal_16");
+            modal.close();
+          }}
+        >
+          ✕
+        </button>
+        <div className="flex justify-between w-[618px] mx-auto">
+          <button  onClick={() => {
+    const modal = document.getElementById("my_modal_16");
+    modal.close();
+  }} className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2">
+            Cancel
+          </button>
+          <button onClick={() => {
+    const modal = document.getElementById("my_modal_16");
+    modal.close();
+  }} type="submit" className="bg-[#7F56D9] w-[48%] my-6 px-4 py-2  text-white rounded-md">
+            Save
+          </button>
+        </div>
+      </footer>
+    </form>
+
+            <div className="modal-action mt-4"></div>
+          </div>
+        </dialog>
+      </div>
+{/* update Sub category options */}
+<div>
+<div>
+        <dialog
+          ref={modalRef}
+          id="my_modal_17"
+          className="modal modal-bottom sm:modal-middle"
+        >
+          <div className="modal-box p-4 bg-white rounded-lg shadow-lg">
+            <svg
+              width="56"
+              height="56"
+              viewBox="0 0 56 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect x="4" y="4" width="48" height="48" rx="24" fill="#DCFAE6" />
+              <path
+                d="M23.5 28L26.5 31L32.5 25M38 28C38 33.5228 33.5228 38 28 38C22.4772 38 18 33.5228 18 28C18 22.4772 22.4772 18 28 18C33.5228 18 38 22.4772 38 28Z"
+                stroke="#079455"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <rect
+                x="4"
+                y="4"
+                width="48"
+                height="48"
+                rx="24"
+                stroke="#ECFDF3"
+                stroke-width="8"
+              />
+            </svg>
+
+            <p className="py-4 text-lg font-semibold">Update Sub Category</p>
+
+            <form onSubmit={handleSubmit}>
+            <div className="space-y-4 relative">
+        <label className="block font-medium text-sm">
+        Parent Category
+          <input
+            value={Category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="mt-1 p-2 w-full border rounded-md text-base font-normal"
+            type="text"
+            placeholder="Enter Category Name"
+          />
+        </label>
+        <label className="block font-medium text-sm">
+        Sub Category Name
+          <input
+            value={SubCategory}
+            onChange={(e) => setSubCategory(e.target.value)}
+            className="mt-1 p-2 w-full border rounded-md text-base font-normal"
+            type="text"
+            placeholder="Enter Sub Category Title"
+          />
+        </label>
+       
+      </div>
+      <div className="space-y-4 relative">
+        <label className="block font-medium text-sm">
+        Sub Category Title
+          <input
+            value={Title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="mt-1 p-2 w-full border rounded-md text-base font-normal"
+            type="text"
+            placeholder="Enter Sub Category Title"
+          />
+        </label>
+      </div>
+      <label className="block font-medium text-sm">
+        Category Description
+        <textarea
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+      className="textarea mt-3 textarea-bordered p-2 w-full border rounded-md text-base font-normal"  type="text"
+      placeholder="Category Description"/>
+        </label>
+      <footer className="mt-4 flex justify-end space-x-2">
+        <button
+          className="btn-circle btn-ghost absolute top-4 right-4 text-2xl"
+          type="button"
+          onClick={closeModal}
+        >
+          ✕
+        </button>
+        <div className="flex justify-between w-[618px] mx-auto">
+          <button onClick={closeModal} className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2">
+            Cancel
+          </button>
+          <button type="submit" className=" w-[48%] my-6 px-4 py-2 bg-[#7F56D9] text-white rounded-md">
+            Save
+          </button>
+        </div>
+      </footer>
+    </form>
+
+            <div className="modal-action mt-4"></div>
+          </div>
+        </dialog>
+      </div>
+</div>
             </div>
         </div>
     );
