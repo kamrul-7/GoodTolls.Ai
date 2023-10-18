@@ -81,16 +81,15 @@ export const router = createBrowserRouter([
       
     },
     {
-      path: '/dashboard',
-      element: <Dashboard></Dashboard>,
+      path: '/adminlogin',
+      element: <AdminLogin></AdminLogin>
+    },
+    {
+      
       children: [
         {
           path:'/dashboard/category',
           element:<Category></Category>
-        },
-        {
-          path:'/dashboard/login',
-          element:<AdminLogin></AdminLogin>
         },
         {
           path:'/dashboard/subcategory',
