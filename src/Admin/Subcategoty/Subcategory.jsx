@@ -3,10 +3,16 @@ import { useEffect, useRef } from "react";
 import React, { useState } from "react";
 
 const Subcategory = () => {
-  const [Category, setCategory] = useState("");
+  const [Category, setCategory] = useState([]);
   const [SubCategory, setSubCategory] = useState("");
   const [message, setMessage] = useState("");
   const [Title, setTitle] = useState("");
+
+  useEffect(() => {
+    fetch('http://localhost:3000/category')
+      .then(res => res.json())
+      .then(data => setCategory(data))
+  }, [])
 
 
   const modalRef = useRef(null);
@@ -146,8 +152,10 @@ const Subcategory = () => {
                   <label className="block font-medium text-sm">
                     Parent Category
                     <select name='category' className="mt-1 p-2 w-full border rounded-md text-base font-normal">
-                      <option value="a">a</option>
-                      <option value="b">b</option>
+                      <option selected disabled value="">Select a parent category</option>
+                      {
+                        Category.map((value,indx) => (<option key={indx} value={value?.Title}>{value?.Title}</option>))
+                      }
                     </select>
                   </label>
                   <label className="block font-medium text-sm">
@@ -255,13 +263,13 @@ const Subcategory = () => {
                   <div className="space-y-4 relative">
                     <label className="block font-medium text-sm">
                       Parent Category
-                      <input
-                        value={Category}
-                        onChange={(e) => setCategory(e.target.value)}
-                        className="mt-1 p-2 w-full border rounded-md text-base font-normal"
-                        type="text"
-                        placeholder="Enter Category Name"
-                      />
+                      <select name='category' className="mt-1 p-2 w-full border rounded-md text-base font-normal">
+                      <option selected disabled value="">Select a parent category</option>
+                      {
+                        Category.map((value,indx) => (<option key={indx} value={value?.Title}>{value?.Title}</option>))
+                      }
+                    </select>
+
                     </label>
                     <label className="block font-medium text-sm">
                       Sub Category Name
