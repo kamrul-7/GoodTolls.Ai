@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Filter.css'
 import 'flowbite';
 const Filter = () => {
     const [toggle, setToggle] = useState(true)
+    useEffect(()=>console.log(toggle),[toggle])
     return (
-        <div className=''>
-            <button id="dropdownNavbarLink" onClick={() => setToggle(!toggle)} data-dropdown-toggle="dropdownNavbar" className=" text-base text-[#081120] rounded-xl border border-[#E5E7EB] md:w-[200px] w-full">
+        <div className='relative'>
+            <button onClick={() => setToggle(!toggle)} className=" text-base text-[#081120] rounded-xl border border-[#E5E7EB] md:w-[200px] w-full">
 
                 <div className='flex items-center justify-between px-4 py-2'>
 
@@ -24,8 +25,8 @@ const Filter = () => {
             </button>
 
             {/* <!-- Dropdown menu --> */}
-            <div id="dropdownNavbar" className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-xl md:w-[200px] w-11/12 text-base">
-                <ul className="py-2 text-sm text-gray-700 " aria-labelledby="dropdownLargeButton">
+            <div className={`z-50 ${toggle ?'hidden' : 'block absolute bottom-30 left-0' } font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-xl md:w-[200px] w-11/12 text-base`}>
+                <ul className="py-2 text-sm text-gray-700">
                     <li>
                         <a href="#" className="block font-medium px-4 py-2 hover:bg-gray-100 ">Dashboard</a>
                     </li>
@@ -37,7 +38,7 @@ const Filter = () => {
                     </li>
                 </ul>
 
-                <ul className="py-2 text-sm text-gray-700 " aria-labelledby="dropdownLargeButton">
+                <ul className="py-2 text-sm text-gray-700 ">
                     <li>
                         <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">Dashboard</a>
                     </li>
