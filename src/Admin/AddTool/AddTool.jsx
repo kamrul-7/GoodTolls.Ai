@@ -11,7 +11,7 @@ import './AddTool.css'
 
 const AddTool = () => {
     const navigate = useNavigate();
-    const handleClick =()=>{
+    const handleClick = () => {
         navigate('/dashboard/manageTools')
     }
 
@@ -27,6 +27,26 @@ const AddTool = () => {
     const [editorDesState, setEditorDesState] = useState(EditorState.createEmpty());
     const [initDes, setDesInit] = useState("")
     const [finalDes, setDesFinal] = useState('')
+    const [finalDesChars, setFinalDesChars] = useState(0)
+    const [finalWorkChars, setFinalWorkChars] = useState(0)
+
+    const countCharacters = (element) => {
+        let totalCharacters = -1;
+
+        // Recursively traverse the element and its children
+        function traverse(node) {
+            if (node.nodeType === Node.TEXT_NODE) {
+                totalCharacters += node.textContent.length;
+            } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'IMG' && node.tagName !== 'LI') {
+                for (const child of node.childNodes) {
+                    traverse(child);
+                }
+            }
+        }
+
+        traverse(element);
+        return totalCharacters;
+    }
 
     useEffect(() => {
         const contentBlock = htmlToDraft(initDes)
@@ -39,14 +59,33 @@ const AddTool = () => {
     }, [initDes])
 
     const handleDesChange = (data) => {
+
         setEditorDesState(data);
+
+
     };
+
+    const handleDesInput = (input) => {
+        if (finalDesChars == 0) {
+            return 'handled'
+        }
+    }
 
 
     useMemo(
         () => setDesFinal(draftToHtml(convertToRaw(editorDesState.getCurrentContent()))),
         [editorDesState]
     )
+
+    useEffect(() => {
+
+        // Create a temporary DOM element to parse the HTML string
+        const tempElement = document.createElement('div');
+        tempElement.innerHTML = finalDes;
+        setFinalDesChars(1000 - countCharacters(tempElement));
+
+    }, [finalDes])
+
 
 
 
@@ -69,11 +108,25 @@ const AddTool = () => {
     };
 
 
+    const handleWorkInput = (input)=>{
+        if (finalWorkChars == 0) {
+            return 'handled'
+        }
+    }
+
     useMemo(
         () => setWorkFinal(draftToHtml(convertToRaw(editorWorkState.getCurrentContent()))),
         [editorWorkState]
     )
 
+    useEffect(() => {
+
+        // Create a temporary DOM element to parse the HTML string
+        const tempElement = document.createElement('div');
+        tempElement.innerHTML = finalWork;
+        setFinalWorkChars(1000 - countCharacters(tempElement));
+
+    }, [finalWork])
 
     useEffect(() => {
         const items = [
@@ -486,9 +539,10 @@ const AddTool = () => {
                         <span>Description</span>
                         <div className='text-sm font-normal text[#475467]'>Write the description of the tool</div>
                     </div>
-                    <div className=' px-[14px] rounded-lg w-[512px] flex items-center'>
+                    <div className=' px-[14px] rounded-lg w-[512px]'>
 
                         <Editor
+                            handleBeforeInput={handleDesInput}
                             placeholder="Write product description"
                             editorState={editorDesState}
                             onEditorStateChange={handleDesChange}
@@ -496,6 +550,9 @@ const AddTool = () => {
                             editorClassName="editor-wrap-tool"
                             toolbarClassName="toolbar-wrap"> </Editor>
 
+                        <div className='text-[#475467] text-sm ml-5 -mt-5'>
+                            {finalDesChars} characters left
+                        </div>
 
                     </div>
                 </div>
@@ -506,9 +563,10 @@ const AddTool = () => {
                         <span>How to works</span>
                         <div className='text-sm font-normal text[#475467]'>Write how to use the tool</div>
                     </div>
-                    <div className=' px-[14px] rounded-lg w-[512px] flex items-center'>
+                    <div className=' px-[14px] rounded-lg w-[512px]'>
 
                         <Editor
+                            handleBeforeInput={handleWorkInput}
                             placeholder="Write working description"
                             editorState={editorWorkState}
                             onEditorStateChange={handlWorkChange}
@@ -516,6 +574,9 @@ const AddTool = () => {
                             editorClassName="editor-wrap-tool"
                             toolbarClassName="toolbar-wrap"> </Editor>
 
+                        <div className='text-[#475467] text-sm ml-5 -mt-5'>
+                            {finalWorkChars} characters left
+                        </div>
 
                     </div>
                 </div>

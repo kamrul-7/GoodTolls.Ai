@@ -11,13 +11,14 @@ import './AddNews.css'
 
 const AddNews = () => {
     const navigate = useNavigate();
-    const handleClick =()=>{
+    const handleClick = () => {
         navigate('/dashboard/manageNews')
     }
 
     const [editorDesState, setEditorDesState] = useState(EditorState.createEmpty());
     const [initDes, setDesInit] = useState("")
     const [finalDes, setDesFinal] = useState('')
+    const [finalDesChars, setFinalDesChars] = useState(0)
 
     useEffect(() => {
         const contentBlock = htmlToDraft(initDes)
@@ -39,6 +40,39 @@ const AddNews = () => {
         [editorDesState]
     )
 
+    const countCharacters = (element) => {
+        let totalCharacters = -1;
+
+        // Recursively traverse the element and its children
+        function traverse(node) {
+            if (node.nodeType === Node.TEXT_NODE) {
+                totalCharacters += node.textContent.length;
+            } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'IMG' && node.tagName !== 'LI') {
+                for (const child of node.childNodes) {
+                    traverse(child);
+                }
+            }
+        }
+
+        traverse(element);
+        return totalCharacters;
+    }
+
+    useEffect(() => {
+
+        // Create a temporary DOM element to parse the HTML string
+        const tempElement = document.createElement('div');
+        tempElement.innerHTML = finalDes;
+        setFinalDesChars(1000 - countCharacters(tempElement));
+
+    }, [finalDes])
+
+    const handleDesInput = (input) => {
+        if (finalDesChars == 0) {
+            return 'handled'
+        }
+    }
+
 
     const fileTypes = ["JPG", "PNG", "GIF"];
 
@@ -55,7 +89,7 @@ const AddNews = () => {
         const toolName = event.target.toolName.value;
         const image = file;
         const description = JSON.stringify(finalDes.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">"));
-        const data = { toolName, image,description}
+        const data = { toolName, image, description }
         console.log(data);
     }
 
@@ -162,9 +196,10 @@ const AddNews = () => {
                         <span>Description</span>
                         <div className='text-sm font-normal text[#475467]'>Write the description of the tool</div>
                     </div>
-                    <div className=' px-[14px] rounded-lg w-[512px] flex items-center'>
+                    <div className=' px-[14px] rounded-lg w-[512px]'>
 
                         <Editor
+                            handleBeforeInput={handleDesInput}
                             placeholder="Write product description"
                             editorState={editorDesState}
                             onEditorStateChange={handleDesChange}
@@ -172,6 +207,9 @@ const AddNews = () => {
                             editorClassName="editor-wrap-news"
                             toolbarClassName="toolbar-wrap"> </Editor>
 
+                        <div className='text-[#475467] text-sm ml-5 -mt-5'>
+                            {finalDesChars} characters left
+                        </div>
 
                     </div>
                 </div>
