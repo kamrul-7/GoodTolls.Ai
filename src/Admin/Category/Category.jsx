@@ -177,7 +177,7 @@ const Category = () => {
               </button>
             </td>
           </tr>
-        </table>
+          </table>
         {/* pagination section */}
         <div>
           <Pagination totalPages={10} />
