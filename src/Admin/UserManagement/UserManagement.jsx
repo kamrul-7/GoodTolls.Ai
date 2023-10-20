@@ -426,56 +426,76 @@ const UserManagement = () => {
               />
             </svg>
 
-            <p className="py-4 text-lg font-semibold">Update Category</p>
+            <p className="py-4 text-lg font-semibold">Update User</p>
 
             <form onSubmit={handleSubmit}>
       <div className="space-y-4 relative">
         <label className="block font-medium text-sm">
-        Category Name
+          User Name
           <input
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
             className="mt-1 p-2 w-full border rounded-md text-base font-normal"
             type="text"
-            placeholder="Enter Category Name"
+            placeholder="Enter User Name"
           />
         </label>
         <label className="block font-medium text-sm">
-        Category Title
+          Email Address
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="mt-1 p-2 w-full border rounded-md text-base font-normal"
-            type="text"
-            placeholder="Enter Category Title"
+            type="email"
+            placeholder="Enter Email"
           />
         </label>
         <label className="block font-medium text-sm">
-        Category Description
-        <textarea
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      className="textarea mt-3 textarea-bordered p-2 w-full border rounded-md text-base font-normal"  type="text"
-      placeholder="Category Description"/>
+        Update Password
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="mt-1 p-2 w-full border rounded-md text-base font-normal"
+            type="password"
+            placeholder="Enter Password"
+          />
+        </label>
+        <label className="block font-medium text-sm">
+          User Type
+          <select
+            value={userType}
+            onChange={(e) => setUserType(e.target.value)}
+            className="mt-1 p-2 w-full border rounded-md text-base font-normal"
+          >
+            <option>Admin</option>
+            <option>Content Editor</option>
+            {/* Add other user types here */}
+          </select>
         </label>
       </div>
       <footer className="mt-4 flex justify-end space-x-2">
         <button
           className="btn-circle btn-ghost absolute top-4 right-4 text-2xl"
           type="button"
-          onClick={closeModal}
+          onClick={() => {
+            const modal = document.getElementById("my_modal_6");
+            modal.close();
+          }}
         >
           ✕
         </button>
         <div className="flex justify-between w-[618px] mx-auto">
-          <button onClick={closeModal} className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2">
+          <button  onClick={() => {
+    const modal = document.getElementById("my_modal_6");
+    modal.close();
+  }} className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2">
             Cancel
           </button>
           <button  onClick={() => {
             const modal = document.getElementById("my_modal_6");
             modal.close();
           }} type="submit" className=" w-[48%] my-6 px-4 py-2 bg-[#7F56D9] text-white rounded-md">
-            Save
+           Update
           </button>
         </div>
       </footer>
