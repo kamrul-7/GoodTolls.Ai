@@ -1,8 +1,8 @@
 import Pagination from "../Category/Pagination";
-import { useEffect, useRef } from "react";
-import React, { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Subcategory = () => {
+  const [parent, setParent] = useState([])
   const [Category, setCategory] = useState([]);
   const [SubCategory, setSubCategory] = useState("");
   const [message, setMessage] = useState("");
@@ -11,8 +11,12 @@ const Subcategory = () => {
   useEffect(() => {
     fetch('http://localhost:3000/category')
       .then(res => res.json())
-      .then(data => setCategory(data))
+      .then(data => {setParent([...data])})
   }, [])
+
+  useEffect(()=>{
+    console.log(typeof(parent))
+    console.log(parent)},[parent])
 
 
   const modalRef = useRef(null);
@@ -36,6 +40,11 @@ const Subcategory = () => {
     setTitle('');
     closeModal();
   };
+
+  const handleEdit = ()=>{
+    console.log('inside handle edit');
+    event.preventDefault();
+  }
   return (
     <div className='mt-[35px] w-full px-8'>
       <div>
@@ -154,7 +163,7 @@ const Subcategory = () => {
                     <select name='category' className="mt-1 p-2 w-full border rounded-md text-base font-normal">
                       <option selected disabled value="">Select a parent category</option>
                       {
-                        Category.map((value,indx) => (<option key={indx} value={value?.Title}>{value?.Title}</option>))
+                        parent.map((value,indx) => (<option key={indx} value={value?.Title}>{value?.Title}</option>))
                       }
                     </select>
                   </label>
@@ -259,14 +268,14 @@ const Subcategory = () => {
 
                 <p className="py-4 text-lg font-semibold">Update Sub Category</p>
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleEdit}>
                   <div className="space-y-4 relative">
                     <label className="block font-medium text-sm">
                       Parent Category
                       <select name='category' className="mt-1 p-2 w-full border rounded-md text-base font-normal">
                       <option selected disabled value="">Select a parent category</option>
                       {
-                        Category.map((value,indx) => (<option key={indx} value={value?.Title}>{value?.Title}</option>))
+                         parent.map((value,indx) => (<option key={indx} value={value?.Title}>{value?.Title}</option>))
                       }
                     </select>
 
