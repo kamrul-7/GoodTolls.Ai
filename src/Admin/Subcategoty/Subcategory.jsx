@@ -7,17 +7,19 @@ const Subcategory = () => {
   const [SubCategory, setSubCategory] = useState("");
   const [message, setMessage] = useState("");
   const [Title, setTitle] = useState("");
-
+  console.log(Category);
   useEffect(() => {
     fetch('http://localhost:3000/category')
       .then(res => res.json())
       .then(data => {setParent([...data])})
   }, [])
 
+  console.log(Category);
+
+
   useEffect(()=>{
     console.log(typeof(parent))
     console.log(parent)},[parent])
-
 
   const modalRef = useRef(null);
   const closeModal = () => {

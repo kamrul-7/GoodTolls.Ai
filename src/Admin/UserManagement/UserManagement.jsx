@@ -1,14 +1,52 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Pagination from "../Category/Pagination";
 import React, { useState } from "react";
 const UserManagement = () => {
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
+    const [users, setUsers] = useState([]);
+
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const [userType, setUserType] = useState("Admin");
-  
+    
+    const fetchUsers = () => {
+      fetch("http://localhost:3000/users")
+        .then((res) => res.json())
+        .then((data) => {
+          setUsers(data);
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("An error occurred while fetching users.");
+        });
+    };
+    useEffect(() => {
+      fetchUsers();
+    }, []);
 
+    const handleDelete = (item) => {
+      console.log(item._id);
+      
+      fetch(`http://localhost:3000/users/${item._id}`, {
+        method: "DELETE",
+      })
+        .then((res) => {
+          if (res.ok) {
+            // User deleted successfully, update the user list
+            fetchUsers();
+          } else if (res.status === 404) {
+            alert("User not found");
+          } else {
+            alert("Internal Server Error");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("An error occurred while deleting the user.");
+        });
+    }
+    
   const modalRef = useRef(null);
   
   const closeModal = () => {
@@ -20,17 +58,54 @@ const UserManagement = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Now you have the values, you can handle them as you wish, like sending to a server
-    console.log({ userName, email, password, userType });
 
+    const currentDate = new Date();
+  
+
+    const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
+      .toString()
+      .padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
+
+    const user = {
+      userName,
+      email,
+      password,
+      userType,
+      date: formattedDate, 
+    };
     
-  setUserName('');
-  setEmail('');
-  setPassword('');
-  setMessage('');
-  setUserType('Admin');
-  closeModal();
+    console.log(user);
+    if (userName.length != 0 && email.length != 0 && password.length != 0){
+      fetch("http://localhost:3000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user), 
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          alert("User Added Successfully");
+          fetchUsers();
+        } else {
+          alert("Unsuccessful");
+        }
+      });
+    }else{
+      alert("No field Cant be empty");
+    }
+    
+
+    setUserName('');
+    setEmail('');
+    setPassword('');
+    setMessage('');
+    setUserType('Admin');
+    closeModal();
   };
+  
+  
 
   return (
     <div className="mt-[35px] w-full px-8">
@@ -100,136 +175,23 @@ const UserManagement = () => {
             <td className="py-3 px-6 w-[116px] hover:bg-[#F9FAFB]">Action</td>
           </tr>
 
-          {/* Table regular row */}
-          <tr className="border-b h-[64px] border-[#EAECF0] text-sm font-medium">
-            <td className="py-4 px-6 hover:bg-[#F9FAFB]">László Barbara</td>
+         {/* row */}
+          {
+            users.map(item => <tr className="border-b h-[64px] border-[#EAECF0] text-sm font-medium">
+            <td className="py-4 px-6 hover:bg-[#F9FAFB]">{item.userName}</td>
             <td className="py-4 px-6 hover:bg-[#F9FAFB]">
-              alma.lawson@example.com
+            {item.email}
             </td>
-            <td className="py-4 px-6 hover:bg-[#F9FAFB]">30/01/2020</td>
-            <td className="py-4 px-6 hover:bg-[#F9FAFB] font-normal">
-              <button className="btn-sm bg-[#ECFDF3] text-xs font-medium text-[#067647] border-2 border-green-200  rounded-3xl px-4">
-                Admin
-              </button>
-            </td>
-            {/* Action buttons */}
-            <td className="px-4 py-4 flex items-center justify-center hover:mt-[1px] hover:-mb-[1px] hover:-translate-y-[0.5px] hover:bg-[#F9FAFB]">
-              {/* Delete button */}
-              <button className="p-[10px] mr-1 w-[40px] hover:-translate-y-[0.5px]">
-                <svg
-                  width="18"
-                  height="20"
-                  viewBox="0 0 18 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12.3333 4.99999V4.33332C12.3333 3.3999 12.3333 2.93319 12.1517 2.57667C11.9919 2.26307 11.7369 2.0081 11.4233 1.84831C11.0668 1.66666 10.6001 1.66666 9.66667 1.66666H8.33333C7.39991 1.66666 6.9332 1.66666 6.57668 1.84831C6.26308 2.0081 6.00811 2.26307 5.84832 2.57667C5.66667 2.93319 5.66667 3.3999 5.66667 4.33332V4.99999M7.33333 9.58332V13.75M10.6667 9.58332V13.75M1.5 4.99999H16.5M14.8333 4.99999V14.3333C14.8333 15.7335 14.8333 16.4335 14.5608 16.9683C14.3212 17.4387 13.9387 17.8212 13.4683 18.0608C12.9335 18.3333 12.2335 18.3333 10.8333 18.3333H7.16667C5.76654 18.3333 5.06647 18.3333 4.53169 18.0608C4.06129 17.8212 3.67883 17.4387 3.43915 16.9683C3.16667 16.4335 3.16667 15.7335 3.16667 14.3333V4.99999"
-                    stroke="#475467"
-                    strokeWidth="1.66667"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-
-              {/* Edit button */}
-              <button
-                onClick={() =>
-                  document.getElementById("my_modal_6").showModal()
-                }
-                className="p-[10px] w-[40px] hover:-translate-y-[0.5px]"
-              >
-                <svg
-                  width="19"
-                  height="19"
-                  viewBox="0 0 19 19"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1.39662 15.0964C1.43491 14.7518 1.45405 14.5795 1.50618 14.4185C1.55243 14.2756 1.61778 14.1396 1.70045 14.0142C1.79363 13.8729 1.91621 13.7504 2.16136 13.5052L13.1666 2.49999C14.0871 1.57951 15.5795 1.57951 16.4999 2.49999C17.4204 3.42046 17.4204 4.91285 16.4999 5.83332L5.49469 16.8386C5.24954 17.0837 5.12696 17.2063 4.98566 17.2995C4.86029 17.3821 4.72433 17.4475 4.58146 17.4937C4.42042 17.5459 4.24813 17.565 3.90356 17.6033L1.08325 17.9167L1.39662 15.0964Z"
-                    stroke="#475467"
-                    strokeWidth="1.66667"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-            </td>
-          </tr>
-          <tr className="border-b h-[64px] border-[#EAECF0] text-sm font-medium">
-            <td className="py-4 px-6 hover:bg-[#F9FAFB]">László Barbara</td>
-            <td className="py-4 px-6 hover:bg-[#F9FAFB]">
-              alma.lawson@example.com
-            </td>
-            <td className="py-4 px-6 hover:bg-[#F9FAFB]">30/01/2020</td>
-            <td className="py-4 px-6 hover:bg-[#F9FAFB] font-normal">
-              <button className="btn-sm bg-[#ECFDF3] text-xs font-medium text-[#067647] border-2 border-green-200  rounded-3xl px-4">
-                Admin
-              </button>
-            </td>
-            {/* Action buttons */}
-            <td className="px-4 py-4 flex items-center justify-center hover:mt-[1px] hover:-mb-[1px] hover:-translate-y-[0.5px] hover:bg-[#F9FAFB]">
-              {/* Delete button */}
-              <button className="p-[10px] mr-1 w-[40px] hover:-translate-y-[0.5px]">
-                <svg
-                  width="18"
-                  height="20"
-                  viewBox="0 0 18 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12.3333 4.99999V4.33332C12.3333 3.3999 12.3333 2.93319 12.1517 2.57667C11.9919 2.26307 11.7369 2.0081 11.4233 1.84831C11.0668 1.66666 10.6001 1.66666 9.66667 1.66666H8.33333C7.39991 1.66666 6.9332 1.66666 6.57668 1.84831C6.26308 2.0081 6.00811 2.26307 5.84832 2.57667C5.66667 2.93319 5.66667 3.3999 5.66667 4.33332V4.99999M7.33333 9.58332V13.75M10.6667 9.58332V13.75M1.5 4.99999H16.5M14.8333 4.99999V14.3333C14.8333 15.7335 14.8333 16.4335 14.5608 16.9683C14.3212 17.4387 13.9387 17.8212 13.4683 18.0608C12.9335 18.3333 12.2335 18.3333 10.8333 18.3333H7.16667C5.76654 18.3333 5.06647 18.3333 4.53169 18.0608C4.06129 17.8212 3.67883 17.4387 3.43915 16.9683C3.16667 16.4335 3.16667 15.7335 3.16667 14.3333V4.99999"
-                    stroke="#475467"
-                    strokeWidth="1.66667"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-
-              {/* Edit button */}
-              <button
-                onClick={() =>
-                  document.getElementById("my_modal_6").showModal()
-                }
-                className="p-[10px] w-[40px] hover:-translate-y-[0.5px]"
-              >
-                <svg
-                  width="19"
-                  height="19"
-                  viewBox="0 0 19 19"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1.39662 15.0964C1.43491 14.7518 1.45405 14.5795 1.50618 14.4185C1.55243 14.2756 1.61778 14.1396 1.70045 14.0142C1.79363 13.8729 1.91621 13.7504 2.16136 13.5052L13.1666 2.49999C14.0871 1.57951 15.5795 1.57951 16.4999 2.49999C17.4204 3.42046 17.4204 4.91285 16.4999 5.83332L5.49469 16.8386C5.24954 17.0837 5.12696 17.2063 4.98566 17.2995C4.86029 17.3821 4.72433 17.4475 4.58146 17.4937C4.42042 17.5459 4.24813 17.565 3.90356 17.6033L1.08325 17.9167L1.39662 15.0964Z"
-                    stroke="#475467"
-                    strokeWidth="1.66667"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-            </td>
-          </tr>
-          <tr className="border-b h-[64px] border-[#EAECF0] text-sm font-medium">
-            <td className="py-4 px-6 hover:bg-[#F9FAFB]">László Barbara</td>
-            <td className="py-4 px-6 hover:bg-[#F9FAFB]">
-              alma.lawson@example.com
-            </td>
-            <td className="py-4 px-6 hover:bg-[#F9FAFB]">30/01/2020</td>
+            <td className="py-4 px-6 hover:bg-[#F9FAFB]">{item.date}</td>
             <td className="py-4 px-6 hover:bg-[#F9FAFB] font-normal">
               <button className="btn-sm bg-[#FEF6EE] border-orange-200 border-2 text-xs font-medium text-[#B93815] rounded-3xl px-4">
-                Content Editor
+                {item.userType}
               </button>
             </td>
             {/* Action buttons */}
             <td className="px-4 py-4 flex items-center justify-center hover:mt-[1px] hover:-mb-[1px] hover:-translate-y-[0.5px] hover:bg-[#F9FAFB]">
               {/* Delete button */}
-              <button className="p-[10px] mr-1 w-[40px] hover:-translate-y-[0.5px]">
+              <button onClick={()=>handleDelete(item)} className="p-[10px] mr-1 w-[40px] hover:-translate-y-[0.5px]">
                 <svg
                   width="18"
                   height="20"
@@ -271,7 +233,10 @@ const UserManagement = () => {
                 </svg>
               </button>
             </td>
-          </tr>
+          </tr>)
+            
+          }
+          
         </table>
         {/* pagination section */}
         <div>
