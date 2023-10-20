@@ -24,25 +24,30 @@ const Category = () => {
       Title,
       message,
     };
-    console.log(categorys);
 
-    fetch("http://localhost:3000/category", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(categorys),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        if (data.acknowledged) {
-          toast.success("Category Added Successfully");
-          // navigate("/dashboard");
-        } else {
-          toast.error(datamessage);
-        }
-      });
+    if (Category.length != 0 && Title.length != 0 && message.length != 0) {
+      fetch("http://localhost:3000/category", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(categorys),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          // console.log(data);
+          if (data.acknowledged) {
+            // toast.success("Category Added Successfully");
+            // navigate("/dashboard");
+          } else {
+            // toast.error(datamessage);
+          }
+        });
+    }else{
+      alert("No fields can't be empty")
+    }
+
+
 
     setCategory("");
     setTitle("");
