@@ -10,13 +10,43 @@ const UserManagement = () => {
     const [message, setMessage] = useState("");
     const [userType, setUserType] = useState("Admin");
     
+    const fetchUsers = () => {
+      fetch("http://localhost:3000/users")
+        .then((res) => res.json())
+        .then((data) => {
+          setUsers(data);
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("An error occurred while fetching users.");
+        });
+    };
     useEffect(() => {
-      fetch('http://localhost:3000/users')
-        .then(res => res.json())
-        .then(data => setUsers(data))
-    }, [])
-    console.log(users);
+      fetchUsers();
+    }, []);
 
+    const handleDelete = (item) => {
+      console.log(item._id);
+      
+      fetch(`http://localhost:3000/users/${item._id}`, {
+        method: "DELETE",
+      })
+        .then((res) => {
+          if (res.ok) {
+            // User deleted successfully, update the user list
+            fetchUsers();
+          } else if (res.status === 404) {
+            alert("User not found");
+          } else {
+            alert("Internal Server Error");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("An error occurred while deleting the user.");
+        });
+    }
+    
   const modalRef = useRef(null);
   
   const closeModal = () => {
@@ -156,7 +186,7 @@ const UserManagement = () => {
             {/* Action buttons */}
             <td className="px-4 py-4 flex items-center justify-center hover:mt-[1px] hover:-mb-[1px] hover:-translate-y-[0.5px] hover:bg-[#F9FAFB]">
               {/* Delete button */}
-              <button className="p-[10px] mr-1 w-[40px] hover:-translate-y-[0.5px]">
+              <button onClick={()=>handleDelete(item)} className="p-[10px] mr-1 w-[40px] hover:-translate-y-[0.5px]">
                 <svg
                   width="18"
                   height="20"
