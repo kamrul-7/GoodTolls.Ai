@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Outlet, NavLink } from 'react-router-dom';
 import { FaImage, FaLayerGroup, FaTools, FaNewspaper,  } from 'react-icons/fa';
 import { BsLayers  } from 'react-icons/bs';
@@ -7,7 +7,9 @@ import './Dashboard.css'
 import { useEffect } from "react";
 const Dashboard = () => {
     const navigate = useNavigate();
-    useEffect(()=>navigate('/dashboard/db'),[])
+    const loc = useLocation();
+    console.log(loc.pathname);
+    useEffect(()=>loc.pathname == '/dashboard/' ? navigate('/dashboard/db') : undefined,[])
     return (
         <div className='h-screen overflow-y-scroll hide-scrollbar'>
             <div className="drawer lg:drawer-open sm:drawer-open">

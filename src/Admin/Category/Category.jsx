@@ -1,6 +1,7 @@
 import Pagination from "./Pagination";
 import { useRef } from "react";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 const Category = () => {
     const [Category, setCategory] = useState("");
     const [Title, setTitle] = useState("");
@@ -132,6 +133,41 @@ const Category = () => {
             </div>
             {/* Add new category */}
             <div>
+
+              {/* Edit button */}
+              <button
+                onClick={() =>
+                  document.getElementById("my_modal_18").showModal()
+                }
+                className="p-[10px] w-[40px] hover:-translate-y-[0.5px]"
+              >
+                <svg
+                  width="19"
+                  height="19"
+                  viewBox="0 0 19 19"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.39662 15.0964C1.43491 14.7518 1.45405 14.5795 1.50618 14.4185C1.55243 14.2756 1.61778 14.1396 1.70045 14.0142C1.79363 13.8729 1.91621 13.7504 2.16136 13.5052L13.1666 2.49999C14.0871 1.57951 15.5795 1.57951 16.4999 2.49999C17.4204 3.42046 17.4204 4.91285 16.4999 5.83332L5.49469 16.8386C5.24954 17.0837 5.12696 17.2063 4.98566 17.2995C4.86029 17.3821 4.72433 17.4475 4.58146 17.4937C4.42042 17.5459 4.24813 17.565 3.90356 17.6033L1.08325 17.9167L1.39662 15.0964Z"
+                    stroke="#475467"
+                    strokeWidth="1.66667"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+            </td>
+          </tr>
+          </table>
+        {/* pagination section */}
+        <div>
+          <Pagination totalPages={10} />
+        </div>
+      </div>
+      {/* Add new category */}
+      <div>
+
         <dialog
           ref={modalRef}
           id="my_modal_22"
@@ -167,6 +203,7 @@ const Category = () => {
             <p className="py-4 text-lg font-semibold">Add New Category</p>
 
             <form onSubmit={handleSubmit}>
+
       <div className="space-y-4 relative">
         <label className="block font-medium text-sm">
         Category Name
@@ -225,6 +262,76 @@ const Category = () => {
       </footer>
     </form>
 
+              <div className="space-y-4 relative">
+                <label className="block font-medium text-sm">
+                  Category Name
+                  <input
+                    value={Category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="mt-1 p-2 w-full border rounded-md text-base font-normal"
+                    type="text"
+                    required
+                    placeholder="Enter Category Name"
+                  />
+                </label>
+                <label className="block font-medium text-sm">
+                  Category Title
+                  <input
+                    value={Title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    className="mt-1 p-2 w-full border rounded-md text-base font-normal"
+                    type="text"
+                    required
+                    placeholder="Enter Category Title"
+                  />
+                </label>
+                <label className="block font-medium text-sm">
+                  Category Description
+                  <textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className="textarea mt-3 textarea-bordered p-2 w-full border rounded-md text-base font-normal"
+                    type="text"
+                    required
+                    placeholder="Category Description"
+                  />
+                </label>
+              </div>
+              <footer className="mt-4 flex justify-end space-x-2">
+                <button
+                  className="btn-circle btn-ghost absolute top-4 right-4 text-2xl"
+                  type="button"
+                  onClick={() => {
+                    const modal = document.getElementById("my_modal_22");
+                    modal.close();
+                  }}
+                >
+                  ✕
+                </button>
+                <div className="flex justify-between w-[618px] mx-auto">
+                  <button
+                    onClick={() => {
+                      const modal = document.getElementById("my_modal_22");
+                      modal.close();
+                    }}
+                    className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={() => {
+                      const modal = document.getElementById("my_modal_22");
+                      modal.close();
+                    }}
+                    type="submit"
+                    className=" w-[48%] my-6 px-4 py-2 bg-[#7F56D9] text-white rounded-md"
+                  >
+                    Save
+                  </button>
+                </div>
+              </footer>
+            </form>
+
             <div className="modal-action mt-4"></div>
           </div>
         </dialog>
@@ -265,6 +372,75 @@ const Category = () => {
             </svg>
 
             <p className="py-4 text-lg font-semibold">Update Category</p>
+
+              <form onSubmit={handleSubmit}>
+                <div className="space-y-4 relative">
+                  <label className="block font-medium text-sm">
+                    Category Name
+                    <input
+                      value={Category}
+                      onChange={(e) => setCategory(e.target.value)}
+                      className="mt-1 p-2 w-full border rounded-md text-base font-normal"
+                      type="text"
+                      required
+                      placeholder="Enter Category Name"
+                    />
+                  </label>
+                  <label className="block font-medium text-sm">
+                    Category Title
+                    <input
+                      value={Title}
+                      onChange={(e) => setTitle(e.target.value)}
+                      className="mt-1 p-2 w-full border rounded-md text-base font-normal"
+                      type="text"
+                      placeholder="Enter Category Title"
+                    />
+                  </label>
+                  <label className="block font-medium text-sm">
+                    Category Description
+                    <textarea
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      className="textarea mt-3 textarea-bordered p-2 w-full border rounded-md text-base font-normal"
+                      type="text"
+                      placeholder="Category Description"
+                    />
+                  </label>
+                </div>
+                <footer className="mt-4 flex justify-end space-x-2">
+                  <button
+                    className="btn-circle btn-ghost absolute top-4 right-4 text-2xl"
+                    type="button"
+                    onClick={() => {
+                      const modal = document.getElementById("my_modal_18");
+                      modal.close();
+                    }}
+                  >
+                    ✕
+                  </button>
+                  <div className="flex justify-between w-[618px] mx-auto">
+                    <button
+                      onClick={() => {
+                        const modal = document.getElementById("my_modal_18");
+                        modal.close();
+                      }}
+                      className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={() => {
+                        const modal = document.getElementById("my_modal_18");
+                        modal.close();
+                      }}
+                      type="submit"
+                      className=" w-[48%] my-6 px-4 py-2 bg-[#7F56D9] text-white rounded-md"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </footer>
+              </form>
 
             <form onSubmit={handleSubmit}>
       <div className="space-y-4 relative">
