@@ -75,8 +75,8 @@ const UserManagement = () => {
     };
     
     console.log(user);
-  
-    fetch("http://localhost:3000/users", {
+    if (userName.length != 0 && email.length != 0 && password.length != 0){
+      fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -87,10 +87,15 @@ const UserManagement = () => {
       .then((data) => {
         if (data.acknowledged) {
           alert("User Added Successfully");
+          fetchUsers();
         } else {
           alert("Unsuccessful");
         }
       });
+    }else{
+      alert("No field Cant be empty");
+    }
+    
 
     setUserName('');
     setEmail('');
