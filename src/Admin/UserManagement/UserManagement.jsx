@@ -10,7 +10,21 @@ const UserManagement = () => {
   
 
   const modalRef = useRef(null);
-  
+
+  useEffect(() => {
+    // Assuming you have an endpoint that returns a specific user's details
+    fetch(`http://localhost:3000/users/${userId}`)
+        .then((response) => response.json())
+        .then((data) => {
+            setUserName(data.name);
+            setEmail(data.email);
+            // Don't set the password - it should never be sent to the frontend for security reasons
+            setUserType(data.userType || "Admin");
+        })
+        .catch(console.error);
+}, [userId]);
+
+
   const closeModal = () => {
     console.log("Attempting to close modal");
     if (modalRef.current) {
@@ -21,15 +35,42 @@ const UserManagement = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Now you have the values, you can handle them as you wish, like sending to a server
-    console.log({ userName, email, password, userType });
 
-    
-  setUserName('');
-  setEmail('');
-  setPassword('');
-  setMessage('');
-  setUserType('Admin');
-  closeModal();
+    const user = {
+      userName,
+      email,
+      password,
+      userType
+    };
+
+    if (userName.length != 0 && email.length != 0 &&  password.length != 0 &&   userType.length != 0) {
+      fetch(`http://localhost:3000/users/${userId}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(user),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          // console.log(data);
+          if (data.acknowledged) {
+            // toast.success("Category Added Successfully");
+            // navigate("/dashboard");
+          } else {
+            // toast.error(datamessage);
+          }
+        });
+    }else{
+      alert("No fields can't be empty")
+    }
+
+
+
+    setCategory("");
+    setTitle("");
+    setMessage("");
+    closeModal();
   };
 
   return (
