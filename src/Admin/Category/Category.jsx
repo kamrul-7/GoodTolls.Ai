@@ -1,6 +1,7 @@
 import Pagination from "./Pagination";
 import { useRef } from "react";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 const Category = () => {
   const [Category, setCategory] = useState("");
   const [Title, setTitle] = useState("");
@@ -223,6 +224,7 @@ const Category = () => {
                     onChange={(e) => setCategory(e.target.value)}
                     className="mt-1 p-2 w-full border rounded-md text-base font-normal"
                     type="text"
+                    required
                     placeholder="Enter Category Name"
                   />
                 </label>
@@ -233,6 +235,7 @@ const Category = () => {
                     onChange={(e) => setTitle(e.target.value)}
                     className="mt-1 p-2 w-full border rounded-md text-base font-normal"
                     type="text"
+                    required
                     placeholder="Enter Category Title"
                   />
                 </label>
@@ -243,6 +246,7 @@ const Category = () => {
                     onChange={(e) => setMessage(e.target.value)}
                     className="textarea mt-3 textarea-bordered p-2 w-full border rounded-md text-base font-normal"
                     type="text"
+                    required
                     placeholder="Category Description"
                   />
                 </label>
@@ -339,6 +343,7 @@ const Category = () => {
                       onChange={(e) => setCategory(e.target.value)}
                       className="mt-1 p-2 w-full border rounded-md text-base font-normal"
                       type="text"
+                      required
                       placeholder="Enter Category Name"
                     />
                   </label>

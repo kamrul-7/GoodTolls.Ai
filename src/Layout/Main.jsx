@@ -3,6 +3,7 @@ import Navbar from "../Component/Navbar/Navbar";
 import AuthProvider from '../Pages/Context/AuthProvider';
 import './Main.css'
 import Footer from "../Component/Footer/Footer";
+import { ToastContainer } from "react-toastify";
 
 const Main = () => {
   // Get the current location using the useLocation hook
@@ -15,6 +16,7 @@ const Main = () => {
     <div>
       <div className="h-screen overflow-y-scroll hide-scrollbar">
         <AuthProvider>
+        <ToastContainer />
           <div className="max-w-screen-xl mx-auto">
             <Navbar />
             <Outlet />
