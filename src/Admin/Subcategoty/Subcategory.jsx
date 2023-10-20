@@ -2,6 +2,7 @@ import Pagination from "../Category/Pagination";
 import { useEffect, useRef, useState } from "react";
 
 const Subcategory = () => {
+  const [allSubCategories, setAllSubCategories] = useState([])
   const [parent, setParent] = useState([])
   const [Category, setCategory] = useState([]);
   const [SubCategory, setSubCategory] = useState("");
@@ -9,17 +10,18 @@ const Subcategory = () => {
   const [Title, setTitle] = useState("");
   console.log(Category);
   useEffect(() => {
-    fetch('http://localhost:3000/category')
+    fetch('http://localhost:3000/subcategory')
       .then(res => res.json())
-      .then(data => {setParent([...data])})
+      .then(data => { setAllSubCategories(data) })
   }, [])
 
-  console.log(Category);
-
-
-  useEffect(()=>{
-    console.log(typeof(parent))
-    console.log(parent)},[parent])
+  useEffect(() => {
+    fetch('http://localhost:3000/category')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setParent([...data]) })
+  }, [])
 
   const modalRef = useRef(null);
   const closeModal = () => {
@@ -32,6 +34,28 @@ const Subcategory = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const category = event.target.category.value;
+    if (category.length != 0 && Title.length != 0 && message.length != 0 && SubCategory != 0) {
+      const data = { category, SubCategory, Title, message }
+      fetch("http://localhost:3000/subcategory", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          // console.log(data);
+          if (data.acknowledged) {
+            // toast.success("Category Added Successfully");
+            // navigate("/dashboard");
+          } else {
+            // toast.error(datamessage);
+          }
+        });
+    } else {
+      alert("No fields can't be empty")
+    }
     // Now you have the values, you can handle them as you wish, like sending to a server
     console.log({ category, SubCategory, Title, message });
 
@@ -43,7 +67,7 @@ const Subcategory = () => {
     closeModal();
   };
 
-  const handleEdit = ()=>{
+  const handleEdit = () => {
     console.log('inside handle edit');
     event.preventDefault();
   }
@@ -114,6 +138,38 @@ const Subcategory = () => {
             </td>
           </tr>
 
+          {
+            // allSubCategories.map((value, index) => {
+            //   return <>
+            //     <tr className='border-b h-[64px] border-[#EAECF0] text-sm font-medium'>
+            //       <td className='py-4 px-6 hover:bg-[#F9FAFB]'>Audio Tool</td>
+            //       <td className='py-4 px-6 hover:bg-[#F9FAFB]'>Audio Tool</td>
+            //       <td className='py-4 px-6 hover:bg-[#F9FAFB] font-normal'>10</td>
+            //       <td className='py-4 px-6 hover:bg-[#F9FAFB] font-normal'>10</td>
+            //       {/* Action buttons */}
+            //       <td className='px-4 py-4 flex items-center justify-center hover:mt-[1px] hover:-mb-[1px] hover:-translate-y-[0.5px] hover:bg-[#F9FAFB]'>
+
+            //         {/* Delete button */}
+            //         <button className="p-[10px] mr-1 w-[40px] hover:-translate-y-[0.5px]">
+            //           <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            //             <path d="M12.3333 4.99999V4.33332C12.3333 3.3999 12.3333 2.93319 12.1517 2.57667C11.9919 2.26307 11.7369 2.0081 11.4233 1.84831C11.0668 1.66666 10.6001 1.66666 9.66667 1.66666H8.33333C7.39991 1.66666 6.9332 1.66666 6.57668 1.84831C6.26308 2.0081 6.00811 2.26307 5.84832 2.57667C5.66667 2.93319 5.66667 3.3999 5.66667 4.33332V4.99999M7.33333 9.58332V13.75M10.6667 9.58332V13.75M1.5 4.99999H16.5M14.8333 4.99999V14.3333C14.8333 15.7335 14.8333 16.4335 14.5608 16.9683C14.3212 17.4387 13.9387 17.8212 13.4683 18.0608C12.9335 18.3333 12.2335 18.3333 10.8333 18.3333H7.16667C5.76654 18.3333 5.06647 18.3333 4.53169 18.0608C4.06129 17.8212 3.67883 17.4387 3.43915 16.9683C3.16667 16.4335 3.16667 15.7335 3.16667 14.3333V4.99999" stroke="#475467" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
+            //           </svg>
+            //         </button>
+
+            //         {/* Edit button */}
+            //         <button onClick={() => document.getElementById("my_modal_17").showModal()} className="p-[10px] w-[40px] hover:-translate-y-[0.5px]">
+            //           <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            //             <path d="M1.39662 15.0964C1.43491 14.7518 1.45405 14.5795 1.50618 14.4185C1.55243 14.2756 1.61778 14.1396 1.70045 14.0142C1.79363 13.8729 1.91621 13.7504 2.16136 13.5052L13.1666 2.49999C14.0871 1.57951 15.5795 1.57951 16.4999 2.49999C17.4204 3.42046 17.4204 4.91285 16.4999 5.83332L5.49469 16.8386C5.24954 17.0837 5.12696 17.2063 4.98566 17.2995C4.86029 17.3821 4.72433 17.4475 4.58146 17.4937C4.42042 17.5459 4.24813 17.565 3.90356 17.6033L1.08325 17.9167L1.39662 15.0964Z" stroke="#475467" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
+            //           </svg>
+
+            //         </button>
+
+            //       </td>
+            //     </tr>
+            //   </>
+            // })
+          }
+
         </table>
         {/* pagination section */}
         <div >
@@ -165,7 +221,7 @@ const Subcategory = () => {
                     <select name='category' className="mt-1 p-2 w-full border rounded-md text-base font-normal">
                       <option selected disabled value="">Select a parent category</option>
                       {
-                        parent.map((value,indx) => (<option key={indx} value={value?.Title}>{value?.Title}</option>))
+                        parent.map((value, indx) => (<option key={indx} value={value?.Title}>{value?.Title}</option>))
                       }
                     </select>
                   </label>
@@ -275,11 +331,11 @@ const Subcategory = () => {
                     <label className="block font-medium text-sm">
                       Parent Category
                       <select name='category' className="mt-1 p-2 w-full border rounded-md text-base font-normal">
-                      <option selected disabled value="">Select a parent category</option>
-                      {
-                         parent.map((value,indx) => (<option key={indx} value={value?.Title}>{value?.Title}</option>))
-                      }
-                    </select>
+                        <option selected disabled value="">Select a parent category</option>
+                        {
+                          parent.map((value, indx) => (<option key={indx} value={value?.Title}>{value?.Title}</option>))
+                        }
+                      </select>
 
                     </label>
                     <label className="block font-medium text-sm">
