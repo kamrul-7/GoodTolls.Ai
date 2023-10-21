@@ -265,6 +265,7 @@ const AddTool = () => {
                     setEditorDesState(EditorState.createEmpty())
                     setEditorWorkState(EditorState.createEmpty())
                     setStartDate(null)
+                    setSuggestions(allSuggestions)
                     alert('New tool data submitted')
                 }
             })
