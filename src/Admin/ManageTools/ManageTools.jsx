@@ -1,8 +1,6 @@
 import Pagination from "../Category/Pagination";
 import { useNavigate } from "react-router-dom";
 
-
-
 const ManageTools = () => {
     const navigate = useNavigate();
     const handleClick =()=>{
