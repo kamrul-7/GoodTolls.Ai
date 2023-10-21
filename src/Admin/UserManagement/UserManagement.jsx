@@ -5,11 +5,11 @@ const UserManagement = () => {
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [users, setUsers] = useState([]);
-
+    const [itemToDelete, setItemToDelete] = useState(null);
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const [userType, setUserType] = useState("Admin");
-    
+    console.log(itemToDelete);
     const fetchUsers = () => {
       fetch("http://localhost:3000/users")
         .then((res) => res.json())
@@ -104,8 +104,47 @@ const UserManagement = () => {
     setUserType('Admin');
     closeModal();
   };
-  
-  
+  const handleUpdate = () => {
+    console.log(itemToDelete);
+    console.log("updating");
+    if (itemToDelete) {
+      
+      const itemToUpdate = {
+        userName: userName,
+        email: catName, 
+        password: Title, 
+        message: message, 
+      };
+
+      console.log(itemToUpdate);
+
+      fetch(`http://localhost:3000/category/${itemToDelete._id}`, {
+        method: "PUT", // Use the appropriate HTTP method for updating
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(itemToUpdate),
+      })
+        .then((res) => {
+          if (res.ok) {
+            fetchCategory();
+            toast.success("Category Updated Successfully");
+          } else if (res.status === 404) {
+            alert("Category not found");
+          } else {
+            alert("Internal Server Error");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("An error occurred while updating the category.");
+        });
+
+      setItemToDelete(null);
+      closeModal();
+    }
+    
+};
 
   return (
     <div className="mt-[35px] w-full px-8">
@@ -211,9 +250,13 @@ const UserManagement = () => {
 
               {/* Edit button */}
               <button
-                onClick={() =>
-                  document.getElementById("my_modal_6").showModal()
-                }
+                 onClick={() => {
+                  // Open the modal
+                  document.getElementById("my_modal_6").showModal();
+              
+                  // Set the data in your state (setItemToDelete)
+                  setItemToDelete(item);
+                }}
                 className="p-[10px] w-[40px] hover:-translate-y-[0.5px]"
               >
                 <svg
@@ -393,7 +436,7 @@ const UserManagement = () => {
 
             <p className="py-4 text-lg font-semibold">Update User</p>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleUpdate}>
       <div className="space-y-4 relative">
         <label className="block font-medium text-sm">
           User Name
