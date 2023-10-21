@@ -4,12 +4,13 @@ import { useEffect, useRef, useState } from "react";
 const Subcategory = () => {
   const [allSubCategories, setAllSubCategories] = useState([])
   const [sub, setSub] = useState([]);
+  const [itemToDelete, setItemToDelete] = useState(null);
   const [parent, setParent] = useState([])
   const [Category, setCategory] = useState([]);
   const [SubCategory, setSubCategory] = useState("");
   const [message, setMessage] = useState("");
   const [Title, setTitle] = useState("");
-  console.log(Category);
+  console.log(itemToDelete)
   useEffect(() => {
     fetch('http://localhost:3000/subcategory')
       .then(res => res.json())
@@ -30,10 +31,7 @@ const Subcategory = () => {
       .then((data) => {
         setSub(data);
       })
-      .catch((error) => {
-        console.error(error);
-        alert("An error occurred while fetching categories.");
-      });
+      
   };
 
   useEffect(() => {
@@ -66,6 +64,7 @@ const Subcategory = () => {
           // console.log(data);
           if (data.acknowledged) {
             // toast.success("Category Added Successfully");
+            fetchSubCategory();
             // navigate("/dashboard");
           } else {
             // toast.error(datamessage);
@@ -75,7 +74,7 @@ const Subcategory = () => {
       alert("No fields can't be empty")
     }
     // Now you have the values, you can handle them as you wish, like sending to a server
-    console.log({ category, SubCategory, Title, message });
+
 
 
     setCategory('');
@@ -84,11 +83,46 @@ const Subcategory = () => {
     setTitle('');
     closeModal();
   };
+  const handleUpdate = (event) => {
+    console.log("updating");
+    const category = event.target.category.value;
+    if (itemToDelete) {
+      
+      const itemToUpdate = {
+        category: category, 
+        SubCategory: SubCategory, 
+        Title: Title,
+        message: message 
 
-  const handleEdit = () => {
-    console.log('inside handle edit');
-    event.preventDefault();
-  }
+      };
+      console.log("hi");
+      console.log(itemToUpdate);
+
+      fetch(`http://localhost:3000/subcategory/${itemToDelete._id}`, {
+        method: "PUT", // Use the appropriate HTTP method for updating
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(itemToUpdate),
+      })
+        .then((res) => {
+          if (res.ok) {
+            fetchSubCategory();
+            toast.success("Category Updated Successfully");
+          } else if (res.status === 404) {
+            alert("Category not found");
+          } else {
+            alert("Internal Server Error");
+          }
+        })
+        
+
+      setItemToDelete(null);
+      closeModal();
+    }
+    
+};
+  
   return (
     <div className='mt-[35px] w-full px-8'>
       <div>
@@ -132,7 +166,7 @@ const Subcategory = () => {
           {/* Table regular row */}
          {
           sub.map((items,index,array) =>  <tr className='border-b h-[64px] border-[#EAECF0] text-sm font-medium'>
-            <td className='py-4 px-6 hover:bg-[#F9FAFB]'>{items.category}</td>
+            <td className='py-4 px-6 hover:bg-[#F9FAFB]'>{items.SubCategory}</td>
             <td className='py-4 px-6 hover:bg-[#F9FAFB]'>{items.Title}</td>
             <td className='py-4 px-6 hover:bg-[#F9FAFB] font-normal'>{array.length}</td>
             <td className='py-4 px-6 hover:bg-[#F9FAFB] font-normal'>10</td>
@@ -147,7 +181,13 @@ const Subcategory = () => {
               </button>
 
               {/* Edit button */}
-              <button onClick={() => document.getElementById("my_modal_17").showModal()} className="p-[10px] w-[40px] hover:-translate-y-[0.5px]">
+              <button  onClick={() => {
+    // Open the modal
+    document.getElementById("my_modal_17").showModal();
+
+    // Set the data in your state (setItemToDelete)
+    setItemToDelete(items);
+  }} className="p-[10px] w-[40px] hover:-translate-y-[0.5px]">
                 <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1.39662 15.0964C1.43491 14.7518 1.45405 14.5795 1.50618 14.4185C1.55243 14.2756 1.61778 14.1396 1.70045 14.0142C1.79363 13.8729 1.91621 13.7504 2.16136 13.5052L13.1666 2.49999C14.0871 1.57951 15.5795 1.57951 16.4999 2.49999C17.4204 3.42046 17.4204 4.91285 16.4999 5.83332L5.49469 16.8386C5.24954 17.0837 5.12696 17.2063 4.98566 17.2995C4.86029 17.3821 4.72433 17.4475 4.58146 17.4937C4.42042 17.5459 4.24813 17.565 3.90356 17.6033L1.08325 17.9167L1.39662 15.0964Z" stroke="#475467" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -345,7 +385,7 @@ const Subcategory = () => {
 
                 <p className="py-4 text-lg font-semibold">Update Sub Category</p>
 
-                <form onSubmit={handleEdit}>
+                <form onSubmit={handleUpdate}>
                   <div className="space-y-4 relative">
                     <label className="block font-medium text-sm">
                       Parent Category
@@ -401,7 +441,8 @@ const Subcategory = () => {
                       <button onClick={closeModal} className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2">
                         Cancel
                       </button>
-                      <button type="submit" className=" w-[48%] my-6 px-4 py-2 bg-[#7F56D9] text-white rounded-md">
+                      <button 
+                      type="submit" className=" w-[48%] my-6 px-4 py-2 bg-[#7F56D9] text-white rounded-md">
                         Save
                       </button>
                     </div>
