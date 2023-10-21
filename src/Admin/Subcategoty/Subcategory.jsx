@@ -169,7 +169,7 @@ const Subcategory = () => {
             <td className='py-4 px-6 hover:bg-[#F9FAFB]'>{items.SubCategory}</td>
             <td className='py-4 px-6 hover:bg-[#F9FAFB]'>{items.Title}</td>
             <td className='py-4 px-6 hover:bg-[#F9FAFB] font-normal'>{array.length}</td>
-            <td className='py-4 px-6 hover:bg-[#F9FAFB] font-normal'>10</td>
+            <td className='py-4 px-6 hover:bg-[#F9FAFB] font-normal'>{items?.toolsCount}</td>
             {/* Action buttons */}
             <td className='px-4 py-4 flex items-center justify-center hover:mt-[1px] hover:-mb-[1px] hover:-translate-y-[0.5px] hover:bg-[#F9FAFB]'>
 
