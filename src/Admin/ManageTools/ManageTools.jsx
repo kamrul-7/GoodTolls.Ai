@@ -2,8 +2,6 @@ import { useEffect } from "react";
 import Pagination from "../Category/Pagination";
 import { useNavigate } from "react-router-dom";
 
-
-
 const ManageTools = () => {
     const [tools, setTools] = useEffect([])
     const navigate = useNavigate();

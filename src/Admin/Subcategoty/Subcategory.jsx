@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 const Subcategory = () => {
   const [allSubCategories, setAllSubCategories] = useState([])
+  const [sub, setSub] = useState([]);
   const [parent, setParent] = useState([])
   const [Category, setCategory] = useState([]);
   const [SubCategory, setSubCategory] = useState("");
@@ -22,6 +23,23 @@ const Subcategory = () => {
         console.log(data);
         setParent([...data]) })
   }, [])
+
+  const fetchSubCategory = () => {
+    fetch("http://localhost:3000/subcategory")
+      .then((res) => res.json())
+      .then((data) => {
+        setSub(data);
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("An error occurred while fetching categories.");
+      });
+  };
+
+  useEffect(() => {
+    fetchSubCategory();
+  }, []);
+
 
   const modalRef = useRef(null);
   const closeModal = () => {
@@ -112,10 +130,11 @@ const Subcategory = () => {
           </tr>
 
           {/* Table regular row */}
-          <tr className='border-b h-[64px] border-[#EAECF0] text-sm font-medium'>
-            <td className='py-4 px-6 hover:bg-[#F9FAFB]'>Audio Tool</td>
-            <td className='py-4 px-6 hover:bg-[#F9FAFB]'>Audio Tool</td>
-            <td className='py-4 px-6 hover:bg-[#F9FAFB] font-normal'>10</td>
+         {
+          sub.map((items,index,array) =>  <tr className='border-b h-[64px] border-[#EAECF0] text-sm font-medium'>
+            <td className='py-4 px-6 hover:bg-[#F9FAFB]'>{items.category}</td>
+            <td className='py-4 px-6 hover:bg-[#F9FAFB]'>{items.Title}</td>
+            <td className='py-4 px-6 hover:bg-[#F9FAFB] font-normal'>{array.length}</td>
             <td className='py-4 px-6 hover:bg-[#F9FAFB] font-normal'>10</td>
             {/* Action buttons */}
             <td className='px-4 py-4 flex items-center justify-center hover:mt-[1px] hover:-mb-[1px] hover:-translate-y-[0.5px] hover:bg-[#F9FAFB]'>
@@ -136,8 +155,8 @@ const Subcategory = () => {
               </button>
 
             </td>
-          </tr>
-
+         </tr>)
+}
           {
             // allSubCategories.map((value, index) => {
             //   return <>
