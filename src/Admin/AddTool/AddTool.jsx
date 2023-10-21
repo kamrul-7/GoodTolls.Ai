@@ -130,16 +130,16 @@ const AddTool = () => {
 
     useEffect(() => {
         fetch('http://localhost:3000/subcategory')
-        .then(res => res.json())
-        .then(items => {
-            items.sort()
-            let tmp = []
-            items.map((value)=>{
-                tmp.push(value.SubCategory)
+            .then(res => res.json())
+            .then(items => {
+                items.sort()
+                let tmp = []
+                items.map((value) => {
+                    tmp.push(value.SubCategory)
+                })
+                setAllSuggestions(tmp)
+                setSuggestions(tmp)
             })
-            setAllSuggestions(tmp)
-            setSuggestions(tmp)
-        })
 
     }, [])
 
@@ -230,31 +230,47 @@ const AddTool = () => {
         const discord = event.target.discord.value;
         const description = JSON.stringify(finalDes.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">"));
         const works = JSON.stringify(finalWork.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">"));
-
-        const formdata = new FormData()
-        formdata.append('toolName', toolName)
-        formdata.append('verified', verified)
-        formdata.append('SubCategory', subCategory)
-        formdata.append('link', link)
-        formdata.append('image', file)
-        formdata.append('priceType', priceType)
-        formdata.append('price', price)
-        formdata.append('pricePeriod', pricePeriod)
-        formdata.append('date', date)
-        formdata.append('facebook', facebook)
-        formdata.append('twitter', twitter)
-        formdata.append('linkedin', linkedin)
-        formdata.append('discord', discord)
-        formdata.append('description', description)
-        formdata.append('works', works)
-        fetch("http://localhost:3000/newtool", {
-            method: "POST",
-            headers: {
-            },
-            body: formdata,
-        })
-        .then((res) => res.json())
-        .then(data => console.log(data))
+        if (toolName.length != 0 && selected.length != 0 && link.length != 0 && file != null
+            && priceType.length != 0 && price.length != 0 && pricePeriod.length != 0 && date
+            && facebook.length != 0 && twitter.length != 0 && linkedin.length != 0 && discord.length != 0 && description && works) {
+            const formdata = new FormData()
+            formdata.append('toolName', toolName)
+            formdata.append('verified', verified)
+            formdata.append('SubCategory', subCategory)
+            formdata.append('link', link)
+            formdata.append('image', file)
+            formdata.append('priceType', priceType)
+            formdata.append('price', price)
+            formdata.append('pricePeriod', pricePeriod)
+            formdata.append('date', date)
+            formdata.append('facebook', facebook)
+            formdata.append('twitter', twitter)
+            formdata.append('linkedin', linkedin)
+            formdata.append('discord', discord)
+            formdata.append('description', description)
+            formdata.append('works', works)
+            fetch("http://localhost:3000/newtool", {
+                method: "POST",
+                headers: {
+                },
+                body: formdata,
+            })
+            .then((res) => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    event.target.reset()
+                    setSelected([])
+                    setImage(null)
+                    setFile(null)
+                    setEditorDesState(EditorState.createEmpty())
+                    setEditorWorkState(EditorState.createEmpty())
+                    setStartDate(null)
+                    alert('New tool data submitted')
+                }
+            })
+        } else{
+            alert('No fields can remain empty')
+        }
     }
 
     return (
@@ -338,9 +354,10 @@ const AddTool = () => {
                     <div className="w-[400px] border px-[14px] py-[10px] flex flex-wrap gap-2 border-[#D0D5DD] rounded-lg" tabIndex={0} onFocus={() => { inputRef.current.focus() }}>
                         <div className="flex flex-wrap gap-2 outer">
                             {selected.map((value, index) => (
-                                <button className="h-6 px-2 py-1 text-sm font-medium flex items-center gap-[3px] border border-[#D0D5DD] rounded-md " key={index} onClick={(event) =>{
+                                <button className="h-6 px-2 py-1 text-sm font-medium flex items-center gap-[3px] border border-[#D0D5DD] rounded-md " key={index} onClick={(event) => {
                                     event.preventDefault()
-                                    handleRemove(value)}}>
+                                    handleRemove(value)
+                                }}>
                                     <span>{value}</span>
                                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M9 3L3 9M3 3L9 9" stroke="#98A2B3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
