@@ -95,7 +95,7 @@ const Subcategory = () => {
         message: message 
 
       };
-
+      console.log("hi");
       console.log(itemToUpdate);
 
       fetch(`http://localhost:3000/subcategory/${itemToDelete._id}`, {
