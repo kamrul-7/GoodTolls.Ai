@@ -1,14 +1,20 @@
+import { useEffect } from "react";
 import Pagination from "../Category/Pagination";
 import { useNavigate } from "react-router-dom";
 
 
 
 const ManageTools = () => {
+    const [tools, setTools] = useEffect([])
     const navigate = useNavigate();
     const handleClick =()=>{
         navigate('/dashboard/addtool')
     }
-    
+    useEffect(()=>{
+        fetch('http://localhost:3000/tools')
+        .then(res => res.json())
+        .then()
+    },[])
     return (
         <div className='mt-[35px] w-full px-8'>
             <div>
