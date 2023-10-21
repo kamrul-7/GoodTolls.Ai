@@ -132,7 +132,7 @@ const Subcategory = () => {
           {/* Table regular row */}
          {
           sub.map((items,index,array) =>  <tr className='border-b h-[64px] border-[#EAECF0] text-sm font-medium'>
-            <td className='py-4 px-6 hover:bg-[#F9FAFB]'>{items.category}</td>
+            <td className='py-4 px-6 hover:bg-[#F9FAFB]'>{items.SubCategory}</td>
             <td className='py-4 px-6 hover:bg-[#F9FAFB]'>{items.Title}</td>
             <td className='py-4 px-6 hover:bg-[#F9FAFB] font-normal'>{array.length}</td>
             <td className='py-4 px-6 hover:bg-[#F9FAFB] font-normal'>10</td>

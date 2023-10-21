@@ -8,6 +8,26 @@ import { Link } from "react-router-dom";
 
 const Card = () => {
   const [isClicked, setIsClicked] = useState(Cookies.get("myHeartCookie") === "true");
+  const [tools, setTools] = useState([]);
+  const htmlString = "<p>This is chatgpt</p>\n";
+
+
+  const fetchTools = () => {
+    fetch("http://localhost:3000/tools")
+      .then((res) => res.json())
+      .then((data) => {
+        setTools(data);
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("An error occurred while fetching categories.");
+      });
+  };
+
+  useEffect(() => {
+    fetchTools();
+  }, []);
+
 
   useEffect(() => {
 
@@ -22,7 +42,10 @@ const Card = () => {
   const divClass = `md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] left-[268px] ${isClicked ? "bg-[#FF0000]" : "bg-white"}`;
 
   return (
-    <div>
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1">
+      {
+         tools.map(tool =>
+     
       <div className="card size bg-base-100 shadow-xl mb-24 md:mx-0 mx-auto">
 
           <figure className="relative">
@@ -42,27 +65,31 @@ const Card = () => {
         <div className="h-[243] mt-8">
           <div className="flex justify-between">
             <div className="Title">
-              <h2>Tools</h2>
+              <h2>{tool.toolName}</h2>
             </div>
-            <div className="flex justify-between  subscription items-center">
+            <div className="flex justify-between  subscription items-center py-4">
               <div className="">
                 <FontAwesomeIcon icon={faUnlock} />
               </div>
               <div className="pr-4">
-                <button className="">Free Trial</button>
+                <button className="">{tool.priceType}</button>
               </div>
             </div>
           </div>
-          <div className="mt-4 mb-4">
-            In contrast, formatted text, like a Microsoft Word document or an HTML webpage, includes instructions.
-          </div>
+         
+          <div className="mt-4 mb-4" dangerouslySetInnerHTML={{ __html: (tool?.description?.replace(/["\n]/g, '') || '') }}></div>
+<div className="flex gap-3">
+{
+          tool.SubCategory.map(item =>
 
           <div className="flex justify-between grid-cols-4 gap-1">
-            <div className="card-category-item"> <p className="card-category-text px-3 py-2">Photos</p></div>
-            <div className="card-category-item"><p className="card-category-text px-3 py-2">Transcriber</p></div>
-            <div className="card-category-item "><p className="card-category-text px-3 py-2">Audioedeting</p></div>
-            <div className="card-category-item"><p className="card-category-text px-3 py-2">See more</p></div>
+
+            <div className="card-category-item"> <p className="card-category-text px-3 py-2">{item}</p></div>
+            
           </div>
+          )
+}
+</div>
           <Link to='/tool' className="button flex justify-center items-center mt-6">
             <svg
               width="20px"
@@ -79,7 +106,8 @@ const Card = () => {
           </Link>
         </div>
 
-      </div>
+      </div>)
+}
     </div>
   );
 };
