@@ -66,7 +66,9 @@ const Category = () => {
     setMessage("");
     closeModal();
   };
-
+  const handleUpdate = () => {
+      console.log(itemToDelete);
+  };
   const handleDelete = () => {
 
     if (itemToDelete) {
@@ -199,9 +201,13 @@ const Category = () => {
 
               {/* Edit button */}
               <button
-                onClick={() =>
-                  document.getElementById("my_modal_18").showModal()
-                }
+                 onClick={() => {
+                  // Open the modal
+                  document.getElementById("my_modal_18").showModal();
+              
+                  // Set the data in your state (setItemToDelete)
+                  setItemToDelete(item);
+                }}
                 className="p-[10px] w-[40px] hover:-translate-y-[0.5px]"
               >
                 <svg
