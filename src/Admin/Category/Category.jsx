@@ -1,30 +1,46 @@
 import Pagination from "./Pagination";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 const Category = () => {
-  const [Category, setCategory] = useState("");
+  const [catName, setCatName] = useState("");
+  const [cat, setCat] = useState([]);
   const [Title, setTitle] = useState("");
   const [message, setMessage] = useState("");
-
+  const [itemToDelete, setItemToDelete] = useState(null);
   const modalRef = useRef(null);
+  console.log(itemToDelete);
   const closeModal = () => {
-    console.log("Attempting to close modal");
     if (modalRef.current) {
       modalRef.current.close();
     }
   };
 
+  const fetchCategory = () => {
+    fetch("http://localhost:3000/category")
+      .then((res) => res.json())
+      .then((data) => {
+        setCat(data);
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("An error occurred while fetching categories.");
+      });
+  };
+
+  useEffect(() => {
+    fetchCategory();
+  }, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Now you have the values, you can handle them as you wish, like sending to a server
-
     const categorys = {
-      Category,
+      catName,
       Title,
       message,
     };
 
-    if (Category.length != 0 && Title.length != 0 && message.length != 0) {
+    if (catName.length !== 0 && Title.length !== 0 && message.length !== 0) {
       fetch("http://localhost:3000/category", {
         method: "POST",
         headers: {
@@ -34,24 +50,48 @@ const Category = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          // console.log(data);
           if (data.acknowledged) {
-            // toast.success("Category Added Successfully");
-            // navigate("/dashboard");
+            fetchCategory();
+            toast.success("Category Added Successfully");
           } else {
-            // toast.error(datamessage);
+            toast.error(data.message);
           }
         });
-    }else{
-      alert("No fields can't be empty")
+    } else {
+      alert("No fields can't be empty");
     }
 
-
-
-    setCategory("");
+    setCatName("");
     setTitle("");
     setMessage("");
     closeModal();
+  };
+
+  const handleDelete = () => {
+
+    if (itemToDelete) {
+      const itemId = itemToDelete._id;
+      console.log(itemId);
+      fetch(`http://localhost:3000/category/${itemId}`, {
+        method: "DELETE",
+      })
+        .then((res) => {
+          if (res.ok) {
+            fetchCategory();
+            toast.success("Category Deleted Successfully");
+          } else if (res.status === 404) {
+            alert("Category not found");
+          } else {
+            alert("Internal Server Error");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("An error occurred while deleting the category.");
+        });
+      setItemToDelete(null);
+      closeModal();
+    }
   };
 
   return (
@@ -121,20 +161,25 @@ const Category = () => {
           </tr>
 
           {/* Table regular row */}
-          <tr className="border-b h-[64px] border-[#EAECF0] text-sm font-medium">
-            <td className="py-4 px-6 hover:bg-[#F9FAFB]">Audio Tool</td>
-            <td className="py-4 px-6 hover:bg-[#F9FAFB]">Audio Tool</td>
+          {
+            cat.map(item => <tr className="border-b h-[64px] border-[#EAECF0] text-sm font-medium">
+            <td className="py-4 px-6 hover:bg-[#F9FAFB]">{item.catName}</td>
+            <td className="py-4 px-6 hover:bg-[#F9FAFB]">{item.Title}</td>
             <td className="py-4 px-6 hover:bg-[#F9FAFB] font-normal">10</td>
             <td className="py-4 px-6 hover:bg-[#F9FAFB] font-normal">10</td>
             {/* Action buttons */}
             <td className="px-4 py-4 flex items-center justify-center hover:mt-[1px] hover:-mb-[1px] hover:-translate-y-[0.5px] hover:bg-[#F9FAFB]">
               {/* Delete button */}
               <button
-                onClick={() =>
-                  document.getElementById("my_modal_14").showModal()
-                }
-                className="p-[10px] mr-1 w-[40px] hover:-translate-y-[0.5px]"
-              >
+  onClick={() => {
+    // Open the modal
+    document.getElementById("my_modal_14").showModal();
+
+    // Set the data in your state (setItemToDelete)
+    setItemToDelete(item);
+  }}
+  className="p-[10px] mr-1 w-[40px] hover:-translate-y-[0.5px]"
+>
                 <svg
                   width="18"
                   height="20"
@@ -176,8 +221,9 @@ const Category = () => {
                 </svg>
               </button>
             </td>
-          </tr>
-          </table>
+          </tr>)
+          }
+        </table>
         {/* pagination section */}
         <div>
           <Pagination totalPages={10} />
@@ -224,10 +270,11 @@ const Category = () => {
                 <label className="block font-medium text-sm">
                   Category Name
                   <input
-                    value={Category}
-                    onChange={(e) => setCategory(e.target.value)}
+                    value={catName}
+                    onChange={(e) => setCatName(e.target.value)}
                     className="mt-1 p-2 w-full border rounded-md text-base font-normal"
                     type="text"
+                    required
                     placeholder="Enter Category Name"
                   />
                 </label>
@@ -238,6 +285,7 @@ const Category = () => {
                     onChange={(e) => setTitle(e.target.value)}
                     className="mt-1 p-2 w-full border rounded-md text-base font-normal"
                     type="text"
+                    required
                     placeholder="Enter Category Title"
                   />
                 </label>
@@ -248,6 +296,7 @@ const Category = () => {
                     onChange={(e) => setMessage(e.target.value)}
                     className="textarea mt-3 textarea-bordered p-2 w-full border rounded-md text-base font-normal"
                     type="text"
+                    required
                     placeholder="Category Description"
                   />
                 </label>
@@ -344,6 +393,7 @@ const Category = () => {
                       onChange={(e) => setCategory(e.target.value)}
                       className="mt-1 p-2 w-full border rounded-md text-base font-normal"
                       type="text"
+                      required
                       placeholder="Enter Category Name"
                     />
                   </label>
@@ -476,10 +526,7 @@ const Category = () => {
                     Cancel
                   </button>
                   <button
-                    onClick={() => {
-                      const modal = document.getElementById("my_modal_14");
-                      modal.close();
-                    }}
+                    onClick={handleDelete}
                     type="submit"
                     className=" w-[48%] my-6 px-4 py-2 bg-[#D92D20] text-white rounded-md"
                   >

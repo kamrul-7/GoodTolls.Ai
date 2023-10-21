@@ -116,7 +116,6 @@ export const router = createBrowserRouter([
           path:'addnews',
           element:<AddNews></AddNews>
         }
-        
       ]
     }
   ]);
