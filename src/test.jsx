@@ -13,9 +13,23 @@ import Category from "./Admin/Category/Category";
 
 
 const Test = () => {
+    const [image, setImage] = useState(null);
     const [reviews, setReviews] = useState([])
 
 
+    // fetch('http://localhost:3000/uploads/2023-10-21T10-43-55.055Zpexels-katie-burandt-1212693.jpg')
+    // .then(data => setImage(data.url))
+
+    useEffect(() => {
+        const str = {SubCategory : "dsada,1" }
+        fetch("http://localhost:3000/newtool", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(str)
+        })
+    }, [])
     //Responsive rating part
 
     const [isMobile, setIsMobile] = useState(false)
@@ -313,16 +327,16 @@ const Test = () => {
     }
 
 
-    
+
     const fileTypes = ["JPG", "PNG", "GIF"];
 
     const [file, setFile] = useState(null);
     const handleFileChange = (file) => {
         console.log(file);
-      setFile(URL.createObjectURL(file));
+        setFile(URL.createObjectURL(file));
     };
 
-    useEffect(()=>console.log(file),[file])
+    useEffect(() => console.log(file), [file])
 
     return (
 
@@ -352,10 +366,10 @@ const Test = () => {
             </div>
 
 
-            <div className="w-[400px] border px-[14px] py-[10px] my-40 flex flex-wrap gap-2 border-[#D0D5DD] rounded-lg" tabIndex={0} onFocus={() => {inputRef.current.focus()}}>
+            <div className="w-[400px] border px-[14px] py-[10px] my-40 flex flex-wrap gap-2 border-[#D0D5DD] rounded-lg" tabIndex={0} onFocus={() => { inputRef.current.focus() }}>
                 <div className="flex flex-wrap gap-2 outer ">
                     {selected.map((value, index) => (
-                        <button className="h-6 px-2 py-1 text-sm font-medium flex items-center gap-[3px] border border-[#D0D5DD] rounded-md "  key={index} onClick={() => handleRemove(value)}>
+                        <button className="h-6 px-2 py-1 text-sm font-medium flex items-center gap-[3px] border border-[#D0D5DD] rounded-md " key={index} onClick={() => handleRemove(value)}>
                             <span>{value}</span>
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M9 3L3 9M3 3L9 9" stroke="#98A2B3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -364,7 +378,7 @@ const Test = () => {
                         </button>
                     ))}
                 </div>
-                <div onBlur={setBlur}  className={`w-6/12`}>
+                <div onBlur={setBlur} className={`w-6/12`}>
                     <div className="relative">
                         <input ref={inputRef} onFocus={setFocus} className={`w-full h-6 focus:border-0 focus:outline-0 `} onKeyUp={handleKeyPress} type="text" />
                         <div className={`${isOpen ? 'block absolute top-10 left-0' : 'hidden'}`}>
@@ -383,9 +397,9 @@ const Test = () => {
                 </div>
             </div>
 
-            <FileUploader classes="test"  handleChange={handleFileChange} name="file" types={fileTypes} chilldren="hello world"><Category></Category></FileUploader>
+            <FileUploader classes="test" handleChange={handleFileChange} name="file" types={fileTypes} chilldren="hello world"><Category></Category></FileUploader>
 
-            <img src={file}/>
+            <img src={image} />
 
             {/* <div className="h-[500px]"><Dropdown></Dropdown></div> */}
 
