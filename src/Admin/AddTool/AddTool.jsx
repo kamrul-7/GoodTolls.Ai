@@ -108,7 +108,7 @@ const AddTool = () => {
     };
 
 
-    const handleWorkInput = (input)=>{
+    const handleWorkInput = (input) => {
         if (finalWorkChars == 0) {
             return 'handled'
         }
@@ -129,57 +129,18 @@ const AddTool = () => {
     }, [finalWork])
 
     useEffect(() => {
-        const items = [
-            "Socks",
-            "Shoes",
-            "Sandals",
-            "Slippers",
-            "Orthotic Insoles",
-            "Flip-flops",
-            "Athletic Shoes",
-            "Boots",
-            "High Heels",
-            "Sneakers",
-            "Arch Support Inserts",
-            "Toe Rings",
-            "Anklets",
-            "Toe Separators",
-            "Foot Massager",
-            "Foot Bath",
-            "Foot Cream",
-            "Pedicure Kit",
-            "Callus Remover",
-            "Foot Deodorant",
-            "Foot Scrub",
-            "Foot Pumice Stone",
-            "Foot Exfoliating Mask",
-            "Nail Clippers",
-            "Nail File",
-            "Nail Polish",
-            "Foot Powder",
-            "Orthopedic Sandals",
-            "Shoe Inserts",
-            "Foot Orthotics",
-            "Foot Brace",
-            "Foot Splint",
-            "Foot Roller",
-            "Foot Stool",
-            "Shoe Horn",
-            "Foot Massage Oil",
-            "Foot Spa",
-            "Foot Spray",
-            "Foot Warmer",
-            "Gel Cushion Inserts",
-            "Foot Massaging Slippers",
-            "Compression Socks",
-            "Toe Socks",
-            "Bunion Corrector",
-            "Foot Soak",
-            "Foot Lotion",
-            "Heel Cups",
-        ];
-        setAllSuggestions(items)
-        setSuggestions(items.sort())
+        fetch('http://localhost:3000/subcategory')
+        .then(res => res.json())
+        .then(items => {
+            items.sort()
+            let tmp = []
+            items.map((value)=>{
+                tmp.push(value.SubCategory)
+            })
+            setAllSuggestions(tmp)
+            setSuggestions(tmp)
+        })
+
     }, [])
 
     const setBlur = (event) => {
@@ -269,8 +230,31 @@ const AddTool = () => {
         const discord = event.target.discord.value;
         const description = JSON.stringify(finalDes.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">"));
         const works = JSON.stringify(finalWork.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">"));
-        const data = { toolName, verified, subCategory, link, image, priceType, price, pricePeriod, date, facebook, twitter, linkedin, discord, description, works }
-        console.log(data);
+
+        const formdata = new FormData()
+        formdata.append('toolName', toolName)
+        formdata.append('verified', verified)
+        formdata.append('SubCategory', subCategory)
+        formdata.append('link', link)
+        formdata.append('image', file)
+        formdata.append('priceType', priceType)
+        formdata.append('price', price)
+        formdata.append('pricePeriod', pricePeriod)
+        formdata.append('date', date)
+        formdata.append('facebook', facebook)
+        formdata.append('twitter', twitter)
+        formdata.append('linkedin', linkedin)
+        formdata.append('discord', discord)
+        formdata.append('description', description)
+        formdata.append('works', works)
+        fetch("http://localhost:3000/newtool", {
+            method: "POST",
+            headers: {
+            },
+            body: formdata,
+        })
+        .then((res) => res.json())
+        .then(data => console.log(data))
     }
 
     return (
@@ -354,7 +338,9 @@ const AddTool = () => {
                     <div className="w-[400px] border px-[14px] py-[10px] flex flex-wrap gap-2 border-[#D0D5DD] rounded-lg" tabIndex={0} onFocus={() => { inputRef.current.focus() }}>
                         <div className="flex flex-wrap gap-2 outer">
                             {selected.map((value, index) => (
-                                <button className="h-6 px-2 py-1 text-sm font-medium flex items-center gap-[3px] border border-[#D0D5DD] rounded-md " key={index} onClick={() => handleRemove(value)}>
+                                <button className="h-6 px-2 py-1 text-sm font-medium flex items-center gap-[3px] border border-[#D0D5DD] rounded-md " key={index} onClick={(event) =>{
+                                    event.preventDefault()
+                                    handleRemove(value)}}>
                                     <span>{value}</span>
                                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M9 3L3 9M3 3L9 9" stroke="#98A2B3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -369,7 +355,8 @@ const AddTool = () => {
                                 <div className={`${isOpen ? 'block absolute top-10 left-0' : 'hidden'}`}>
                                     <ul className="p-2 shadow z-10 bg-base-100 border w-52 dropdown overflow-y-scroll">
                                         {suggestions.length != 0 ? suggestions.map((value, index) => (
-                                            <li key={index}><button className="w-fit" onClick={() => {
+                                            <li key={index}><button className="w-fit" onClick={(event) => {
+                                                event.preventDefault()
                                                 inputRef.current.focus()
                                                 handleAdd(value)
                                             }}>
@@ -412,7 +399,7 @@ const AddTool = () => {
                         {/* https://www.springboard.com/blog/wp-content/uploads/2022/02/is-ai-hard-to-learn-scaled.jpg */}
 
 
-                        <FileUploader handleChange={handleFileChange} name="file" types={fileTypes} chilldren="hello world" onTypeError={() => alert('Only image can be uploaded')}>
+                        <FileUploader maxSize='2' onSizeError={() => alert('Maximum size allowed 2MB')} handleChange={handleFileChange} name="file" types={fileTypes} chilldren="hello world" onTypeError={() => alert('Only image can be uploaded')}>
                             <div className='px-6 py-4 rounded-xl border-2 border-[#7F56D9] text-center'>
                                 <div className='mb-3 mx-auto w-[40px] h-[40px]border border-[#EAECF0] rounded-lg p-[10px] shadow-md'>
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
