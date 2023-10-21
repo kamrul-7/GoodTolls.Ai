@@ -67,10 +67,47 @@ const Category = () => {
     closeModal();
   };
   const handleUpdate = () => {
-      console.log(itemToDelete);
-  };
-  const handleDelete = () => {
+    console.log(itemToDelete);
+    console.log("updating");
+    if (itemToDelete) {
+      
+      const itemToUpdate = {
+        catName: catName, 
+        Title: Title, 
+        message: message, 
+      };
 
+      console.log(itemToUpdate);
+
+      fetch(`http://localhost:3000/category/${itemToDelete._id}`, {
+        method: "PUT", // Use the appropriate HTTP method for updating
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(itemToUpdate),
+      })
+        .then((res) => {
+          if (res.ok) {
+            fetchCategory();
+            toast.success("Category Updated Successfully");
+          } else if (res.status === 404) {
+            alert("Category not found");
+          } else {
+            alert("Internal Server Error");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("An error occurred while updating the category.");
+        });
+
+      setItemToDelete(null);
+      closeModal();
+    }
+    
+};
+  const handleDelete = () => {
+    console.log(itemToDelete);
     if (itemToDelete) {
       const itemId = itemToDelete._id;
       console.log(itemId);
@@ -142,7 +179,7 @@ const Category = () => {
 
         {/* Page Name section */}
         <div className="w-full flex items-center justify-between">
-          <span className="text-[30px] font-semibold">Add New Tool</span>
+          <span className="text-[30px] font-semibold">Category Management</span>
           <button
             onClick={() => document.getElementById("my_modal_22").showModal()}
             className="py-[10px] px-[14px] border rounded-lg bg-[#7F56D9] hover:bg-[#6d4ab8] shadow-sm duration-300 text-white text-sm font-semibold"
@@ -167,8 +204,8 @@ const Category = () => {
             cat.map(item => <tr className="border-b h-[64px] border-[#EAECF0] text-sm font-medium">
             <td className="py-4 px-6 hover:bg-[#F9FAFB]">{item.catName}</td>
             <td className="py-4 px-6 hover:bg-[#F9FAFB]">{item.Title}</td>
-            <td className="py-4 px-6 hover:bg-[#F9FAFB] font-normal">10</td>
-            <td className="py-4 px-6 hover:bg-[#F9FAFB] font-normal">10</td>
+            <td className="py-4 px-6 hover:bg-[#F9FAFB] font-normal">{item.subCount}</td>
+            <td className="py-4 px-6 hover:bg-[#F9FAFB] font-normal">{item.toolsCount}</td>
             {/* Action buttons */}
             <td className="px-4 py-4 flex items-center justify-center hover:mt-[1px] hover:-mb-[1px] hover:-translate-y-[0.5px] hover:bg-[#F9FAFB]">
               {/* Delete button */}
@@ -390,13 +427,13 @@ const Category = () => {
 
               <p className="py-4 text-lg font-semibold">Update Category</p>
 
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleUpdate}>
                 <div className="space-y-4 relative">
                   <label className="block font-medium text-sm">
                     Category Name
                     <input
-                      value={Category}
-                      onChange={(e) => setCategory(e.target.value)}
+                      value={catName}
+                      onChange={(e) => setCatName(e.target.value)}
                       className="mt-1 p-2 w-full border rounded-md text-base font-normal"
                       type="text"
                       required
@@ -446,10 +483,7 @@ const Category = () => {
                       Cancel
                     </button>
                     <button
-                      onClick={() => {
-                        const modal = document.getElementById("my_modal_18");
-                        modal.close();
-                      }}
+                      onClick={handleUpdate}
                       type="submit"
                       className=" w-[48%] my-6 px-4 py-2 bg-[#7F56D9] text-white rounded-md"
                     >
