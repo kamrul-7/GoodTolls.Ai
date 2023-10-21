@@ -67,45 +67,45 @@ const Category = () => {
     closeModal();
   };
   const handleUpdate = () => {
-    console.log(itemToDelete);
-    console.log("updating");
-    if (itemToDelete) {
-      
-      const itemToUpdate = {
-        catName: catName, 
-        Title: Title, 
-        message: message, 
-      };
-
-      console.log(itemToUpdate);
-
-      fetch(`http://localhost:3000/category/${itemToDelete._id}`, {
-        method: "PUT", // Use the appropriate HTTP method for updating
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(itemToUpdate),
-      })
-        .then((res) => {
-          if (res.ok) {
-            fetchCategory();
-            toast.success("Category Updated Successfully");
-          } else if (res.status === 404) {
-            alert("Category not found");
-          } else {
-            alert("Internal Server Error");
-          }
+      console.log(itemToDelete);
+      console.log("updating");
+      if (itemToDelete) {
+        
+        const itemToUpdate = {
+          catName: catName, 
+          Title: Title, 
+          message: message, 
+        };
+  
+        console.log(itemToUpdate);
+  
+        fetch(`http://localhost:3000/category/${itemToDelete._id}`, {
+          method: "PUT", // Use the appropriate HTTP method for updating
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(itemToUpdate),
         })
-        .catch((error) => {
-          console.error(error);
-          alert("An error occurred while updating the category.");
-        });
-
-      setItemToDelete(null);
-      closeModal();
-    }
-    
-};
+          .then((res) => {
+            if (res.ok) {
+              fetchCategory();
+              toast.success("Category Updated Successfully");
+            } else if (res.status === 404) {
+              alert("Category not found");
+            } else {
+              alert("Internal Server Error");
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+            alert("An error occurred while updating the category.");
+          });
+  
+        setItemToDelete(null);
+        closeModal();
+      }
+      
+  };
   const handleDelete = () => {
     console.log(itemToDelete);
     if (itemToDelete) {
