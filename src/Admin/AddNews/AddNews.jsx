@@ -84,13 +84,45 @@ const AddNews = () => {
         setImage(URL.createObjectURL(file));
     };
 
+    const date = () => {
+        const today = new Date();
+        const month = today.getMonth();
+        const day = today.getDate();
+        const year = today.getFullYear();
+        return`${day}/${month}/${year}`
+      }
+
     const handleSubmit = (event) => {
         event.preventDefault()
         const toolName = event.target.toolName.value;
         const image = file;
         const description = JSON.stringify(finalDes.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">"));
-        const data = { toolName, image, description }
-        console.log(data);
+
+        if (toolName.length != 0 && file != null && description) {
+            const formdata = new FormData()
+            formdata.append('newsTitle', toolName)
+            formdata.append('image', file)
+            formdata.append('newsBody', description)
+            formdata.append('date', date())
+            fetch("http://localhost:3000/newnews", {
+                method: "POST",
+                headers: {
+                },
+                body: formdata,
+            })
+            .then((res) => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    event.target.reset()
+                    setImage(null)
+                    setFile(null)
+                    setEditorDesState(EditorState.createEmpty())
+                    alert('New news data submitted')
+                }
+            })
+        } else{
+            alert('No fields can remain empty')
+        }
     }
 
     return (
