@@ -6,10 +6,10 @@ import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { faUnlock } from "@fortawesome/free-solid-svg-icons"; // Import the unlock icon
 import { Link } from "react-router-dom";
 
-const Card = () => {
+const Card = ({getToolsCount, selectedSub}) => {
   const [isClicked, setIsClicked] = useState(Cookies.get("myHeartCookie") === "true");
   const [tools, setTools] = useState([]);
-  const htmlString = "<p>This is chatgpt</p>\n";
+
 
 
   const fetchTools = () => {
@@ -17,6 +17,7 @@ const Card = () => {
       .then((res) => res.json())
       .then((data) => {
         setTools(data);
+        getToolsCount(data.length)
       })
       .catch((error) => {
         console.error(error);
@@ -25,8 +26,22 @@ const Card = () => {
   };
 
   useEffect(() => {
-    fetchTools();
-  }, []);
+    if(selectedSub.length != 0){
+      fetch(`http://localhost:3000/subtools/${selectedSub}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setTools(data);
+        getToolsCount(data.length)
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("An error occurred while fetching categories.");
+      });
+    } else{
+      fetchTools();
+    }
+
+  }, [selectedSub]);
 
 
   useEffect(() => {
