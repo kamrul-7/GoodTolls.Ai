@@ -1,7 +1,10 @@
 import React from 'react';
 import './SingleNews.css'
 import Footer from '../../Component/Footer/Footer';
+import { useLoaderData } from 'react-router-dom';
 const SingleNews = () => {
+    const data = useLoaderData();
+    console.log(data);
     return (
         <div className='mx-auto'>
             <div className='flex items-center mt[34px] ms-8'>
@@ -21,7 +24,7 @@ const SingleNews = () => {
             {/* Single News Section */}
             <div className='mx-10 my-10 mb-26'>
                 {/* Hero section */}
-                <div className="hero mb-10 rounded-lg lg:h-[394px]  mx-auto  " style={{ backgroundImage: 'url(https://images.ctfassets.net/7bkqs8vgq34y/42mnpPRa0kPvgZ4tMynP9O/85562d29f3bc54d6c20c3ee4d211c2ca/Website_Insight_Adobe_An-AI-for-design.jpg?w=1200&h=800&fit=fill&f=faces)' }}>
+                <div className="hero mb-10 rounded-lg lg:h-[394px] mx-auto" style={{ backgroundImage: `url(http://localhost:3000/uploads/${data.image})` }}>
                 </div>
                 <div className='text-section '>
                     {/* right-div */}
@@ -29,11 +32,12 @@ const SingleNews = () => {
                         <div className='date'>
                             <p className='date-title' >Tools</p>
                             <div className="vertical-line"></div>
-                            <p className='date-dates'>September 16, 2023</p>
+                            <p className='date-dates'>{data.date}</p>
                         </div>
                         <div className='single-title mb-6'>
-                            The Chapple AI News Update Video
+                            {data.newsTitle}
                         </div>
+                        {/* {saiful er kahini } */}
                         <div className='single-text'>
                             Lorem ipsum dolor sit amet consectetur. Ligula et nec nibh habitant est egestas bibendum turpis. Vel nibh ridiculus quam tristique nunc tincidunt dui augue in. Tellus at nisi cras massa faucibus vitae. Ultrices dis viverra nisl laoreet interdum donec. Vitae aliquet convallis congue vestibulum elementum tempor ornare est euismod. At metus
                         </div>
