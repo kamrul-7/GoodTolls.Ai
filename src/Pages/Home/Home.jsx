@@ -32,6 +32,10 @@ const Home = () => {
         return res
     }
 
+    const handleSubSubmit = (value)=>{
+        console.log(value);
+    }
+
     return (
         <div>
            
@@ -39,7 +43,7 @@ const Home = () => {
             <div className='md:flex items-center justify-between mt-7 mb-5'>
                 <div className='md:flex items-center '>
                     <div className='w-11/12 md:w-fit mx-auto'>
-                        <Filter></Filter>
+                        <Filter clickHandler = {handleSubSubmit}></Filter>
                     </div>
                     <div className='text-[#6C737F] font-medium ml-6 my-4'>
                         Showing <span className='text-[#081120]'> {decoration(total)} Best</span> Ai Tools
