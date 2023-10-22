@@ -10,6 +10,8 @@ const Filter = (props) => {
             .then(data => setSubList(data))
     }, [])
 
+    useEffect(()=>{ toggle ? props.clickHandler('') : ''},[toggle])
+
     return (
         <div className='relative'>
             <button onClick={() => setToggle(!toggle)} className=" text-base text-[#081120] rounded-xl border border-[#E5E7EB] md:w-[200px] w-full">

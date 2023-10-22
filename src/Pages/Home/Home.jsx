@@ -8,6 +8,7 @@ import CookiePopup from '../../Component/Popup/Popup';
 
 const Home = () => {
     const [total, setTotal] = useState(1283)
+    const [selectedSub, setSelectedSub] = useState('')
 
     const decoration = x => {
         let str = x + ""
@@ -34,6 +35,11 @@ const Home = () => {
 
     const handleSubSubmit = (value)=>{
         console.log(value);
+        setSelectedSub(value)
+    }
+
+    const getToolsCount = (value)=>{
+        setTotal(value);
     }
 
     return (
@@ -68,7 +74,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <Card />
+            <Card getToolsCount={getToolsCount} selectedSub = {selectedSub}></Card>
             <CookiePopup></CookiePopup>
         </div>
     );
