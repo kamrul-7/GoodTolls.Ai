@@ -92,8 +92,9 @@ const Card = ({getToolsCount, selectedSub}) => {
             </div>
           </div>
          
-          <div className="mt-4 mb-4" dangerouslySetInnerHTML={{ __html: (tool?.description?.replace(/["\n]/g, '') || '') }}></div>
+          <div className="mt-4 mb-4" dangerouslySetInnerHTML={{ __html: (tool?.description?.replace(/["\n]/g, '') || '').split(' ').slice(0, 15).join(' ') }}></div>
 <div className="flex gap-3">
+
 {
           tool.SubCategory.map(item =>
 
