@@ -24,6 +24,7 @@ import ManageNews from "../Admin/ManageNews/ManageNews";
 import UserManagement from "../Admin/UserManagement/UserManagement";
 import AddTool from "../Admin/AddTool/AddTool";
 import AddNews from "../Admin/AddNews/AddNews";
+import Default from "../Default";
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -117,5 +118,9 @@ export const router = createBrowserRouter([
           element:<AddNews></AddNews>
         }
       ]
+    },
+    {
+      path: '*',
+      element:<Default></Default>
     }
   ]);
