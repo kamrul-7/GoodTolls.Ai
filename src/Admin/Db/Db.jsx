@@ -36,7 +36,7 @@ const Db = () => {
               <div className="number">6</div>
             </div>
             <div className="single-card ">
-              <div className="card-title">Sub Categories</div>
+              <div className="card-title">Sub CFategories</div>
               <div className="number">6</div>
             </div>
             <div className="single-card">
