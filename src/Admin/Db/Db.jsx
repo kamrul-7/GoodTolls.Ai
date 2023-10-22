@@ -1,8 +1,26 @@
 import React, { useContext, useEffect, useState } from "react";
 import { RiHome3Line } from "react-icons/ri";
 import "./Db.css";
+import { Link } from "react-router-dom";
 
 const Db = () => {
+  const [count, setCount] = useState([]);
+
+  const fetchCount = () => {
+    fetch("http://localhost:3000/counts")
+      .then((res) => res.json())
+      .then((data) => {
+        setCount(data);
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("An error occurred while fetching categories.");
+      });
+  };
+
+  useEffect(() => {
+    fetchCount();
+  }, []);
   return (
 
     <div className="db-section w-full h-[1160px] mt-8 mx-3">
@@ -33,19 +51,17 @@ const Db = () => {
           <div className="flex">
             <div className="single-card">
               <div className="card-title">Categories</div>
-              <div className="number">6</div>
+              <div className="number">{count.totalCategories}</div>
             </div>
             <div className="single-card ">
-              <div className="card-title">Sub Categories</div>
-              <div className="number">6</div>
             </div>
             <div className="single-card">
               <div className="card-title">Tools</div>
-              <div className="number">6</div>
+              <div className="number">{count.totalTools}</div>
             </div>
             <div className="single-card">
               <div className="card-title">News</div>
-              <div className="number">6</div>
+              <div className="number">{count.totalNews}</div>
             </div>
           </div>
         </div>
@@ -56,7 +72,7 @@ const Db = () => {
               <p>Quick take action</p>
             </div>
             <div className="quick-grid">
-              <div className="quick-single item-center">
+              <Link to={'/dashboard/addtool'} className="quick-single item-center">
                 <div>
                   <svg
                     className="w-12 h-12"
@@ -81,8 +97,9 @@ const Db = () => {
                     Add yourself or import from CSV
                   </div>
                 </div>
-              </div>
-              <div className="quick-single item-center">
+              </Link>
+              
+              <Link to={'/dashboard/addnews'} className="quick-single item-center">
                 <div>
                   <svg
                     className="w-12 h-12"
@@ -107,8 +124,9 @@ const Db = () => {
                     Dive into the editor and start creating
                   </div>
                 </div>
-              </div>
-              <div className="quick-single item-center">
+              </Link>
+              
+              <Link to={'/dashboard/category'} className="quick-single item-center">
                 <div>
                   <svg
                     className="w-12 h-12"
@@ -128,12 +146,12 @@ const Db = () => {
                   </svg>
                 </div>
                 <div>
-                  <div className="quick-text">Add New Tool</div>
+                  <div className="quick-text">Add a New Category</div>
                   <div className="w-[250px] quick-text ">
                     Add yourself or import from CSV
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
