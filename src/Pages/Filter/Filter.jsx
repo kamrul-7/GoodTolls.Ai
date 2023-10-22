@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './Filter.css'
 import 'flowbite';
 const Filter = (props) => {
+    const [choice, setChoice] = useState('');
     const [toggle, setToggle] = useState(true)
     const [subList, setSubList] = useState([])
     useEffect(() => {
@@ -10,7 +11,19 @@ const Filter = (props) => {
             .then(data => setSubList(data))
     }, [])
 
-    useEffect(()=>{ toggle ? props.clickHandler('') : ''},[toggle])
+
+    const handleClick = (event, value) => {
+        console.log(event.target.name);
+        if(event.target.name != choice){
+            props.clickHandler(value)
+        } else{
+            setChoice('')
+            props.clickHandler('')
+        }
+
+    }
+
+    // useEffect(()=>{ toggle ? props.clickHandler('') : ''},[toggle])
 
     return (
         <div className='relative'>
@@ -45,7 +58,10 @@ const Filter = (props) => {
                                 {
                                     value.SubCategories.sort().map((value, index) => {
                                         return <li key={index}>
-                                            <button onClick={()=>props.clickHandler(value)} href="#" className="w-full text-left block px-4 py-2 hover:bg-gray-100 " value={value}>{value}</button>
+                                            <button onClick={(event) => {
+                                                setChoice(`${value}${index}`)
+                                                handleClick(event, value)
+                                            }} href="#" className={`w-full text-left block px-4 py-2 hover:bg-gray-100 ${choice === `${value}${index}` ? 'bg-gray-100' : 'bg-white'} `} name={`${value}${index}`}>{value}</button>
                                         </li>
                                     })
                                 }
