@@ -1,12 +1,14 @@
 import Ripples from 'react-ripples'
 import './Hero.css'
 import { useState } from 'react';
-const Hero = () => {
-  const [seartData, setSearchData] = useState('');
+const Hero = ({search}) => {
+  const [searchData, setSearchData] = useState('');
+
   const [showSearch, setShowSearch] = useState(false);
 
   const handleKeyPress = (e) => {
     if (e.key !== "Enter") {
+      search(e.target.value);
       setSearchData(e.target.value)
       setShowSearch(false)
     } else {
@@ -16,11 +18,11 @@ const Hero = () => {
 
   const handleSearch = () => {
     setShowSearch(true)
-    console.log(seartData);
+    console.log(searchData);
   }
 
   const handleBlur = () =>{
-    if(seartData.length == 0 && showSearch){
+    if(searchData.length == 0 && showSearch){
       setShowSearch(false)
     }
   }
@@ -33,7 +35,7 @@ const Hero = () => {
             <h1 className="md:text-5xl text-4xl font-bold hero-title ">We are listing the best AI
               <br /> tools Everyday.</h1>
             <p className={`hero-subtitle my-6 ${showSearch ? 'hidden' : 'block'}`}>Find the best AI tools for your needs. Go to the filter <br /> and choose your  Category.  </p>
-            <p className={`hero-subtitle my-6 ${showSearch ? 'block' : 'hidden'}`}>{seartData}</p>
+            <p className={`hero-subtitle my-6 ${showSearch ? 'block' : 'hidden'}`}>{searchData}</p>
             <div className="relative input-container mx-auto lg:w-[478px] h-[52px] w-[343px]">
               <div onBlur={handleBlur} className='h-full w-full flex justify-between'>
                 <input onKeyUp={handleKeyPress} type="text" placeholder="Search" className="input w-full h-full bg-[#F3F4F6] focus:outline-0 pr-1" />

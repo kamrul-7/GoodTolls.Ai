@@ -6,9 +6,10 @@ import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { faUnlock } from "@fortawesome/free-solid-svg-icons"; // Import the unlock icon
 import { Link } from "react-router-dom";
 
-const Card = ({getToolsCount, selectedSub}) => {
+const Card = ({getToolsCount, selectedSub, searchData}) => {
   const [isClicked, setIsClicked] = useState(Cookies.get("myHeartCookie") === "true");
   const [tools, setTools] = useState([]);
+  console.log(searchData);
 
 
 
@@ -92,7 +93,13 @@ const Card = ({getToolsCount, selectedSub}) => {
             </div>
           </div>
          
+<<<<<<< HEAD
+          <div className="mt-4 mb-4" 
+          dangerouslySetInnerHTML={{ __html: (tool?.description?.replace(/["\n]/g, '') || '') }}
+          ></div>
+=======
           <div className="mt-4 mb-4" dangerouslySetInnerHTML={{ __html: (tool?.description?.replace(/["\n]/g, '') || '').split(' ').slice(0, 15).join(' ') }}></div>
+>>>>>>> 5ec14f9a2367ed9dff10068cd376f3cd71a5d558
 <div className="flex gap-3">
 
 {
