@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react';
 import './Filter.css'
 import 'flowbite';
-const Filter = () => {
+const Filter = (props) => {
     const [toggle, setToggle] = useState(true)
-    useEffect(()=>console.log(toggle),[toggle])
+    const [subList, setSubList] = useState([])
+    useEffect(() => {
+        fetch('http://localhost:3000/sublist')
+            .then(res => res.json())
+            .then(data => setSubList(data))
+    }, [])
+
     return (
         <div className='relative'>
             <button onClick={() => setToggle(!toggle)} className=" text-base text-[#081120] rounded-xl border border-[#E5E7EB] md:w-[200px] w-full">
@@ -25,30 +31,27 @@ const Filter = () => {
             </button>
 
             {/* <!-- Dropdown menu --> */}
-            <div className={`z-50 ${toggle ?'hidden' : 'block absolute bottom-30 left-0' } font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-xl md:w-[200px] w-11/12 text-base`}>
-                <ul className="py-2 text-sm text-gray-700">
-                    <li>
-                        <a href="#" className="block font-medium px-4 py-2 hover:bg-gray-100 ">Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">Settings</a>
-                    </li>
-                    <li>
-                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">Earnings</a>
-                    </li>
-                </ul>
+            <div className={`z-50 ${toggle ? 'hidden' : 'block absolute bottom-30 left-0'} font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-xl md:w-[200px] w-11/12 text-base`}>
+                {
+                    subList.sort((a, b) => (a._id > b._id ? 1 : -1)).map((value, index) => {
+                        return (
+                            <ul className="py-2 text-sm text-gray-700 w-full text-left">
 
-                <ul className="py-2 text-sm text-gray-700 ">
-                    <li>
-                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">Settings</a>
-                    </li>
-                    <li>
-                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">Earnings</a>
-                    </li>
-                </ul>
+                                <li key={index}>
+                                    <button disabled href="#" className="w-full text-left block font-medium px-4 py-2 hover:bg-gray-100 " value={value._id}>{value._id}</button>
+                                </li>
+                                {
+                                    value.SubCategories.sort().map((value, index) => {
+                                        return <li key={index}>
+                                            <button onClick={()=>props.clickHandler(value)} href="#" className="w-full text-left block px-4 py-2 hover:bg-gray-100 " value={value}>{value}</button>
+                                        </li>
+                                    })
+                                }
+                            </ul>
+                        )
+
+                    })
+                }
             </div>
         </div>
     );
