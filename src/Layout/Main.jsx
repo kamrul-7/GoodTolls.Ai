@@ -11,6 +11,8 @@ const Main = () => {
 
   // Determine the condition to hide the footer (e.g., on the home page)
   const isHomePage = location.pathname === '/';
+  const tmpStoreKey = 'ToolsFinder(GoodToolsAi)AdminPanelUser'
+  sessionStorage.removeItem(tmpStoreKey)
 
   return (
     <div>

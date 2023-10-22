@@ -1,46 +1,68 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { FaEye } from 'react-icons/fa';
 
 const Login = () => {
-    const navigate = useNavigate();
+  const tmpStoreKey = 'ToolsFinder(GoodToolsAi)AdminPanelUser'
+  sessionStorage.removeItem(tmpStoreKey)
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [users, setUsers] = useState([])
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-  useEffect(() => {
-    fetch('http://localhost:3000/users')
-      .then(res => res.json())
-      .then(data => setUsers(data))
-  }, [])
-  console.log(users);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
-  
+
+    const data = { email, password }
+
+    if (email.length != 0 && password.length != 0) {
+      fetch('http://localhost:3000/getuser', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+
+        },
+        body: JSON.stringify(data)
+      })
+      .then (res => res.json())
+      .then(data =>{
+        if(data.stat){
+          sessionStorage.setItem('ToolsFinder(GoodToolsAi)AdminPanelUser', JSON.stringify(data))
+          event.target.reset()
+          navigate('/dashboard')
+          
+        } else {
+          alert('user not found')
+        }
+      })
+    } else{
+      alert('No fields can remain empty')
+    }
+
+
+
     // Find the user with the provided email
-    const user = users.find((user) => user.email === email);
-    console.log(users[0]);
-    if (!user) {
-      // User not found
-      alert('User not found');
-      return;
-    }
-  
-    // Compare the provided password with the stored password
-    if (user.password === password) {
-      // Passwords match; user is authenticated
-      navigate('/dashboard/manageNews')
-      // Redirect to the dashboard or update the UI accordingly
-    } else {
-      // Passwords do not match
-      alert('Invalid password');
-    }
+    // const user = users.find((user) => user.email === email);
+    // console.log(users[0]);
+    // if (!user) {
+    //   // User not found
+    //   alert('User not found');
+    //   return;
+    // }
+
+    // // Compare the provided password with the stored password
+    // if (user.password === password) {
+    //   // Passwords match; user is authenticated
+    //   navigate('/dashboard/manageNews')
+    //   // Redirect to the dashboard or update the UI accordingly
+    // } else {
+    //   // Passwords do not match
+    //   alert('Invalid password');
+    // }
   };
-  
+
 
   return (
     <div className="flex justify-center items-center h-screen">

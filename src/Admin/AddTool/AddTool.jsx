@@ -228,8 +228,8 @@ const AddTool = () => {
         const twitter = event.target.twitter.value;
         const linkedin = event.target.linkedin.value;
         const discord = event.target.discord.value;
-        const description = JSON.stringify(finalDes.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">"));
-        const works = JSON.stringify(finalWork.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">"));
+        const description = JSON.stringify(finalDes.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">").replace(/\n/g, ""));
+        const works = JSON.stringify(finalWork.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">").replace(/\n/g, ""));
         if (toolName.length != 0 && selected.length != 0 && link.length != 0 && file != null
             && priceType.length != 0 && price.length != 0 && pricePeriod.length != 0 && date
             && facebook.length != 0 && twitter.length != 0 && linkedin.length != 0 && discord.length != 0 && description && works) {

@@ -96,7 +96,7 @@ const AddNews = () => {
         event.preventDefault()
         const toolName = event.target.toolName.value;
         const image = file;
-        const description = JSON.stringify(finalDes.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">"));
+        const description = JSON.stringify(finalDes.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">").replace(/\n/g, ""));
 
         if (toolName.length != 0 && file != null && description) {
             const formdata = new FormData()
