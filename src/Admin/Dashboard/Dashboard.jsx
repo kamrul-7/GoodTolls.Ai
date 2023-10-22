@@ -8,12 +8,10 @@ import { useContext, useEffect, useState } from "react";
 const Dashboard = () => {
     const navigate = useNavigate();
     const loc = useLocation();
-
      const [show, setShow] = useState(false)
      const tmpStoreKey = 'ToolsFinder(GoodToolsAi)AdminPanelUser'
      const location = useLocation();
-
-
+     
      useEffect(() => {
          function validatePath(path) {
              const pattern = /^\/dashboard(\/)*$/;
