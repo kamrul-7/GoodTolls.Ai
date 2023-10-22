@@ -65,8 +65,8 @@ const Card = ({getToolsCount, selectedSub}) => {
 
           <figure className="relative">
             <img
-              src="https://images.ctfassets.net/7bkqs8vgq34y/42mnpPRa0kPvgZ4tMynP9O/85562d29f3bc54d6c20c3ee4d211c2ca/Website_Insight_Adobe_An-AI-for-design.jpg?w=1200&h=800&fit=fill&f=faces"
-              alt="Image"
+              src={`http://localhost:3000/uploads/${tool?.image}`}
+              alt="Image not found"
               className="rounded-xl"
               style={{ width: "344px", height: "240px" }}
             />

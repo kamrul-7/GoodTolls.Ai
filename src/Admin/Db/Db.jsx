@@ -54,8 +54,6 @@ const Db = () => {
               <div className="number">{count.totalCategories}</div>
             </div>
             <div className="single-card ">
-              <div className="card-title">Sub Categories</div>
-            <div className="number">{count.totalSubCategories}</div>
             </div>
             <div className="single-card">
               <div className="card-title">Tools</div>
