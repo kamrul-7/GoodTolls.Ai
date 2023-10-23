@@ -27,13 +27,13 @@ const Rating = ({card}) => {
             <li>Chapple</li>
           </ul>
         </div>
-        <div className="border-b w-[330px] mx-auto md:w-[1170px] md:h-[510px]">
+        <div className="border-b w-[343px] mx-auto md:w-[1170px] md:h-[570px] h-[563]">
           <div className="flex justify-between gap-2">
             <div>
               <p className="text-base font-normal">Product Information</p>
               <h1 className="md:text-5xl text-3xl font-bold mt-4">{card.toolName}</h1>
             </div>
-            <div>
+            <div className="mr-6">
               <svg
                 width="104"
                 height="45"
@@ -78,7 +78,7 @@ const Rating = ({card}) => {
               </svg>
             </div>
           </div>
-          <div className="md:grid grid-cols-2 md:w-[1090px] h-[244px] mt-8 md:mt-14 gap-56">
+          <div className="md:grid grid-cols-2 md:w-[1090px] h-[244px] w-[311px] mt-8 md:mt-14 gap-56">
             <div>
               <img
                 src={`http://localhost:3000/uploads/${card.image}`}
@@ -451,9 +451,7 @@ const Rating = ({card}) => {
           </div>
         </div>
       </div>
-      <div className="mt-12">
-            <hr />
-          </div>
+      
       <div>
         <div>
           <div
