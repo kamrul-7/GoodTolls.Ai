@@ -228,8 +228,9 @@ const AddTool = () => {
         const twitter = event.target.twitter.value;
         const linkedin = event.target.linkedin.value;
         const discord = event.target.discord.value;
-        const description = JSON.stringify(finalDes.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">").replace(/\n/g, ""));
-        const works = JSON.stringify(finalWork.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">").replace(/\n/g, ""));
+        const description = finalDes.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">").replace(/\n/g, "").replace(/<img/, "<img style=' border-radius: 12px;'");
+        const works = finalWork.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">").replace(/\n/g, "").replace(/<img/, "<img style=' border-radius: 12px;'");
+
         if (toolName.length != 0 && selected.length != 0 && link.length != 0 && file != null
             && priceType.length != 0 && price.length != 0 && pricePeriod.length != 0 && date
             && facebook.length != 0 && twitter.length != 0 && linkedin.length != 0 && discord.length != 0 && description && works) {
@@ -447,7 +448,7 @@ const AddTool = () => {
                                 <option value={'Free + Premium'} selected>Free + Premium</option>
                                 <option value={'Free'}>Free</option>
                                 <option value='Premium'>Premium</option>
-                                <option>React</option>
+                                <option value='Paid'>Paid</option>
                             </select>
 
                         </div>
@@ -465,10 +466,11 @@ const AddTool = () => {
 
                             {/* Price duration */}
                             <select name='pricePeriod' className='w-3/12 ml-[14px] focus:outline-0 text-base'>
+                                <option value={'Per year'} selected>Per year</option>
                                 <option value={'Per month'} selected>Per month</option>
                                 <option value={'Per Week'}>Per Week</option>
                                 <option value={'Per Day'}>Per Day</option>
-                                <option>React</option>
+                                <option value={'Per hour'} selected>Per hour</option>
                             </select>
 
                         </div>
