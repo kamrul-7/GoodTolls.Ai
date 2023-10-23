@@ -54,6 +54,8 @@ const Db = () => {
               <div className="number">{count.totalCategories}</div>
             </div>
             <div className="single-card ">
+              <div className="card-title">Sub Categories</div>
+              <div className="number">{count.totalSubCategories}</div>
             </div>
             <div className="single-card">
               <div className="card-title">Tools</div>
@@ -98,7 +100,7 @@ const Db = () => {
                   </div>
                 </div>
               </Link>
-              
+
               <Link to={'/dashboard/addnews'} className="quick-single item-center">
                 <div>
                   <svg
@@ -125,7 +127,7 @@ const Db = () => {
                   </div>
                 </div>
               </Link>
-              
+
               <Link to={'/dashboard/category'} className="quick-single item-center">
                 <div>
                   <svg
