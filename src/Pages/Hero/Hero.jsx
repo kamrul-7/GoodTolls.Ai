@@ -2,31 +2,32 @@ import Ripples from 'react-ripples'
 import './Hero.css'
 
 import { useEffect, useState } from 'react';
-const Hero = ({ name, count }) => {
+const Hero = ({ name, count, getSearchData }) => {
   const [seartData, setSearchData] = useState('');
-  const [showSearch, setShowSearch] = useState(false);
+  // const [showSearch, setShowSearch] = useState(false);
   const [sub, setSub] = useState([])
 
   const handleKeyPress = (e) => {
     if (e.key !== "Enter") {
-      search(e.target.value);
       setSearchData(e.target.value)
-      setShowSearch(false)
+      // setShowSearch(false)
     } else {
-      handleSearch()
+      if(seartData.length !==0) {
+        getSearchData(seartData)
+      }
     }
   }
 
   const handleSearch = () => {
-    setShowSearch(true)
-    console.log(searchData);
+    if(seartData.length !==0) {
+      getSearchData(seartData)
+    }
   }
 
 
   const handleBlur = () => {
-    if (seartData.length == 0 && showSearch) {
-
-      setShowSearch(false)
+    if (seartData.length == 0) {
+       getSearchData('')
     }
   }
 
@@ -57,7 +58,6 @@ const Hero = ({ name, count }) => {
                 </>
             }
 
-            <p className={`hero-subtitle my-6 ${showSearch ? 'block' : 'hidden'}`}>{seartData}</p>
             <div className="relative input-container mx-auto lg:w-[478px] h-[52px] w-[343px]">
               <div onBlur={handleBlur} className='h-full w-full flex justify-between'>
                 <input onKeyUp={handleKeyPress} type="text" placeholder="Search" className="input w-full h-full bg-[#F3F4F6] focus:outline-0 pr-1" />

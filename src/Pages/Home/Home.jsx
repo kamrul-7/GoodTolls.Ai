@@ -9,6 +9,7 @@ import CookiePopup from '../../Component/Popup/Popup';
 const Home = () => {
     const [total, setTotal] = useState(1283)
     const [selectedSub, setSelectedSub] = useState('')
+    const [searchData, setSearchData] = useState('');
 
     const [sortOption, setSortOption] = useState('All')
     const decoration = x => {
@@ -67,10 +68,17 @@ const Home = () => {
         setSortOption(event.target.name)
     }
 
+    const getSearchData = (data)=>{
+        if(data !== searchData){
+            console.log(data);
+            setSearchData(data)
+        }
+    }
+
     return (
         <div>
            
-            <Hero name={selectedSub} count={total}></Hero>
+            <Hero name={selectedSub} count={total} getSearchData={getSearchData}></Hero>
 
             <div className='md:flex items-center justify-between mt-7 mb-5'>
                 <div className='md:flex items-center '>
@@ -101,7 +109,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <Card getToolsCount={getToolsCount} selectedSub = {selectedSub} sortOption = {sortOption}></Card>
+            <Card getToolsCount={getToolsCount} selectedSub = {selectedSub} sortOption = {sortOption} searchData={searchData}></Card>
 
             <CookiePopup></CookiePopup>
         </div>

@@ -7,19 +7,26 @@ import { faUnlock } from "@fortawesome/free-solid-svg-icons"; // Import the unlo
 import { Link } from "react-router-dom";
 
 
-const Card = ({ getToolsCount, selectedSub, sortOption }) => {
+const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
   const [isClicked, setIsClicked] = useState(Cookies.get("myHeartCookie") === "true");
   const [tools, setTools] = useState([]);
   const [lastElem, setLastElem] = useState(0);
+  const [searchStat, setSearchState] = useState(false);
 
 
+  if (searchData.length > 0 && searchStat === false) {
+    setSearchState(true)
+  }
+  if (searchData.length === 0 && searchStat === true) {
+    setSearchState(false)
+  }
 
   const fetchTools = () => {
     fetch("http://localhost:3000/tools")
       .then((res) => res.json())
       .then((data) => {
         setTools(data);
-        setLastElem(data.length-1)
+        setLastElem(data.length - 1)
         getToolsCount(data.length)
       })
       .catch((error) => {
@@ -37,18 +44,18 @@ const Card = ({ getToolsCount, selectedSub, sortOption }) => {
 
   let toolsCount = 0;
 
-  const component = (tool,indx) => {
+  const component = (tool, indx) => {
     toolsCount++;
-    if(tool == null){
+    if (tool == null) {
       toolsCount--;
     }
-    if(indx === lastElem){
+    if (indx === lastElem) {
       getToolsCount(toolsCount)
     }
-    if(tool){
+    if (tool) {
       return (
         <div className="card size bg-base-100 shadow-xl mb-24 md:mx-0 mx-auto">
-  
+
           <figure className="relative">
             <img
               src={`http://localhost:3000/uploads/${tool?.image}`}
@@ -56,7 +63,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption }) => {
               className="rounded-xl"
               style={{ width: "344px", height: "240px" }}
             />
-  
+
             <div onClick={handleClick} className="md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] left-[268px] bg-white">
               <div className="">
                 {isClicked ? <AiOutlineHeart className="w-5 h-5 " /> : <AiFillHeart className="w-5 h-5 " color="red" />}
@@ -77,16 +84,16 @@ const Card = ({ getToolsCount, selectedSub, sortOption }) => {
                 </div>
               </div>
             </div>
-  
+
             <div className="mt-4 mb-4" dangerouslySetInnerHTML={{ __html: (tool?.description?.replace(/["\n]/g, '') || '') }}></div>
             <div className="flex gap-3">
               {
                 tool?.SubCategory.map(item =>
-  
+
                   <div className="flex justify-between grid-cols-4 gap-1">
-  
+
                     <div className="card-category-item"> <p className="card-category-text px-3 py-2">{item}</p></div>
-  
+
                   </div>
                 )
               }
@@ -132,28 +139,37 @@ const Card = ({ getToolsCount, selectedSub, sortOption }) => {
 
     <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1">
       {
-        tools.map((tool,indx) => {
-          if (selectedSub.length != 0 && sortOption !== 'All') {
-            if (tool?.SubCategory.includes(selectedSub) && tool?.priceType.includes(sortOption)) {
-              return component(tool,indx)
-            } 
-            else return component(null,indx)
+        tools.map((tool, indx) => {
+          if (searchStat) {
+            if(tool?.toolName === searchData){
+              return component(tool, indx)
+            }
+            else return component(null, indx)
           }
-          else if (selectedSub.length != 0 && sortOption === 'All') {
-            if (tool?.SubCategory.includes(selectedSub)) {
-              return component(tool,indx)
-            } 
-            else return component(null,indx)
+          else {
+            if (selectedSub.length != 0 && sortOption !== 'All') {
+              if (tool?.SubCategory.includes(selectedSub) && tool?.priceType.includes(sortOption)) {
+                return component(tool, indx)
+              }
+              else return component(null, indx)
+            }
+            else if (selectedSub.length != 0 && sortOption === 'All') {
+              if (tool?.SubCategory.includes(selectedSub)) {
+                return component(tool, indx)
+              }
+              else return component(null, indx)
+            }
+            else if (selectedSub.length === 0 && sortOption !== 'All') {
+              if (tool?.priceType.includes(sortOption)) {
+                return component(tool, indx)
+              }
+              else return component(null, indx)
+            }
+            else {
+              return component(tool, indx)
+            }
           }
-          else if (selectedSub.length === 0 && sortOption !== 'All') {
-            if (tool?.priceType.includes(sortOption)) {
-              return component(tool,indx)
-            } 
-            else return component(null,indx)
-          }
-          else{
-            return component(tool,indx)
-          }
+
         })
       }
     </div>
