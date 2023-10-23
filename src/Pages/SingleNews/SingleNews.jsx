@@ -50,7 +50,7 @@ console.log(item)
             </div>
             <div className='text-section '>
                 {/* right-div */}
-                <div className='right'>
+                <div className='right w-7/12'>
                     <div className='date'>
                         <p className='date-title' >Tools</p>
                         <div className="vertical-line"></div>
@@ -60,27 +60,11 @@ console.log(item)
                         {item.newsTitle}
                     </div>
                     {/* {saiful er kahini } */}
-                    <div className='single-text'>
-                        Lorem ipsum dolor sit amet consectetur. Ligula et nec nibh habitant est egestas bibendum turpis. Vel nibh ridiculus quam tristique nunc tincidunt dui augue in. Tellus at nisi cras massa faucibus vitae. Ultrices dis viverra nisl laoreet interdum donec. Vitae aliquet convallis congue vestibulum elementum tempor ornare est euismod. At metus
+                   <div className='h-[1200px] overflow-y-scroll hide-scrollbar'>
+                   <div dangerouslySetInnerHTML={{ __html: item.newsBody }}>
+                        
                     </div>
-                    <div className='mt-6 mb-6'>
-                    {/* <img className='single-image' src={`http://localhost:3000/uploads/${item.image}`} alt={item.newsTitle} /> */}
-                    </div>
-                    <div className='single-text'>
-                        Font polygon list follower draft auto vertical thumbnail pencil list. Library bold select list outline thumbnail group team polygon boolean. Vertical connection undo edit shadow asset select align link frame. Vertical move reesizing strikethrough inspect figjam shadow layer. Share boolean library mask text. Arrow boolean inspect duplicate.
-                    </div>
-                    <div className='single-heading mt-6'>
-                        <p>Potential for 10x performance with AI</p>
-                    </div>
-                    <div className='single-text'>
-                        Relatedly, areas in which humans are prone to error or are generally slow and inefficient (even when supported by software products) are most likely to benefit from AI approaches. For instance, in prior authorizations, a recent AMA survey found physicians and their staff spend approximately 14 hours per week completing PAs, while the GAO estimates that federal agencies made upwards of $128 billion worth of incorrect payments from Medicare and Medicaid to providers in 2022.
-                    </div>
-                    <div className='single-heading mt-6'>
-                        <p>Areas with low adoption of software</p>
-                    </div>
-                    <div className='single-text'>
-                        Healthcare enterprises are more likely to adopt AI if its cost benefit is at least an order of magnitude (and ideally more!) better than the status quo. Therefore, we’re likely to see a stronger opportunity in areas that have a low penetration of existing software tools, where AI cost benefit is being compared to human labor, versus software. For example, medical scribing is one of the areas where there appears to be high uptake of AI solutions because humans currently perform the majority of scribing tasks.
-                    </div>
+                   </div>
 
                 </div>
 
