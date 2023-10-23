@@ -9,9 +9,8 @@ import CookiePopup from '../../Component/Popup/Popup';
 const Home = () => {
     const [total, setTotal] = useState(1283)
     const [selectedSub, setSelectedSub] = useState('')
-    const [searchData, setSearchData] = useState('');
-    console.log(searchData);
-    
+
+    const [sortOption, setSortOption] = useState('All')
     const decoration = x => {
         let str = x + ""
         const c = str.length % 3
@@ -44,10 +43,35 @@ const Home = () => {
         setTotal(value);
     }
 
+    const handleChecked = (event)=>{
+        if(event.target.name === 'All' && event.target.checked){
+            document.getElementById('Free').checked = false;
+            document.getElementById('Premium').checked = false;
+            document.getElementById('Paid').checked = false;
+        } 
+        else if(event.target.name === 'Free' && event.target.checked){
+            document.getElementById('All').checked = false;
+            document.getElementById('Premium').checked = false;
+            document.getElementById('Paid').checked = false;
+        }
+        else if(event.target.name === 'Premium' && event.target.checked){
+            document.getElementById('All').checked = false;
+            document.getElementById('Free').checked = false;
+            document.getElementById('Paid').checked = false;
+        }
+        else if(event.target.name === 'Paid' && event.target.checked){
+            document.getElementById('All').checked = false;
+            document.getElementById('Free').checked = false;
+            document.getElementById('Premium').checked = false;
+        }
+        setSortOption(event.target.name)
+    }
+
     return (
         <div>
            
-            <Hero search={searchData}></Hero>
+            <Hero name={selectedSub} count={total}></Hero>
+
             <div className='md:flex items-center justify-between mt-7 mb-5'>
                 <div className='md:flex items-center '>
                     <div className='w-11/12 md:w-fit mx-auto'>
@@ -61,22 +85,24 @@ const Home = () => {
                     <span className='text-[#081120] font-medium mr-1'>Sort by : </span>
                     <div className='max-w-[300px] flex justify-between mt-1'>
                         <div className='mx-2'>
-                            <input className='mx-1 h-3 w-3' type="checkbox" id="scales" name="scales" checked />All
+                            <input onClick={handleChecked} className='mx-1 h-3 w-3' type="checkbox" id="All" name="All" defaultChecked/>All
                         </div>
                         <div className='mr-2'>
-                            <input className='mx-1 h-3 w-3' type="checkbox" id="scales" name="scales" />Free
+                            <input onClick={handleChecked} className='mx-1 h-3 w-3' type="checkbox" id="Free" name="Free" />Free
                         </div>
                         <div className='mr-2'>
-                            <input className='mx-1 h-3 w-3' type="checkbox" id="scales" name="scales" />Premium
+                            <input onClick={handleChecked} className='mx-1 h-3 w-3' type="checkbox" id="Premium" name="Premium" />Premium
                         </div>
                         <div className=''>
-                            <input className='mx-1 h-3 w-3' type="checkbox" id="scales" name="scales" />Paid
+                            <input onClick={handleChecked} className='mx-1 h-3 w-3' type="checkbox" id="Paid" name="Paid" />Paid
                         </div>
 
                     </div>
                 </div>
             </div>
-            <Card getToolsCount={getToolsCount} selectedSub = {selectedSub} searchData={searchData} ></Card>
+
+            <Card getToolsCount={getToolsCount} selectedSub = {selectedSub} sortOption = {sortOption}></Card>
+
             <CookiePopup></CookiePopup>
         </div>
     );
