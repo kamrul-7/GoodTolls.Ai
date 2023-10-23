@@ -6,6 +6,7 @@ import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { faUnlock } from "@fortawesome/free-solid-svg-icons"; // Import the unlock icon
 import { Link } from "react-router-dom";
 
+
 const Card = ({ getToolsCount, selectedSub, sortOption }) => {
   const [isClicked, setIsClicked] = useState(Cookies.get("myHeartCookie") === "true");
   const [tools, setTools] = useState([]);
@@ -105,12 +106,12 @@ const Card = ({ getToolsCount, selectedSub, sortOption }) => {
               </svg>
             </Link>
           </div>
-  
         </div>
       )
     }
     return null
   }
+
 
 
   useEffect(() => {

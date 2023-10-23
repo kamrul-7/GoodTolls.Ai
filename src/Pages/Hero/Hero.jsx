@@ -1,5 +1,6 @@
 import Ripples from 'react-ripples'
 import './Hero.css'
+
 import { useEffect, useState } from 'react';
 const Hero = ({ name, count }) => {
   const [seartData, setSearchData] = useState('');
@@ -8,6 +9,7 @@ const Hero = ({ name, count }) => {
 
   const handleKeyPress = (e) => {
     if (e.key !== "Enter") {
+      search(e.target.value);
       setSearchData(e.target.value)
       setShowSearch(false)
     } else {
@@ -17,11 +19,13 @@ const Hero = ({ name, count }) => {
 
   const handleSearch = () => {
     setShowSearch(true)
-    console.log(seartData);
+    console.log(searchData);
   }
+
 
   const handleBlur = () => {
     if (seartData.length == 0 && showSearch) {
+
       setShowSearch(false)
     }
   }
@@ -37,6 +41,7 @@ const Hero = ({ name, count }) => {
       <div className="hero min-h-[491px]">
         <div className="hero-content text-center">
           <div className="max-w-3xl">
+
 
             {
               name.length == 0 ?

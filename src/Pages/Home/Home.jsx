@@ -2,15 +2,15 @@
 import Card from '../Card/Card';
 import Hero from '../Hero/Hero';
 import Filter from '../Filter/Filter';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CookiePopup from '../../Component/Popup/Popup';
 
 
 const Home = () => {
     const [total, setTotal] = useState(1283)
     const [selectedSub, setSelectedSub] = useState('')
-    const [sortOption, setSortOption] = useState('All')
 
+    const [sortOption, setSortOption] = useState('All')
     const decoration = x => {
         let str = x + ""
         const c = str.length % 3
@@ -71,6 +71,7 @@ const Home = () => {
         <div>
            
             <Hero name={selectedSub} count={total}></Hero>
+
             <div className='md:flex items-center justify-between mt-7 mb-5'>
                 <div className='md:flex items-center '>
                     <div className='w-11/12 md:w-fit mx-auto'>
@@ -99,7 +100,9 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+
             <Card getToolsCount={getToolsCount} selectedSub = {selectedSub} sortOption = {sortOption}></Card>
+
             <CookiePopup></CookiePopup>
         </div>
     );

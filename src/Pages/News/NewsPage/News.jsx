@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from '../../../Component/Footer/Footer';
 import NewsCard from '../NewsCard/NewsCard';
 import './News.css'
+import { Link } from 'react-router-dom';
 const News = () => {
+    const [news, setNews] = useState([]);
+
+    useEffect(() => {
+        // This code will run when the component mounts
+    
+        // Make a GET request to your backend API
+        fetch('http://localhost:3000/news')
+          .then(response => response.json())
+          .then(data => {
+            // Update the state with the data from the backend
+            setNews(data);
+          })
+          .catch(error => {
+            console.error('Error fetching data:', error);
+          });
+      }, []);
+    
     return (
         <div className='news mb-8'>
             <div className='flex items-center mt[34px] ms-8'>
@@ -25,90 +43,31 @@ const News = () => {
                     <p className='rs-title md:ms-10 md:mt-10 md:text-5xl'>Latest Our AI News & Articles</p>
                 </div>
                 <div className=' grid ms-2 me-2 md:grid-cols-2 gap-4 mt-2 max-w-screen-xl mx-auto'>
-                <div className='news-card '>
-                <div className='news-card-image'>
-                    <img className='news-card-image' src="https://images.ctfassets.net/7bkqs8vgq34y/42mnpPRa0kPvgZ4tMynP9O/85562d29f3bc54d6c20c3ee4d211c2ca/Website_Insight_Adobe_An-AI-for-design.jpg?w=1200&h=800&fit=fill&f=faces" alt="" />
-                </div>
-                <div className='date'>
-                    <p className='date-title' >Tools</p>
-                    <div class="vertical-line"></div>
-                    <p className='date-dates'>September 16, 2023</p>
-                </div>
-                <div className='sub-section'>
-                    <p className='sub-text' >The Chapple AI News Update Video <span className='text-in-bracket' style={{ color: '#9DA4AE' }}>(Matt Wolfe YouTube)</span> </p>
-                </div>
-                <div className='text'>
-                Elit rhoncus euismod scelerisque urna amet tristique risus. Nam faucibus nisl quam egestas. In arcu cursus ullamcorper in tellus. Sit lectus faucibus urna in et tempor viverra.
-                </div>
-                <div className='btn-section'>
-                <button className='main-btn'>
-                    Read More
-                </button>
-                </div>
-            </div>
-            <div className='news-card'>
-                <div className='news-card-image'>
-                    <img className='news-card-image' src="https://images.ctfassets.net/7bkqs8vgq34y/42mnpPRa0kPvgZ4tMynP9O/85562d29f3bc54d6c20c3ee4d211c2ca/Website_Insight_Adobe_An-AI-for-design.jpg?w=1200&h=800&fit=fill&f=faces" alt="" />
-                </div>
-                <div className='date'>
-                    <p className='date-title' >Tools</p>
-                    <div class="vertical-line"></div>
-                    <p className='date-dates'>September 16, 2023</p>
-                </div>
-                <div className='sub-section'>
-                    <p className='sub-text' >The Chapple AI News Update Video <span className='text-in-bracket' style={{ color: '#9DA4AE' }}>(Matt Wolfe YouTube)</span> </p>
-                </div>
-                <div className='text'>
-                Elit rhoncus euismod scelerisque urna amet tristique risus. Nam faucibus nisl quam egestas. In arcu cursus ullamcorper in tellus. Sit lectus faucibus urna in et tempor viverra.
-                </div>
-                <div className='btn-section'>
-                <button className='main-btn'>
-                    Read More
-                </button>
-                </div>
-            </div>
-            <div className='news-card'>
-                <div className='news-card-image'>
-                    <img className='news-card-image' src="https://images.ctfassets.net/7bkqs8vgq34y/42mnpPRa0kPvgZ4tMynP9O/85562d29f3bc54d6c20c3ee4d211c2ca/Website_Insight_Adobe_An-AI-for-design.jpg?w=1200&h=800&fit=fill&f=faces" alt="" />
-                </div>
-                <div className='date'>
-                    <p className='date-title' >Tools</p>
-                    <div class="vertical-line"></div>
-                    <p className='date-dates'>September 16, 2023</p>
-                </div>
-                <div className='sub-section'>
-                    <p className='sub-text' >The Chapple AI News Update Video <span className='text-in-bracket' style={{ color: '#9DA4AE' }}>(Matt Wolfe YouTube)</span> </p>
-                </div>
-                <div className='text'>
-                Elit rhoncus euismod scelerisque urna amet tristique risus. Nam faucibus nisl quam egestas. In arcu cursus ullamcorper in tellus. Sit lectus faucibus urna in et tempor viverra.
-                </div>
-                <div className='btn-section'>
-                <button className='main-btn'>
-                    Read More
-                </button>
-                </div>
-            </div>
-            <div className='news-card'>
-                <div className='news-card-image'>
-                    <img className='news-card-image' src="https://images.ctfassets.net/7bkqs8vgq34y/42mnpPRa0kPvgZ4tMynP9O/85562d29f3bc54d6c20c3ee4d211c2ca/Website_Insight_Adobe_An-AI-for-design.jpg?w=1200&h=800&fit=fill&f=faces" alt="" />
-                </div>
-                <div className='date'>
-                    <p className='date-title' >Tools</p>
-                    <div class="vertical-line"></div>
-                    <p className='date-dates'>September 16, 2023</p>
-                </div>
-                <div className='sub-section'>
-                    <p className='sub-text' >The Chapple AI News Update Video <span className='text-in-bracket' style={{ color: '#9DA4AE' }}>(Matt Wolfe YouTube)</span> </p>
-                </div>
-                <div className='text'>
-                Elit rhoncus euismod scelerisque urna amet tristique risus. Nam faucibus nisl quam egestas. In arcu cursus ullamcorper in tellus. Sit lectus faucibus urna in et tempor viverra.
-                </div>
-                <div className='btn-section'>
-                <button className='main-btn'>
-                    Read More
-                </button>
-                </div>
-            </div>
+                {
+                    news.map(item=> <div className='news-card '>
+                    <div className='news-card-image'>
+                        <img className='news-card-image' src={`http://localhost:3000/uploads/${item.image}`} alt="" />
+                    </div>
+                    <div className='date'>
+                        <p className='date-title' >Tools</p>
+                        <div class="vertical-line"></div>
+                        <p className='date-dates'>{item.date}</p>
+                    </div>
+                    <div className='sub-section'>
+                        <p className='sub-text' > {item.newsTitle}  </p>
+                    </div>
+                    <div className='text'
+                    dangerouslySetInnerHTML={{ __html: (item?.newsBody?.replace(/["\n]/g, '') || '').split(' ').slice(0, 20).join(' ') }}>
+                    
+                    </div>
+                    <div className='btn-section'>
+                    <button className='main-btn'>
+                    <Link to={`/news/${item._id}`} >Read More </Link>
+                    </button>
+                    </div>
+                </div>)
+                }
+            
                 </div>
             </div>
             <div className="flex mx-auto mb-8 justify-center .centered-div">
