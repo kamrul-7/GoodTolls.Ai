@@ -2,10 +2,25 @@ import Ripples from 'react-ripples'
 import './Hero.css'
 
 import { useEffect, useState } from 'react';
-const Hero = ({ name, count, getSearchData }) => {
+const Hero = ({ name, count, getSearchData, }) => {
   const [seartData, setSearchData] = useState('');
+  const[data, setData]= useState([]);
+  const [message, setMessage] = useState('');
   // const [showSearch, setShowSearch] = useState(false);
-  const [sub, setSub] = useState([])
+  console.log(name);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/subcategory')
+      .then((res) => res.json())
+      .then((data) => {
+        const matchingItem = data.find((item) => item.SubCategory === name);
+        if (matchingItem) {
+          setMessage(matchingItem.message); 
+        } else {
+          setMessage('No matching data found');
+        }
+      });
+  }, [name]);;
 
   const handleKeyPress = (e) => {
     if (e.key !== "Enter") {
@@ -54,7 +69,7 @@ const Hero = ({ name, count, getSearchData }) => {
                 <>
                   <h1 className="md:text-5xl md:w-[592px] text-4xl font-bold text-[#081120] text-center mb-[35px]">Browse {count}+ Best AI {name} Tools</h1>
                   <div className='w-5/12 h-0 border-b border-[#E5E7EB] mx-auto mb-[45px]'></div>
-                  <p className={`hero-subtitle my-6`}>{sub?.message}</p>
+                  <p className={`hero-subtitle my-6`}>{message}</p>
                 </>
             }
 

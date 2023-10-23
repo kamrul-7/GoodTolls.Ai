@@ -30,7 +30,7 @@ console.log(cards)
     return (
         <div className="md:my-7 my-4 rounded-md m-2">
             
-            <div className='m-4 md:m-0 border border-[#E5E7EB] rounded-2xl'>
+            <div className='m-4 p-4 border border-[#E5E7EB] rounded-2xl'>
                 <Rattingg card={cards}/>
                 <Rate id={cards._id} name={cards.toolName}></Rate>
             </div>
