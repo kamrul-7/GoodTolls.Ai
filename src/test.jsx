@@ -338,6 +338,13 @@ const Test = () => {
 
     useEffect(() => console.log(file), [file])
 
+    const [testnews, settestnews] = useState([])
+    useEffect(()=>{
+        fetch('http://localhost:3000/news/6536d1108dab758a8b3a7f64')
+        .then(res=>res.json())
+        .then(data=>settestnews(data))
+    },[])
+
     return (
 
         <div>
@@ -400,6 +407,7 @@ const Test = () => {
             <FileUploader classes="test" handleChange={handleFileChange} name="file" types={fileTypes} chilldren="hello world"><Category></Category></FileUploader>
 
             <img src={image} />
+            <div dangerouslySetInnerHTML={{__html:testnews?.newsBody}}></div>
 
             {/* <div className="h-[500px]"><Dropdown></Dropdown></div> */}
 
