@@ -13,10 +13,10 @@ import purify from 'dompurify';
 import './Review.css'
 import { AuthContext } from "../Context/AuthProvider";
 
-const Review = ({ userRating }) => {
+const Review = ({ func, userRating, id, gmail, userName, product }) => {
   const modalRef = useRef(null);
 
-  const date = () => {
+  const publishDate = () => {
     const months = [
       'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
       'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
@@ -44,18 +44,37 @@ const Review = ({ userRating }) => {
     inactiveFillColor: "#E5E7EB",
   };
   const { setFalse, user } = useContext(AuthContext);
-  const [rating, setRating] = useState(userRating);
+  const [newrating, setRating] = useState(userRating);
   const [message, setMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(message);
-    const userName = user.displayName;
-    const userRating = rating;
-    const publishDate = date();
-    const review = JSON.stringify(final);
-    const data = { userName, userRating, publishDate, review }
-    closeModal(); // Close the modal and reset state when submitted
+    const name = userName;
+    const rating = newrating;
+    const date = publishDate();
+    const comment = final.replace(/\n/g, "");
+    const productId = id;
+    const userEmail = gmail;
+    const toolName = product;
+    const data = { name, rating, date, comment, productId, userEmail, toolName }
+    fetch("http://localhost:3000/review", {
+      method: "POST",
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.acknowledged) {
+          func()
+          editorState(EditorState.createEmpty())
+          closeModal();
+        }
+      })
+    // Close the modal and reset state when submitted
   };
 
   const closeModal = () => {
@@ -127,7 +146,7 @@ const Review = ({ userRating }) => {
           <div>
             <Rating
               style={{ maxWidth: "234px", maxHeight: "39px", gap: "8px" }}
-              value={rating}
+              value={newrating}
               onChange={setRating}
               itemStyles={customStyles}
             />
