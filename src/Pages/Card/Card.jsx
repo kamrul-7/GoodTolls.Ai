@@ -9,6 +9,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
   const [tools, setTools] = useState([]);
   const [lastElem, setLastElem] = useState(0);
   const [searchStat, setSearchState] = useState(false);
+  const initialButtonStates = {};
 
   if (searchData.length > 0 && searchStat === false) {
     setSearchState(true);
@@ -24,6 +25,11 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
         setTools(data);
         setLastElem(data.length - 1);
         getToolsCount(data.length);
+        data.forEach((tool) => {
+          const storageKey = `myHeartClicked-${tool._id}`;
+          const isClicked = loadStateFromLocalStorage(storageKey);
+          initialButtonStates[tool._id] = isClicked;
+        });
       })
       .catch((error) => {
         console.error(error);
@@ -55,7 +61,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
   className={`md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] left-[268px] bg-white`}
 >
   <div className="">
-    {isClicked ? <AiOutlineHeart className="w-5 h-5" /> : <AiFillHeart className="w-5 h-5" color="red" />}
+    {isClicked ? <AiFillHeart className="w-5 h-5" color="red" /> : <AiOutlineHeart className="w-5 h-5" />}
   </div>
 </div>
 
