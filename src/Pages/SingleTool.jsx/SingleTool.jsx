@@ -32,7 +32,7 @@ console.log(cards)
         <div className="md:my-7 my-4 rounded-md m-2">
             
             <div className='m-4 md:m-0 border border-[#E5E7EB] rounded-2xl'>
-                <Rattingg/>
+                <Rattingg card={cards}/>
                 <Rate item={itemName}></Rate>
             </div>
         </div>

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Rating = () => {
+const Rating = ({card}) => {
+  // console.log(card)
   const [isToggled, setIsToggled] = useState(false);
-
   const styles = {
     button: {
       padding: "10px 20px",
@@ -31,7 +31,7 @@ const Rating = () => {
           <div className="flex justify-between gap-2">
             <div>
               <p className="text-base font-normal">Product Information</p>
-              <h1 className="md:text-5xl text-3xl font-bold mt-4">Chapple</h1>
+              <h1 className="md:text-5xl text-3xl font-bold mt-4">{card.toolName}</h1>
             </div>
             <div>
               <svg
@@ -81,17 +81,17 @@ const Rating = () => {
           <div className="md:grid grid-cols-2 md:w-[1090px] h-[244px] mt-8 md:mt-14 gap-56">
             <div>
               <img
-                src="https://images.ctfassets.net/7bkqs8vgq34y/42mnpPRa0kPvgZ4tMynP9O/85562d29f3bc54d6c20c3ee4d211c2ca/Website_Insight_Adobe_An-AI-for-design.jpg?w=1200&h=800&fit=fill&f=faces"
+                src={`http://localhost:3000/uploads/${card.image}`}
                 alt="img"
                 className=" md:w-[517px] w-[343px] h-[319px] bg-black text-white border-4 rounded-3xl"
               />
             </div>
             <div className="">
               <h2 className="text-5xl font-bold">
-                $19.9{" "}
+                ${card.price}
                 <span className="text-base font-normal text-[#4D5761]">
-                  /month
-                </span>{" "}
+                  /{card.pricePeriod}
+                </span>
               </h2>
               <div className="md:w-[477px] border-b-1 mt-8">
                 <hr />
@@ -196,14 +196,11 @@ const Rating = () => {
                   <h1 className="text-base font-medium">
                     Tool Type:{" "}
                     <button className="bg-[#E5E7EB] px-4 py-[5px] rounded-full text-xs font-normal">
-                      Ai Delection
+                     {
+                      
+                     }
                     </button>{" "}
-                    <button className="bg-[#E5E7EB] px-4 py-[5px] rounded-full text-xs font-normal">
-                      GitHub
-                    </button>
-                    <button className="bg-[#E5E7EB] px-4 py-[5px] rounded-full ml-2 text-xs font-normal">
-                      Ai Delection
-                    </button>
+                    
                   </h1>
                 </div>
               </div>
