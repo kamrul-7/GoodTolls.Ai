@@ -47,7 +47,7 @@ select {
     border: 1px solid #D0D5DD;
     border-radius: 8px;
 }
-.editor-wrap h1 {
+.editor-wrap-tool h1 {
     display: block;
     font-size: 2em;
     margin-top: 0.67em;
