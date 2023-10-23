@@ -20,11 +20,15 @@ const Rate = ({id,name}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [available, setAvailable] = useState(false);
 
+    useEffect(()=>console.log(available),[available])
+
 
     useEffect(()=>{
-        fetch(`http://localhost:3000/review/${id}/${user.email}`)
-        .then(res=>res.json())
-        .then(data=> setAvailable(data))
+        if(user){
+            fetch(`http://localhost:3000/review/${id}/${user?.email}`)
+            .then(res=>res.json())
+            .then(data=> setAvailable(data))
+        }
     },[user])
 
 
@@ -173,10 +177,11 @@ const Rate = ({id,name}) => {
     const handleClick = () => {
         if(user && available){
             setTrue();
-        }else if(user){
-            alert('You have already reviewed this product')
-        } else {
+        }else if(!user){
             alert('Log in to proceed')
+        }
+        else {
+            alert('You have already reviewed this product')
         }
         
     }
@@ -255,7 +260,7 @@ const Rate = ({id,name}) => {
 
 
                             </div>
-                            { toggle && available && <Review func={customAvailable} userRating={rating} id={id} gmail={user.email} userName={user.displayName} product={name}></Review>}
+                            { toggle && available && <Review func={customAvailable} userRating={rating} id={id} gmail={user?.email} userName={user?.displayName} product={name}></Review>}
                         </div>
 
                     </div>
