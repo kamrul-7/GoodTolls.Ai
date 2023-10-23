@@ -194,12 +194,13 @@ const Rating = ({card}) => {
                 </div>
                 <div>
                   <h1 className="text-base font-medium">
-                    Tool Type:{" "}
-                    <button className="bg-[#E5E7EB] px-4 py-[5px] rounded-full text-xs font-normal">
-                     {
+                    Tool Type:
+                    {card.SubCategory.map(sub=>
+                      {return(<button className="bg-[#E5E7EB] mt-4 px-4 pl-4 py-[5px] ml-4 rounded-full text-xs font-normal">
+                      {sub}
+                    </button>)}
                       
-                     }
-                    </button>{" "}
+                      )}
                     
                   </h1>
                 </div>
@@ -291,7 +292,7 @@ const Rating = ({card}) => {
                 </div>
                 <div>
                   <h1 className="text-base font-medium">
-                    Published on August 20, 2023
+                    Published on {card?.date}
                   </h1>
                 </div>
               </div>
@@ -491,104 +492,16 @@ const Rating = ({card}) => {
           </div>
 
           {isToggled ? (
-            <div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
-              sapiente tenetur facere, modi corrupti vero earum, inventore
-              doloribus similique totam culpa quisquam beatae quod rem. Culpa
-              pariatur sed assumenda porro excepturi fugiat quidem facere odit
-              corrupti nulla, laborum veniam voluptatum deserunt delectus
-              aspernatur rem labore animi modi. Eum aliquid assumenda, illo
-              dignissimos quo, est tempora ratione veniam officia, consectetur
-              quam.
+            <div
+            
+            dangerouslySetInnerHTML={{ __html: (card?.description?.replace(/["\n]/g, '') || '')}}>
+
             </div>
           ) : (
-            <div>
-              {/* Content for "Description" */}
-              <h2>
-                All-in-one platform empowers you to effortlessly generate text,
-                image, code, chat, and much more
-              </h2>
-              <p>
-                Chapple is an all-in-one platform that empowers users to
-                generate AI-driven content and start monetizing their creations
-                within minutes. With the power of AI, Chapple offers text,
-                image, code generation, chatbot creation, and more. It provides
-                an intelligent writing assistant that seamlessly integrates
-                popular AI models like GPT, DALL·E, and Ada, enabling users to
-                effortlessly create various types of content.
-              </p>
-              <h3>Key Features:</h3>
-              <ul>
-                <li>
-                  AI Generator: Create text, images, code, and chat content
-                  using powerful AI models such as GPT, DALL·E, and Ada.
-                </li>
-                <li>
-                  Multi-Lingual: Generate content and understand different
-                  languages, expanding your reach and audience.
-                </li>
-                <li>
-                  Custom Templates: Unlock unlimited custom prompts and
-                  templates tailored to your creative needs.
-                </li>
-              </ul>
+            <div
+            
+            dangerouslySetInnerHTML={{ __html: (card?.works?.replace(/["\n]/g, '') || '')}}>
 
-              <h3>Intelligent Content Creation:</h3>
-              <p>
-                Say goodbye to writer's block and hello to limitless creativity.
-                Chapple's AI-based generator takes your ideas or topics and
-                transforms them into high-quality text, images, code, and more
-                within seconds. The process is as simple as providing the seed,
-                and our AI assistant takes care of the rest.
-              </p>
-
-              <h3>Intuitive Writing Assistant:</h3>
-              <p>
-                Our intuitive Writer feature is designed to make content
-                creation a breeze. Edit, export, or publish your AI-generated
-                results seamlessly, all powered by OpenAI's cutting-edge
-                technology.
-              </p>
-
-              <h3>
-                Chapple's Custom Prompts cover a wide range of needs, from blogs
-                and e-commerce to development, advertisements, social media, and
-                more. Here are just a few examples:
-              </h3>
-              <ul>
-                <li>
-                  Post Title Generator: Boost engagement with captivating post
-                  titles.
-                </li>
-                <li>
-                  Summarize Text: Condense large text into concise summaries for
-                  productivity.
-                </li>
-                <li>
-                  Product Description: Create compelling product descriptions to
-                  drive sales.
-                </li>
-                <li>
-                  Article Generator: Craft unique articles on any topic for SEO
-                  and engagement.
-                </li>
-                <li>
-                  Product Name Generator: Generate catchy names to attract
-                  customers.
-                </li>
-                <li>
-                  Testimonial Review: Create authentic testimonials to build
-                  trust.
-                </li>
-                <li>
-                  Problem Agitate Solution: Identify and solve problems
-                  efficiently.
-                </li>
-                <li>
-                  Blog Post Ideas: Unlock creativity with unique blog post
-                  ideas.
-                </li>
-              </ul>
             </div>
           )}
         </div>
