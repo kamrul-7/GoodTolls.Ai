@@ -71,7 +71,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
               <div className="Title">
                 <h2>{tool?.toolName}</h2>
               </div>
-              <div className="flex justify-between  subscription items-center py-4">
+              <div className="flex justify-between subscription items-center py-4">
                 <div className="">
                   <FontAwesomeIcon icon={faUnlock} />
                 </div>
@@ -82,20 +82,25 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
             </div>
 
             <div
-              className="mt-4 mb-4"
+              className="h-[65px] mt-4 mb-4"
               dangerouslySetInnerHTML={{
-                __html: (tool?.description?.slice(0, 200).replace(/["\n]/g, '') || ''),
+                __html: (tool?.description?.slice(0, 139).replace(/["\n]/g, '') || ''),
               }}
             ></div>
 
-            <div className="flex gap-3">
-              {tool?.SubCategory.map((item) => (
+            <div className="flex gap-3 mt-8">
+              {tool?.SubCategory.slice(0, 3).map((item) => (
                 <div className="flex justify-between grid-cols-4 gap-1">
                   <div className="card-category-item">
                     <p className="card-category-text px-3 py-2">{item}</p>
                   </div>
                 </div>
               ))}
+              {tool?.SubCategory.length > 3 && (
+ <div className="card-category-item">
+ <p className="card-category-text px-3 py-2">More</p>
+</div>
+)}
             </div>
             <Link to={`/tool/${tool._id}`} className="button flex justify-center items-center mt-6">
               <svg
