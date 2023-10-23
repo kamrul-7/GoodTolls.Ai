@@ -33,8 +33,10 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
         console.error(error);
         alert("An error occurred while fetching categories.");
       });
+  
   };
 
+  
   useEffect(() => {
 
     fetchTools();
@@ -85,7 +87,10 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
               </div>
             </div>
 
-            <div className="mt-4 mb-4" dangerouslySetInnerHTML={{ __html: (tool?.description?.replace(/["\n]/g, '') || '') }}></div>
+            <div className="mt-4 mb-4" 
+    dangerouslySetInnerHTML={{ __html: (tool?.description?.slice(0, 200).replace(/["\n]/g, '') || '') }}
+></div>
+
             <div className="flex gap-3">
               {
                 tool?.SubCategory.map(item =>
@@ -98,7 +103,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
                 )
               }
             </div>
-            <Link to='/tool' className="button flex justify-center items-center mt-6">
+            <Link to={`/tool/${tool._id}`}className="button flex justify-center items-center mt-6">
               <svg
                 width="20px"
                 height="20px"

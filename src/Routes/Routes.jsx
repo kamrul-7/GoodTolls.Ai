@@ -64,8 +64,9 @@ export const router = createBrowserRouter([
           element: <Review/>
         },
         {
-          path: '/tool',
-          element: <SingleTool></SingleTool>
+          path: '/tool/:id',
+          element: <SingleTool></SingleTool>,
+          loader: ({ params }) => fetch(`http://localhost:3000/tools/${params.id}`)
         },
         {
           path: '/tst',
