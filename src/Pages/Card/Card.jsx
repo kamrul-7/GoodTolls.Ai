@@ -1,24 +1,20 @@
 import React, { useState, useEffect } from "react";
-import Cookies from "js-cookie";
 import "./Card.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
-import { faUnlock } from "@fortawesome/free-solid-svg-icons"; // Import the unlock icon
+import { faUnlock } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-
 const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
-  const [isClicked, setIsClicked] = useState(Cookies.get("myHeartCookie") === "true");
   const [tools, setTools] = useState([]);
   const [lastElem, setLastElem] = useState(0);
   const [searchStat, setSearchState] = useState(false);
 
-
   if (searchData.length > 0 && searchStat === false) {
-    setSearchState(true)
+    setSearchState(true);
   }
   if (searchData.length === 0 && searchStat === true) {
-    setSearchState(false)
+    setSearchState(false);
   }
 
   const fetchTools = () => {
@@ -26,38 +22,26 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
       .then((res) => res.json())
       .then((data) => {
         setTools(data);
-        setLastElem(data.length - 1)
-        getToolsCount(data.length)
+        setLastElem(data.length - 1);
+        getToolsCount(data.length);
       })
       .catch((error) => {
         console.error(error);
         alert("An error occurred while fetching categories.");
       });
-  
   };
 
-  
   useEffect(() => {
-
     fetchTools();
-
   }, []);
 
-
-  let toolsCount = 0;
-
   const component = (tool, indx) => {
-    toolsCount++;
-    if (tool == null) {
-      toolsCount--;
-    }
-    if (indx === lastElem) {
-      getToolsCount(toolsCount)
-    }
     if (tool) {
+      const storageKey = `myHeartClicked-${tool._id}`;
+      const isClicked = loadStateFromLocalStorage(storageKey);
+
       return (
         <div className="card size bg-base-100 shadow-xl mb-24 md:mx-0 mx-auto">
-
           <figure className="relative">
             <img
               src={`http://localhost:3000/uploads/${tool?.image}`}
@@ -66,11 +50,15 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
               style={{ width: "344px", height: "240px" }}
             />
 
-            <div onClick={handleClick} className="md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] left-[268px] bg-white">
-              <div className="">
-                {isClicked ? <AiOutlineHeart className="w-5 h-5 " /> : <AiFillHeart className="w-5 h-5 " color="red" />}
-              </div>
-            </div>
+<div
+  onClick={() => handleClick(storageKey)}
+  className={`md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] left-[268px] bg-white`}
+>
+  <div className="">
+    {isClicked ? <AiOutlineHeart className="w-5 h-5" /> : <AiFillHeart className="w-5 h-5" color="red" />}
+  </div>
+</div>
+
           </figure>
           <div className="h-[243] mt-8">
             <div className="flex justify-between">
@@ -87,27 +75,28 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
               </div>
             </div>
 
-            <div className="mt-4 mb-4" 
-    dangerouslySetInnerHTML={{ __html: (tool?.description?.slice(0, 139).replace(/["\n]/g, '') || '') }}
-></div>
+            <div
+              className="h-[65px] mt-4 mb-4"
+              dangerouslySetInnerHTML={{
+                __html: (tool?.description?.slice(0, 139).replace(/["\n]/g, '') || ''),
+              }}
+            ></div>
 
-            <div className="flex gap-3">
-              {
-                tool?.SubCategory.slice(0, 3).map((item, index) =>
-
-                  <div className="flex justify-between grid-cols-4 gap-1" key={index}>
-
-                    <div className="card-category-item"> <p className="card-category-text px-3 py-2">{item}</p></div>
-
+            <div className="flex gap-3 mt-8">
+              {tool?.SubCategory.slice(0, 3).map((item) => (
+                <div className="flex justify-between grid-cols-4 gap-1">
+                  <div className="card-category-item">
+                    <p className="card-category-text px-3 py-2">{item}</p>
                   </div>
-                )
-              }
-              {tool?.SubCategory.length > 4 && (
- <div className="card-category-item"> <p className="card-category-text px-3 py-2">Show More</p></div>
-
+                </div>
+              ))}
+              {tool?.SubCategory.length > 3 && (
+ <div className="card-category-item">
+ <p className="card-category-text px-3 py-2">More</p>
+</div>
 )}
             </div>
-            <Link to={`/tool/${tool._id}`}className="button  flex justify-center items-center mt-6">
+            <Link to={`/tool/${tool._id}`} className="button flex justify-center items-center mt-6">
               <svg
                 width="20px"
                 height="20px"
@@ -123,64 +112,50 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
             </Link>
           </div>
         </div>
-      )
+      );
     }
-    return null
-  }
-
-
-
-  useEffect(() => {
-
-    setIsClicked(Cookies.get("myHeartCookie") === "true");
-  }, []);
-
-  const handleClick = () => {
-
-    setIsClicked(!isClicked);
-    Cookies.set("myHeartCookie", !isClicked, { expires: 365 });
+    return null;
   };
-  const divClass = `md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] left-[268px] ${isClicked ? "bg-[#FF0000]" : "bg-white"}`;
+
+  const handleClick = (storageKey) => {
+    const isClicked = loadStateFromLocalStorage(storageKey);
+    localStorage.setItem(storageKey, String(!isClicked));
+    forceUpdate(); // Add this to force a re-render
+  };
+
+  const loadStateFromLocalStorage = (storageKey) => {
+    const isClicked = localStorage.getItem(storageKey) === "true";
+    return isClicked;
+  };
+
+  const [updateState, setUpdateState] = useState(0);
+  const forceUpdate = () => setUpdateState(updateState + 1);
 
   return (
-
-
-
     <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1">
-      {
-        tools.map((tool, indx) => {
-          if (searchStat) {
-            if(tool?.toolName === searchData){
-              return component(tool, indx)
-            }
-            else return component(null, indx)
+      {tools.map((tool, indx) => {
+        if (searchStat) {
+          if (tool?.toolName === searchData) {
+            return component(tool, indx);
+          } else return component(null, indx);
+        } else {
+          if (selectedSub.length !== 0 && sortOption !== 'All') {
+            if (tool?.SubCategory.includes(selectedSub) && tool?.priceType.includes(sortOption)) {
+              return component(tool, indx);
+            } else return component(null, indx);
+          } else if (selectedSub.length !== 0 && sortOption === 'All') {
+            if (tool?.SubCategory.includes(selectedSub)) {
+              return component(tool, indx);
+            } else return component(null, indx);
+          } else if (selectedSub.length === 0 && sortOption !== 'All') {
+            if (tool?.priceType.includes(sortOption)) {
+              return component(tool, indx);
+            } else return component(null, indx);
+          } else {
+            return component(tool, indx);
           }
-          else {
-            if (selectedSub.length != 0 && sortOption !== 'All') {
-              if (tool?.SubCategory.includes(selectedSub) && tool?.priceType.includes(sortOption)) {
-                return component(tool, indx)
-              }
-              else return component(null, indx)
-            }
-            else if (selectedSub.length != 0 && sortOption === 'All') {
-              if (tool?.SubCategory.includes(selectedSub)) {
-                return component(tool, indx)
-              }
-              else return component(null, indx)
-            }
-            else if (selectedSub.length === 0 && sortOption !== 'All') {
-              if (tool?.priceType.includes(sortOption)) {
-                return component(tool, indx)
-              }
-              else return component(null, indx)
-            }
-            else {
-              return component(tool, indx)
-            }
-          }
-
-        })
-      }
+        }
+      })}
     </div>
   );
 };

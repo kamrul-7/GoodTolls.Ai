@@ -451,7 +451,7 @@ const Rating = ({card}) => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="mt-12">
             <hr />
           </div>
       <div>
