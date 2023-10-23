@@ -93,13 +93,9 @@ const Card = ({getToolsCount, selectedSub, searchData}) => {
             </div>
           </div>
          
-<<<<<<< HEAD
           <div className="mt-4 mb-4" 
           dangerouslySetInnerHTML={{ __html: (tool?.description?.replace(/["\n]/g, '') || '') }}
           ></div>
-=======
-          <div className="mt-4 mb-4" dangerouslySetInnerHTML={{ __html: (tool?.description?.replace(/["\n]/g, '') || '').split(' ').slice(0, 15).join(' ') }}></div>
->>>>>>> 5ec14f9a2367ed9dff10068cd376f3cd71a5d558
 <div className="flex gap-3">
 
 {

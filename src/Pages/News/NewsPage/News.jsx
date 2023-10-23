@@ -20,7 +20,7 @@ const News = () => {
             console.error('Error fetching data:', error);
           });
       }, []);
-      console.log(news);
+    
     return (
         <div className='news mb-8'>
             <div className='flex items-center mt[34px] ms-8'>
