@@ -94,8 +94,9 @@ const Card = ({getToolsCount, selectedSub, searchData}) => {
           </div>
          
           <div className="mt-4 mb-4" 
-          dangerouslySetInnerHTML={{ __html: (tool?.description?.replace(/["\n]/g, '') || '') }}
-          ></div>
+    dangerouslySetInnerHTML={{ __html: (tool?.description?.slice(0, 160).replace(/["\n]/g, '') || '') }}
+></div>
+
 <div className="flex gap-3">
 
 {
@@ -109,7 +110,7 @@ const Card = ({getToolsCount, selectedSub, searchData}) => {
           )
 }
 </div>
-          <Link to='/tool' className="button flex justify-center items-center mt-6">
+          <Link  to={`/tool/${tool._id}`} className="button flex justify-center items-center mt-6">
             <svg
               width="20px"
               height="20px"

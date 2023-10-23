@@ -64,7 +64,7 @@ export const router = createBrowserRouter([
           element: <Review/>
         },
         {
-          path: '/tool',
+          path: '/tool/:id',
           element: <SingleTool></SingleTool>
         },
         {
