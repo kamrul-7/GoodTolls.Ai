@@ -2,7 +2,7 @@ import "@smastrom/react-rating/style.css";
 import { Rating } from "@smastrom/react-rating";
 import './SingleReview.css'
 
-const SingleReview = ({ name = "None", rating = 0, date = 'Sep 16, 2023', comment = "None" }) => {
+const SingleReview = ({ name = "None", rating = 0, date = 'Jan 1, 1970', comment = "None" }) => {
 
     const StarDrawing = (
         <svg width="22" height="20" viewBox="0 0 22 20" xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +37,7 @@ const SingleReview = ({ name = "None", rating = 0, date = 'Sep 16, 2023', commen
                 {date}
             </div>
             <div className="text-[#4D5761] text-sm mb-6 h-[84px] overflow-y-scroll hide-scrollbar">
-                {comment}
+                <div dangerouslySetInnerHTML={{__html: comment}}></div>
             </div>
 
 

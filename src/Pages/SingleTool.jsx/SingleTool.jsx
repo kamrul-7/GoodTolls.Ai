@@ -4,7 +4,6 @@ import Rattingg from '../Rating/Rating';
 import { useParams } from "react-router-dom";
 
 const SingleTool = () => {
-    const [itemName, setItemName] = useState("Chapple");
     const { id } = useParams();
     const [cards, setCards] = useState(null);
 
@@ -33,7 +32,7 @@ console.log(cards)
             
             <div className='m-4 md:m-0 border border-[#E5E7EB] rounded-2xl'>
                 <Rattingg card={cards}/>
-                <Rate item={itemName}></Rate>
+                <Rate id={cards._id} name={cards.toolName}></Rate>
             </div>
         </div>
     );

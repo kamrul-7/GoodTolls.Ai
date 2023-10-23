@@ -6,7 +6,7 @@ import SingleReview from "../SingleReview/SingleReview";
 import { AuthContext } from "../Context/AuthProvider";
 import Review from "../Review/Review";
 
-const Rate = () => {
+const Rate = ({id,name}) => {
     const { user } = useContext(AuthContext);
     const { toggle, setTrue, setFalse } = useContext(AuthContext);
     const [rating, setRating] = useState(0);
@@ -16,9 +16,16 @@ const Rate = () => {
     const [iiistar, setIiistar] = useState(0)
     const [ivstar, setIvstar] = useState(0)
     const [vstar, setVstar] = useState(0)
-    const [itemName, setItemName] = useState("Chapple");
     const [reviews, setReviews] = useState([])
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [available, setAvailable] = useState(false);
+
+
+    useEffect(()=>{
+        fetch(`http://localhost:3000/review/${id}/${user.email}`)
+        .then(res=>res.json())
+        .then(data=> setAvailable(data))
+    },[user])
 
 
     //Responsive rating part
@@ -95,7 +102,7 @@ const Rate = () => {
 
 
     useEffect(() => {
-        fetch('/rating.json')
+        fetch(`http://localhost:3000/reviews/${id}`)
             .then(data => data.json())
             .then(info => setReviews(info.reverse()))
     }, [])
@@ -164,13 +171,24 @@ const Rate = () => {
 
 
     const handleClick = () => {
-        if(user){
+        if(user && available){
             setTrue();
-        }else{
-            alert('Login to proceed')
+        }else if(user){
+            alert('You have already reviewed this product')
+        } else {
+            alert('Log in to proceed')
         }
         
     }
+
+    const customAvailable = ()=>{
+        setAvailable(false)
+        fetch(`http://localhost:3000/reviews/${id}`)
+            .then(data => data.json())
+            .then(info => setReviews(info.reverse()))
+    }
+
+    useEffect(()=>console.log(reviews),[reviews])
 
     return (
         <div>
@@ -182,7 +200,7 @@ const Rate = () => {
 
                         {/* Average rating */}
                         <div className="md:flex text-center items-center pb-7 mb-7 border-b border-[#E5E7EB]">
-                            <span className="font-bold text-[32px]">{avgRating ? avgRating : '5.9'}</span>
+                            <span className="font-bold text-[32px]">{isNaN(avgRating) ? '0.0' : avgRating}</span>
                             <Rating
                                 style={{ display: "inline-flex", maxWidth: "126px", maxHeight: "22px", gap: "4px", margin: "0px 12px 0px 12px" }}
                                 value={avgRating}
@@ -209,7 +227,7 @@ const Rate = () => {
                     <div className="relative">
                         {/* Rate item */}
                         <div className="md:absolute top-0 right-0 p-11 mt-7 md:mt-0 border rounded-[20px] w-full md:w-[535px] h-fit md:h-[375px]">
-                            <div className="text-2xl font-bold mb-[20px]">What do you think about {itemName}?</div>
+                            <div className="text-2xl font-bold mb-[20px]">What do you think about {name}?</div>
                             <div className="text-sm mb-[32px]">If you have a moment, it would be greatly appreciated if you<br />could leave a review to share your thoughts with the<br />community. Your feedback is valuable to us and helps us<br />improve our services. Thank you!</div>
                             {/* Stars */}
                             <div className=" w-full">
@@ -225,7 +243,7 @@ const Rate = () => {
                             {/* Rate button */}
                             <div onClick={handleClick} className="w-full flex justify-center">
                                 <button className="border border-[#E5E7EB] rounded-xl px-[34px] py-[16px] flex items-center justify-center w-fit">
-                                    <span className="text-base font-medium mr-4">Rate {itemName}</span>
+                                    <span className="text-base font-medium mr-4">Rate {name}</span>
                                     <svg className="h-5" width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M0.326234 1.94821L0.293166 1.85842C0.149117 1.46766 0.171251 1.13289 0.359132 0.863644C0.517803 0.635893 0.780383 0.5 1.06137 0.5C1.28963 0.5 1.51241 0.584108 1.74131 0.756758L15.2421 9.39944L15.3054 9.44469C15.6199 9.69366 15.801 10.0554 15.8022 10.4372C15.8035 10.819 15.6246 11.1818 15.3117 11.4329L15.2813 11.4574L1.7427 20.2389C1.51299 20.4145 1.28896 20.5 1.05884 20.5C0.778961 20.5 0.51716 20.3646 0.358388 20.1381C0.170609 19.8699 0.147322 19.536 0.289409 19.1453L0.321733 19.0563L5.948 10.6871C5.97717 10.5466 5.9768 10.3354 5.94708 10.1947L0.326234 1.94821ZM3.34021 17.3509L13.9905 10.4428L13.9181 10.3964H7.521C7.52598 10.7117 7.48289 11.0297 7.38927 11.2873L7.35685 11.3763L3.34021 17.3509Z" fill="#4D5761" />
                                     </svg>
@@ -237,7 +255,7 @@ const Rate = () => {
 
 
                             </div>
-                            { toggle && <Review userRating={rating}></Review>}
+                            { toggle && available && <Review func={customAvailable} userRating={rating} id={id} gmail={user.email} userName={user.displayName} product={name}></Review>}
                         </div>
 
                     </div>
@@ -251,7 +269,7 @@ const Rate = () => {
                     </div>
                     {/* user reviews */}
                     <div className="md:grid grid-cols-2 mb-14 relative">
-                        <SingleReview name={reviews[reviewCount]?.name} rating={reviews[reviewCount]?.rating} date={reviews[reviewCount]?.date} comment={reviews[reviewCount]?.comment}></SingleReview>
+                        <SingleReview name={reviews[reviewCount]?.name} rating={reviews[reviewCount]?.rating} date={reviews[reviewCount]?.date} comment={reviews[reviewCount]?.comment }></SingleReview>
 
 
                         {
