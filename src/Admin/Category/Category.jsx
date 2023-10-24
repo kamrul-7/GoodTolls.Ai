@@ -24,7 +24,7 @@ const Category = () => {
       })
       .catch((error) => {
         console.error(error);
-        alert("An error occurred while fetching categories.");
+        
       });
   };
 
@@ -96,10 +96,7 @@ const Category = () => {
               alert("Internal Server Error");
             }
           })
-          .catch((error) => {
-            console.error(error);
-            alert("An error occurred while updating the category.");
-          });
+          
   
         setItemToDelete(null);
         closeModal();
@@ -124,10 +121,7 @@ const Category = () => {
             alert("Internal Server Error");
           }
         })
-        .catch((error) => {
-          console.error(error);
-          alert("An error occurred while deleting the category.");
-        });
+        
       setItemToDelete(null);
       closeModal();
     }
@@ -143,7 +137,19 @@ const Category = () => {
     const modal = document.getElementById("my_modal_18");
     modal.showModal();
   };
-
+ const crossButton = () =>{
+  console.log("hello");
+    setCatName("");
+    setTitle("");
+    setMessage("");
+    
+ }
+ const cancelModal = (modalId) => {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.close();
+  }
+};
 
   return (
     <div className="mt-[35px] w-full px-8">
@@ -362,22 +368,25 @@ const Category = () => {
                   className="btn-circle btn-ghost absolute top-4 right-4 text-2xl"
                   type="button"
                   onClick={() => {
+                    
                     const modal = document.getElementById("my_modal_22");
                     modal.close();
+                    
                   }}
                 >
                   ✕
                 </button>
                 <div className="flex justify-between w-[618px] mx-auto">
-                  <button
-                    onClick={() => {
-                      const modal = document.getElementById("my_modal_22");
-                      modal.close();
-                    }}
-                    className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
-                  >
-                    Cancel
-                  </button>
+                <button
+  onClick={() => {
+    crossButton(); // Call the function to clear form data
+    closeModal("my_modal_22"); // Close the modal
+  }}
+  className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
+  type="button" // Set type to "button" to prevent form submission
+>
+  Cancel
+</button>
                   <button
                     onClick={() => {
                       const modal = document.getElementById("my_modal_22");
@@ -479,6 +488,7 @@ const Category = () => {
                     className="btn-circle btn-ghost absolute top-4 right-4 text-2xl"
                     type="button"
                     onClick={() => {
+                      crossButton()
                       const modal = document.getElementById("my_modal_18");
                       modal.close();
                     }}
@@ -486,17 +496,19 @@ const Category = () => {
                     ✕
                   </button>
                   <div className="flex justify-between w-[618px] mx-auto">
+                  <button
+  onClick={() => {
+    crossButton(); // Call the function to clear form data
+    closeModal("my_modal_22"); // Close the modal
+  }}
+  className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
+  type="button" // Set type to "button" to prevent form submission
+>
+  Cancel
+</button>
+
                     <button
-                      onClick={() => {
-                        const modal = document.getElementById("my_modal_18");
-                        modal.close();
-                      }}
-                      className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      onClick={handleUpdate}
+                      // onClick={handleUpdate}
                       type="submit"
                       className=" w-[48%] my-6 px-4 py-2 bg-[#7F56D9] text-white rounded-md"
                     >
