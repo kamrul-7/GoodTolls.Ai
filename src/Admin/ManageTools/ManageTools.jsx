@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,modalRef } from "react";
 import Pagination from "../Category/Pagination";
 import { useNavigate } from "react-router-dom";
 
@@ -8,11 +8,15 @@ const ManageTools = () => {
     const handleClick = () => {
         navigate('/dashboard/addtool')
     }
+    
     useEffect(() => {
         fetch('http://localhost:3000/tools')
             .then(res => res.json())
             .then(data => setTools(data))
     }, [])
+    const handleDelete = () => {
+        console.log(itemToDelete);
+    }
 
     return (
         <div className='mt-[35px] w-full px-8'>
@@ -70,7 +74,15 @@ const ManageTools = () => {
                                 <td className='px-4 py-4 flex items-center justify-center hover:mt-[1px] hover:-mb-[1px] hover:-translate-y-[0.5px] hover:bg-[#F9FAFB]'>
 
                                     {/* Delete button */}
-                                    <button className="p-[10px] mr-1 w-[40px] hover:-translate-y-[0.5px]">
+                                    <button 
+                                    onClick={() => {
+                                        // Open the modal
+                                        document.getElementById("my_modal_14").showModal();
+                                    
+                                        // Set the data in your state (setItemToDelete)
+                                        setItemToDelete(items);
+                                      }}
+                                    className="p-[10px] mr-1 w-[40px] hover:-translate-y-[0.5px]">
                                         <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M12.3333 4.99999V4.33332C12.3333 3.3999 12.3333 2.93319 12.1517 2.57667C11.9919 2.26307 11.7369 2.0081 11.4233 1.84831C11.0668 1.66666 10.6001 1.66666 9.66667 1.66666H8.33333C7.39991 1.66666 6.9332 1.66666 6.57668 1.84831C6.26308 2.0081 6.00811 2.26307 5.84832 2.57667C5.66667 2.93319 5.66667 3.3999 5.66667 4.33332V4.99999M7.33333 9.58332V13.75M10.6667 9.58332V13.75M1.5 4.99999H16.5M14.8333 4.99999V14.3333C14.8333 15.7335 14.8333 16.4335 14.5608 16.9683C14.3212 17.4387 13.9387 17.8212 13.4683 18.0608C12.9335 18.3333 12.2335 18.3333 10.8333 18.3333H7.16667C5.76654 18.3333 5.06647 18.3333 4.53169 18.0608C4.06129 17.8212 3.67883 17.4387 3.43915 16.9683C3.16667 16.4335 3.16667 15.7335 3.16667 14.3333V4.99999" stroke="#475467" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
                                         </svg>
@@ -95,6 +107,89 @@ const ManageTools = () => {
                     <Pagination totalPages={10} />
                 </div>
             </div>
+
+            <div>
+        <div>
+          <dialog
+            ref={modalRef}
+            id="my_modal_14"
+            className="modal modal-bottom sm:modal-middle"
+          >
+            <div className="modal-box p-4 bg-white rounded-lg shadow-lg">
+              <svg
+                width="56"
+                height="56"
+                viewBox="0 0 56 56"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="4"
+                  y="4"
+                  width="48"
+                  height="48"
+                  rx="24"
+                  fill="#FEE4E2"
+                />
+                <path
+                  d="M32 22V21.2C32 20.0799 32 19.5198 31.782 19.092C31.5903 18.7157 31.2843 18.4097 30.908 18.218C30.4802 18 29.9201 18 28.8 18H27.2C26.0799 18 25.5198 18 25.092 18.218C24.7157 18.4097 24.4097 18.7157 24.218 19.092C24 19.5198 24 20.0799 24 21.2V22M26 27.5V32.5M30 27.5V32.5M19 22H37M35 22V33.2C35 34.8802 35 35.7202 34.673 36.362C34.3854 36.9265 33.9265 37.3854 33.362 37.673C32.7202 38 31.8802 38 30.2 38H25.8C24.1198 38 23.2798 38 22.638 37.673C22.0735 37.3854 21.6146 36.9265 21.327 36.362C21 35.7202 21 34.8802 21 33.2V22"
+                  stroke="#D92D20"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <rect
+                  x="4"
+                  y="4"
+                  width="48"
+                  height="48"
+                  rx="24"
+                  stroke="#FEF3F2"
+                  strokeWidth="8"
+                />
+              </svg>
+
+              <h1 className="py-4 text-lg font-semibold">Delete Tool</h1>
+              <p className="py-4 text-lg font-semibold">
+                Are you sure you want to delete this Tool? This action
+                cannot be undone.
+              </p>
+              <footer className="mt-4 flex justify-end space-x-2">
+                <button
+                  className="btn-circle btn-ghost absolute top-4 right-4 text-2xl"
+                  type="button"
+                  onClick={() => {
+                    const modal = document.getElementById("my_modal_14");
+                    modal.close();
+                  }}
+                >
+                  ✕
+                </button>
+                <div className="flex justify-between w-[618px] mx-auto">
+                  <button
+                    onClick={() => {
+                      const modal = document.getElementById("my_modal_14");
+                      modal.close();
+                    }}
+                    className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleDelete}
+                    type="submit"
+                    className=" w-[48%] my-6 px-4 py-2 bg-[#D92D20] text-white rounded-md"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </footer>
+
+              <div className="modal-action mt-4"></div>
+            </div>
+          </dialog>
+        </div>
+      </div>
         </div>
     );
 };
