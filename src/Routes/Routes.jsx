@@ -25,6 +25,7 @@ import AddTool from "../Admin/AddTool/AddTool";
 import AddNews from "../Admin/AddNews/AddNews";
 import Default from "../Default";
 import Test from "../test";
+import EditNews from "../Admin/EditNews/EditNews";
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -118,6 +119,10 @@ export const router = createBrowserRouter([
         {
           path:'addnews',
           element:<AddNews></AddNews>
+        },
+        {
+          path:'editnews',
+          element:<EditNews></EditNews>
         }
       ]
     },
