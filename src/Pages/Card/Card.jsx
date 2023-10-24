@@ -150,7 +150,8 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
   const forceUpdate = () => setUpdateState(updateState + 1);
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1">
-      {tools.map((tool, indx) => {
+      {
+      tools.map((tool, indx) => {
         if (searchStat) {
           if (tool?.toolName) {
             if (tool?.toolName.toLowerCase().includes(searchData.toLowerCase())) {
