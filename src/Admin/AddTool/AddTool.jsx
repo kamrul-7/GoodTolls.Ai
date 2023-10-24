@@ -409,9 +409,9 @@ const AddTool = () => {
                         <span>Tool Screenshot</span>
                         <div className='text-sm font-normal text[#475467]'>This will be displayed on tool page</div>
                     </div>
-                    <div className=' px-[14px] h-fit flex items-center gap-5'>
+                    <div className={` px-[14px] h-fit flex items-center gap-5`}>
 
-                        <div className='w-[200px] h-[126px] rounded-xl'>
+                        <div className={`${file === null ? 'hidden' : 'block'} w-[200px] h-[126px] rounded-xl`}>
                             <img className='w-[200px] h-[126px] rounded-xl' src={image ? image : 'https://imgv3.fotor.com/images/videoImage/wonderland-girl-generated-by-Fotor-ai-art-generator_2023-05-15-104543_ibow.jpg'} alt="Upload a image to see preview" />
                         </div>
                         {/* https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png */}
@@ -555,7 +555,7 @@ const AddTool = () => {
                             onEditorStateChange={handleDesChange}
                             wrapperClassName="full-wrap-tool"
                             editorClassName="editor-wrap-tool"
-                            toolbarClassName="toolbar-wrap"> </Editor>
+                            toolbarClassName="toolbar-wrap-tool"> </Editor>
 
                         <div className='text-[#475467] text-sm ml-5 -mt-5'>
                             {finalDesChars} characters left
@@ -579,7 +579,7 @@ const AddTool = () => {
                             onEditorStateChange={handlWorkChange}
                             wrapperClassName="full-wrap-tool"
                             editorClassName="editor-wrap-tool"
-                            toolbarClassName="toolbar-wrap"> </Editor>
+                            toolbarClassName="toolbar-wrap-tool"> </Editor>
 
                         <div className='text-[#475467] text-sm ml-5 -mt-5'>
                             {finalWorkChars} characters left

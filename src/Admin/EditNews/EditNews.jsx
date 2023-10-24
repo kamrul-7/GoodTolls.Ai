@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FileUploader } from "react-drag-drop-files";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,10 +7,14 @@ import draftToHtml from "draftjs-to-html";
 import { Editor } from 'react-draft-wysiwyg';
 import { ContentState, EditorState, convertFromHTML, convertToRaw } from "draft-js";
 import htmlToDraft from 'html-to-draftjs';
-import './AddNews.css'
+import '../AddNews/AddNews.css'
 
-const AddNews = () => {
+const EditNews = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const newsData = location.state;
+    const [newsName, setNewsName] = useState(newsData.newsTitle);
+    console.log(newsData);
     const handleClick = () => {
         navigate('/dashboard/manageNews')
     }
@@ -21,14 +25,13 @@ const AddNews = () => {
     const [finalDesChars, setFinalDesChars] = useState(0)
 
     useEffect(() => {
-        const contentBlock = htmlToDraft(initDes)
-
+        const contentBlock = htmlToDraft(JSON.parse(newsData.newsBody))
         if (contentBlock) {
             const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
             const editorState = EditorState.createWithContent(contentState);
             setEditorDesState(editorState)
         }
-    }, [initDes])
+    }, [])
 
     const handleDesChange = (data) => {
         setEditorDesState(data);
@@ -58,6 +61,8 @@ const AddNews = () => {
         return totalCharacters;
     }
 
+    
+
     useEffect(() => {
 
         // Create a temporary DOM element to parse the HTML string
@@ -78,11 +83,18 @@ const AddNews = () => {
 
     const [file, setFile] = useState(null);
     const [image, setImage] = useState(null);
+    useEffect(()=>{
+        setImage(`http://localhost:3000/uploads/${newsData.image}`)
+    },[])
     const handleFileChange = (file) => {
         console.log(file);
         setFile(file);
         setImage(URL.createObjectURL(file));
     };
+
+    const handleNameChange = (event)=>{
+        setNewsName(event.target.value)
+    }
 
     const date = () => {
         const today = new Date();
@@ -94,19 +106,28 @@ const AddNews = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        const toolName = event.target.toolName.value;
-        const image = file;
+        const toolName = newsName;
+        let imageId = newsData.image;
+        let image = null;
+        if(file !== null){
+            image = file;
+        }
         const description = finalDes.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">").replace(/\n/g, "").replace(/<img/, "<img style=' border-radius: 12px;'");
 
         
 
-        if (toolName.length != 0 && file != null && description) {
+        if (toolName.length != 0  && imageId != null && description) {
             const formdata = new FormData()
             formdata.append('newsTitle', toolName)
-            formdata.append('image', file)
+            if(file != null){
+                formdata.append('image', file)
+            }
+            formdata.append('imageId', imageId)
             formdata.append('newsBody', description)
             formdata.append('date', date())
-            fetch("http://localhost:3000/newnews", {
+            formdata.append('newsId', newsData._id)
+            console.log(formdata);
+            fetch("http://localhost:3000/editnews", {
                 method: "POST",
                 headers: {
                 },
@@ -115,11 +136,12 @@ const AddNews = () => {
             .then((res) => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    event.target.reset()
+                    setNewsName('')
                     setImage(null)
                     setFile(null)
                     setEditorDesState(EditorState.createEmpty())
-                    alert('New news data submitted')
+                    alert('News edited')
+                    navigate('/dashboard/manageNews')
                 }
             })
         } else{
@@ -155,7 +177,7 @@ const AddNews = () => {
             {/* Page Name section */}
             <div className='w-full flex items-center justify-between mb-5'>
                 <span className='text-[30px] font-semibold'>
-                    Add News
+                    Edit News
                 </span>
                 {/* <button className='py-[10px] px-[14px] border rounded-lg bg-[#7F56D9] hover:bg-[#6d4ab8] shadow-sm duration-300 text-white text-sm font-semibold'>
                     Add Category
@@ -186,7 +208,7 @@ const AddNews = () => {
                 <div className='w-full flex pb-5 mb-5 border-b border-[#EAECF0]'>
                     <div className=' w-4/12 text-sm font-semibold text-[#344054]'>News Title</div>
                     <div className='py-[10px] px-[14px] border rounded-lg h-[44px] w-[512px]'>
-                        <input name='toolName' placeholder="Chapple" className=' h-full my-auto w-full focus:outline-0 text-base text-[#101828]' type="text" />
+                        <input onChange={handleNameChange} value={newsName} name='toolName' placeholder="Chapple" className=' h-full my-auto w-full focus:outline-0 text-base text-[#101828]' type="text" />
                     </div>
                 </div>
 
@@ -198,7 +220,7 @@ const AddNews = () => {
                     </div>
                     <div className=' px-[14px] h-fit flex items-center gap-5'>
 
-                        <div className={`${file === null ? 'hidden' : 'block'} w-[200px] h-[126px] rounded-xl`}>
+                        <div className={`${image === null ? 'hidden' : 'block'} w-[200px] h-[126px] rounded-xl`}>
                             <img className='w-[200px] h-[126px] rounded-xl' src={image ? image : 'https://imgv3.fotor.com/images/videoImage/wonderland-girl-generated-by-Fotor-ai-art-generator_2023-05-15-104543_ibow.jpg'} alt="Upload a image to see preview" />
                         </div>
                         {/* https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png */}
@@ -267,4 +289,4 @@ const AddNews = () => {
     );
 };
 
-export default AddNews;
+export default EditNews;
