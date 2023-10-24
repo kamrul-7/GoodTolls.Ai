@@ -111,13 +111,13 @@ const SingleNews = () => {
 
                     <div className='category mt-10 mb-10'>
                        <div>Tags</div> 
-                       <div className='grid grid-cols-3 mt-4' >
-                            <p className='category-item mb-4 '>hello</p>
-                            <p className='category-item mb-4 '>hello</p>
-                            <p className='category-item mb-4 '>hello</p>
-                            <p className='category-item mb-4 '>hello</p>
-                            <p className='category-item mb-4 '>hello</p>
-                            <p className='category-item mb-4 '>hello</p>
+                       <div className='grid grid-cols-3 mt-4 gap-4' >
+                            <p className='category-item mb-4 '>Ai Detection</p>
+                            <p className='category-item mb-4 '>Github</p>
+                            <p className='category-item mb-4 '>Image</p>
+                            <p className='category-item mb-4 '>Machine</p>
+                            <p className='category-item mb-4 '>Inspiration</p>
+                            <p className='category-item mb-4 '>Code</p>
                        </div>
                     </div>
                 </div>
