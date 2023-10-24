@@ -314,8 +314,8 @@ const UserManagement = () => {
         </table>
         {/* pagination section */}
         <div>
-          <Pagination totalPages={10} />
-        </div>
+                <Pagination news={news} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+            </div>
       </div>
       {/* Add user to the list of users */}
       <div>
