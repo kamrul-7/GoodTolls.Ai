@@ -144,12 +144,6 @@ const Category = () => {
     setMessage("");
     
  }
- const cancelModal = (modalId) => {
-  const modal = document.getElementById(modalId);
-  if (modal) {
-    modal.close();
-  }
-};
 
   return (
     <div className="mt-[35px] w-full px-8">
@@ -581,7 +575,7 @@ const Category = () => {
                   ✕
                 </button>
                 <div className="flex justify-between w-[618px] mx-auto">
-                  <button
+                <button
                     onClick={() => {
                       const modal = document.getElementById("my_modal_14");
                       modal.close();
