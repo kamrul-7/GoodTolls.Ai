@@ -69,10 +69,6 @@ export const router = createBrowserRouter([
           loader: ({ params }) => fetch(`http://localhost:3000/tools/${params.id}`)
         },
         {
-          path: '/tst',
-          element: <Test></Test>
-        },
-        {
           path: '/rating',
           element: <Rating/>
         },
