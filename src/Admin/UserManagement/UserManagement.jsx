@@ -6,14 +6,15 @@ const UserManagement = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [users, setUsers] = useState([]);
-  const [itemToDelete, setItemToDelete] = useState(null);
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [userType, setUserType] = useState("Admin");
   const [updatedName, setUpdatedName] = useState("");
+  const [itemToDelete, setItemToDelete] = useState(null);
   const [updatedEmail, setUpdatedEmail] = useState("");
   const [updatedPassword, setUpdatedPassword] = useState("");
-
+  console.log(itemToDelete);
+console.log(itemToDelete);
   const crossButton = () =>{
     console.log("hello");
       setUserName("");
@@ -42,27 +43,29 @@ const UserManagement = () => {
 
   useEffect(() => console.log(users), [users])
 
-  const handleDelete = (item) => {
-    console.log(item._id);
-
-    fetch(`http://localhost:3000/users/${item._id}`, {
-      method: "DELETE",
-    })
-      .then((res) => {
-        if (res.ok) {
-          // User deleted successfully, update the user list
-          fetchUsers();
-        } else if (res.status === 404) {
-          alert("User not found");
-        } else {
-          alert("Internal Server Error");
-        }
+  const handleDelete = () => {
+    console.log(itemToDelete);
+    if (itemToDelete) {
+      const itemId = itemToDelete._id;
+      console.log(itemId);
+      fetch(`http://localhost:3000/users/${itemId}`, {
+        method: "DELETE",
       })
-      .catch((error) => {
-        console.error(error);
-        alert("An error occurred while deleting the user.");
-      });
-  }
+        .then((res) => {
+          if (res.ok) {
+            fetchUsers();
+            toast.success("Category Deleted Successfully");
+          } else if (res.status === 404) {
+            alert("Category not found");
+          } else {
+            alert("Internal Server Error");
+          }
+        })
+        
+      setItemToDelete(null);
+      closeModal();
+    }
+  };
 
   const modalRef = useRef(null);
 
@@ -261,7 +264,9 @@ const UserManagement = () => {
                   document.getElementById("my_modal_14").showModal();
       
                   // Call the handleDelete function with the data you want to delete
-                  handleDelete(item);
+                  setItemToDelete(item)
+                  // itemToDelete(item)
+                  // handleDelete(item);
               }} className="p-[10px] mr-1 w-[40px] hover:-translate-y-[0.5px]">
                 <svg
                   width="18"

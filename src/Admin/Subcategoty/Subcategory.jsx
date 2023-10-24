@@ -6,11 +6,11 @@ const Subcategory = () => {
   const [sub, setSub] = useState([]);
   const [itemToDelete, setItemToDelete] = useState(null);
   const [parent, setParent] = useState([])
-  const [Category, setCategory] = useState([]);
+  const [Category, setCategory] = useState("");
   const [SubCategory, setSubCategory] = useState("");
   const [message, setMessage] = useState("");
   const [Title, setTitle] = useState("");
-  console.log(itemToDelete)
+  // console.log(itemToDelete)
   useEffect(() => {
     fetch('http://localhost:3000/subcategory')
       .then(res => res.json())
@@ -46,7 +46,9 @@ const Subcategory = () => {
       modalRef.current.close();
     }
   };
-
+ const handleChange = (e) => {
+  setCategory(e.target.value)
+ }
   const handleSubmit = (event) => {
     event.preventDefault();
     const category = event.target.category.value;
@@ -122,11 +124,41 @@ const Subcategory = () => {
     }
     
 };
+
   
 
 const handleDelete = () => {
-  console.log(itemToDelete);
+  // console.log(itemToDelete);
 }
+
+
+
+
+
+
+
+
+const openUpdateModal = (items) => {
+  
+  setCategory(items.category);
+  setSubCategory(items.SubCategory);
+  setMessage(items.message);
+  setTitle(items.Title);
+console.log(items.category);
+  // Open the update modal
+  const modal = document.getElementById("my_modal_17");
+  if (modal) {
+    modal.showModal();
+  }
+};
+
+
+const crossButton = () =>{
+console.log("hello");
+  setCatName("");
+  setTitle("");
+  setMessage("");
+};
   return (
     <div className='mt-[35px] w-full px-8'>
       <div>
@@ -194,7 +226,8 @@ const handleDelete = () => {
               <button  onClick={() => {
     // Open the modal
     document.getElementById("my_modal_17").showModal();
-
+    openUpdateModal(items);
+    
     // Set the data in your state (setItemToDelete)
     setItemToDelete(items);
   }} className="p-[10px] w-[40px] hover:-translate-y-[0.5px]">
@@ -338,7 +371,8 @@ const handleDelete = () => {
                     ✕
                   </button>
                   <div className="flex justify-between w-[618px] mx-auto">
-                    <button onClick={() => {
+                    <button onClick={(e) => {
+                      e.preventDefault();
                       const modal = document.getElementById("my_modal_16");
                       modal.close();
                     }} className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2">
@@ -399,7 +433,7 @@ const handleDelete = () => {
                   <div className="space-y-4 relative">
                     <label className="block font-medium text-sm">
                       Parent Category
-                      <select name='category' className="mt-1 p-2 w-full border rounded-md text-base font-normal">
+                      <select name='category' value={Category} onChange={handleChange} className="mt-1 p-2 w-full border rounded-md text-base font-normal">
                         <option selected disabled value="">Select a parent category</option>
                         {
                           parent.map((value, indx) => (<option key={indx} value={value?.Title}>{value?.Title}</option>))
@@ -440,10 +474,13 @@ const handleDelete = () => {
                       placeholder="Category Description" />
                   </label>
                   <footer className="mt-4 flex justify-end space-x-2">
-                    <button
+                  <button
                       className="btn-circle btn-ghost absolute top-4 right-4 text-2xl"
                       type="button"
-                      onClick={closeModal}
+                      onClick={() => {
+                        const modal = document.getElementById("my_modal_17");
+                        modal.close();
+                      }}
                     >
                       ✕
                     </button>
