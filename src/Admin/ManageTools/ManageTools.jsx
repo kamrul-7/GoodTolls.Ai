@@ -13,6 +13,16 @@ const ManageTools = () => {
             .then(res => res.json())
             .then(data => setTools(data))
     }, [])
+    // useEffect(()=>console.log(tools),[tools])
+
+    const handleEdit = (id)=>{
+        console.log(id);
+        if(id){
+            const select = tools.find(n => n._id === id);
+            console.log(select);
+            navigate('/dashboard/edittool', {state : select})
+        }
+    }
 
     return (
         <div className='mt-[35px] w-full px-8'>
@@ -77,7 +87,7 @@ const ManageTools = () => {
                                     </button>
 
                                     {/* Edit button */}
-                                    <button className="p-[10px] w-[40px] hover:-translate-y-[0.5px]">
+                                    <button onClick={()=>handleEdit(value?._id)} className="p-[10px] w-[40px] hover:-translate-y-[0.5px]">
                                         <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M1.39662 15.0964C1.43491 14.7518 1.45405 14.5795 1.50618 14.4185C1.55243 14.2756 1.61778 14.1396 1.70045 14.0142C1.79363 13.8729 1.91621 13.7504 2.16136 13.5052L13.1666 2.49999C14.0871 1.57951 15.5795 1.57951 16.4999 2.49999C17.4204 3.42046 17.4204 4.91285 16.4999 5.83332L5.49469 16.8386C5.24954 17.0837 5.12696 17.2063 4.98566 17.2995C4.86029 17.3821 4.72433 17.4475 4.58146 17.4937C4.42042 17.5459 4.24813 17.565 3.90356 17.6033L1.08325 17.9167L1.39662 15.0964Z" stroke="#475467" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
                                         </svg>

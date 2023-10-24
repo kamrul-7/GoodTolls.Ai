@@ -25,7 +25,7 @@ const EditNews = () => {
     const [finalDesChars, setFinalDesChars] = useState(0)
 
     useEffect(() => {
-        const contentBlock = htmlToDraft(JSON.parse(newsData.newsBody))
+        const contentBlock = htmlToDraft(newsData.newsBody)
         if (contentBlock) {
             const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
             const editorState = EditorState.createWithContent(contentState);
