@@ -242,7 +242,7 @@ const handleDelete = () => {
         </table>
         {/* pagination section */}
         <div >
-          <Pagination totalPages={10} />
+          <Pagination />
         </div>
       </div>
 
