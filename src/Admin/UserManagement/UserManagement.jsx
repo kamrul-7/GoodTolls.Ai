@@ -14,7 +14,14 @@ const UserManagement = () => {
   const [updatedEmail, setUpdatedEmail] = useState("");
   const [updatedPassword, setUpdatedPassword] = useState("");
 
+  const crossButton = () =>{
+    console.log("hello");
+      setUserName("");
+      setEmail("");
+      setPassword("");
 
+      
+   }
   console.log(itemToDelete);
   const fetchUsers = () => {
     fetch("http://localhost:3000/users")
@@ -404,12 +411,19 @@ const UserManagement = () => {
                   ✕
                 </button>
                 <div className="flex justify-between w-[618px] mx-auto">
-                  <button onClick={() => {
-                    const modal = document.getElementById("my_modal_1");
-                    modal.close();
-                  }} className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2">
-                    Cancel
-                  </button>
+                <button
+  onClick={() => {
+    crossButton();
+    const modal = document.getElementById("my_modal_6");
+    modal.close();
+  }}
+  type="button" // Set type to "button" to prevent form submission
+  className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
+>
+  Cancel
+</button>
+
+
                   <button onClick={() => {
                     const modal = document.getElementById("my_modal_1");
                     modal.close();
@@ -509,21 +523,29 @@ const UserManagement = () => {
               <footer className="mt-4 flex justify-end space-x-2">
                 <button
                   className="btn-circle btn-ghost absolute top-4 right-4 text-2xl"
-                  type="button"
+                 
                   onClick={() => {
+                    crossButton();
                     const modal = document.getElementById("my_modal_6");
                     modal.close();
                   }}
+                   type="button"
                 >
                   ✕
                 </button>
                 <div className="flex justify-between w-[618px] mx-auto">
-                  <button onClick={() => {
-                    const modal = document.getElementById("my_modal_6");
-                    modal.close();
-                  }} className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2">
-                    Cancel
-                  </button>
+                <button
+  onClick={() => {
+    crossButton();
+    const modal = document.getElementById("my_modal_1");
+    modal.close();
+  }}
+  type="button" // Set type to "button" to prevent form submission
+  className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
+>
+  Cancel
+</button>
+
                   <button onClick={() => {
                     const modal = document.getElementById("my_modal_6");
                     modal.close();
