@@ -71,6 +71,7 @@ const Review = ({ func, userRating, id, gmail, userName, product }) => {
         if (data.acknowledged) {
           func()
           editorState(EditorState.createEmpty())
+          setFalse()
           closeModal();
         }
       })

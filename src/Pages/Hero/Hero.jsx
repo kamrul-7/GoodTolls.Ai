@@ -67,7 +67,7 @@ const Hero = ({ name, count, getSearchData, }) => {
                   <p className={`hero-subtitle my-6`}>Find the best AI tools for your needs. Go to the filter <br /> and choose your  Category.  </p>
                 </> :
                 <>
-                  <h1 className="md:text-5xl md:w-[592px] text-4xl font-bold text-[#081120] text-center mb-[35px]">Browse {count}+ Best AI {name} Tools</h1>
+                  <h1 className="md:text-5xl md:w-[592px] text-4xl font-bold text-[#081120] text-center w-fit mx-auto mb-[35px]">Browse {count}+ Best AI {name} Tools</h1>
                   <div className='w-5/12 h-0 border-b border-[#E5E7EB] mx-auto mb-[45px]'></div>
                   <p className={`hero-subtitle my-6`}>{message}</p>
                 </>

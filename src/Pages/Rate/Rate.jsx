@@ -20,7 +20,8 @@ const Rate = ({id,name}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [available, setAvailable] = useState(false);
 
-    useEffect(()=>console.log(available),[available])
+    useEffect(()=>{setFalse();
+        console.log(available, toggle)},[])
 
 
     useEffect(()=>{
@@ -260,7 +261,7 @@ const Rate = ({id,name}) => {
 
 
                             </div>
-                            { toggle && available && <Review func={customAvailable} userRating={rating} id={id} gmail={user?.email} userName={user?.displayName} product={name}></Review>}
+                            { (toggle && available) && <Review func={customAvailable} userRating={rating} id={id} gmail={user?.email} userName={user?.displayName} product={name}></Review>}
                         </div>
 
                     </div>

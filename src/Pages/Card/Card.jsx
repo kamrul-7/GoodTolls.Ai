@@ -41,10 +41,22 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
     fetchTools();
   }, []);
 
+  let toolsCount = 0;
   const component = (tool, indx) => {
+
+    toolsCount++;
+    if (tool == null) {
+      toolsCount--;
+    }
+    if (indx === lastElem) {
+      getToolsCount(toolsCount)
+    }
+
     if (tool) {
       const storageKey = `myHeartClicked-${tool._id}`;
       const isClicked = loadStateFromLocalStorage(storageKey);
+
+
 
       return (
         <div className="card size bg-base-100 shadow-xl mb-24 md:mx-0 mx-auto">
@@ -56,14 +68,14 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
               style={{ width: "344px", height: "240px" }}
             />
 
-<div
-  onClick={() => handleClick(storageKey)}
-  className={`md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] left-[268px] bg-white`}
->
-  <div className="">
-    {isClicked ? <AiFillHeart className="w-5 h-5" color="red" /> : <AiOutlineHeart className="w-5 h-5" />}
-  </div>
-</div>
+            <div
+              onClick={() => handleClick(storageKey)}
+              className={`md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] left-[268px] bg-white`}
+            >
+              <div className="">
+                {isClicked ? <AiFillHeart className="w-5 h-5" color="red" /> : <AiOutlineHeart className="w-5 h-5" />}
+              </div>
+            </div>
 
           </figure>
           <div className="h-[243] mt-8">
@@ -97,10 +109,10 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
                 </div>
               ))}
               {tool?.SubCategory.length > 3 && (
- <div className="card-category-item">
- <p className="card-category-text px-3 py-2">More</p>
-</div>
-)}
+                <div className="card-category-item">
+                  <p className="card-category-text px-3 py-2">More</p>
+                </div>
+              )}
             </div>
             <Link to={`/tool/${tool._id}`} className="button flex justify-center items-center mt-6">
               <svg
@@ -136,25 +148,26 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
 
   const [updateState, setUpdateState] = useState(0);
   const forceUpdate = () => setUpdateState(updateState + 1);
-
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1">
       {tools.map((tool, indx) => {
         if (searchStat) {
-          if (tool?.toolName === searchData) {
-            return component(tool, indx);
-          } else return component(null, indx);
+          if (tool?.toolName) {
+            if (tool?.toolName.toLowerCase().includes(searchData.toLowerCase())) {
+              return component(tool, indx);
+            } else return component(null, indx);
+          }
         } else {
           if (selectedSub.length !== 0 && sortOption !== 'All') {
-            if (tool?.SubCategory.includes(selectedSub) && tool?.priceType.includes(sortOption)) {
+            if (tool?.priceType && tool?.SubCategory.includes(selectedSub) && tool?.priceType.includes(sortOption)) {
               return component(tool, indx);
             } else return component(null, indx);
           } else if (selectedSub.length !== 0 && sortOption === 'All') {
-            if (tool?.SubCategory.includes(selectedSub)) {
+            if (tool?.SubCategory && tool?.SubCategory.includes(selectedSub)) {
               return component(tool, indx);
             } else return component(null, indx);
           } else if (selectedSub.length === 0 && sortOption !== 'All') {
-            if (tool?.priceType.includes(sortOption)) {
+            if (tool?.priceType && tool?.priceType.includes(sortOption)) {
               return component(tool, indx);
             } else return component(null, indx);
           } else {
