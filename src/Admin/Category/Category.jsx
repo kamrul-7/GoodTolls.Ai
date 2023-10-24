@@ -133,6 +133,18 @@ const Category = () => {
     }
   };
 
+  const openUpdateModal = (item) => {
+
+    setCatName(item.catName);
+    setTitle(item.Title);
+    setMessage(item.message);
+  
+    // Open the update modal
+    const modal = document.getElementById("my_modal_18");
+    modal.showModal();
+  };
+
+
   return (
     <div className="mt-[35px] w-full px-8">
       <div>
@@ -244,6 +256,7 @@ const Category = () => {
               
                   // Set the data in your state (setItemToDelete)
                   setItemToDelete(item);
+                  openUpdateModal(item);
                 }}
                 className="p-[10px] w-[40px] hover:-translate-y-[0.5px]"
               >

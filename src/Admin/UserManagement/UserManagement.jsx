@@ -10,6 +10,10 @@ const UserManagement = () => {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [userType, setUserType] = useState("Admin");
+  const [updatedName, setUpdatedName] = useState("");
+  const [updatedEmail, setUpdatedEmail] = useState("");
+  const [updatedPassword, setUpdatedPassword] = useState("");
+
 
   console.log(itemToDelete);
   const fetchUsers = () => {
@@ -121,7 +125,6 @@ const UserManagement = () => {
         password: password,
         userType: userType
       };
-
       console.log(itemToUpdate);
 
       fetch(`http://localhost:3000/users/${itemToDelete._id}`, {
@@ -148,6 +151,18 @@ const UserManagement = () => {
     }
 
   };
+  const openUpdateModal = (item) => {
+    // Set the state variables with the user data you want to edit
+    setUserName(item.userName);
+    setEmail(item.email);
+    setPassword(item.password);
+    setUserType(item.userType);
+  
+    // Open the update modal
+    const modal = document.getElementById("my_modal_6");
+    modal.showModal();
+  };
+
 
   return (
     <div className="mt-[35px] w-full px-8">
@@ -259,7 +274,7 @@ const UserManagement = () => {
                     if (loggedIn.role === 'Admin') {
                       // Open the modal
                       document.getElementById("my_modal_6").showModal();
-
+                      openUpdateModal(item);
                       // Set the data in your state (setItemToDelete)
                       setItemToDelete(item);
                     } else {
