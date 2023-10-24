@@ -78,7 +78,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
             </div>
 
           </figure>
-          <div className="h-[243] mt-8">
+          <Link to={`/tool/${tool._id}`} className="h-[243] mt-8">
             <div className="flex justify-between">
               <div className="Title">
                 <h2>{tool?.toolName}</h2>
@@ -114,7 +114,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
                 </div>
               )}
             </div>
-            <Link to={`/tool/${tool._id}`} className="button flex justify-center items-center mt-6">
+            <div className="button flex justify-center items-center mt-6">
               <svg
                 width="20px"
                 height="20px"
@@ -127,8 +127,8 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
                   fill="#4D5761"
                 />
               </svg>
-            </Link>
-          </div>
+            </div>
+          </Link>
         </div>
       );
     }
