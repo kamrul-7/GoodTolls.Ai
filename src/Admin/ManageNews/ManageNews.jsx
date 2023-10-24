@@ -3,12 +3,28 @@ import Pagination from "../Category/Pagination";
 import { useNavigate } from "react-router-dom";
 
 const ManageNews = () => {
+  const [itemToDelete, setItemToDelete] = useState(null);
     const [news, setNews] = useState([]);
+
+    const [isLoading, setIsLoading] = useState(true);
+
+    console.log(itemToDelete);
+
+    const fetchNews = () => {
+      fetch("http://localhost:3000/news")
+        .then((res) => res.json())
+        .then((data) => {
+          setNews(data);
+          setIsLoading(false)
+        })
+        
+    };
+
     useEffect(() => {
-        fetch('http://localhost:3000/news')
-            .then(res => res.json())
-            .then(data => setNews(data))
+       fetchNews();
     }, [])
+
+    useEffect(()=>console.log(news),[news]);
 
     const navigate = useNavigate();
     const handleClick = () => {
@@ -16,8 +32,34 @@ const ManageNews = () => {
     }
 
     const handleDelete = () => {
-        console.log(itemToDelete);
+      if (itemToDelete) {
+        const itemId = itemToDelete._id;
+    
+        // Send a DELETE request to the server
+        fetch(`http://localhost:3000/news/${itemId}`, {
+          method: "DELETE",
+        })
+          .then((res) => {
+            if (res.ok) {
+              // Tool deleted successfully
+              // Close the modal
+              document.getElementById("my_modal_14").close();
+              // Fetch the updated list of tools
+              fetchNews();
+            } else if (res.status === 404) {
+              // Tool not found
+              alert("Tool not found");
+            } else {
+              // Internal server error
+              alert("Internal Server Error");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
       }
+    };
+    
 
     const handleEdit = (id)=>{
         console.log(id);
@@ -71,7 +113,7 @@ const ManageNews = () => {
                     {/* Table regular row */}
 
                     {
-                        news.map((news) => (
+                        news.length > 0 ? news.map((news) => (
                             <tr className='border-b h-[64px] border-[#EAECF0] text-sm font-medium'>
                                 <td className='py-4 px-6 hover:bg-[#F9FAFB]'>{news?.newsTitle}</td>
                                 <td className='py-4 px-6 hover:bg-[#F9FAFB]'>{news?.date}</td>
@@ -86,7 +128,7 @@ const ManageNews = () => {
                                         document.getElementById("my_modal_14").showModal();
                                     
                                         // Set the data in your state (setItemToDelete)
-                                        setItemToDelete(items);
+                                        setItemToDelete(news);
                                       }}
                                     className="p-[10px] mr-1 w-[40px] hover:-translate-y-[0.5px]">
                                         <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -104,7 +146,11 @@ const ManageNews = () => {
 
                                 </td>
                             </tr>
-                        ))
+                        )) : isLoading ?
+                        <td className="px-auto py-10 flex justify-center w-full" colSpan={4}>
+                          <span className="loading loading-ring w-20 h-20 ml-[200%]"></span>
+                        </td>
+                        : <td className="border-b text-[#475467] text-3xl p-10" colSpan={4}>There are no records to display</td>
                     }
 
                 </table>

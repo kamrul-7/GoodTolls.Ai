@@ -3,20 +3,79 @@ import Pagination from "../Category/Pagination";
 import { useNavigate } from "react-router-dom";
 
 const ManageTools = () => {
+  const [itemToDelete, setItemToDelete] = useState(null);
     const [tools, setTools] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
     const navigate = useNavigate();
+    
+    console.log(itemToDelete);
+    useEffect(() => {
+      fetchTools();
+    }, []);
+
+    const fetchTools = () => {
+      fetch("http://localhost:3000/tools")
+        .then((res) => res.json())
+        .then((data) => {
+          setTools(data);
+        })
+        
+    };
+
+    const handleDelete = () => {
+      if (itemToDelete) {
+        const itemId = itemToDelete._id;
+    
+        // Send a DELETE request to the server
+        fetch(`http://localhost:3000/tools/${itemId}`, {
+          method: "DELETE",
+        })
+          .then((res) => {
+            if (res.ok) {
+              // Tool deleted successfully
+              // Close the modal
+              document.getElementById("my_modal_14").close();
+              // Fetch the updated list of tools
+              fetchTools();
+            } else if (res.status === 404) {
+              // Tool not found
+              alert("Tool not found");
+            } else {
+              // Internal server error
+              alert("Internal Server Error");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    };
+    
+    
     const handleClick = () => {
         navigate('/dashboard/addtool')
     }
     
+    
     useEffect(() => {
         fetch('http://localhost:3000/tools')
             .then(res => res.json())
-            .then(data => setTools(data))
+            .then(data => {
+              setTools(data)
+              setIsLoading(false)})
     }, [])
-    const handleDelete = () => {
-        console.log(itemToDelete);
+
+    // useEffect(()=>console.log(tools),[tools])
+
+    const handleEdit = (id)=>{
+        console.log(id);
+        if(id){
+            const select = tools.find(n => n._id === id);
+            console.log(select);
+            navigate('/dashboard/edittool', {state : select})
+        }
     }
+    
 
     return (
         <div className='mt-[35px] w-full px-8'>
@@ -62,7 +121,7 @@ const ManageTools = () => {
 
                     {/* Table regular row */}
                     {
-                        tools.map((value, index) => (
+                        tools.length > 0 ? tools.map((value, index) => (
                             <tr key={index} className='border-b h-[64px] border-[#EAECF0] text-sm font-medium'>
                                 <td className='py-4 px-6 hover:bg-[#F9FAFB]'>{value?.toolName}</td>
                                 <td className='py-4 px-6 hover:bg-[#F9FAFB]'><span>{value?.parentCategories?.join(', ')}</span></td>
@@ -80,7 +139,7 @@ const ManageTools = () => {
                                         document.getElementById("my_modal_14").showModal();
                                     
                                         // Set the data in your state (setItemToDelete)
-                                        setItemToDelete(items);
+                                        setItemToDelete(value);
                                       }}
                                     className="p-[10px] mr-1 w-[40px] hover:-translate-y-[0.5px]">
                                         <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -89,7 +148,7 @@ const ManageTools = () => {
                                     </button>
 
                                     {/* Edit button */}
-                                    <button className="p-[10px] w-[40px] hover:-translate-y-[0.5px]">
+                                    <button onClick={()=>handleEdit(value?._id)} className="p-[10px] w-[40px] hover:-translate-y-[0.5px]">
                                         <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M1.39662 15.0964C1.43491 14.7518 1.45405 14.5795 1.50618 14.4185C1.55243 14.2756 1.61778 14.1396 1.70045 14.0142C1.79363 13.8729 1.91621 13.7504 2.16136 13.5052L13.1666 2.49999C14.0871 1.57951 15.5795 1.57951 16.4999 2.49999C17.4204 3.42046 17.4204 4.91285 16.4999 5.83332L5.49469 16.8386C5.24954 17.0837 5.12696 17.2063 4.98566 17.2995C4.86029 17.3821 4.72433 17.4475 4.58146 17.4937C4.42042 17.5459 4.24813 17.565 3.90356 17.6033L1.08325 17.9167L1.39662 15.0964Z" stroke="#475467" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round" />
                                         </svg>
@@ -98,7 +157,11 @@ const ManageTools = () => {
 
                                 </td>
                             </tr>
-                        ))
+                        )) : isLoading ?
+                        <td className="px-auto py-10 flex justify-center w-full" colSpan={7}>
+                          <span className="loading loading-ring w-20 h-20 ml-[510%]"></span>
+                        </td>
+                        : <td className="border-b text-[#475467] text-3xl p-10" colSpan={7}>There are no records to display</td>
                     }
 
                 </table>
@@ -192,6 +255,6 @@ const ManageTools = () => {
       </div>
         </div>
     );
-};
+}
 
 export default ManageTools;

@@ -9,6 +9,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
   const [tools, setTools] = useState([]);
   const [lastElem, setLastElem] = useState(0);
   const [searchStat, setSearchState] = useState(false);
+  const [isLoading, setIsLoading] = useState(true)
   const initialButtonStates = {};
 
   if (searchData.length > 0 && searchStat === false) {
@@ -22,6 +23,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
     fetch("http://localhost:3000/tools")
       .then((res) => res.json())
       .then((data) => {
+        setIsLoading(false)
         setTools(data);
         setLastElem(data.length - 1);
         getToolsCount(data.length);
@@ -151,7 +153,9 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1">
       {
-      tools.map((tool, indx) => {
+      isLoading ? 
+        <span className="loading loading-ring md:w-40 md:h-40 w-20 h-20 md:ml-[140%] ml-[40%] md:my-40 my-20"></span>
+      :tools.map((tool, indx) => {
         if (searchStat) {
           if (tool?.toolName) {
             if (tool?.toolName.toLowerCase().includes(searchData.toLowerCase())) {

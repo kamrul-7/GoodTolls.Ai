@@ -269,7 +269,7 @@ const Rate = ({id,name}) => {
 
 
                 {/* Review section */}
-                <div className="hide-scrollbar">
+                <div className={`${reviews.length != 0 ? 'block' : 'hidden'} hide-scrollbar`}>
                     <div className="text-[32px] text-center md:text-left font-bold pb-7 mb-7 border-b border-[#E5E7EB]">
                         Customers Review
                     </div>
