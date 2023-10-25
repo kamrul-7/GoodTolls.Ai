@@ -306,7 +306,7 @@ const EditTool = () => {
             formdata.append('works', works)
             formdata.append('toolId', toolData._id)
             fetch("http://localhost:3000/edittool", {
-                method: "POST",
+                method: "PUT",
                 headers: {
                 },
                 body: formdata,
@@ -314,7 +314,16 @@ const EditTool = () => {
             .then((res) => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    event.target.reset()
+                    setToolDiscord("")
+                    setToolFacebook("")
+                    setToolLinkedin("")
+                    setToolTwitter("")
+                    setToolPrice("")
+                    setToolPriceDuration(null)
+                    setToolPriceType(null)
+                    setToolLink("")
+                    setToolVerify(false)
+                    setToolNameState("")
                     setSelected([])
                     setImage(null)
                     setFile(null)
@@ -322,7 +331,8 @@ const EditTool = () => {
                     setEditorWorkState(EditorState.createEmpty())
                     setStartDate(null)
                     setSuggestions(allSuggestions)
-                    alert('New tool data submitted')
+                    alert('Tool data updated')
+                    navigate('/dashboard/manageTools')
                 }
             })
         } else{
@@ -378,7 +388,7 @@ const EditTool = () => {
                         <button onClick={handleClick} className='py-[10px] px-[14px] mr-3 border border-[#D0D5DD] rounded-lg bg-white hover:bg-gray-50 shadow-sm duration-300 text-[#344054] text-sm font-semibold'>
                             Cancel
                         </button>
-                        <input type='submit' value="Save" className='py-[10px] px-[14px] border rounded-lg bg-[#7F56D9] hover:bg-[#6d4ab8] shadow-sm duration-300 text-white text-sm font-semibold'>
+                        <input type='submit' value="Update" className='py-[10px] px-[14px] border rounded-lg bg-[#7F56D9] hover:bg-[#6d4ab8] shadow-sm duration-300 text-white text-sm font-semibold'>
 
                         </input>
                     </div>
@@ -651,7 +661,7 @@ const EditTool = () => {
                         <button onClick={handleClick} className='py-[10px] px-[14px] mr-3 border border-[#D0D5DD] rounded-lg bg-white hover:bg-gray-50 shadow-sm duration-300 text-[#344054] text-sm font-semibold'>
                             Cancel
                         </button>
-                        <input type='submit' value="Save" className='py-[10px] px-[14px] border rounded-lg bg-[#7F56D9] hover:bg-[#6d4ab8] shadow-sm duration-300 text-white text-sm font-semibold'>
+                        <input type='submit' value="Update" className='py-[10px] px-[14px] border rounded-lg bg-[#7F56D9] hover:bg-[#6d4ab8] shadow-sm duration-300 text-white text-sm font-semibold'>
 
                         </input>
                     </div>

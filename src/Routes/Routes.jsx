@@ -128,6 +128,10 @@ export const router = createBrowserRouter([
         {
           path:'edittool',
           element:<EditTool></EditTool>
+        },
+        {
+          path: '*',
+          element:<Db></Db>
         }
       ]
     },
