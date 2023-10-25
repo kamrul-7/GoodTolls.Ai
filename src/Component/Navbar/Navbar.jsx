@@ -41,7 +41,7 @@ const Navbar = () => {
         <NavLink to="/news" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "block remove" : "removes"}>
           {({ isActive }) => (
             <>
-              <span className={isActive ? "text-[#2970FF] font-semibold" : "block"}>News</span>
+              <span className={isActive ? "text-[#2970FF] font-semibold" : "block hover:border-2"}>News</span>
               <hr className={isActive ? "border-[1.5px] rounded-full w-4 mx-auto border-[#2970FF]" : "hidden"} />
             </>
           )}

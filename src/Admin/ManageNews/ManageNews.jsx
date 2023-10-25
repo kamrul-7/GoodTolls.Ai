@@ -34,9 +34,10 @@ const ManageNews = () => {
     const handleDelete = () => {
       if (itemToDelete) {
         const itemId = itemToDelete._id;
+        const imageId = itemToDelete.image;
     
         // Send a DELETE request to the server
-        fetch(`http://localhost:3000/news/${itemId}`, {
+        fetch(`http://localhost:3000/news/${itemId}/${imageId}`, {
           method: "DELETE",
         })
           .then((res) => {

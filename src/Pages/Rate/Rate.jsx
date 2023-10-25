@@ -7,7 +7,7 @@ import { AuthContext } from "../Context/AuthProvider";
 import Review from "../Review/Review";
 
 const Rate = ({id,name}) => {
-    const { user } = useContext(AuthContext);
+    const { user, googleSignIn } = useContext(AuthContext);
     const { toggle, setTrue, setFalse } = useContext(AuthContext);
     const [rating, setRating] = useState(0);
     const [avgRating, setAvgRating] = useState(0)
@@ -179,7 +179,18 @@ const Rate = ({id,name}) => {
         if(user && available){
             setTrue();
         }else if(!user){
-            alert('Log in to proceed')
+            googleSignIn()
+            .then((userCredential) => {
+                const user = userCredential.user;
+                // saveUser(user.displayName, user.email); 
+                // toast.success("Google Log in Successful"); 
+                // navigate('/');
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                // toast.error(errorCode.substring(5)); 
+            });
+            // alert('Log in to proceed')
         }
         else {
             alert('You have already reviewed this product')

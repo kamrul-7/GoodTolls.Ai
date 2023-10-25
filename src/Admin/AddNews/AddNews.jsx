@@ -119,7 +119,8 @@ const AddNews = () => {
                     setImage(null)
                     setFile(null)
                     setEditorDesState(EditorState.createEmpty())
-                    alert('New news data submitted')
+                    // alert('New news data submitted')
+                    navigate('/dashboard/manageNews')
                 }
             })
         } else{
@@ -186,7 +187,7 @@ const AddNews = () => {
                 <div className='w-full flex pb-5 mb-5 border-b border-[#EAECF0]'>
                     <div className=' w-4/12 text-sm font-semibold text-[#344054]'>News Title</div>
                     <div className='py-[10px] px-[14px] border rounded-lg h-[44px] w-[512px]'>
-                        <input name='toolName' placeholder="Chapple" className=' h-full my-auto w-full focus:outline-0 text-base text-[#101828]' type="text" />
+                        <input name='toolName' placeholder="News Title" className=' h-full my-auto w-full focus:outline-0 text-base text-[#101828]' type="text" />
                     </div>
                 </div>
 
