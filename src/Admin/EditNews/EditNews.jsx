@@ -128,20 +128,22 @@ const EditNews = () => {
             formdata.append('newsId', newsData._id)
             console.log(formdata);
             fetch("http://localhost:3000/editnews", {
-                method: "POST",
+                method: "PUT",
                 headers: {
                 },
                 body: formdata,
             })
             .then((res) => res.json())
             .then(data => {
-                if (data.acknowledged) {
+                if (data.acknowledged && data.modifiedCount > 0) {
                     setNewsName('')
                     setImage(null)
                     setFile(null)
                     setEditorDesState(EditorState.createEmpty())
                     alert('News edited')
                     navigate('/dashboard/manageNews')
+                } else {
+                    alert(data)
                 }
             })
         } else{
@@ -196,7 +198,7 @@ const EditNews = () => {
                         <button onClick={handleClick} className='py-[10px] px-[14px] mr-3 border border-[#D0D5DD] rounded-lg bg-white hover:bg-gray-50 shadow-sm duration-300 text-[#344054] text-sm font-semibold'>
                             Cancel
                         </button>
-                        <input type='submit' value="Save" className='py-[10px] px-[14px] border rounded-lg bg-[#7F56D9] hover:bg-[#6d4ab8] shadow-sm duration-300 text-white text-sm font-semibold'>
+                        <input type='submit' value="Update" className='py-[10px] px-[14px] border rounded-lg bg-[#7F56D9] hover:bg-[#6d4ab8] shadow-sm duration-300 text-white text-sm font-semibold'>
 
                         </input>
                     </div>
@@ -277,7 +279,7 @@ const EditNews = () => {
                         <button onClick={handleClick} className='py-[10px] px-[14px] mr-3 border border-[#D0D5DD] rounded-lg bg-white hover:bg-gray-50 shadow-sm duration-300 text-[#344054] text-sm font-semibold'>
                             Cancel
                         </button>
-                        <input type='submit' value="Save" className='py-[10px] px-[14px] border rounded-lg bg-[#7F56D9] hover:bg-[#6d4ab8] shadow-sm duration-300 text-white text-sm font-semibold'>
+                        <input type='submit' value="Update" className='py-[10px] px-[14px] border rounded-lg bg-[#7F56D9] hover:bg-[#6d4ab8] shadow-sm duration-300 text-white text-sm font-semibold'>
 
                         </input>
                     </div>

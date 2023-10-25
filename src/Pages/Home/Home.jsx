@@ -36,7 +36,6 @@ const Home = () => {
     }
 
     const handleSubSubmit = (value)=>{
-        console.log(value);
         setSelectedSub(value)
     }
 

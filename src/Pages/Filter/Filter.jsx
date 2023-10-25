@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Filter.css'
 import 'flowbite';
+import { useLocation } from 'react-router-dom';
 const Filter = (props) => {
     const [choice, setChoice] = useState('');
     const [toggle, setToggle] = useState(true)
@@ -13,7 +14,7 @@ const Filter = (props) => {
 
 
     const handleClick = (event, value) => {
-        console.log(event.target.name);
+        setToggle(true)
         if(event.target.name != choice){
             props.clickHandler(value)
         } else{

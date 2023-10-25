@@ -7,7 +7,6 @@ const Hero = ({ name, count, getSearchData, }) => {
   const[data, setData]= useState([]);
   const [message, setMessage] = useState('');
   // const [showSearch, setShowSearch] = useState(false);
-  console.log(name);
 
   useEffect(() => {
     fetch('http://localhost:3000/subcategory')

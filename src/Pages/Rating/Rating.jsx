@@ -300,7 +300,7 @@ const Rating = ({card}) => {
                 <hr />
               </div>
               <div className="text-base font-normal">
-                <h2>Explore Chapple on Social media</h2>
+                <h2>Explore {card.toolName} on Social media</h2>
               </div>
               <div className="mt-3">
                 <div>
