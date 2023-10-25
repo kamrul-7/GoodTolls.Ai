@@ -93,7 +93,7 @@ const Hero = ({ name, count, getSearchData, }) => {
                 <div className='item me-4'><p className='p-text'>Github</p></div>
                 <div className='item me-4'><p className='p-text'>Image Improvent</p></div>
 
-                <div className='item me-4'><p className='p-text'>Ai Detection</p></div>
+                <div className='item me-4'><p className='p-text'>Ai Detect</p></div>
 
                 <div className='item me-4'><p className='p-text'>Generative Code</p></div>
                 <div className='item me-4'><p className='p-text'>Inspiration</p></div>

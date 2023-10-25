@@ -221,19 +221,20 @@ const AddTool = () => {
         const link = event.target.link.value;
         const image = file;
         const priceType = event.target.priceType.value;
-        const price = event.target.price.value;
+        const price = event.target.price.value || '';
+        console.log(price);
         const pricePeriod = event.target.pricePeriod.value;
         const date = formateDate();
-        const facebook = event.target.facebook.value;
-        const twitter = event.target.twitter.value;
-        const linkedin = event.target.linkedin.value;
-        const discord = event.target.discord.value;
+        const facebook = event.target.facebook.value || '';
+        const twitter = event.target.twitter.value || '';
+        const linkedin = event.target.linkedin.value || '';
+        const discord = event.target.discord.value || '';
         const description = finalDes.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">").replace(/\n/g, "").replace(/<img/, "<img style=' border-radius: 12px;'");
         const works = finalWork.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">").replace(/\n/g, "").replace(/<img/, "<img style=' border-radius: 12px;'");
 
         if (toolName.length != 0 && selected.length != 0 && link.length != 0 && file != null
-            && priceType.length != 0 && price.length != 0 && pricePeriod.length != 0 && date
-            && facebook.length != 0 && twitter.length != 0 && linkedin.length != 0 && discord.length != 0 && description && works) {
+            && priceType.length != 0 && (priceType.includes('Free') ? true : price.length != 0) && pricePeriod.length != 0 && date
+            && description && works) {
             const formdata = new FormData()
             formdata.append('toolName', toolName)
             formdata.append('verified', verified)
@@ -267,7 +268,7 @@ const AddTool = () => {
                     setEditorWorkState(EditorState.createEmpty())
                     setStartDate(null)
                     setSuggestions(allSuggestions)
-                    alert('New tool data submitted')
+                    navigate('/dashboard/manageTools')
                 }
             })
         } else{
@@ -334,7 +335,7 @@ const AddTool = () => {
                 <div className='w-full flex pb-5 mb-5 border-b border-[#EAECF0]'>
                     <div className=' w-4/12 text-sm font-semibold text-[#344054]'>Tool Name</div>
                     <div className='py-[10px] px-[14px] border rounded-lg h-[44px] w-[512px]'>
-                        <input name='toolName' placeholder="Chapple" className=' h-full my-auto w-full focus:outline-0 text-base text-[#101828]' type="text" />
+                        <input name='toolName' placeholder="Tool Name" className=' h-full my-auto w-full focus:outline-0 text-base text-[#101828]' type="text" />
                     </div>
                 </div>
 

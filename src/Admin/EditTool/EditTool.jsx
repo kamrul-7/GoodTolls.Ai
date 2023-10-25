@@ -283,8 +283,7 @@ const EditTool = () => {
         const description = finalDes.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">").replace(/\n/g, "").replace(/<img/, "<img style=' border-radius: 12px;'");
         const works = finalWork.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">").replace(/\n/g, "").replace(/<img/, "<img style=' border-radius: 12px;'");
         if (toolNameState.length != 0 && selected.length != 0 && toolLink.length != 0 && imageId != null
-            && toolPriceType.length != 0 && toolPrice.length != 0 && toolPriceDuration.length != 0 && date
-            && toolFacebook.length != 0 && toolTwitter.length != 0 && toolLinkedin.length != 0 && toolDiscord.length != 0 && description && works) {
+            && toolPriceType.length != 0 && (toolPriceType.includes('Free') ? true : toolPrice.length != 0) && toolPriceDuration.length != 0 && date && description && works) {
             const formdata = new FormData()
             formdata.append('toolName', toolNameState)
             formdata.append('verified', toolVerify)
