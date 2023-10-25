@@ -12,14 +12,20 @@ const Filter = (props) => {
             .then(data => setSubList(data))
     }, [])
 
+    useEffect(() => {
+        setChoice(props.selectedPopular)
+    }, [props.selectedPopular])
+
+    useEffect(()=>props.clickHandler(choice),[choice])
+
 
     const handleClick = (event, value) => {
         setToggle(true)
         if(event.target.name != choice){
-            props.clickHandler(value)
+            // props.clickHandler(value)
         } else{
             setChoice('')
-            props.clickHandler('')
+            // props.clickHandler('')
         }
 
     }
@@ -60,9 +66,9 @@ const Filter = (props) => {
                                     value.SubCategories.sort().map((value, index) => {
                                         return <li key={index}>
                                             <button onClick={(event) => {
-                                                setChoice(`${value}${index}`)
+                                                setChoice(`${value}`)
                                                 handleClick(event, value)
-                                            }} href="#" className={`w-full text-left block px-4 py-2 hover:bg-gray-100 ${choice === `${value}${index}` ? 'bg-gray-100' : 'bg-white'} `} name={`${value}${index}`}>{value}</button>
+                                            }} href="#" className={`w-full text-left block px-4 py-2 hover:bg-gray-100 ${choice === `${value}` ? 'bg-gray-100' : 'bg-white'} `} name={`${value}`}>{value}</button>
                                         </li>
                                     })
                                 }

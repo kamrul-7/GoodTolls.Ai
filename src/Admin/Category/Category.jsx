@@ -10,8 +10,9 @@ const Category = () => {
   const [itemToDelete, setItemToDelete] = useState(null);
   const [isLoading, setIsLoading] = useState(true)
   const modalRef = useRef(null);
-  console.log(itemToDelete);
+  // console.log(itemToDelete);
   const closeModal = () => {
+    console.log(modalRef.current);
     if (modalRef.current) {
       modalRef.current.close();
     }
@@ -52,9 +53,16 @@ const Category = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          if (data.acknowledged) {
+          if (data.stat) {
+            alert('Category Title Already exists')
+          }
+          else if (data.acknowledged) {
+
             fetchCategory();
-            toast.success("Category Added Successfully");
+            setCatName("");
+            setTitle("");
+            setMessage("");
+            document.getElementById("my_modal_22").close()
           } else {
             toast.error(data.message);
           }
@@ -63,10 +71,10 @@ const Category = () => {
       alert("No fields can't be empty");
     }
 
-    setCatName("");
-    setTitle("");
-    setMessage("");
-    closeModal();
+    // setCatName("");
+    // setTitle("");
+    // setMessage("");
+    // closeModal();
   };
   const handleUpdate = () => {
     console.log(itemToDelete);
@@ -282,10 +290,10 @@ const Category = () => {
                 </td>
               </tr>)
               : isLoading ?
-              <td className="px-auto py-10 flex justify-center w-full" colSpan={5}>
-                <span className="loading loading-ring w-20 h-20 ml-[250%]"></span>
-              </td>
-              : <td className="border-b text-[#475467] text-3xl p-10" colSpan={5}>There are no records to display</td>
+                <td className="px-auto py-10 flex justify-center w-full" colSpan={5}>
+                  <span className="loading loading-ring w-20 h-20 ml-[250%]"></span>
+                </td>
+                : <td className="border-b text-[#475467] text-3xl p-10" colSpan={5}>There are no records to display</td>
           }
         </table>
         {/* pagination section */}
@@ -392,7 +400,7 @@ const Category = () => {
                   <button
                     onClick={() => {
                       const modal = document.getElementById("my_modal_22");
-                      modal.close();
+                      // modal.close();
                     }}
                     type="submit"
                     className=" w-[48%] my-6 px-4 py-2 bg-[#7F56D9] text-white rounded-md"

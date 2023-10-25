@@ -61,10 +61,19 @@ const Subcategory = () => {
         .then((res) => res.json())
         .then((data) => {
           // console.log(data);
-          if (data.acknowledged) {
+          if (data.stat) {
+            alert('SubCategory Title Already exists\nUnable to create new SubCategory')
+            document.getElementById("my_modal_16").open()
+          }
+          else if (data.acknowledged) {
             // toast.success("Category Added Successfully");
             fetchSubCategory();
             // navigate("/dashboard");
+            setCategory('');
+            setSubCategory('');
+            setMessage('');
+            setTitle('');
+            document.getElementById("my_modal_16").close()
           } else {
             // toast.error(datamessage);
           }
@@ -76,11 +85,11 @@ const Subcategory = () => {
 
 
 
-    setCategory('');
-    setSubCategory('');
-    setMessage('');
-    setTitle('');
-    closeModal();
+    // setCategory('');
+    // setSubCategory('');
+    // setMessage('');
+    // setTitle('');
+    // closeModal();
   };
   const handleUpdate = (event) => {
     console.log("updating");
