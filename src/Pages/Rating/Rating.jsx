@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import './Rating.css'
 const Rating = ({card}) => {
   // console.log(card)
   const [isToggled, setIsToggled] = useState(false);
@@ -126,7 +126,7 @@ const Rating = ({card}) => {
                 </div>
               </div>
               <div className="flex justify-start mt-6">
-                <div className="pr-4">
+                <div className="pr-4 mt-4">
                   <svg
                     width="24"
                     height="24"
@@ -303,7 +303,7 @@ const Rating = ({card}) => {
                 <h2>Explore {card.toolName} on Social media</h2>
               </div>
               <div className="mt-3">
-                <div>
+                <div className="">
                   <svg
                     width="152"
                     height="26"
@@ -452,7 +452,7 @@ const Rating = ({card}) => {
         </div>
       </div>
       
-      <div>
+      <div className="my-element">
         <div>
           <div
             className="mt-[440px] md:mt-16"
@@ -490,13 +490,13 @@ const Rating = ({card}) => {
           </div>
 
           {isToggled ? (
-            <div
+            <div className="mt-8"
             
             dangerouslySetInnerHTML={{ __html: (card?.description?.replace(/["\n]/g, '') || '')}}>
 
             </div>
           ) : (
-            <div
+            <div className="mt-8"
             
             dangerouslySetInnerHTML={{ __html: (card?.works?.replace(/["\n]/g, '') || '')}}>
 
@@ -505,7 +505,7 @@ const Rating = ({card}) => {
         </div>
       </div>
       <div className="flex justify-center mt-10 border-b w-11/12 mx-auto pb-10 md:pb-24">
-        <button>
+        <a href={card.link}>
           <svg
             width="172"
             height="55"
@@ -535,7 +535,7 @@ const Rating = ({card}) => {
               </clipPath>
             </defs>
           </svg>
-        </button>
+        </a>
       </div>
     </div>
   );
