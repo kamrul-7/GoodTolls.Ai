@@ -9,10 +9,15 @@ color: var(--neutral-white, #FFF);
 border-radius: 8px;
 background: var(--Primary, #2970FF);
 }
-
-.remove:hover{
-  background-color: transparent !important;
+.remove{
+  background-color: transparent;
 }
+.removes:not(.active):hover {
+  background-color: transparent !important;
+  border-bottom: 2px solid rgb(37, 37, 218);
+  border-radius: 0%;
+}
+
 @media (max-width: 640px) {
     .hide-button {
       display: none;
