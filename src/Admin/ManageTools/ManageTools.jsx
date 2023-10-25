@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const ManageTools = () => {
   const [itemToDelete, setItemToDelete] = useState(null);
     const [tools, setTools] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
     const navigate = useNavigate();
     
     console.log(itemToDelete);
@@ -59,7 +60,9 @@ const ManageTools = () => {
     useEffect(() => {
         fetch('http://localhost:3000/tools')
             .then(res => res.json())
-            .then(data => setTools(data))
+            .then(data => {
+              setTools(data)
+              setIsLoading(false)})
     }, [])
 
     // useEffect(()=>console.log(tools),[tools])
@@ -118,7 +121,7 @@ const ManageTools = () => {
 
                     {/* Table regular row */}
                     {
-                        tools.map((value, index) => (
+                        tools.length > 0 ? tools.map((value, index) => (
                             <tr key={index} className='border-b h-[64px] border-[#EAECF0] text-sm font-medium'>
                                 <td className='py-4 px-6 hover:bg-[#F9FAFB]'>{value?.toolName}</td>
                                 <td className='py-4 px-6 hover:bg-[#F9FAFB]'><span>{value?.parentCategories?.join(', ')}</span></td>
@@ -154,7 +157,11 @@ const ManageTools = () => {
 
                                 </td>
                             </tr>
-                        ))
+                        )) : isLoading ?
+                        <td className="px-auto py-10 flex justify-center w-full" colSpan={7}>
+                          <span className="loading loading-ring w-20 h-20 ml-[510%]"></span>
+                        </td>
+                        : <td className="border-b text-[#475467] text-3xl p-10" colSpan={7}>There are no records to display</td>
                     }
 
                 </table>

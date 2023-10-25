@@ -13,6 +13,7 @@ const UserManagement = () => {
   const [itemToDelete, setItemToDelete] = useState(null);
   const [updatedEmail, setUpdatedEmail] = useState("");
   const [updatedPassword, setUpdatedPassword] = useState("");
+  const [isLoading,setIsLoading] = useState(true)
   console.log(itemToDelete);
 console.log(itemToDelete);
   const crossButton = () =>{
@@ -29,6 +30,7 @@ console.log(itemToDelete);
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);
+        setIsLoading(false)
       })
       .catch((error) => {
         console.error(error);
@@ -244,7 +246,8 @@ console.log(itemToDelete);
 
           {/* row */}
           {
-            users.map(item => <tr className="border-b h-[64px] border-[#EAECF0] text-sm font-medium">
+            users.length > 0 ?users.map(item => 
+            <tr className="border-b h-[64px] border-[#EAECF0] text-sm font-medium">
               <td className="py-4 px-6 hover:bg-[#F9FAFB]">{item.userName}</td>
               <td className="py-4 px-6 hover:bg-[#F9FAFB]">
                 {item.email}
@@ -320,14 +323,19 @@ console.log(itemToDelete);
                 </button>
               </td>
             </tr>)
+            : isLoading ?
+            <td className="px-auto py-10 flex justify-center w-full" colSpan={5}>
+              <span className="loading loading-ring w-20 h-20 ml-[300%]"></span>
+            </td>
+            : <td className="border-b text-[#475467] text-3xl p-10" colSpan={5}>There are no records to display</td>
 
           }
 
         </table>
         {/* pagination section */}
-        <div>
-                <Pagination news={news} currentPage={currentPage} setCurrentPage={setCurrentPage} />
-            </div>
+        {/* <div>
+                <Pagination news={users} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+            </div> */}
       </div>
       {/* Add user to the list of users */}
       <div>

@@ -5,12 +5,14 @@ import { Link } from "react-router-dom";
 
 const Db = () => {
   const [count, setCount] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
 
   const fetchCount = () => {
     fetch("http://localhost:3000/counts")
       .then((res) => res.json())
       .then((data) => {
         setCount(data);
+        setIsLoading(false)
       })
       .catch((error) => {
         console.error(error);
@@ -47,26 +49,50 @@ const Db = () => {
         </div>
         <div className="title">Dashboard</div>
 
-        <div className="card-section">
-          <div className="flex">
-            <div className="single-card">
-              <div className="card-title">Categories</div>
-              <div className="number">{count.totalCategories}</div>
+        {
+          
+            // <div className="px-auto py-10 flex justify-center w-full">
+            //   <span className="loading loading-ring w-20 h-20 -ml-40"></span>
+            // </div>
+             <div className="card-section">
+              <div className="flex">
+                <div className="single-card">
+                  <div className="card-title">Categories</div>
+                  {
+                    isLoading ?
+                    <span className="loading loading-dots loading-lg"></span>
+                    : <div className="number">{count.totalCategories}</div>
+                  }
+                </div>
+                <div className="single-card ">
+                  <div className="card-title">Sub Categories</div>
+                  {
+                    isLoading ?
+                    <span className="loading loading-dots loading-lg"></span>
+                    : <div className="number">{count.totalCategories}</div>
+                  }
+                </div>
+                <div className="single-card">
+                  <div className="card-title">Tools</div>
+                  {
+                    isLoading ?
+                    <span className="loading loading-dots loading-lg"></span>
+                    : <div className="number">{count.totalTools}</div>
+                  }
+                </div>
+                <div className="single-card">
+                  <div className="card-title">News</div>
+                  {
+                    isLoading ?
+                    <span className="loading loading-dots loading-lg"></span>
+                    : <div className="number">{count.totalNews}</div>
+                  }
+                </div>
+              </div>
             </div>
-            <div className="single-card ">
-              <div className="card-title">Sub Categories</div>
-              <div className="number">{count.totalSubCategories}</div>
-            </div>
-            <div className="single-card">
-              <div className="card-title">Tools</div>
-              <div className="number">{count.totalTools}</div>
-            </div>
-            <div className="single-card">
-              <div className="card-title">News</div>
-              <div className="number">{count.totalNews}</div>
-            </div>
-          </div>
-        </div>
+
+
+        }
         <div>
           <div className="quick">
             <div>
