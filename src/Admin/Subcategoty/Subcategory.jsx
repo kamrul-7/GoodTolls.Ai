@@ -9,6 +9,7 @@ const Subcategory = () => {
   const [SubCategory, setSubCategory] = useState("");
   const [message, setMessage] = useState("");
   const [Title, setTitle] = useState("");
+
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -122,10 +123,36 @@ const Subcategory = () => {
   };
 
 
-
-  const handleDelete = () => {
-    // console.log(itemToDelete);
+const handleDelete = () => {
+  console.log(itemToDelete);
+  if (itemToDelete) {
+    console.log("true");
+    const itemId = itemToDelete._id;
+    console.log(itemId);
+    fetch(`http://localhost:3000/subcategory/${itemId}`, {
+      method: "DELETE",
+    })
+      .then((res) => {
+        if (res.ok) {
+          fetchSubCategory();
+          toast.success("Category Deleted Successfully");
+        } else if (res.status === 404) {
+          alert("Category not found");
+        } else {
+          alert("Internal Server Error");
+        }
+      })
+      
+    setItemToDelete(null);
+    closeModal();
   }
+};
+
+
+//   const handleDelete = () => {
+//     // console.log(itemToDelete);
+//   }
+
 
 
 
@@ -155,6 +182,15 @@ const Subcategory = () => {
     setTitle("");
     setMessage("");
   };
+
+// const crossButton = () =>{
+//   console.log("hello");
+//   setCategory("");
+//   setSubCategory("");
+//   setMessage("");
+// };
+
+
   return (
     <div className='mt-[35px] w-full px-8'>
       <div>
@@ -334,6 +370,7 @@ const Subcategory = () => {
                     className="btn-circle btn-ghost absolute top-4 right-4 text-2xl"
                     type="button"
                     onClick={() => {
+                      crossButton();
                       const modal = document.getElementById("my_modal_16");
                       modal.close();
                     }}
@@ -448,6 +485,7 @@ const Subcategory = () => {
                       className="btn-circle btn-ghost absolute top-4 right-4 text-2xl"
                       type="button"
                       onClick={() => {
+                        crossButton();
                         const modal = document.getElementById("my_modal_17");
                         modal.close();
                       }}
@@ -455,14 +493,19 @@ const Subcategory = () => {
                       ✕
                     </button>
                     <div className="flex justify-between w-[618px] mx-auto">
-                      <button onClick={() => {
-                        const modal = document.getElementById("my_modal_17");
-                        modal.close();
-                      }} className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2">
-                        Cancel
-                      </button>
-                      <button
-                        type="submit" className=" w-[48%] my-6 px-4 py-2 bg-[#7F56D9] text-white rounded-md">
+
+                    <button
+  onClick={() => {
+    crossButton(); // Call the function to clear form data
+    closeModal("my_modal_17"); // Close the modal
+  }}
+  className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
+  type="button" // Set type to "button" to prevent form submission
+>
+  Cancel
+</button>
+                      <button 
+                      type="submit" className=" w-[48%] my-6 px-4 py-2 bg-[#7F56D9] text-white rounded-md">
                         Save
                       </button>
                     </div>
@@ -525,16 +568,17 @@ const Subcategory = () => {
                 cannot be undone.
               </p>
               <footer className="mt-4 flex justify-end space-x-2">
-                <button
-                  className="btn-circle btn-ghost absolute top-4 right-4 text-2xl"
-                  type="button"
-                  onClick={() => {
-                    const modal = document.getElementById("my_modal_14");
-                    modal.close();
-                  }}
-                >
-                  ✕
-                </button>
+              <button
+                    className="btn-circle btn-ghost absolute top-4 right-4 text-2xl"
+                    type="button"
+                    onClick={() => {
+                      
+                      const modal = document.getElementById("my_modal_14");
+                      modal.close();
+                    }}
+                  >
+                    ✕
+                  </button>
                 <div className="flex justify-between w-[618px] mx-auto">
                   <button
                     onClick={() => {

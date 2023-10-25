@@ -4,6 +4,7 @@ import NewsCard from '../NewsCard/NewsCard';
 import './News.css'
 import { Link } from 'react-router-dom';
 const News = () => {
+    
     const [news, setNews] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
