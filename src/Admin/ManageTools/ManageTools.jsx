@@ -3,11 +3,58 @@ import Pagination from "../Category/Pagination";
 import { useNavigate } from "react-router-dom";
 
 const ManageTools = () => {
+  const [itemToDelete, setItemToDelete] = useState(null);
     const [tools, setTools] = useState([])
     const navigate = useNavigate();
+    
+    console.log(itemToDelete);
+    useEffect(() => {
+      fetchTools();
+    }, []);
+
+    const fetchTools = () => {
+      fetch("http://localhost:3000/tools")
+        .then((res) => res.json())
+        .then((data) => {
+          setTools(data);
+        })
+        
+    };
+
+    const handleDelete = () => {
+      if (itemToDelete) {
+        const itemId = itemToDelete._id;
+    
+        // Send a DELETE request to the server
+        fetch(`http://localhost:3000/tools/${itemId}`, {
+          method: "DELETE",
+        })
+          .then((res) => {
+            if (res.ok) {
+              // Tool deleted successfully
+              // Close the modal
+              document.getElementById("my_modal_14").close();
+              // Fetch the updated list of tools
+              fetchTools();
+            } else if (res.status === 404) {
+              // Tool not found
+              alert("Tool not found");
+            } else {
+              // Internal server error
+              alert("Internal Server Error");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    };
+    
+    
     const handleClick = () => {
         navigate('/dashboard/addtool')
     }
+    
     
     useEffect(() => {
         fetch('http://localhost:3000/tools')
@@ -25,9 +72,7 @@ const ManageTools = () => {
             navigate('/dashboard/edittool', {state : select})
         }
     }
-    const handleDelete = () => {
-        console.log(itemToDelete);
-    }
+    
 
     return (
         <div className='mt-[35px] w-full px-8'>
@@ -91,7 +136,7 @@ const ManageTools = () => {
                                         document.getElementById("my_modal_14").showModal();
                                     
                                         // Set the data in your state (setItemToDelete)
-                                        setItemToDelete(items);
+                                        setItemToDelete(value);
                                       }}
                                     className="p-[10px] mr-1 w-[40px] hover:-translate-y-[0.5px]">
                                         <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
