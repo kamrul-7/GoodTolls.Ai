@@ -48,7 +48,7 @@ const News = () => {
                 <div className=' grid ms-2 me-2 md:grid-cols-2 gap-4 mt-2 max-w-screen-xl mx-auto'>
                 {
                     isLoading ? 
-                    <span className="loading loading-ring md:w-40 md:h-40 w-20 h-20 md:ml-[100%] ml-[20%] mb-10"></span>
+                    <span className="loading loading-ring md:w-40 md:h-40 w-20 h-20 md:ml-[90%] ml-[50%] mb-10 mt-5"></span>
                     :news.map(item=> <div className='news-card '>
                     <div className='news-card-image'>
                         <img className='news-card-image' src={`http://localhost:3000/uploads/${item.image}`} alt="" />

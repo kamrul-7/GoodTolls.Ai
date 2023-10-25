@@ -154,7 +154,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
     <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1">
       {
       isLoading ? 
-        <span className="loading loading-ring md:w-40 md:h-40 w-20 h-20 md:ml-[100%] ml-[20%] my-40"></span>
+        <span className="loading loading-ring md:w-40 md:h-40 w-20 h-20 md:ml-[140%] ml-[40%] md:my-40 my-20"></span>
       :tools.map((tool, indx) => {
         if (searchStat) {
           if (tool?.toolName) {
