@@ -13,6 +13,7 @@ const Hero = ({ name, count, getSearchData, }) => {
       .then((res) => res.json())
       .then((data) => {
         const matchingItem = data.find((item) => item.SubCategory === name);
+        setData(data);
         if (matchingItem) {
           setMessage(matchingItem.message); 
         } else {
@@ -20,7 +21,8 @@ const Hero = ({ name, count, getSearchData, }) => {
         }
       });
   }, [name]);;
-
+console.log(data);
+const firstSixItem = data.slice(0,6)
   const handleKeyPress = (e) => {
     if (e.key !== "Enter") {
       setSearchData(e.target.value)
@@ -89,14 +91,9 @@ const Hero = ({ name, count, getSearchData, }) => {
             <div className='popular-section'>
               <p className='popular-title mb-4'>Popular Categories</p>
               <div className='popular-item flex'>
-                <div className='item me-4'><p className='p-text'>Audio Edit</p></div>
-                <div className='item me-4'><p className='p-text'>Github</p></div>
-                <div className='item me-4'><p className='p-text'>Image Improvent</p></div>
-
-                <div className='item me-4'><p className='p-text'>Ai Detect</p></div>
-
-                <div className='item me-4'><p className='p-text'>Generative Code</p></div>
-                <div className='item me-4'><p className='p-text'>Inspiration</p></div>
+                {
+                  firstSixItem.map(item => <div className='item me-4'><p className='p-text'>{item.Title}</p></div>)
+                }
               </div>
             </div>
           </div>

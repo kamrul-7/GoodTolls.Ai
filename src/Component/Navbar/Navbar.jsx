@@ -6,7 +6,7 @@ const Navbar = () => {
     <>
       <li className='mx-6'>
 
-        <NavLink to="/" style={{ background: 'transparent', }} className={({ isActive }) => isActive ? "block remove" : "remove"}>
+        <NavLink to="/" style={{ background: 'transparent', }} className={({ isActive }) => isActive ? "block remove" : "removes"}>
           {({ isActive }) => (
             <>
               <span className={isActive ? "text-[#2970FF] font-semibold" : "block hover:bg-transparent"}>AI Tools Finder</span>
@@ -17,7 +17,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li className='mx-6'>
-        <NavLink to="/about" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "block remove" : "remove"}>
+        <NavLink to="/about" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "block remove" : "removes"}>
           {({ isActive }) => (
             <>
               <span className={isActive ? "text-[#2970FF] font-semibold" : "block"}>About</span>
@@ -28,7 +28,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li className='mx-6'>
-        <NavLink to="/contact" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "block remove" : "remove"}>
+        <NavLink to="/contact" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "block remove" : "removes"}>
           {({ isActive }) => (
             <>
               <span className={isActive ? "text-[#2970FF] font-semibold" : "block"}>Contact</span>
@@ -38,7 +38,7 @@ const Navbar = () => {
 
         </NavLink></li>
       <li className='mx-6'>
-        <NavLink to="/news" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "block remove" : "remove"}>
+        <NavLink to="/news" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "block remove" : "removes"}>
           {({ isActive }) => (
             <>
               <span className={isActive ? "text-[#2970FF] font-semibold" : "block hover:border-2"}>News</span>
