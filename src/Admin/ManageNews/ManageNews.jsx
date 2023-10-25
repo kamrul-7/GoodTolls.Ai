@@ -4,11 +4,16 @@ import { useNavigate } from "react-router-dom";
 
 const ManageNews = () => {
     const [news, setNews] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         fetch('http://localhost:3000/news')
             .then(res => res.json())
-            .then(data => setNews(data))
+            .then(data => {
+              setNews(data)
+              setIsLoading(false)})
     }, [])
+
+    useEffect(()=>console.log(news),[news]);
 
     const navigate = useNavigate();
     const handleClick = () => {
@@ -71,7 +76,7 @@ const ManageNews = () => {
                     {/* Table regular row */}
 
                     {
-                        news.map((news) => (
+                        news.length > 0 ? news.map((news) => (
                             <tr className='border-b h-[64px] border-[#EAECF0] text-sm font-medium'>
                                 <td className='py-4 px-6 hover:bg-[#F9FAFB]'>{news?.newsTitle}</td>
                                 <td className='py-4 px-6 hover:bg-[#F9FAFB]'>{news?.date}</td>
@@ -104,7 +109,11 @@ const ManageNews = () => {
 
                                 </td>
                             </tr>
-                        ))
+                        )) : isLoading ?
+                        <td className="px-auto py-10 flex justify-center w-full" colSpan={4}>
+                          <span className="loading loading-ring w-20 h-20 ml-[200%]"></span>
+                        </td>
+                        : <td className="border-b text-[#475467] text-3xl p-10" colSpan={4}>There are no records to display</td>
                     }
 
                 </table>

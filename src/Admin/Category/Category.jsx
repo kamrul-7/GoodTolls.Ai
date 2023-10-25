@@ -8,6 +8,7 @@ const Category = () => {
   const [Title, setTitle] = useState("");
   const [message, setMessage] = useState("");
   const [itemToDelete, setItemToDelete] = useState(null);
+  const [isLoading, setIsLoading] = useState(true)
   const modalRef = useRef(null);
   console.log(itemToDelete);
   const closeModal = () => {
@@ -21,10 +22,11 @@ const Category = () => {
       .then((res) => res.json())
       .then((data) => {
         setCat(data);
+        setIsLoading(false)
       })
       .catch((error) => {
         console.error(error);
-        
+
       });
   };
 
@@ -67,41 +69,41 @@ const Category = () => {
     closeModal();
   };
   const handleUpdate = () => {
-      console.log(itemToDelete);
-      console.log("updating");
-      if (itemToDelete) {
-        
-        const itemToUpdate = {
-          catName: catName, 
-          Title: Title, 
-          message: message, 
-        };
-  
-        console.log(itemToUpdate);
-  
-        fetch(`http://localhost:3000/category/${itemToDelete._id}`, {
-          method: "PUT", // Use the appropriate HTTP method for updating
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(itemToUpdate),
+    console.log(itemToDelete);
+    console.log("updating");
+    if (itemToDelete) {
+
+      const itemToUpdate = {
+        catName: catName,
+        Title: Title,
+        message: message,
+      };
+
+      console.log(itemToUpdate);
+
+      fetch(`http://localhost:3000/category/${itemToDelete._id}`, {
+        method: "PUT", // Use the appropriate HTTP method for updating
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(itemToUpdate),
+      })
+        .then((res) => {
+          if (res.ok) {
+            fetchCategory();
+            toast.success("Category Updated Successfully");
+          } else if (res.status === 404) {
+            alert("Category not found");
+          } else {
+            alert("Internal Server Error");
+          }
         })
-          .then((res) => {
-            if (res.ok) {
-              fetchCategory();
-              toast.success("Category Updated Successfully");
-            } else if (res.status === 404) {
-              alert("Category not found");
-            } else {
-              alert("Internal Server Error");
-            }
-          })
-          
-  
-        setItemToDelete(null);
-        closeModal();
-      }
-      
+
+
+      setItemToDelete(null);
+      closeModal();
+    }
+
   };
   const handleDelete = () => {
     console.log(itemToDelete);
@@ -121,7 +123,7 @@ const Category = () => {
             alert("Internal Server Error");
           }
         })
-        
+
       setItemToDelete(null);
       closeModal();
     }
@@ -132,18 +134,18 @@ const Category = () => {
     setCatName(item.catName);
     setTitle(item.Title);
     setMessage(item.message);
-  
+
     // Open the update modal
     const modal = document.getElementById("my_modal_18");
     modal.showModal();
   };
- const crossButton = () =>{
-  console.log("hello");
+  const crossButton = () => {
+    console.log("hello");
     setCatName("");
     setTitle("");
     setMessage("");
-    
- }
+
+  }
 
   return (
     <div className="mt-[35px] w-full px-8">
@@ -213,71 +215,77 @@ const Category = () => {
 
           {/* Table regular row */}
           {
-            cat.map(item => <tr className="border-b h-[64px] border-[#EAECF0] text-sm font-medium">
-            <td className="py-4 px-6 hover:bg-[#F9FAFB]">{item.catName}</td>
-            <td className="py-4 px-6 hover:bg-[#F9FAFB]">{item.Title}</td>
-            <td className="py-4 px-6 hover:bg-[#F9FAFB] font-normal">{item.subCount}</td>
-            <td className="py-4 px-6 hover:bg-[#F9FAFB] font-normal">{item.toolsCount}</td>
-            {/* Action buttons */}
-            <td className="px-4 py-4 flex items-center justify-center hover:mt-[1px] hover:-mb-[1px] hover:-translate-y-[0.5px] hover:bg-[#F9FAFB]">
-              {/* Delete button */}
-              <button
-  onClick={() => {
-    // Open the modal
-    document.getElementById("my_modal_14").showModal();
+            cat.length > 0 ? cat.map(item =>
+              <tr className="border-b h-[64px] border-[#EAECF0] text-sm font-medium">
+                <td className="py-4 px-6 hover:bg-[#F9FAFB]">{item.catName}</td>
+                <td className="py-4 px-6 hover:bg-[#F9FAFB]">{item.Title}</td>
+                <td className="py-4 px-6 hover:bg-[#F9FAFB] font-normal">{item.subCount}</td>
+                <td className="py-4 px-6 hover:bg-[#F9FAFB] font-normal">{item.toolsCount}</td>
+                {/* Action buttons */}
+                <td className="px-4 py-4 flex items-center justify-center hover:mt-[1px] hover:-mb-[1px] hover:-translate-y-[0.5px] hover:bg-[#F9FAFB]">
+                  {/* Delete button */}
+                  <button
+                    onClick={() => {
+                      // Open the modal
+                      document.getElementById("my_modal_14").showModal();
 
-    // Set the data in your state (setItemToDelete)
-    setItemToDelete(item);
-  }}
-  className="p-[10px] mr-1 w-[40px] hover:-translate-y-[0.5px]"
->
-                <svg
-                  width="18"
-                  height="20"
-                  viewBox="0 0 18 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12.3333 4.99999V4.33332C12.3333 3.3999 12.3333 2.93319 12.1517 2.57667C11.9919 2.26307 11.7369 2.0081 11.4233 1.84831C11.0668 1.66666 10.6001 1.66666 9.66667 1.66666H8.33333C7.39991 1.66666 6.9332 1.66666 6.57668 1.84831C6.26308 2.0081 6.00811 2.26307 5.84832 2.57667C5.66667 2.93319 5.66667 3.3999 5.66667 4.33332V4.99999M7.33333 9.58332V13.75M10.6667 9.58332V13.75M1.5 4.99999H16.5M14.8333 4.99999V14.3333C14.8333 15.7335 14.8333 16.4335 14.5608 16.9683C14.3212 17.4387 13.9387 17.8212 13.4683 18.0608C12.9335 18.3333 12.2335 18.3333 10.8333 18.3333H7.16667C5.76654 18.3333 5.06647 18.3333 4.53169 18.0608C4.06129 17.8212 3.67883 17.4387 3.43915 16.9683C3.16667 16.4335 3.16667 15.7335 3.16667 14.3333V4.99999"
-                    stroke="#475467"
-                    strokeWidth="1.66667"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
+                      // Set the data in your state (setItemToDelete)
+                      setItemToDelete(item);
+                    }}
+                    className="p-[10px] mr-1 w-[40px] hover:-translate-y-[0.5px]"
+                  >
+                    <svg
+                      width="18"
+                      height="20"
+                      viewBox="0 0 18 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12.3333 4.99999V4.33332C12.3333 3.3999 12.3333 2.93319 12.1517 2.57667C11.9919 2.26307 11.7369 2.0081 11.4233 1.84831C11.0668 1.66666 10.6001 1.66666 9.66667 1.66666H8.33333C7.39991 1.66666 6.9332 1.66666 6.57668 1.84831C6.26308 2.0081 6.00811 2.26307 5.84832 2.57667C5.66667 2.93319 5.66667 3.3999 5.66667 4.33332V4.99999M7.33333 9.58332V13.75M10.6667 9.58332V13.75M1.5 4.99999H16.5M14.8333 4.99999V14.3333C14.8333 15.7335 14.8333 16.4335 14.5608 16.9683C14.3212 17.4387 13.9387 17.8212 13.4683 18.0608C12.9335 18.3333 12.2335 18.3333 10.8333 18.3333H7.16667C5.76654 18.3333 5.06647 18.3333 4.53169 18.0608C4.06129 17.8212 3.67883 17.4387 3.43915 16.9683C3.16667 16.4335 3.16667 15.7335 3.16667 14.3333V4.99999"
+                        stroke="#475467"
+                        strokeWidth="1.66667"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
 
-              {/* Edit button */}
-              <button
-                 onClick={() => {
-                  // Open the modal
-                  document.getElementById("my_modal_18").showModal();
-              
-                  // Set the data in your state (setItemToDelete)
-                  setItemToDelete(item);
-                  openUpdateModal(item);
-                }}
-                className="p-[10px] w-[40px] hover:-translate-y-[0.5px]"
-              >
-                <svg
-                  width="19"
-                  height="19"
-                  viewBox="0 0 19 19"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1.39662 15.0964C1.43491 14.7518 1.45405 14.5795 1.50618 14.4185C1.55243 14.2756 1.61778 14.1396 1.70045 14.0142C1.79363 13.8729 1.91621 13.7504 2.16136 13.5052L13.1666 2.49999C14.0871 1.57951 15.5795 1.57951 16.4999 2.49999C17.4204 3.42046 17.4204 4.91285 16.4999 5.83332L5.49469 16.8386C5.24954 17.0837 5.12696 17.2063 4.98566 17.2995C4.86029 17.3821 4.72433 17.4475 4.58146 17.4937C4.42042 17.5459 4.24813 17.565 3.90356 17.6033L1.08325 17.9167L1.39662 15.0964Z"
-                    stroke="#475467"
-                    strokeWidth="1.66667"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-            </td>
-          </tr>)
+                  {/* Edit button */}
+                  <button
+                    onClick={() => {
+                      // Open the modal
+                      document.getElementById("my_modal_18").showModal();
+
+                      // Set the data in your state (setItemToDelete)
+                      setItemToDelete(item);
+                      openUpdateModal(item);
+                    }}
+                    className="p-[10px] w-[40px] hover:-translate-y-[0.5px]"
+                  >
+                    <svg
+                      width="19"
+                      height="19"
+                      viewBox="0 0 19 19"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1.39662 15.0964C1.43491 14.7518 1.45405 14.5795 1.50618 14.4185C1.55243 14.2756 1.61778 14.1396 1.70045 14.0142C1.79363 13.8729 1.91621 13.7504 2.16136 13.5052L13.1666 2.49999C14.0871 1.57951 15.5795 1.57951 16.4999 2.49999C17.4204 3.42046 17.4204 4.91285 16.4999 5.83332L5.49469 16.8386C5.24954 17.0837 5.12696 17.2063 4.98566 17.2995C4.86029 17.3821 4.72433 17.4475 4.58146 17.4937C4.42042 17.5459 4.24813 17.565 3.90356 17.6033L1.08325 17.9167L1.39662 15.0964Z"
+                        stroke="#475467"
+                        strokeWidth="1.66667"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </td>
+              </tr>)
+              : isLoading ?
+              <td className="px-auto py-10 flex justify-center w-full" colSpan={5}>
+                <span className="loading loading-ring w-20 h-20 ml-[250%]"></span>
+              </td>
+              : <td className="border-b text-[#475467] text-3xl p-10" colSpan={5}>There are no records to display</td>
           }
         </table>
         {/* pagination section */}
@@ -362,25 +370,25 @@ const Category = () => {
                   className="btn-circle btn-ghost absolute top-4 right-4 text-2xl"
                   type="button"
                   onClick={() => {
-                    
+
                     const modal = document.getElementById("my_modal_22");
                     modal.close();
-                    
+
                   }}
                 >
                   ✕
                 </button>
                 <div className="flex justify-between w-[618px] mx-auto">
-                <button
-  onClick={() => {
-    crossButton(); // Call the function to clear form data
-    closeModal("my_modal_22"); // Close the modal
-  }}
-  className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
-  type="button" // Set type to "button" to prevent form submission
->
-  Cancel
-</button>
+                  <button
+                    onClick={() => {
+                      crossButton(); // Call the function to clear form data
+                      closeModal("my_modal_22"); // Close the modal
+                    }}
+                    className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
+                    type="button" // Set type to "button" to prevent form submission
+                  >
+                    Cancel
+                  </button>
                   <button
                     onClick={() => {
                       const modal = document.getElementById("my_modal_22");
@@ -490,16 +498,16 @@ const Category = () => {
                     ✕
                   </button>
                   <div className="flex justify-between w-[618px] mx-auto">
-                  <button
-  onClick={() => {
-    crossButton(); // Call the function to clear form data
-    closeModal("my_modal_22"); // Close the modal
-  }}
-  className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
-  type="button" // Set type to "button" to prevent form submission
->
-  Cancel
-</button>
+                    <button
+                      onClick={() => {
+                        crossButton(); // Call the function to clear form data
+                        closeModal("my_modal_22"); // Close the modal
+                      }}
+                      className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
+                      type="button" // Set type to "button" to prevent form submission
+                    >
+                      Cancel
+                    </button>
 
                     <button
                       // onClick={handleUpdate}
@@ -575,7 +583,7 @@ const Category = () => {
                   ✕
                 </button>
                 <div className="flex justify-between w-[618px] mx-auto">
-                <button
+                  <button
                     onClick={() => {
                       const modal = document.getElementById("my_modal_14");
                       modal.close();
