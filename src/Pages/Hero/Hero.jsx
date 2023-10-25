@@ -2,6 +2,7 @@ import Ripples from 'react-ripples'
 import './Hero.css'
 
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 const Hero = ({ name, count, getSearchData, }) => {
   const [seartData, setSearchData] = useState('');
   const[data, setData]= useState([]);
@@ -54,11 +55,20 @@ const firstSixItem = data.slice(0,6)
   },[name])
 
   return (
-    <div className='text-center'>
+    <div>
+      <div className="breadcrumbs  mb-5 text-sm font-normal mx-6">
+        <ul>
+          <li>
+            <Link to='/'>Home</Link>
+          </li>
+          <li>category</li>
+          <li>subcategory</li>
+        </ul>
+      </div>
+      <div className='text-center'>
       <div className="hero min-h-[491px]">
         <div className="hero-content text-center">
           <div className="max-w-3xl">
-
 
             {
               name.length == 0 ?
@@ -99,6 +109,7 @@ const firstSixItem = data.slice(0,6)
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
