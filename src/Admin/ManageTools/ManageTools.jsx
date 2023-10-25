@@ -24,6 +24,7 @@ const ManageTools = () => {
             console.log(select);
             navigate('/dashboard/edittool', {state : select})
         }
+    }
     const handleDelete = () => {
         console.log(itemToDelete);
     }
@@ -202,6 +203,6 @@ const ManageTools = () => {
       </div>
         </div>
     );
-};
+}
 
 export default ManageTools;
