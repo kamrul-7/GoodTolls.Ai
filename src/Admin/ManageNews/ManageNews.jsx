@@ -8,7 +8,6 @@ const ManageNews = () => {
 
     const [isLoading, setIsLoading] = useState(true);
 
-    console.log(itemToDelete);
 
     const fetchNews = () => {
       fetch("http://localhost:3000/news")
@@ -24,7 +23,6 @@ const ManageNews = () => {
        fetchNews();
     }, [])
 
-    useEffect(()=>console.log(news),[news]);
 
     const navigate = useNavigate();
     const handleClick = () => {
@@ -63,10 +61,8 @@ const ManageNews = () => {
     
 
     const handleEdit = (id)=>{
-        console.log(id);
         if(id){
             const select = news.find(n => n._id === id);
-            console.log(select);
             navigate('/dashboard/editnews', {state : select})
         }
     }

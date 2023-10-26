@@ -201,7 +201,6 @@ const AddTool = () => {
     const [file, setFile] = useState(null);
     const [image, setImage] = useState(null);
     const handleFileChange = (file) => {
-        console.log(file);
         setFile(file);
         setImage(URL.createObjectURL(file));
     };
@@ -222,7 +221,6 @@ const AddTool = () => {
         const image = file;
         const priceType = event.target.priceType.value;
         const price = event.target.price.value || '';
-        console.log(price);
         const pricePeriod = event.target.pricePeriod.value;
         const date = formateDate();
         const facebook = event.target.facebook.value || '';

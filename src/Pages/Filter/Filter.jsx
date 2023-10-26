@@ -63,9 +63,9 @@ const Filter = (props) => {
                 {
                     subList.sort((a, b) => (a._id > b._id ? 1 : -1)).map((value, index) => {
                         return (
-                            <ul className="py-2 text-sm text-gray-700 w-full text-left">
+                            <ul key={index} className="py-2 text-sm text-gray-700 w-full text-left">
 
-                                <li key={index}>
+                                <li>
                                     <button disabled href="#" className="w-full text-left block font-medium px-4 py-2 hover:bg-gray-100 " value={value._id}>{value._id}</button>
                                 </li>
                                 {

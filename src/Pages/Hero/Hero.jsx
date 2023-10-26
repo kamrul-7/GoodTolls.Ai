@@ -25,7 +25,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
         }
       });
   }, [name]);;
-  console.log(data);
+
   const firstSixItem = data.slice(0, 6)
   const handleKeyPress = (e) => {
     if (e.key !== "Enter") {
@@ -58,7 +58,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
   }, [name])
 
   const handleClick = (event, value) => {
-    console.log(event.target.name, value);
+
     if (event.target.name != choice) {
       popularSub(value)
     } else {
@@ -121,7 +121,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
                 <div className='popular-item flex'>
                   {
                     firstSixItem.map((item, index) =>
-                      <button name={`${item.Title}`} onClick={(event) => {
+                      <button key={index} name={`${item.Title}`} onClick={(event) => {
                         setChoice(`${item.Title}`)
                         handleClick(event, item.Title)
                       }} className={`item p-text me-4 ${choice === `${item.Title}` ? 'bg-gray-100' : 'bg-transparent'}`}>{item.Title}</button>)

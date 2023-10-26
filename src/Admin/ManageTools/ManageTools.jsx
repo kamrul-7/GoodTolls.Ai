@@ -8,7 +8,7 @@ const ManageTools = () => {
     const [isLoading, setIsLoading] = useState(true)
     const navigate = useNavigate();
     
-    console.log(itemToDelete);
+
     useEffect(() => {
       fetchTools();
     }, []);
@@ -69,10 +69,10 @@ const ManageTools = () => {
     // useEffect(()=>console.log(tools),[tools])
 
     const handleEdit = (id)=>{
-        console.log(id);
+
         if(id){
             const select = tools.find(n => n._id === id);
-            console.log(select);
+
             navigate('/dashboard/edittool', {state : select})
         }
     }

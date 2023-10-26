@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './SingleNews.css'
 import Footer from '../../Component/Footer/Footer';
 import { useParams } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthProvider';
 
 const SingleNews = () => {
-    const { id } = useParams();
+    const {newsId} = useContext(AuthContext)
     const [item, setItem] = useState(null);
     const [cata, setCata] = useState(null);
 
     useEffect(() => {
         // Make a GET request to your backend API to fetch the news item based on the `id`.
-        fetch(`http://localhost:3000/news/${id}`)
+        fetch(`http://localhost:3000/news/${newsId}`)
             .then(response => response.json())
             .then(data => {
                 // Update the state with the data for the specific news item.
@@ -19,9 +20,9 @@ const SingleNews = () => {
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
-        // console.log(item)
 
-    }, [id]);
+
+    }, [newsId]);
 
     useEffect(() => {
         fetch(`http://localhost:3000/category`)
@@ -33,7 +34,6 @@ const SingleNews = () => {
                 console.error('Error fetching data:', error);
             });
     }, []);
-    console.log(cata)
 
     if (!item) {
         return <span className="loading loading-ring md:w-40 md:h-40 w-20 h-20 md:ml-[45%] ml-[45%] md:my-40 my-20"></span>;
