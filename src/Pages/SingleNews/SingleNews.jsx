@@ -36,7 +36,7 @@ const SingleNews = () => {
     console.log(cata)
 
     if (!item) {
-        return <div>Loading...</div>;
+        return <span className="loading loading-ring md:w-40 md:h-40 w-20 h-20 md:ml-[45%] ml-[45%] md:my-40 my-20"></span>;
     }
 
     return (

@@ -16,7 +16,13 @@ const Filter = (props) => {
         setChoice(props.selectedPopular)
     }, [props.selectedPopular])
 
-    useEffect(()=>props.clickHandler(choice),[choice])
+    useEffect(()=>{
+        const findCategory = ()=>{
+            const sub = subList.find(sub => sub.SubCategories.includes(choice))
+            return sub ? sub._id : '';
+        }
+        props.clickHandler(choice,findCategory())
+    },[choice])
 
 
     const handleClick = (event, value) => {
