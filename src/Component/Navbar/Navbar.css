@@ -10,7 +10,10 @@ border-radius: 8px;
 background: var(--Primary, #2970FF);
 }
 .remove{
-  background-color: transparent;
+  background-color: transparent !important;
+}
+.remove:hover{
+  background-color: transparent !important;
 }
 .removes:not(.active):hover {
   background-color: transparent !important;

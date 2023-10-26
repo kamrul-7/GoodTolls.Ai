@@ -12,6 +12,7 @@ const Home = () => {
     const [searchData, setSearchData] = useState('');
     const [selectedPopular, setSelectedPopular] = useState('')
     const [sortOption, setSortOption] = useState('All')
+    const [category, setCategory] = useState('')
     const decoration = x => {
         let str = x + ""
         const c = str.length % 3
@@ -39,8 +40,9 @@ const Home = () => {
         setSelectedPopular(value)
     }
 
-    const handleSubSubmit = (value)=>{
+    const handleSubSubmit = (value,category)=>{
         setSelectedSub(value)
+        setCategory(category)
     }
 
     const getToolsCount = (value)=>{
@@ -81,7 +83,7 @@ const Home = () => {
     return (
         <div>
            
-            <Hero name={selectedSub} count={total} getSearchData={getSearchData} popularSub = {handleSelectPopularSubmit}></Hero>
+            <Hero name={selectedSub} category={category} count={total} getSearchData={getSearchData} popularSub = {handleSelectPopularSubmit}></Hero>
 
             <div className='md:flex items-center justify-between mt-7 mb-5'>
                 <div className='md:flex items-center '>

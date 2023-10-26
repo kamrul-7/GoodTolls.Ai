@@ -49,7 +49,8 @@ const News = () => {
                 {
                     isLoading ? 
                     <span className="loading loading-ring md:w-40 md:h-40 w-20 h-20 md:ml-[90%] ml-[50%] mb-10 mt-5"></span>
-                    :news.map(item=> <div className='news-card '>
+                    :news.map(item=> <Link to={`/news/${item._id}`} >
+                    <div className='news-card '>
                     <div className='news-card-image'>
                         <img className='news-card-image' src={`http://localhost:3000/uploads/${item.image}`} alt="" />
                     </div>
@@ -67,10 +68,10 @@ const News = () => {
                     </div>
                     <div className='btn-section'>
                     <button className='main-btn'>
-                    <Link to={`/news/${item._id}`} >Read More </Link>
+                    Read More
                     </button>
                     </div>
-                </div>)
+                </div></Link>)
                 }
             
                 </div>

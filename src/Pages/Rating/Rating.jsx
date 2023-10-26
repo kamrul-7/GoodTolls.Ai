@@ -24,7 +24,7 @@ const Rating = ({ card }) => {
             <li>
               <Link to="/">Card</Link>
             </li>
-            <li>Chapple</li>
+            <li>{card.toolName}</li>
           </ul>
         </div>
         <div className="border-b w-[343px] mx-auto md:w-[1170px] md:h-[570px] h-[563]">
