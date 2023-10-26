@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import './Rating.css'
 const Rating = ({ card }) => {
-  // console.log(card)
   const [isToggled, setIsToggled] = useState(false);
   const styles = {
     button: {
@@ -195,8 +194,8 @@ const Rating = ({ card }) => {
                 <div>
                   <h1 className="text-base font-medium">
                     Tool Type:
-                    {card.SubCategory.map(sub => {
-                      return (<button className="bg-[#E5E7EB] mt-4 px-4 pl-4 py-[5px] ml-4 rounded-full text-xs font-normal">
+                    {card.SubCategory.map((sub,index) => {
+                      return (<button key={index} className="bg-[#E5E7EB] mt-4 px-4 pl-4 py-[5px] ml-4 rounded-full text-xs font-normal">
                         {sub}
                       </button>)
                     }
@@ -219,7 +218,7 @@ const Rating = ({ card }) => {
                       d="M8 2V5"
                       stroke="#081120"
                       strokeWidth="1.5"
-                      stroke-miterlimit="10"
+                      strokeMiterlimit="10"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
@@ -227,7 +226,7 @@ const Rating = ({ card }) => {
                       d="M16 2V5"
                       stroke="#081120"
                       strokeWidth="1.5"
-                      stroke-miterlimit="10"
+                      strokeMiterlimit="10"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
@@ -235,7 +234,7 @@ const Rating = ({ card }) => {
                       d="M3.5 9.08997H20.5"
                       stroke="#081120"
                       strokeWidth="1.5"
-                      stroke-miterlimit="10"
+                      strokeMiterlimit="10"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
@@ -243,7 +242,7 @@ const Rating = ({ card }) => {
                       d="M21 8.5V17C21 20 19.5 22 16 22H8C4.5 22 3 20 3 17V8.5C3 5.5 4.5 3.5 8 3.5H16C19.5 3.5 21 5.5 21 8.5Z"
                       stroke="#081120"
                       strokeWidth="1.5"
-                      stroke-miterlimit="10"
+                      strokeMiterlimit="10"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
@@ -318,7 +317,7 @@ const Rating = ({ card }) => {
                   {card.twitter&& <div>
                     <a href={card.twitter}>
                       <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
-                        <g clip-path="url(#clip0_776_12898)">
+                        <g clipPath="url(#clip0_776_12898)">
                           <path d="M13.0004 25.9997C20.18 25.9997 26.0003 20.1795 26.0003 12.9998C26.0003 5.82019 20.18 -6.10352e-05 13.0004 -6.10352e-05C5.82073 -6.10352e-05 0.000488281 5.82019 0.000488281 12.9998C0.000488281 20.1795 5.82073 25.9997 13.0004 25.9997Z" fill="#55ACEE" />
                           <path d="M20.9631 9.34283C20.406 9.58986 19.8068 9.75694 19.1783 9.83156C19.82 9.44711 20.3124 8.83881 20.5449 8.11278C19.9444 8.46896 19.2791 8.72734 18.5716 8.86662C18.0048 8.26295 17.1972 7.88568 16.3029 7.88568C14.5872 7.88568 13.1956 9.27725 13.1956 10.993C13.1956 11.2366 13.2232 11.4736 13.2765 11.7012C10.694 11.5717 8.40424 10.3347 6.87155 8.45413C6.60412 8.91296 6.45072 9.44711 6.45072 10.0165C6.45072 11.0943 6.9997 12.0458 7.83302 12.6029C7.32389 12.5869 6.84443 12.4472 6.42569 12.2138C6.42546 12.227 6.42546 12.2402 6.42546 12.2532C6.42546 13.7588 7.497 15.0146 8.91823 15.2998C8.65776 15.3712 8.38269 15.409 8.09974 15.409C7.89906 15.409 7.70463 15.3897 7.51508 15.3536C7.91042 16.5878 9.05774 17.4862 10.4178 17.5115C9.35413 18.3451 8.01446 18.8417 6.55824 18.8417C6.30797 18.8417 6.06001 18.8271 5.81738 18.7981C7.1918 19.6801 8.82554 20.1943 10.5802 20.1943C16.2958 20.1943 19.4214 15.4595 19.4214 11.3529C19.4214 11.2183 19.4184 11.0841 19.4124 10.9511C20.02 10.5131 20.5467 9.96597 20.9631 9.34283Z" fill="white" />
                         </g>
@@ -335,7 +334,7 @@ const Rating = ({ card }) => {
                       <div>
   <a href={card.linkedin}>
     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
-      <g clip-path="url(#clip0_776_12903)">
+      <g clipPath="url(#clip0_776_12903)">
         <path d="M13 26C20.1797 26 26 20.1797 26 13C26 5.8203 20.1797 0 13 0C5.8203 0 0 5.8203 0 13C0 20.1797 5.8203 26 13 26Z" fill="#007AB9"/>
         <path d="M20.7674 14.046V19.4056H17.66V14.4052C17.66 13.1496 17.2114 12.2922 16.0863 12.2922C15.2277 12.2922 14.7177 12.8695 14.4924 13.4284C14.4106 13.6282 14.3895 13.9056 14.3895 14.1857V19.4054H11.2819C11.2819 19.4054 11.3237 10.9363 11.2819 10.0597H14.3898V11.384C14.3835 11.3945 14.3747 11.4047 14.3691 11.4146H14.3898V11.384C14.8027 10.7486 15.5392 9.84021 17.1903 9.84021C19.2347 9.84021 20.7674 11.1759 20.7674 14.046ZM8.03113 5.55469C6.96815 5.55469 6.27271 6.25245 6.27271 7.1692C6.27271 8.06649 6.94799 8.78441 7.99034 8.78441H8.0105C9.09434 8.78441 9.76823 8.06649 9.76823 7.1692C9.74761 6.25245 9.09434 5.55469 8.03113 5.55469ZM6.4574 19.4056H9.56384V10.0597H6.4574V19.4056Z" fill="white"/>
       </g>
@@ -354,7 +353,7 @@ const Rating = ({ card }) => {
                     card.facebook && <div>
                        <a href={card.facebook}>
                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
-  <g clip-path="url(#clip0_1454_750)">
+  <g clipPath="url(#clip0_1454_750)">
     <path d="M13 26C20.1797 26 26 20.1797 26 13C26 5.8203 20.1797 0 13 0C5.8203 0 0 5.8203 0 13C0 20.1797 5.8203 26 13 26Z" fill="#3C5A9A"/>
     <path d="M17.227 3.99023H14.3472C12.6382 3.99023 10.7373 4.70901 10.7373 7.18625C10.7457 8.04941 10.7373 8.87607 10.7373 9.80642H8.76025V12.9525H10.7985V22.0096H14.5439V12.8927H17.0159L17.2396 9.79759H14.4793C14.4793 9.79759 14.4855 8.42074 14.4793 8.0209C14.4793 7.04195 15.498 7.09801 15.5592 7.09801C16.044 7.09801 16.9865 7.09942 17.2284 7.09801V3.99023H17.227Z" fill="white"/>
   </g>

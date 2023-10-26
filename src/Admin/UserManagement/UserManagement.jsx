@@ -14,17 +14,17 @@ const UserManagement = () => {
   const [updatedEmail, setUpdatedEmail] = useState("");
   const [updatedPassword, setUpdatedPassword] = useState("");
   const [isLoading,setIsLoading] = useState(true)
-  console.log(itemToDelete);
-console.log(itemToDelete);
+
+
   const crossButton = () =>{
-    console.log("hello");
+
       setUserName("");
       setEmail("");
       setPassword("");
 
       
    }
-  console.log(itemToDelete);
+
   const fetchUsers = () => {
     fetch("http://localhost:3000/users")
       .then((res) => res.json())
@@ -43,13 +43,13 @@ console.log(itemToDelete);
     setLoggedin(JSON.parse(sessionStorage.getItem(tmpStoreKey)))
   }, []);
 
-  useEffect(() => console.log(users), [users])
+
 
   const handleDelete = () => {
-    console.log(itemToDelete);
+
     if (itemToDelete) {
       const itemId = itemToDelete._id;
-      console.log(itemId);
+
       fetch(`http://localhost:3000/users/${itemId}`, {
         method: "DELETE",
       })
@@ -72,7 +72,7 @@ console.log(itemToDelete);
   const modalRef = useRef(null);
 
   const closeModal = () => {
-    console.log("Attempting to close modal");
+
     if (modalRef.current) {
       modalRef.current.close();
     }
@@ -96,7 +96,7 @@ console.log(itemToDelete);
       date: formattedDate,
     };
 
-    console.log(user);
+
     if (userName.length != 0 && email.length != 0 && password.length != 0) {
       fetch("http://localhost:3000/users", {
         method: "POST",
@@ -127,8 +127,7 @@ console.log(itemToDelete);
     closeModal();
   };
   const handleUpdate = () => {
-    console.log(itemToDelete);
-    console.log("updating");
+
     if (itemToDelete) {
 
       const itemToUpdate = {
@@ -137,7 +136,7 @@ console.log(itemToDelete);
         password: password,
         userType: userType
       };
-      console.log(itemToUpdate);
+
 
       fetch(`http://localhost:3000/users/${itemToDelete._id}`, {
         method: "PUT", // Use the appropriate HTTP method for updating

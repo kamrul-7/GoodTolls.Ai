@@ -7,7 +7,7 @@ import CookiePopup from '../../Component/Popup/Popup';
 
 
 const Home = () => {
-    const [total, setTotal] = useState(1283)
+    const [total, setTotal] = useState(0)
     const [selectedSub, setSelectedSub] = useState('')
     const [searchData, setSearchData] = useState('');
     const [selectedPopular, setSelectedPopular] = useState('')
@@ -75,7 +75,6 @@ const Home = () => {
 
     const getSearchData = (data)=>{
         if(data !== searchData){
-            console.log(data);
             setSearchData(data)
         }
     }

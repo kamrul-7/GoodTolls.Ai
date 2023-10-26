@@ -20,8 +20,7 @@ const Rate = ({id,name}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [available, setAvailable] = useState(false);
 
-    useEffect(()=>{setFalse();
-        console.log(available, toggle)},[])
+
 
 
     useEffect(()=>{
@@ -205,7 +204,6 @@ const Rate = ({id,name}) => {
             .then(info => setReviews(info.reverse()))
     }
 
-    useEffect(()=>console.log(reviews),[reviews])
 
     return (
         <div>

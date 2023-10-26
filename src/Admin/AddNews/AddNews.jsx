@@ -79,7 +79,6 @@ const AddNews = () => {
     const [file, setFile] = useState(null);
     const [image, setImage] = useState(null);
     const handleFileChange = (file) => {
-        console.log(file);
         setFile(file);
         setImage(URL.createObjectURL(file));
     };

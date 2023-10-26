@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Rate from '../Rate/Rate';
 import Rattingg from '../Rating/Rating';
 import { useParams } from "react-router-dom";
+import { AuthContext } from "../Context/AuthProvider";
 
 const SingleTool = () => {
-    const { id } = useParams();
+    const { toolId } = useContext(AuthContext);
     const [cards, setCards] = useState(null);
     const [isLoading, setIsloading] = useState(true)
 
     useEffect(() => {
         // Make a GET request to your backend API to fetch the news item based on the `id`.
-        fetch(`http://localhost:3000/tools/${id}`)
+        fetch(`http://localhost:3000/tools/${toolId}`)
             .then(response => response.json())
             .then(data => {
                 // Update the state with the data for the specific news item.
@@ -21,12 +22,7 @@ const SingleTool = () => {
                 console.error('Error fetching data:', error);
             });
 
-    }, [id]);
-
-    //     if (!cards) {
-    //         return <div>Loading...</div>;
-    //     }
-    // console.log(cards)
+    }, [toolId]);
 
 
     return (
