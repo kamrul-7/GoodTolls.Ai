@@ -56,15 +56,15 @@ const Subcategory = () => {
       })
   }, [])
 
-  const fetchSubCategory = () => {
-    fetch("https://api.goodtools.ai/subcategory")
-      .then((res) => res.json())
-      .then((data) => {
-        setSub(data);
-        setIsLoading(false)
-      })
+  // const fetchSubCategory = () => {
+  //   fetch("https://api.goodtools.ai/subcategory")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setSub(data);
+  //       setIsLoading(false)
+  //     })
 
-  };
+  // // };
 
   useEffect(() => {
     fetchSubCategory();

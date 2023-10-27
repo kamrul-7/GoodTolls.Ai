@@ -3,12 +3,17 @@ import { Link } from "react-router-dom";
 import './Rating.css'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { AuthContext } from "../Context/AuthProvider";
+import { faChessKing } from "@fortawesome/free-solid-svg-icons";
 const Rating = ({ card }) => {
   // consoleisClicked
   const { toolId } = useContext(AuthContext);
   const [isToggled, setIsToggled] = useState(false);
   const storageKey = `myHeartClicked-${toolId}`;
   const isClicked = localStorage.getItem(storageKey) === "true";
+  
+  const handleClick = () => {
+    console.log("djkafs");
+  }
   const styles = {
     button: {
       padding: "10px 20px",
@@ -41,7 +46,9 @@ const Rating = ({ card }) => {
             <div className="mr-6 flex gap-4">
               <div>
                 {
-                  isClicked ? <AiFillHeart color="red" style={{ height: '24px', width: '24px' }}></AiFillHeart> : <AiOutlineHeart style={{ height: '24px', width: '24px' }}></AiOutlineHeart>
+                  isClicked ? <button onClick={handleClick} ><AiFillHeart color="red" style={{ height: '24px', width: '24px' }}></AiFillHeart></button> : <button>
+                    <AiOutlineHeart style={{ height: '24px', width: '24px' }}></AiOutlineHeart>
+                  </button>
                 }
               </div>
               <div>
