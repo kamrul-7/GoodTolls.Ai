@@ -9,6 +9,7 @@ const ManageNews = () => {
 
 
 
+
   // Pagination state
   const [currentPage, setCurrentPage] = useState(0);
   const perPage = 6; // Making perPage a constant if not changed elsewhere
@@ -40,6 +41,7 @@ const ManageNews = () => {
       } catch (error) {
         console.error("Failed fetching total news count:", error);
       }
+
     };
 
     fetchTotalNewsCount();
@@ -61,7 +63,7 @@ const ManageNews = () => {
         const imageId = itemToDelete.image;
     
         // Send a DELETE request to the server
-        fetch(`http://localhost:3000/news/${itemId}/${imageId}`, {
+        fetch(`https://api.goodtools.ai/news/${itemId}/${imageId}`, {
           method: "DELETE",
         })
           .then((res) => {

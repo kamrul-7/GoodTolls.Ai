@@ -14,7 +14,7 @@ const News = () => {
         // This code will run when the component mounts
     
         // Make a GET request to your backend API
-        fetch('http://localhost:3000/news')
+        fetch('https://api.goodtools.ai/news')
           .then(response => response.json())
           .then(data => {
             // Update the state with the data from the backend
@@ -54,7 +54,7 @@ const News = () => {
                     :news.map((item,index)=> <Link key={index} onClick={()=>setNewsId(item._id)} to={`/news/${slugify(item.newsTitle)}`} >
                     <div className='news-card '>
                     <div className='news-card-image'>
-                        <img className='news-card-image' src={`http://localhost:3000/uploads/${item.image}`} alt="" />
+                        <img className='news-card-image' src={`https://api.goodtools.ai/uploads/${item.image}`} alt="" />
                     </div>
                     <div className='date'>
                         <p className='date-title' >Tools</p>

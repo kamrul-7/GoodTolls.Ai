@@ -15,7 +15,7 @@ const SingleTool = () => {
 
     useEffect(() => {
         // Make a GET request to your backend API to fetch the news item based on the `id`.
-        fetch(`http://localhost:3000/tools/${toolId}`)
+        fetch(`https://api.goodtools.ai/tools/${toolId}`)
             .then(response => response.json())
             .then(data => {
                 // Update the state with the data for the specific news item.
