@@ -11,7 +11,7 @@ const SingleNews = () => {
 
     useEffect(() => {
         // Make a GET request to your backend API to fetch the news item based on the `id`.
-        fetch(`https://api.goodtools.ai//news/${newsId}`)
+        fetch(`https://api.goodtools.ai/news/${newsId}`)
             .then(response => response.json())
             .then(data => {
                 // Update the state with the data for the specific news item.
@@ -25,7 +25,7 @@ const SingleNews = () => {
     }, [newsId]);
 
     useEffect(() => {
-        fetch(`https://api.goodtools.ai//category`)
+        fetch(`https://api.goodtools.ai/category`)
             .then(response => response.json())
             .then(data => {
                 setCata(data)
@@ -58,7 +58,7 @@ const SingleNews = () => {
             {/* Single News Section */}
             <div className='mx-10 my-10 mb-26'>
                 {/* Hero section */}
-                <div className="hero mb-10 rounded-lg lg:h-[394px] mx-auto" style={{ backgroundImage: `url(https://api.goodtools.ai//uploads/${item.image})` }}>
+                <div className="hero mb-10 rounded-lg lg:h-[394px] mx-auto" style={{ backgroundImage: `url(https://api.goodtools.ai/uploads/${item.image})` }}>
                 </div>
                 <div className='text-section '>
                     {/* right-div */}

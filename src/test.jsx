@@ -17,12 +17,12 @@ const Test = () => {
     const [reviews, setReviews] = useState([])
 
 
-    // fetch('https://api.goodtools.ai//uploads/2023-10-21T10-43-55.055Zpexels-katie-burandt-1212693.jpg')
+    // fetch('https://api.goodtools.ai/uploads/2023-10-21T10-43-55.055Zpexels-katie-burandt-1212693.jpg')
     // .then(data => setImage(data.url))
 
     useEffect(() => {
         const str = {SubCategory : "dsada,1" }
-        fetch("https://api.goodtools.ai//newtool", {
+        fetch("https://api.goodtools.ai/newtool", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -340,7 +340,7 @@ const Test = () => {
 
     const [testnews, settestnews] = useState([])
     useEffect(()=>{
-        fetch('https://api.goodtools.ai//news/6536d1108dab758a8b3a7f64')
+        fetch('https://api.goodtools.ai/news/6536d1108dab758a8b3a7f64')
         .then(res=>res.json())
         .then(data=>settestnews(data))
     },[])

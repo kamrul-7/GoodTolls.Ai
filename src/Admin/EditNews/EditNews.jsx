@@ -84,7 +84,7 @@ const EditNews = () => {
     const [file, setFile] = useState(null);
     const [image, setImage] = useState(null);
     useEffect(()=>{
-        setImage(`https://api.goodtools.ai//uploads/${newsData.image}`)
+        setImage(`https://api.goodtools.ai/uploads/${newsData.image}`)
     },[])
     const handleFileChange = (file) => {
         setFile(file);
@@ -125,7 +125,7 @@ const EditNews = () => {
             formdata.append('newsBody', description)
             formdata.append('date', date())
             formdata.append('newsId', newsData._id)
-            fetch("https://api.goodtools.ai//editnews", {
+            fetch("https://api.goodtools.ai/editnews", {
                 method: "PUT",
                 headers: {
                 },

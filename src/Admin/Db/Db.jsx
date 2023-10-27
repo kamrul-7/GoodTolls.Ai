@@ -8,7 +8,7 @@ const Db = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   const fetchCount = () => {
-    fetch("https://api.goodtools.ai//counts")
+    fetch("https://api.goodtools.ai/counts")
       .then((res) => res.json())
       .then((data) => {
         setCount(data);

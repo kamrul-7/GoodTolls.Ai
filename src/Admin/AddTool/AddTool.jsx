@@ -129,7 +129,7 @@ const AddTool = () => {
     }, [finalWork])
 
     useEffect(() => {
-        fetch('https://api.goodtools.ai//subcategory')
+        fetch('https://api.goodtools.ai/subcategory')
             .then(res => res.json())
             .then(items => {
                 items.sort()
@@ -249,7 +249,7 @@ const AddTool = () => {
             formdata.append('discord', discord)
             formdata.append('description', description)
             formdata.append('works', works)
-            fetch("https://api.goodtools.ai//newtool", {
+            fetch("https://api.goodtools.ai/newtool", {
                 method: "POST",
                 headers: {
                 },

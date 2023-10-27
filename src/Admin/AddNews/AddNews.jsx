@@ -105,7 +105,7 @@ const AddNews = () => {
             formdata.append('image', file)
             formdata.append('newsBody', description)
             formdata.append('date', date())
-            fetch("https://api.goodtools.ai//newnews", {
+            fetch("https://api.goodtools.ai/newnews", {
                 method: "POST",
                 headers: {
                 },

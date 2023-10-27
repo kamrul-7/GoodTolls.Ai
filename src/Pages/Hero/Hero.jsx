@@ -13,7 +13,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
   useEffect(() => setChoice(name), [name])
 
   useEffect(() => {
-    fetch('https://api.goodtools.ai//subcategory')
+    fetch('https://api.goodtools.ai/subcategory')
       .then((res) => res.json())
       .then((data) => {
         const matchingItem = data.find((item) => item.SubCategory === name);
@@ -52,7 +52,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
   }
 
   useEffect(() => {
-    fetch(`https://api.goodtools.ai//sub/${name}`)
+    fetch(`https://api.goodtools.ai/sub/${name}`)
       .then(res => res.json())
       .then(data => console.log(data))
   }, [name])
