@@ -57,7 +57,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
   }, [name])
 
   // useEffect(() => {
-  //   fetch(`http://localhost:3000/sub/${name}`)
+  //   fetch(`https://api.goodtools.ai/sub/${name}`)
   //     .then(res => res.json())
   //     .then(data => console.log(data))
   // }, [name])

@@ -35,7 +35,7 @@ const Category = () => {
 
   const fetchCategory = async () => {
     const response = await fetch(
-      `http://localhost:3000/category?page=${currentPage}&limit=${perPage}`
+      `https://api.goodtools.ai/category?page=${currentPage}&limit=${perPage}`
     );
     const data = await response.json();
     setCat(data);
@@ -48,7 +48,7 @@ const Category = () => {
   }, [currentPage, perPage]);
 
   // const fetchCategory = () => {
-  //   fetch("http://localhost:3000/category")
+  //   fetch("https://api.goodtools.ai/category")
   //     .then((res) => res.json())
   //     .then((data) => {
   //       setCat(data);
@@ -71,7 +71,7 @@ const Category = () => {
   },[totalPages])
 
   const calculateTotalPages = () => {
-    fetch("http://localhost:3000/totalCategory")
+    fetch("https://api.goodtools.ai/totalCategory")
       .then((res) => res.json())
       .then((data) => setTotalPages(Math.ceil(data.totalCategory / perPage)));
       // if(currentPage < Math.ceil(data.totalCategory / perPage)-1){
