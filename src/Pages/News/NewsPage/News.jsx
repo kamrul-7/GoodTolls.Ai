@@ -64,8 +64,8 @@ const News = () => {
                     <div className='sub-section'>
                         <p className='sub-text' > {item.newsTitle}  </p>
                     </div>
-                    <div className='text'
-                    dangerouslySetInnerHTML={{ __html: (item?.newsBody?.replace(/["\n]/g, '') || '').split(' ').slice(0, 20).join(' ') }}>
+                    <div className='text '
+                    dangerouslySetInnerHTML={{ __html: (item?.newsBody?.replace(/["\n]/g, '') || '').replace(/<img(.)*>/g,'<p></p>').split(' ').slice(0, 20).join(' ') }}>
                     
                     </div>
                     <div className='btn-section'>
