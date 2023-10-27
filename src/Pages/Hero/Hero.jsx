@@ -51,11 +51,11 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
     }
   }
 
-  useEffect(() => {
-    fetch(`http://localhost:3000/sub/${name}`)
-      .then(res => res.json())
-      .then(data => console.log(data))
-  }, [name])
+  // useEffect(() => {
+  //   fetch(`http://localhost:3000/sub/${name}`)
+  //     .then(res => res.json())
+  //     .then(data => console.log(data))
+  // }, [name])
 
   const handleClick = (event, value) => {
 

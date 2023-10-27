@@ -31,7 +31,7 @@ const News = () => {
             <div className='flex items-center mt[34px] ms-8'>
                 <a href='/'>Home</a>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-                    <g clip-path="url(#clip0_810_9466)">
+                    <g clipPath="url(#clip0_810_9466)">
                         <path d="M8.3332 5.5L7.1582 6.675L10.9749 10.5L7.1582 14.325L8.3332 15.5L13.3332 10.5L8.3332 5.5Z" fill="#6C737F" />
                     </g>
                     <defs>
@@ -51,14 +51,14 @@ const News = () => {
                 {
                     isLoading ? 
                     <span className="loading loading-ring md:w-40 md:h-40 w-20 h-20 md:ml-[90%] ml-[50%] mb-10 mt-5"></span>
-                    :news.map(item=> <Link onClick={()=>setNewsId(item._id)} to={`/news/${slugify(item.newsTitle)}`} >
+                    :news.map((item,index)=> <Link key={index} onClick={()=>setNewsId(item._id)} to={`/news/${slugify(item.newsTitle)}`} >
                     <div className='news-card '>
                     <div className='news-card-image'>
                         <img className='news-card-image' src={`http://localhost:3000/uploads/${item.image}`} alt="" />
                     </div>
                     <div className='date'>
                         <p className='date-title' >Tools</p>
-                        <div class="vertical-line"></div>
+                        <div className="vertical-line"></div>
                         <p className='date-dates'>{item.date}</p>
                     </div>
                     <div className='sub-section'>
