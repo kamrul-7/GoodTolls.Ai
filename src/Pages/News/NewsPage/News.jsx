@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import slugify from 'slugify'
 import { AuthContext } from '../../Context/AuthProvider';
 const News = () => {
-    const {setNewsId} = useContext(AuthContext)
+    const {storeNewsId} = useContext(AuthContext)
     const [news, setNews] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -51,7 +51,7 @@ const News = () => {
                 {
                     isLoading ? 
                     <span className="loading loading-ring md:w-40 md:h-40 w-20 h-20 md:ml-[90%] ml-[50%] mb-10 mt-5"></span>
-                    :news.map((item,index)=> <Link key={index} onClick={()=>setNewsId(item._id)} to={`/news/${slugify(item.newsTitle)}`} >
+                    :news.map((item,index)=> <Link key={index} onClick={()=>storeNewsId(item._id)} to={`/news/${slugify(item.newsTitle)}`} >
                     <div className='news-card '>
                     <div className='news-card-image'>
                         <img className='news-card-image' src={`https://api.goodtools.ai/uploads/${item.image}`} alt="" />
@@ -64,8 +64,8 @@ const News = () => {
                     <div className='sub-section'>
                         <p className='sub-text' > {item.newsTitle}  </p>
                     </div>
-                    <div className='text'
-                    dangerouslySetInnerHTML={{ __html: (item?.newsBody?.replace(/["\n]/g, '') || '').split(' ').slice(0, 20).join(' ') }}>
+                    <div className='text '
+                    dangerouslySetInnerHTML={{ __html: (item?.newsBody?.replace(/["\n]/g, '') || '').replace(/<img(.)*>/g,'<p></p>').split(' ').slice(0, 20).join(' ') }}>
                     
                     </div>
                     <div className='btn-section'>
