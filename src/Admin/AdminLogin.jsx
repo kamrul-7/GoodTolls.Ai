@@ -18,7 +18,7 @@ const Login = () => {
     const data = { email, password }
 
     if (email.length != 0 && password.length != 0) {
-      fetch('http://localhost:3000/getuser', {
+      fetch('https://api.goodtools.ai//getuser', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',

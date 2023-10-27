@@ -57,7 +57,7 @@ const Review = ({ func, userRating, id, gmail, userName, product }) => {
     const userEmail = gmail;
     const toolName = product;
     const data = { name, rating, date, comment, productId, userEmail, toolName }
-    fetch("http://localhost:3000/review", {
+    fetch("https://api.goodtools.ai//review", {
       method: "POST",
       headers: {
         'content-type': 'application/json'
