@@ -89,11 +89,14 @@ export const router = createBrowserRouter([
       children: [
         {
           path:'/dashboard/category',
-          element:<Category></Category>
+          element:<Category></Category>,
+          loader:()=>fetch ('http://localhost:3000/totalCategory')
+
         },
         {
           path:'/dashboard/subcategory',
-          element:<Subcategory/>
+          element:<Subcategory/>,
+          loader:()=>fetch ('http://localhost:3000/totalSubCategory')
         },
         {
           path:'/dashboard/manageTools',
@@ -138,3 +141,8 @@ export const router = createBrowserRouter([
       element:<Default></Default>
     }
   ]);
+
+
+
+
+

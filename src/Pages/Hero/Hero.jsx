@@ -1,8 +1,7 @@
 import Ripples from 'react-ripples'
 import './Hero.css'
-
+import { Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 const Hero = ({ name, category, count, getSearchData, popularSub }) => {
   const [seartData, setSearchData] = useState('');
   const [data, setData] = useState([]);
@@ -56,6 +55,13 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
       .then(res => res.json())
       .then(data => console.log(data))
   }, [name])
+
+  // useEffect(() => {
+  //   fetch(`http://localhost:3000/sub/${name}`)
+  //     .then(res => res.json())
+  //     .then(data => console.log(data))
+  // }, [name])
+
 
   const handleClick = (event, value) => {
 

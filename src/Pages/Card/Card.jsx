@@ -73,7 +73,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
               />
 
               <div
-                onClick={() => handleClick(storageKey)}
+                onClick={(event) => handleClick(event,storageKey)}
                 className={`md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] left-[268px] bg-white`}
               >
                 <div className="">
@@ -152,7 +152,8 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
     return null;
   };
 
-  const handleClick = (storageKey) => {
+  const handleClick = (event,storageKey) => {
+    event.preventDefault()
     const isClicked = loadStateFromLocalStorage(storageKey);
     localStorage.setItem(storageKey, String(!isClicked));
     forceUpdate(); // Add this to force a re-render
