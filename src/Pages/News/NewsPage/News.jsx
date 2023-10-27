@@ -43,7 +43,7 @@ const News = () => {
                 <p>News</p>
             </div>
             {/* News Section */}
-            <div className='mx-10 my-10 mb-26 md:rounded-xl md:border news-div'>
+            <div className='mx-10 my-10 mb-26 md:rounded-xl md:border p-8 news-div'>
                 <div className='title mb-10'>
                     <p className='rs-title md:ms-10 md:mt-10 md:text-5xl'>Latest Our AI News & Articles</p>
                 </div>
