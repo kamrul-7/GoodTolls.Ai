@@ -9,8 +9,44 @@ const Subcategory = () => {
   const [SubCategory, setSubCategory] = useState("");
   const [message, setMessage] = useState("");
   const [Title, setTitle] = useState("");
-
   const [isLoading, setIsLoading] = useState(true)
+
+    // Pagination states:
+    const [currentPage, setCurrentPage] = useState(0);
+    const [perPage, setPerPage] = useState(6);
+    const [totalPages, setTotalPages] = useState(0);  // assuming initially you don't have the total pages info
+  
+    const pageNumber = [...Array(totalPages).keys()];
+  
+  
+  
+   const fetchSubCategory = async () => {
+      const response = await fetch(
+        `http://localhost:3000/subcategory?page=${currentPage}&limit=${perPage}`
+      );
+      const data = await response.json();
+      setSub(data);
+      setIsLoading(false);
+    };
+  
+    useEffect(() => {
+      fetchSubCategory();
+    }, [currentPage, perPage]);
+  
+  
+    useEffect(() => {
+      // Calculate the total number of pages
+      fetch("http://localhost:3000/totalSubCategory")
+        .then(res => res.json())
+        .then(data => {
+          const pages = Math.ceil(data.totalSubCategory / perPage);
+          setTotalPages(pages);
+          if(currentPage > pages - 1 && pages > 0) {
+            setCurrentPage(pages - 1);
+          }
+        });
+    }, [perPage]);
+
 
   useEffect(() => {
     fetch('http://localhost:3000/category')
@@ -20,19 +56,6 @@ const Subcategory = () => {
       })
   }, [])
 
-  const fetchSubCategory = () => {
-    fetch("http://localhost:3000/subcategory")
-      .then((res) => res.json())
-      .then((data) => {
-        setSub(data);
-        setIsLoading(false)
-      })
-
-  };
-
-  useEffect(() => {
-    fetchSubCategory();
-  }, []);
 
 
   const modalRef = useRef(null);
@@ -153,13 +176,6 @@ const handleDelete = () => {
 //   }
 
 
-
-
-
-
-
-
-
   const openUpdateModal = (items) => {
 
     setCategory(items.category);
@@ -188,6 +204,7 @@ const handleDelete = () => {
 
 
   return (
+   <>
     <div className='mt-[35px] w-full px-8'>
       <div>
         {/* Breadcumb section */}
@@ -601,6 +618,50 @@ const handleDelete = () => {
         </div>
       </div>
     </div>
+
+    {/* Pagination */}
+
+    <div className="pagination">
+        <p>Current Page {currentPage}</p>
+        {totalPages > 1 && (
+          <button
+            style={{ padding: 20 }}
+            onClick={() =>
+              currentPage > 0 ? setCurrentPage(currentPage - 1) : undefined
+            }
+          >
+            &lt; Previous
+          </button>
+        )}
+
+        {pageNumber.map((number) => (
+          <button
+            style={{ padding: 20 }}
+            key={number}
+            onClick={() => setCurrentPage(number)}
+            className={currentPage === number ? "text-red-300" : " "}
+          >
+            {number + 1}
+          </button>
+        ))}
+
+        {totalPages > 1 && (
+          <button
+            style={{ padding: 20 }}
+            onClick={() =>
+              currentPage < totalPages - 1
+                ? setCurrentPage(currentPage + 1)
+                : undefined
+            }
+          >
+            Next &gt;
+          </button>
+        )}
+      </div>
+   </>
+
+
+      
   );
 };
 

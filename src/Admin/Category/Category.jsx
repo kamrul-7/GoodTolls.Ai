@@ -12,9 +12,11 @@ const Category = () => {
   const [itemToDelete, setItemToDelete] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const modalRef = useRef(null);
+  
+ //For pagination
+
   const [currentPage, setCurrentPage] = useState(0);
   const [perPage, setPerPage] = useState(6);
-  //For pagination
   const { totalCategory } = useLoaderData();
   console.log(totalCategory);
   const [totalPages, setTotalPages] = useState(
@@ -465,7 +467,7 @@ const Category = () => {
                   </div>
                 </footer>
               </form>
-            <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}>
               <div className="space-y-4 relative">
                 <label className="block font-medium text-sm">
                   Category Name
@@ -537,7 +539,7 @@ const Category = () => {
                   </button>
                 </div>
               </footer>
-            </form>
+            </form> */}
 
               <div className="modal-action mt-4"></div>
             </div>
