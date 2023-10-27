@@ -82,7 +82,7 @@ const SingleNews = () => {
 
                     {/* Left Div */}
                     <div className='left'>
-                        <div className='small-blue-card ml-24'>
+                        <div className='small-blue-card md:ml-24'>
                             <div className='small-card-title'>
                                 Explore all of our Ai tools now
                             </div>
