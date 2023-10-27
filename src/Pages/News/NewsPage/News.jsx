@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import slugify from 'slugify'
 import { AuthContext } from '../../Context/AuthProvider';
 const News = () => {
-    const {setNewsId} = useContext(AuthContext)
+    const {storeNewsId} = useContext(AuthContext)
     const [news, setNews] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -51,7 +51,7 @@ const News = () => {
                 {
                     isLoading ? 
                     <span className="loading loading-ring md:w-40 md:h-40 w-20 h-20 md:ml-[90%] ml-[50%] mb-10 mt-5"></span>
-                    :news.map((item,index)=> <Link key={index} onClick={()=>setNewsId(item._id)} to={`/news/${slugify(item.newsTitle)}`} >
+                    :news.map((item,index)=> <Link key={index} onClick={()=>storeNewsId(item._id)} to={`/news/${slugify(item.newsTitle)}`} >
                     <div className='news-card '>
                     <div className='news-card-image'>
                         <img className='news-card-image' src={`http://localhost:3000/uploads/${item.image}`} alt="" />

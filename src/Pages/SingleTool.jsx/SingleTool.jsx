@@ -8,10 +8,6 @@ const SingleTool = () => {
     const { toolId } = useContext(AuthContext);
     const [cards, setCards] = useState(null);
     const [isLoading, setIsloading] = useState(true)
-    const storageKey = `myHeartClicked-${toolId}`;
-    console.log(storageKey);
-    const isClicked = localStorage.getItem(storageKey) === "true";
-    console.log(isClicked);
 
     useEffect(() => {
         // Make a GET request to your backend API to fetch the news item based on the `id`.
