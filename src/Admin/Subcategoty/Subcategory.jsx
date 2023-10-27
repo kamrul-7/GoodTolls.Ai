@@ -16,7 +16,6 @@ const Subcategory = () => {
     fetch('http://localhost:3000/category')
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setParent([...data])
       })
   }, [])
@@ -38,7 +37,6 @@ const Subcategory = () => {
 
   const modalRef = useRef(null);
   const closeModal = () => {
-    console.log("Attempting to close modal");
     if (modalRef.current) {
       modalRef.current.close();
     }
@@ -60,7 +58,6 @@ const Subcategory = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          // console.log(data);
           if (data.stat) {
             alert('SubCategory Title Already exists\nUnable to create new SubCategory')
             document.getElementById("my_modal_16").open()
@@ -92,7 +89,6 @@ const Subcategory = () => {
     // closeModal();
   };
   const handleUpdate = (event) => {
-    console.log("updating");
     const category = event.target.category.value;
     if (itemToDelete) {
 
@@ -103,8 +99,6 @@ const Subcategory = () => {
         message: message
 
       };
-      console.log("hi");
-      console.log(itemToUpdate);
 
       fetch(`http://localhost:3000/subcategory/${itemToDelete._id}`, {
         method: "PUT", // Use the appropriate HTTP method for updating
@@ -133,11 +127,8 @@ const Subcategory = () => {
 
 
 const handleDelete = () => {
-  console.log(itemToDelete);
   if (itemToDelete) {
-    console.log("true");
     const itemId = itemToDelete._id;
-    console.log(itemId);
     fetch(`http://localhost:3000/subcategory/${itemId}`, {
       method: "DELETE",
     })
@@ -159,7 +150,6 @@ const handleDelete = () => {
 
 
 //   const handleDelete = () => {
-//     // console.log(itemToDelete);
 //   }
 
 
@@ -176,7 +166,6 @@ const handleDelete = () => {
     setSubCategory(items.SubCategory);
     setMessage(items.message);
     setTitle(items.Title);
-    console.log(items.category);
     // Open the update modal
     const modal = document.getElementById("my_modal_17");
     if (modal) {
@@ -186,14 +175,12 @@ const handleDelete = () => {
 
 
   const crossButton = () => {
-    console.log("hello");
     setCatName("");
     setTitle("");
     setMessage("");
   };
 
 // const crossButton = () =>{
-//   console.log("hello");
 //   setCategory("");
 //   setSubCategory("");
 //   setMessage("");

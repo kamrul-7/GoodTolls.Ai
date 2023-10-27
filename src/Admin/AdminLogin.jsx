@@ -40,27 +40,6 @@ const Login = () => {
     } else{
       alert('No fields can remain empty')
     }
-
-
-
-    // Find the user with the provided email
-    // const user = users.find((user) => user.email === email);
-    // console.log(users[0]);
-    // if (!user) {
-    //   // User not found
-    //   alert('User not found');
-    //   return;
-    // }
-
-    // // Compare the provided password with the stored password
-    // if (user.password === password) {
-    //   // Passwords match; user is authenticated
-    //   navigate('/dashboard/manageNews')
-    //   // Redirect to the dashboard or update the UI accordingly
-    // } else {
-    //   // Passwords do not match
-    //   alert('Invalid password');
-    // }
   };
 
 

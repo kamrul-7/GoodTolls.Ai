@@ -31,7 +31,7 @@ const Navbar = () => {
         <NavLink to="/contact" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "block remove" : "removes"}>
           {({ isActive }) => (
             <>
-              <span className={isActive ? "text-[#2970FF] font-semibold" : "block"}>Contact</span>
+              <span className={isActive ? "text-[#2970FF] font-semibold " : "block"}>Contact</span>
               <hr className={isActive ? "border-[1.5px] rounded-full w-4 mx-auto border-[#2970FF]" : "hidden"} />
             </>
           )}

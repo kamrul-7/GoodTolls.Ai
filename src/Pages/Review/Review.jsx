@@ -49,7 +49,6 @@ const Review = ({ func, userRating, id, gmail, userName, product }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(message);
     const name = userName;
     const rating = newrating;
     const date = publishDate();
@@ -67,7 +66,6 @@ const Review = ({ func, userRating, id, gmail, userName, product }) => {
     })
       .then((res) => res.json())
       .then(data => {
-        console.log(data);
         if (data.acknowledged) {
           func()
           editorState(EditorState.createEmpty())

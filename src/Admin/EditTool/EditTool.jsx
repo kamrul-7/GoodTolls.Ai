@@ -208,7 +208,7 @@ const EditTool = () => {
         setImage(`http://localhost:3000/uploads/${toolData.image}`)
     },[])
     const handleFileChange = (file) => {
-        console.log(file);
+
         setFile(file);
         setImage(URL.createObjectURL(file));
     };

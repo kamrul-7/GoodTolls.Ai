@@ -17,6 +17,8 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [toggle,setToggle] = useState(false);
+    const [newsId, setNewsId] = useState('');
+    const [toolId, setToolId] = useState('');
 
     const setTrue=()=>{
         setToggle(true)
@@ -49,10 +51,14 @@ const AuthProvider = ({ children }) => {
         logOut,
         user,
         loading,
-        googleSignIn,
         toggle,
+        toolId,
+        newsId,
+        googleSignIn,
         setTrue,
-        setFalse
+        setFalse,
+        setToolId,
+        setNewsId
     };
 
     return (

@@ -14,7 +14,7 @@ const EditNews = () => {
     const location = useLocation();
     const newsData = location.state;
     const [newsName, setNewsName] = useState(newsData.newsTitle);
-    console.log(newsData);
+
     const handleClick = () => {
         navigate('/dashboard/manageNews')
     }
@@ -87,7 +87,6 @@ const EditNews = () => {
         setImage(`http://localhost:3000/uploads/${newsData.image}`)
     },[])
     const handleFileChange = (file) => {
-        console.log(file);
         setFile(file);
         setImage(URL.createObjectURL(file));
     };
@@ -126,7 +125,6 @@ const EditNews = () => {
             formdata.append('newsBody', description)
             formdata.append('date', date())
             formdata.append('newsId', newsData._id)
-            console.log(formdata);
             fetch("http://localhost:3000/editnews", {
                 method: "PUT",
                 headers: {

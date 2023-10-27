@@ -20,7 +20,7 @@ const Login = () => {
             });
     };
 
-    useEffect(()=>console.log(user),[user])
+
 
     const handleLogOut = () => {
         logOut()
