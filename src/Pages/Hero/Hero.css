@@ -79,7 +79,7 @@ line-height: 150%; /* 21px */
 @media (max-width: 767px) {
   .popular-item {
     display: grid; /* Use grid layout on mobile */
-    grid-template-columns: repeat(3, 1fr); /* Two columns per row */
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Two columns per row */
     gap: 16px; /* Adjust the gap between items */
   }
 

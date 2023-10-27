@@ -10,7 +10,7 @@ const Home = () => {
     const [total, setTotal] = useState(1283)
     const [selectedSub, setSelectedSub] = useState('')
     const [searchData, setSearchData] = useState('');
-
+    const [selectedPopular, setSelectedPopular] = useState('')
     const [sortOption, setSortOption] = useState('All')
     const decoration = x => {
         let str = x + ""
@@ -33,6 +33,10 @@ const Home = () => {
 
         }
         return res
+    }
+
+    const handleSelectPopularSubmit = (value)=>{
+        setSelectedPopular(value)
     }
 
     const handleSubSubmit = (value)=>{
@@ -77,12 +81,12 @@ const Home = () => {
     return (
         <div>
            
-            <Hero name={selectedSub} count={total} getSearchData={getSearchData}></Hero>
+            <Hero name={selectedSub} count={total} getSearchData={getSearchData} popularSub = {handleSelectPopularSubmit}></Hero>
 
             <div className='md:flex items-center justify-between mt-7 mb-5'>
                 <div className='md:flex items-center '>
                     <div className='w-11/12 md:w-fit mx-auto'>
-                        <Filter clickHandler = {handleSubSubmit}></Filter>
+                        <Filter clickHandler = {handleSubSubmit} selectedPopular={selectedPopular}></Filter>
                     </div>
                     <div className='text-[#6C737F] font-medium ml-6 my-4'>
                         Showing <span className='text-[#081120]'> {decoration(total)} Best</span> Ai Tools

@@ -25,9 +25,10 @@ const ManageTools = () => {
     const handleDelete = () => {
       if (itemToDelete) {
         const itemId = itemToDelete._id;
+        const imageId = itemToDelete.image;
     
         // Send a DELETE request to the server
-        fetch(`http://localhost:3000/tools/${itemId}`, {
+        fetch(`http://localhost:3000/tools/${itemId}/${imageId}`, {
           method: "DELETE",
         })
           .then((res) => {

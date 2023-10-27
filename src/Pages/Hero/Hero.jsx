@@ -1,39 +1,44 @@
 import Ripples from 'react-ripples'
 import './Hero.css'
-
+import { Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
-const Hero = ({ name, count, getSearchData, }) => {
+const Hero = ({ name, count, getSearchData, popularSub }) => {
   const [seartData, setSearchData] = useState('');
-  const[data, setData]= useState([]);
+  const [data, setData] = useState([]);
   const [message, setMessage] = useState('');
+  const [choice, setChoice] = useState('');
   // const [showSearch, setShowSearch] = useState(false);
+
+  useEffect(()=>setChoice(name),[name])
 
   useEffect(() => {
     fetch('http://localhost:3000/subcategory')
       .then((res) => res.json())
       .then((data) => {
         const matchingItem = data.find((item) => item.SubCategory === name);
+        setData(data);
         if (matchingItem) {
-          setMessage(matchingItem.message); 
+          setMessage(matchingItem.message);
         } else {
           setMessage('No matching data found');
         }
       });
   }, [name]);;
-
+  console.log(data);
+  const firstSixItem = data.slice(0, 6)
   const handleKeyPress = (e) => {
     if (e.key !== "Enter") {
       setSearchData(e.target.value)
       // setShowSearch(false)
     } else {
-      if(seartData.length !==0) {
+      if (seartData.length !== 0) {
         getSearchData(seartData)
       }
     }
   }
 
   const handleSearch = () => {
-    if(seartData.length !==0) {
+    if (seartData.length !== 0) {
       getSearchData(seartData)
     }
   }
@@ -41,22 +46,42 @@ const Hero = ({ name, count, getSearchData, }) => {
 
   const handleBlur = () => {
     if (seartData.length == 0) {
-       getSearchData('')
+      getSearchData('')
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch(`http://localhost:3000/sub/${name}`)
-    .then(res => res.json())
-    .then(data => console.log(data))
-  },[name])
+      .then(res => res.json())
+      .then(data => console.log(data))
+  }, [name])
+
+  const handleClick = (event,value) => {
+    console.log(event.target.name, value);
+    if (event.target.name != choice) {
+      popularSub(value)
+    } else {
+      setChoice('')
+      popularSub('')
+    }
+
+  }
 
   return (
-    <div className='text-center'>
+    <div>
+      <div className="breadcrumbs  mb-5 text-sm font-normal mx-6">
+        <ul>
+          <li>
+            <Link to='/'>Home</Link>
+          </li>
+          <li>category</li>
+          <li>subcategory</li>
+        </ul>
+      </div>
+      <div className='text-center'>
       <div className="hero min-h-[491px]">
         <div className="hero-content text-center">
           <div className="max-w-3xl">
-
 
             {
               name.length == 0 ?
@@ -89,19 +114,19 @@ const Hero = ({ name, count, getSearchData, }) => {
             <div className='popular-section'>
               <p className='popular-title mb-4'>Popular Categories</p>
               <div className='popular-item flex'>
-                <div className='item me-4'><p className='p-text'>Audio Edit</p></div>
-                <div className='item me-4'><p className='p-text'>Github</p></div>
-                <div className='item me-4'><p className='p-text'>Image Improvent</p></div>
-
-                <div className='item me-4'><p className='p-text'>Ai Detection</p></div>
-
-                <div className='item me-4'><p className='p-text'>Generative Code</p></div>
-                <div className='item me-4'><p className='p-text'>Inspiration</p></div>
+                {
+                  firstSixItem.map((item, index) =>
+                    <button name={`${item.Title}`} onClick={(event) => {
+                      setChoice(`${item.Title}`)
+                      handleClick(event, item.Title)
+                    }} className={`item p-text me-4 ${choice === `${item.Title}` ? 'bg-gray-100' : 'bg-transparent'}`}>{item.Title}</button>)
+                }
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

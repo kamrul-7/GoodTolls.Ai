@@ -58,24 +58,23 @@ const Category = () => {
   // useEffect(()=>{
   //   fetchCategory()
   // })
-  useEffect(() => {
-    console.log(currentPage, totalPages);
-    if (totalPages > currentPage && totalPages - currentPage == 2) {
-      setCurrentPage(currentPage + 1);
-    } else if (totalPages === currentPage) {
-      setCurrentPage(currentPage - 1);
+  useEffect(()=>{console.log(currentPage, totalPages)
+    if(totalPages > currentPage && totalPages-currentPage == 2){
+      setCurrentPage(currentPage+1);
+    } else if(totalPages === currentPage){
+      setCurrentPage(currentPage-1)
     }
-  }, [totalPages]);
+  },[totalPages])
 
   const calculateTotalPages = () => {
     fetch("http://localhost:3000/totalCategory")
       .then((res) => res.json())
       .then((data) => setTotalPages(Math.ceil(data.totalCategory / perPage)));
-    // if(currentPage < Math.ceil(data.totalCategory / perPage)-1){
-    //   setCurrentPage(Math.ceil(data.totalCategory / perPage)-1)
-    // }
-
-    // setCurrentPage(Math.ceil(data.totalCategory / perPage)-1)
+      // if(currentPage < Math.ceil(data.totalCategory / perPage)-1){
+      //   setCurrentPage(Math.ceil(data.totalCategory / perPage)-1)
+      // }
+      
+      // setCurrentPage(Math.ceil(data.totalCategory / perPage)-1)
   };
 
   const handleSubmit = (event) => {
@@ -96,10 +95,14 @@ const Category = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          if (data.acknowledged) {
+          if (data.stat) {
+            alert('Category Title Already exists')
+          }
+          else if (data.acknowledged) {
+
             fetchCategory();
             toast.success("Category Added Successfully");
-            calculateTotalPages();
+            calculateTotalPages()
           } else {
             toast.error(data.message);
           }
@@ -108,10 +111,10 @@ const Category = () => {
       alert("No fields can't be empty");
     }
 
-    setCatName("");
-    setTitle("");
-    setMessage("");
-    closeModal();
+    // setCatName("");
+    // setTitle("");
+    // setMessage("");
+    // closeModal();
   };
   const handleUpdate = () => {
     console.log(itemToDelete);
@@ -156,7 +159,7 @@ const Category = () => {
       }).then((res) => {
         if (res.ok) {
           fetchCategory();
-          calculateTotalPages();
+          calculateTotalPages()
           toast.success("Category Deleted Successfully");
         } else if (res.status === 404) {
           alert("Category not found");
@@ -462,6 +465,79 @@ const Category = () => {
                   </div>
                 </footer>
               </form>
+            <form onSubmit={handleSubmit}>
+              <div className="space-y-4 relative">
+                <label className="block font-medium text-sm">
+                  Category Name
+                  <input
+                    value={catName}
+                    onChange={(e) => setCatName(e.target.value)}
+                    className="mt-1 p-2 w-full border rounded-md text-base font-normal"
+                    type="text"
+                    required
+                    placeholder="Enter Category Name"
+                  />
+                </label>
+                <label className="block font-medium text-sm">
+                  Category Title
+                  <input
+                    value={Title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    className="mt-1 p-2 w-full border rounded-md text-base font-normal"
+                    type="text"
+                    required
+                    placeholder="Enter Category Title"
+                  />
+                </label>
+                <label className="block font-medium text-sm">
+                  Category Description
+                  <textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className="textarea mt-3 textarea-bordered p-2 w-full border rounded-md text-base font-normal"
+                    type="text"
+                    required
+                    placeholder="Category Description"
+                  />
+                </label>
+              </div>
+              <footer className="mt-4 flex justify-end space-x-2">
+                <button
+                  className="btn-circle btn-ghost absolute top-4 right-4 text-2xl"
+                  type="button"
+                  onClick={() => {
+
+                    const modal = document.getElementById("my_modal_22");
+                    modal.close();
+
+                  }}
+                >
+                  ✕
+                </button>
+                <div className="flex justify-between w-[618px] mx-auto">
+                  <button
+                    onClick={() => {
+                      crossButton(); // Call the function to clear form data
+                      closeModal("my_modal_22"); // Close the modal
+                    }}
+                    className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
+                    type="button" // Set type to "button" to prevent form submission
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={() => {
+                      const modal = document.getElementById("my_modal_22");
+                      // modal.close();
+                    }}
+                    type="submit"
+                    className=" w-[48%] my-6 px-4 py-2 bg-[#7F56D9] text-white rounded-md"
+                  >
+                    Save
+                  </button>
+                </div>
+              </footer>
+            </form>
 
               <div className="modal-action mt-4"></div>
             </div>
