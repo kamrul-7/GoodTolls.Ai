@@ -49,12 +49,26 @@ const Subcategory = () => {
 
 
   useEffect(() => {
-    fetch('http://localhost:3000/category')
+    fetch('https://api.goodtools.ai/category')
       .then(res => res.json())
       .then(data => {
         setParent([...data])
       })
   }, [])
+
+  const fetchSubCategory = () => {
+    fetch("https://api.goodtools.ai/subcategory")
+      .then((res) => res.json())
+      .then((data) => {
+        setSub(data);
+        setIsLoading(false)
+      })
+
+  };
+
+  useEffect(() => {
+    fetchSubCategory();
+  }, []);
 
 
 
@@ -72,7 +86,7 @@ const Subcategory = () => {
     const category = event.target.category.value;
     if (category.length != 0 && Title.length != 0 && message.length != 0 && SubCategory != 0) {
       const data = { category, SubCategory, Title, message }
-      fetch("http://localhost:3000/subcategory", {
+      fetch("https://api.goodtools.ai/subcategory", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -123,7 +137,7 @@ const Subcategory = () => {
 
       };
 
-      fetch(`http://localhost:3000/subcategory/${itemToDelete._id}`, {
+      fetch(`https://api.goodtools.ai/subcategory/${itemToDelete._id}`, {
         method: "PUT", // Use the appropriate HTTP method for updating
         headers: {
           "Content-Type": "application/json",
@@ -152,7 +166,7 @@ const Subcategory = () => {
 const handleDelete = () => {
   if (itemToDelete) {
     const itemId = itemToDelete._id;
-    fetch(`http://localhost:3000/subcategory/${itemId}`, {
+    fetch(`https://api.goodtools.ai/subcategory/${itemId}`, {
       method: "DELETE",
     })
       .then((res) => {

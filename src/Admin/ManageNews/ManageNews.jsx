@@ -10,7 +10,7 @@ const ManageNews = () => {
 
 
     const fetchNews = () => {
-      fetch("http://localhost:3000/news")
+      fetch("https://api.goodtools.ai/news")
         .then((res) => res.json())
         .then((data) => {
           setNews(data);
@@ -35,7 +35,7 @@ const ManageNews = () => {
         const imageId = itemToDelete.image;
     
         // Send a DELETE request to the server
-        fetch(`http://localhost:3000/news/${itemId}/${imageId}`, {
+        fetch(`https://api.goodtools.ai/news/${itemId}/${imageId}`, {
           method: "DELETE",
         })
           .then((res) => {

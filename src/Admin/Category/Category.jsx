@@ -32,6 +32,7 @@ const Category = () => {
     }
   };
 
+
   const fetchCategory = async () => {
     const response = await fetch(
       `http://localhost:3000/category?page=${currentPage}&limit=${perPage}`
@@ -39,6 +40,7 @@ const Category = () => {
     const data = await response.json();
     setCat(data);
     setIsLoading(false);
+
   };
 
   useEffect(() => {
@@ -88,7 +90,7 @@ const Category = () => {
     };
 
     if (catName.length !== 0 && Title.length !== 0 && message.length !== 0) {
-      fetch("http://localhost:3000/category", {
+      fetch("https://api.goodtools.ai/category", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -130,7 +132,7 @@ const Category = () => {
 
       console.log(itemToUpdate);
 
-      fetch(`http://localhost:3000/category/${itemToDelete._id}`, {
+      fetch(`https://api.goodtools.ai/category/${itemToDelete._id}`, {
         method: "PUT", // Use the appropriate HTTP method for updating
         headers: {
           "Content-Type": "application/json",
@@ -156,7 +158,7 @@ const Category = () => {
     if (itemToDelete) {
       const itemId = itemToDelete._id;
       console.log(itemId);
-      fetch(`http://localhost:3000/category/${itemId}`, {
+      fetch(`https://api.goodtools.ai/category/${itemId}`, {
         method: "DELETE",
       }).then((res) => {
         if (res.ok) {

@@ -24,6 +24,7 @@ const ManageTools = () => {
         fetchTools();
     }, [currentPage, perPage]);
 
+
     useEffect(() => {
         fetch("http://localhost:3000/totalTools")  // Assuming this endpoint gives total number of tools
             .then(res => res.json())
@@ -36,13 +37,14 @@ const ManageTools = () => {
             });
     }, [perPage]);
 
+
     const handleDelete = () => {
       if (itemToDelete) {
         const itemId = itemToDelete._id;
         const imageId = itemToDelete.image;
     
         // Send a DELETE request to the server
-        fetch(`http://localhost:3000/tools/${itemId}/${imageId}`, {
+        fetch(`https://api.goodtools.ai/tools/${itemId}/${imageId}`, {
           method: "DELETE",
         })
           .then((res) => {
@@ -73,7 +75,7 @@ const ManageTools = () => {
     
     
     useEffect(() => {
-        fetch('http://localhost:3000/tools')
+        fetch('https://api.goodtools.ai/tools')
             .then(res => res.json())
             .then(data => {
               setTools(data)
