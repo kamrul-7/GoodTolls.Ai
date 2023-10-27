@@ -5,13 +5,16 @@ import { useParams } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthProvider';
 
 const SingleNews = () => {
-    const {newsId} = useContext(AuthContext)
+    const tmpStoreKeyNews = 'ToolsFinder(GoodToolsAi)RegularStoring:_newsId';
     const [item, setItem] = useState(null);
     const [cata, setCata] = useState(null);
+    const [newsId,setNewsId] = useState('');
+
 
     useEffect(() => {
-        // Make a GET request to your backend API to fetch the news item based on the `id`.
-        fetch(`https://api.goodtools.ai/news/${newsId}`)
+        const storedNewsId = JSON.parse(sessionStorage.getItem(tmpStoreKeyNews))
+        if(storedNewsId){
+            fetch(`http://localhost:3000/news/${storedNewsId}`)
             .then(response => response.json())
             .then(data => {
                 // Update the state with the data for the specific news item.
@@ -20,9 +23,12 @@ const SingleNews = () => {
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
+        }
+        // Make a GET request to your backend API to fetch the news item based on the `id`.
 
 
-    }, [newsId]);
+
+    }, []);
 
     useEffect(() => {
         fetch(`https://api.goodtools.ai/category`)

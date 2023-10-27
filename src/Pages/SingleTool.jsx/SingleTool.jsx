@@ -5,17 +5,21 @@ import { useParams } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
 
 const SingleTool = () => {
-    const { toolId } = useContext(AuthContext);
+    const tmpStoreKeyTool = 'ToolsFinder(GoodToolsAi)RegularStoring:_toolId'
+    // const { toolId } = useContext(AuthContext);
     const [cards, setCards] = useState(null);
     const [isLoading, setIsloading] = useState(true)
-    const storageKey = `myHeartClicked-${toolId}`;
-    console.log(storageKey);
-    const isClicked = localStorage.getItem(storageKey) === "true";
-    console.log(isClicked);
+    let storageKey = '';
+    // console.log(storageKey);
+    let isClicked = '';
+    // console.log(isClicked);
 
     useEffect(() => {
-        // Make a GET request to your backend API to fetch the news item based on the `id`.
-        fetch(`https://api.goodtools.ai/tools/${toolId}`)
+        const storedToolId = JSON.parse(sessionStorage.getItem(tmpStoreKeyTool))
+        if(storedToolId){
+            storageKey = `myHeartClicked-${storedToolId}`;
+            isClicked = localStorage.getItem(storageKey) === "true"
+            fetch(`http://localhost:3000/tools/${storedToolId}`)
             .then(response => response.json())
             .then(data => {
                 // Update the state with the data for the specific news item.
@@ -25,8 +29,18 @@ const SingleTool = () => {
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
+        }
+        // Make a GET request to your backend API to fetch the news item based on the `id`.
 
-    }, [toolId]);
+
+
+    }, []);
+
+    // useEffect(() => {
+    //     // Make a GET request to your backend API to fetch the news item based on the `id`.
+
+
+    // }, [toolId]);
 
 
     return (

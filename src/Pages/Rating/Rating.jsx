@@ -6,7 +6,8 @@ import { AuthContext } from "../Context/AuthProvider";
 import { faChessKing } from "@fortawesome/free-solid-svg-icons";
 const Rating = ({ card }) => {
   // consoleisClicked
-  const { toolId } = useContext(AuthContext);
+  const tmpStoreKeyTool = 'ToolsFinder(GoodToolsAi)RegularStoring:_toolId'
+  const toolId  = JSON.parse(sessionStorage.getItem(tmpStoreKeyTool))
   const [isToggled, setIsToggled] = useState(false);
   const storageKey = `myHeartClicked-${toolId}`;
   const isClicked = localStorage.getItem(storageKey) === "true";

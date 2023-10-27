@@ -5,9 +5,10 @@ import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { faUnlock } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
+import slugify from "slugify";
 
 const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
-  const { setToolId } = useContext(AuthContext)
+  const { storeToolId } = useContext(AuthContext)
   const [tools, setTools] = useState([]);
   const [lastElem, setLastElem] = useState(0);
   const [searchStat, setSearchState] = useState(false);
@@ -63,7 +64,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
 
       return (
         <div key={indx} className="card size bg-base-100 shadow-xl mb-24 md:mx-0 mx-auto">
-          <Link onClick={() => setToolId(tool._id)} to={`/tool/${tool.toolName}`} >
+          <Link onClick={() => storeToolId(tool._id)} to={`/tool/${slugify(tool.toolName)}`} >
             <figure className="relative">
               <img
                 src={`https://api.goodtools.ai/uploads/${tool?.image}`}
