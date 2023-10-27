@@ -1,26 +1,42 @@
-import { useEffect, useState,modalRef } from "react";
-import Pagination from "../Category/Pagination";
+import { useEffect, useState,useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ManageTools = () => {
-  const [itemToDelete, setItemToDelete] = useState(null);
-    const [tools, setTools] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
+    const [currentPage, setCurrentPage] = useState(0);
+
+    const [perPage, setPerPage] = useState(6);  // Setting default to 6 items per page
+    const [totalPages, setTotalPages] = useState(0);
+    const [itemToDelete, setItemToDelete] = useState(null);
+    const [tools, setTools] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
-    
+
+    const pageNumber = [...Array(totalPages).keys()];
+    const modalRef = useRef(null);
+    const fetchTools = async () => {
+        const response = await fetch(`http://localhost:3000/tools?page=${currentPage}&limit=${perPage}`);
+        const data = await response.json();
+        setTools(data);
+        setIsLoading(false);
+    };
 
     useEffect(() => {
-      fetchTools();
-    }, []);
+        fetchTools();
+    }, [currentPage, perPage]);
 
-    const fetchTools = () => {
-      fetch("http://localhost:3000/tools")
-        .then((res) => res.json())
-        .then((data) => {
-          setTools(data);
-        })
-        
-    };
+
+    useEffect(() => {
+        fetch("http://localhost:3000/totalTools")  // Assuming this endpoint gives total number of tools
+            .then(res => res.json())
+            .then(data => {
+                const pages = Math.ceil(data.totalTools / perPage);
+                setTotalPages(pages);
+                if (currentPage > pages - 1 && pages > 0) {
+                    setCurrentPage(pages - 1);
+                }
+            });
+    }, [perPage]);
+
 
     const handleDelete = () => {
       if (itemToDelete) {
@@ -28,7 +44,7 @@ const ManageTools = () => {
         const imageId = itemToDelete.image;
     
         // Send a DELETE request to the server
-        fetch(`http://localhost:3000/tools/${itemId}/${imageId}`, {
+        fetch(`https://api.goodtools.ai/tools/${itemId}/${imageId}`, {
           method: "DELETE",
         })
           .then((res) => {
@@ -59,7 +75,7 @@ const ManageTools = () => {
     
     
     useEffect(() => {
-        fetch('http://localhost:3000/tools')
+        fetch('https://api.goodtools.ai/tools')
             .then(res => res.json())
             .then(data => {
               setTools(data)
@@ -79,6 +95,7 @@ const ManageTools = () => {
     
 
     return (
+        <>
         <div className='mt-[35px] w-full px-8'>
             <div>
                 {/* Breadcumb section */}
@@ -166,10 +183,7 @@ const ManageTools = () => {
                     }
 
                 </table>
-                {/* pagination section */}
-                <div >
-                    <Pagination totalPages={10} />
-                </div>
+               
             </div>
 
             <div>
@@ -255,6 +269,46 @@ const ManageTools = () => {
         </div>
       </div>
         </div>
+
+     {/* Pagination */}
+     <div className="pagination">
+                <p>Current Page {currentPage + 1}</p>
+                
+                {totalPages > 1 && (
+                    <button
+                        style={{ padding: 20 }}
+                        onClick={() =>
+                            currentPage > 0 ? setCurrentPage(currentPage - 1) : undefined
+                        }
+                    >
+                        &lt; Previous
+                    </button>
+                )}
+
+                {pageNumber.map((number) => (
+                    <button
+                        style={{ padding: 20 }}
+                        key={number}
+                        onClick={() => setCurrentPage(number)}
+                        className={currentPage === number ? "text-red-300" : ""}
+                    >
+                        {number + 1}
+                    </button>
+                ))}
+
+                {totalPages > 1 && (
+                    <button
+                        style={{ padding: 20 }}
+                        onClick={() =>
+                            currentPage < totalPages - 1 ? setCurrentPage(currentPage + 1) : undefined
+                        }
+                    >
+                        Next &gt;
+                    </button>
+                )}
+            </div>
+      
+        </>
     );
 }
 

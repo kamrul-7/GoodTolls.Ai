@@ -133,7 +133,7 @@ const EditTool = () => {
     }, [finalWork])
 
     useEffect(() => {
-        fetch('http://localhost:3000/subcategory')
+        fetch('https://api.goodtools.ai/subcategory')
             .then(res => res.json())
             .then(items => {
                 items.sort()
@@ -205,7 +205,7 @@ const EditTool = () => {
     const [file, setFile] = useState(null);
     const [image, setImage] = useState(null);
     useEffect(()=>{
-        setImage(`http://localhost:3000/uploads/${toolData.image}`)
+        setImage(`https://api.goodtools.ai/uploads/${toolData.image}`)
     },[])
     const handleFileChange = (file) => {
 
@@ -304,7 +304,7 @@ const EditTool = () => {
             formdata.append('description', description)
             formdata.append('works', works)
             formdata.append('toolId', toolData._id)
-            fetch("http://localhost:3000/edittool", {
+            fetch("https://api.goodtools.ai/edittool", {
                 method: "PUT",
                 headers: {
                 },

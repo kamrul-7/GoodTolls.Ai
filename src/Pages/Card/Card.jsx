@@ -23,7 +23,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
   }
 
   const fetchTools = () => {
-    fetch("http://localhost:3000/tools")
+    fetch("https://api.goodtools.ai/tools")
       .then((res) => res.json())
       .then((data) => {
         setIsLoading(false)
@@ -67,7 +67,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
           <Link onClick={() => storeToolId(tool._id)} to={`/tool/${slugify(tool.toolName)}`} >
             <figure className="relative">
               <img
-                src={`http://localhost:3000/uploads/${tool?.image}`}
+                src={`https://api.goodtools.ai/uploads/${tool?.image}`}
                 alt="Image not found"
                 className="rounded-xl"
                 style={{ width: "344px", height: "240px" }}

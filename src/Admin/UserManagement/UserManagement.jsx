@@ -26,7 +26,7 @@ const UserManagement = () => {
    }
 
   const fetchUsers = () => {
-    fetch("http://localhost:3000/users")
+    fetch("https://api.goodtools.ai/users")
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);
@@ -50,7 +50,7 @@ const UserManagement = () => {
     if (itemToDelete) {
       const itemId = itemToDelete._id;
 
-      fetch(`http://localhost:3000/users/${itemId}`, {
+      fetch(`https://api.goodtools.ai/users/${itemId}`, {
         method: "DELETE",
       })
         .then((res) => {
@@ -98,7 +98,7 @@ const UserManagement = () => {
 
 
     if (userName.length != 0 && email.length != 0 && password.length != 0) {
-      fetch("http://localhost:3000/users", {
+      fetch("https://api.goodtools.ai/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -138,7 +138,7 @@ const UserManagement = () => {
       };
 
 
-      fetch(`http://localhost:3000/users/${itemToDelete._id}`, {
+      fetch(`https://api.goodtools.ai/users/${itemToDelete._id}`, {
         method: "PUT", // Use the appropriate HTTP method for updating
         headers: {
           "Content-Type": "application/json",

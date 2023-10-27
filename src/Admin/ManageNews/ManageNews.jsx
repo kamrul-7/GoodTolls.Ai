@@ -4,24 +4,52 @@ import { useNavigate } from "react-router-dom";
 
 const ManageNews = () => {
   const [itemToDelete, setItemToDelete] = useState(null);
-    const [news, setNews] = useState([]);
+  const [news, setNews] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-    const [isLoading, setIsLoading] = useState(true);
 
 
-    const fetchNews = () => {
-      fetch("http://localhost:3000/news")
-        .then((res) => res.json())
-        .then((data) => {
-          setNews(data);
-          setIsLoading(false)
-        })
-        
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(0);
+  const perPage = 6; // Making perPage a constant if not changed elsewhere
+  const [totalPages, setTotalPages] = useState(0);
+  
+  // Handler for page change from Pagination component
+  const pageNumber = [...Array(totalPages).keys()];
+
+  // Fetch news with pagination
+  const fetchNews = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/news?page=${currentPage}&limit=${perPage}`);
+      const data = await response.json();
+      setNews(data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Failed fetching news:", error);
+    }
+  };
+
+  useEffect(() => {
+    // Fetch the total number of news for pagination calculations
+    const fetchTotalNewsCount = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/totalNews");
+        const data = await response.json();
+        const pages = Math.ceil(data.totalNews / perPage);
+        setTotalPages(pages);
+      } catch (error) {
+        console.error("Failed fetching total news count:", error);
+      }
+
     };
 
-    useEffect(() => {
-       fetchNews();
-    }, [])
+    fetchTotalNewsCount();
+  }, [perPage]);
+
+  useEffect(() => {
+    fetchNews();
+  }, [currentPage, perPage]);
 
 
     const navigate = useNavigate();
@@ -35,7 +63,7 @@ const ManageNews = () => {
         const imageId = itemToDelete.image;
     
         // Send a DELETE request to the server
-        fetch(`http://localhost:3000/news/${itemId}/${imageId}`, {
+        fetch(`https://api.goodtools.ai/news/${itemId}/${imageId}`, {
           method: "DELETE",
         })
           .then((res) => {
@@ -69,6 +97,7 @@ const ManageNews = () => {
 
 
     return (
+        <>
         <div className='mt-[35px] w-full px-8'>
             <div>
                 {/* Breadcumb section */}
@@ -242,6 +271,47 @@ const ManageNews = () => {
         </div>
       </div>
         </div>
+
+         
+     {/* Pagination */}
+     <div className="pagination">
+                {/* <p>Current Page {currentPage + 1}</p> */}
+                
+                {totalPages > 1 && (
+                    <button className="md:mr-96"
+                        style={{ padding: 20 }}
+                        onClick={() =>
+                            currentPage > 0 ? setCurrentPage(currentPage - 1) : undefined
+                        }
+                    >
+                        &lt; Previous
+                    </button>
+                )}
+
+                {pageNumber.map((number) => (
+                    <button
+                        style={{ padding: 20 }}
+                        key={number}
+                        onClick={() => setCurrentPage(number)}
+                        className={currentPage === number ? "text-red-300" : ""}
+                    >
+                        {number + 1}
+                    </button>
+                ))}
+
+                {totalPages > 1 && (
+                    <button className="md:ml-96"
+                        style={{ padding: 20 }}
+                        onClick={() =>
+                            currentPage < totalPages - 1 ? setCurrentPage(currentPage + 1) : undefined
+                        }
+                    >
+                        Next &gt;
+                    </button>
+                )}
+            </div>
+        </>
+        
     );
 };
 
