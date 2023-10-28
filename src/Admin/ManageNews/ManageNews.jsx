@@ -278,7 +278,7 @@ const ManageNews = () => {
                 {/* <p>Current Page {currentPage + 1}</p> */}
                 
                 {totalPages > 1 && (
-                    <button className="md:mr-96"
+                    <button
                         style={{ padding: 20 }}
                         onClick={() =>
                             currentPage > 0 ? setCurrentPage(currentPage - 1) : undefined
@@ -300,7 +300,7 @@ const ManageNews = () => {
                 ))}
 
                 {totalPages > 1 && (
-                    <button className="md:ml-96"
+                    <button 
                         style={{ padding: 20 }}
                         onClick={() =>
                             currentPage < totalPages - 1 ? setCurrentPage(currentPage + 1) : undefined
