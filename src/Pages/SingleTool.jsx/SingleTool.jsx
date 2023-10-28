@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import Rate from '../Rate/Rate';
 import Rattingg from '../Rating/Rating';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
 
 const SingleTool = () => {
@@ -13,9 +13,11 @@ const SingleTool = () => {
     // console.log(storageKey);
     let isClicked = '';
     // console.log(isClicked);
-
+    console.log(cards);
     useEffect(() => {
         const storedToolId = JSON.parse(sessionStorage.getItem(tmpStoreKeyTool))
+        console.log(storedToolId);
+
         if(storedToolId){
             storageKey = `myHeartClicked-${storedToolId}`;
             isClicked = localStorage.getItem(storageKey) === "true"
@@ -48,10 +50,21 @@ const SingleTool = () => {
             {
                 isLoading ?
                     <span className="loading loading-ring md:w-40 md:h-40 w-20 h-20 md:ml-[45%] ml-[40%] md:my-40 my-20"></span>
-                    : <div className='m-4 p-4 border border-[#E5E7EB] rounded-2xl'>
+                    : <div className="breadcrumbs text-sm font-normal mb-10 md:mb-14 pl-6">
+                    <ul>
+                      <li>
+                        <Link to="/">Home</Link>
+                      </li>
+                      <li>
+                        <Link to="/">Card</Link>
+                      </li>
+                      <li>{cards.toolName}</li>
+                    </ul>
+                    <div className='m-4 mt-10 p-4 border border-[#E5E7EB] rounded-2xl'>
                         <Rattingg card={cards} />
                         <Rate id={cards._id} name={cards.toolName}></Rate>
                     </div>
+                  </div>
             }
 
 

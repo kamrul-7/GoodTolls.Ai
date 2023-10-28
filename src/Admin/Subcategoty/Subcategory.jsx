@@ -22,7 +22,7 @@ const Subcategory = () => {
   
    const fetchSubCategory = async () => {
       const response = await fetch(
-        `http://localhost:3000/subcategory?page=${currentPage}&limit=${perPage}`
+        `https://api.goodtools.ai/subcategory?page=${currentPage}&limit=${perPage}`
       );
       const data = await response.json();
       setSub(data);
@@ -36,7 +36,7 @@ const Subcategory = () => {
   
     useEffect(() => {
       // Calculate the total number of pages
-      fetch("http://localhost:3000/totalSubCategory")
+      fetch("https://api.goodtools.ai/totalSubCategory")
         .then(res => res.json())
         .then(data => {
           const pages = Math.ceil(data.totalSubCategory / perPage);
