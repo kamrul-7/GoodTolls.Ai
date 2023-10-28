@@ -63,7 +63,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
 
 
       return (
-        <div key={indx} className="card size bg-base-100 shadow-xl mb-8 md:mb-24 md:mx-0 mx-auto">
+        <div key={indx} className="card size bg-base-100 shadow-xl mb-8 md:mb-24 md:mx-0 mx-auto font-paragraph">
           <Link onClick={() => storeToolId(tool._id)} to={`/tool/${slugify(tool.toolName)}`} >
             <figure className="relative">
               <img
@@ -87,7 +87,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
             <div className="h-[243] mt-8">
               <div className="flex justify-between">
                 <div className="Title">
-                  <h2>{tool?.toolName}</h2>
+                  <h2 className="font-title">{tool?.toolName}</h2>
                 </div>
                 <div className="flex justify-between subscription items-center py-4">
                   <div className="">

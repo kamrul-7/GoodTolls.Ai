@@ -26,7 +26,7 @@ const Rating = ({ card }) => {
     },
   };
   return (
-    <div>
+    <div className="font-paragraph">
       <div className="">
         <div className="breadcrumbs text-sm font-normal mb-8 md:mb-14 pl-6">
           <ul>
@@ -43,7 +43,7 @@ const Rating = ({ card }) => {
           <div className="flex justify-between gap-2">
             <div>
               <p className="text-base font-normal">Product Information</p>
-              <h1 className="md:text-5xl text-3xl font-bold mt-4">{card.toolName}</h1>
+              <h1 className="md:text-5xl text-3xl font-bold mt-4 font-title">{card.toolName}</h1>
             </div>
             <div className="mr-6 flex gap-4">
               <div>
@@ -76,7 +76,7 @@ const Rating = ({ card }) => {
               />
             </div>
             <div className="">
-              <h2 className="text-5xl font-bold">
+              <h2 className="text-5xl font-bold font-title">
                 ${card.price}
                 <span className="text-base font-normal text-[#4D5761]">
                   /{card.pricePeriod}

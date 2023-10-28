@@ -89,15 +89,15 @@ const Home = () => {
                     <div className='w-11/12 md:w-fit mx-auto'>
                         <Filter clickHandler = {handleSubSubmit} selectedPopular={selectedPopular}></Filter>
                     </div>
-                    <div className='text-[#6C737F] font-medium ml-6 my-4'>
-                        Showing <span className='text-[#081120]'> {decoration(total)} Best</span> Ai Tools
+                    <div className='text-[#6C737F] font-medium ml-6 my-4 font-paragraph'>
+                        Showing <span className='text-[#081120] font-paragraph'> {decoration(total)} Best</span> Ai Tools
                     </div>
                 </div>
                 <div className='ml-6 flex items-center w-fit'>
-                    <span className='text-[#081120] font-medium mr-1'>Sort by : </span>
+                    <span className='text-[#081120] font-medium mr-1 font-paragraph'>Sort by : </span>
                     <div className='max-w-[300px] flex justify-between mt-1'>
-                        <div className='mx-2'>
-                            <input onClick={handleChecked} className='mx-1 h-3 w-3' type="checkbox" id="All" name="All" defaultChecked/>All
+                        <div className='mx-2 font-paragraph'>
+                            <input onClick={handleChecked} className='mx-1 h-3 w-3 ' type="checkbox" id="All" name="All" defaultChecked/>All
                         </div>
                         <div className='mr-2'>
                             <input onClick={handleChecked} className='mx-1 h-3 w-3' type="checkbox" id="Free" name="Free" />Free
