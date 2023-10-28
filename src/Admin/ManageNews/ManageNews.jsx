@@ -21,7 +21,7 @@ const ManageNews = () => {
   // Fetch news with pagination
   const fetchNews = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/news?page=${currentPage}&limit=${perPage}`);
+      const response = await fetch(`https://api.goodtools.ai/news?page=${currentPage}&limit=${perPage}`);
       const data = await response.json();
       setNews(data);
       setIsLoading(false);
@@ -34,7 +34,7 @@ const ManageNews = () => {
     // Fetch the total number of news for pagination calculations
     const fetchTotalNewsCount = async () => {
       try {
-        const response = await fetch("http://localhost:3000/totalNews");
+        const response = await fetch("https://api.goodtools.ai/totalNews");
         const data = await response.json();
         const pages = Math.ceil(data.totalNews / perPage);
         setTotalPages(pages);
