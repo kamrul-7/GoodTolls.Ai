@@ -63,7 +63,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
 
 
       return (
-        <div key={indx} className="card size bg-base-100 shadow-xl mb-24 md:mx-0 mx-auto">
+        <div key={indx} className="card size bg-base-100 shadow-xl mb-8 md:mb-24 md:mx-0 mx-auto">
           <Link onClick={() => storeToolId(tool._id)} to={`/tool/${slugify(tool.toolName)}`} >
             <figure className="relative">
               <img

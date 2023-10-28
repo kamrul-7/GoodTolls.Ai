@@ -62,13 +62,13 @@ const SingleNews = () => {
                 <p>News Page</p>
             </div>
             {/* Single News Section */}
-            <div className='mx-10 my-10 mb-26'>
+            <div className='mx-6 my-10 mb-26'>
                 {/* Hero section */}
-                <div className="hero mb-10 rounded-lg lg:h-[394px] mx-auto" style={{ backgroundImage: `url(https://api.goodtools.ai/uploads/${item.image})` }}>
+                <div className="hero mb-10 rounded-lg md:h-[394px] h-[294px] mx-auto" style={{ backgroundImage: `url(https://api.goodtools.ai/uploads/${item.image})` }}>
                 </div>
                 <div className='text-section '>
                     {/* right-div */}
-                    <div className='right w-7/12'>
+                    <div className=''>
                         <div className='date'>
                             <p className='date-title' >Tools</p>
                             <div className="vertical-line"></div>
@@ -87,8 +87,8 @@ const SingleNews = () => {
                     </div>
 
                     {/* Left Div */}
-                    <div className='left'>
-                        <div className='small-blue-card md:ml-24'>
+                    <div className=''>
+                        <div className='small-blue-card'>
                             <div className='small-card-title'>
                                 Explore all of our Ai tools now
                             </div>
@@ -102,32 +102,32 @@ const SingleNews = () => {
                         {/* Popular */}
 
 
-                        <div className='category mt-10 mb-10'>
+                        <div className='category mt-8 mb-10 md:ml-16'>
                             <div>Popular Categories</div>
-                            <div className='grid grid-cols-2 gap-2 mt-4'>
+                            <div className='grid md:grid-cols-3 grid-cols-2 gap-2 mt-2 md:w-96 text-lg font-normal w-60 p-2'>
                                 {cata?.map((subItem, index) => (
-                                    <p className='category-item mb-4' key={index}>{subItem.Title}</p>
+                                    <p className=' border rounded-3xl text-center mb-4 py-1' key={index}>{subItem.Title}</p>
                                 ))}
                             </div>
                         </div>
 
 
 
-                        <div className='category mt-10 mb-10'>
+                        <div className='category mt-8 mb-10 md:ml-16'>
                             <div>Tags</div>
-                            <div className='grid grid-cols-3 mt-4 gap-4' >
-                                <p className='category-item mb-4 '>Ai Detection</p>
-                                <p className='category-item mb-4 '>Github</p>
-                                <p className='category-item mb-4 '>Image</p>
-                                <p className='category-item mb-4 '>Machine</p>
-                                <p className='category-item mb-4 '>Inspiration</p>
-                                <p className='category-item mb-4 '>Code</p>
+                            <div className='grid md:grid-cols-3 grid-cols-2 gap-2  mt-2 md:w-96 text-lg font-normal w-60 p-2' >
+                                <p className='border rounded-3xl text-center mb-4 py-1'>Ai Detection</p>
+                                <p className='border rounded-3xl text-center mb-4 py-1'>Github</p>
+                                <p className='border rounded-3xl text-center mb-4 py-1'>Image</p>
+                                <p className='border rounded-3xl text-center mb-4 py-1'>Machine</p>
+                                <p className='border rounded-3xl text-center mb-4 py-1'>Inspiration</p>
+                                <p className='border rounded-3xl text-center mb-4 py-1'>Code</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className='large-card mt-10 mb-40 mx-auto'>
+                <div className='large-card mt-10 mb-40 '>
                     <div className='large-right'>
                         Let’s Contact With Us.
                     </div>

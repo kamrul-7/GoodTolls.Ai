@@ -1,6 +1,6 @@
 .news-card{
     display: flex;
-    width: 533px;
+    
     height: 636px;
 padding: 24px;
 flex-direction: column;
@@ -120,7 +120,7 @@ line-height: 150%; /* 24px */
     }
     .news-card{
        width: 311px;
-       height: 628px;
+    
        display: flex;
 padding: 16px;
 margin-bottom: 16px;
@@ -136,7 +136,7 @@ box-shadow: 0px 8px 24px 0px rgba(41, 59, 85, 0.08);
     }
     .news-card-image{
         height: 210px;
-        width: 279px;
+        width: 270px;
     align-self: stretch;
     border-radius: 12px;
     background: url(<path-to-image>), lightgray -94.025px -37.932px / 138.773% 120.53% no-repeat;
