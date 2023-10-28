@@ -69,7 +69,7 @@ const Db = () => {
                   {
                     isLoading ?
                     <span className="loading loading-dots loading-lg"></span>
-                    : <div className="number">{count.totalCategories}</div>
+                    : <div className="number">{count.totalSubCategories}</div>
                   }
                 </div>
                 <div className="single-card">

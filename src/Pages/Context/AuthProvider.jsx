@@ -7,6 +7,7 @@ import {
     signOut,
 } from "firebase/auth";
 import app from "./firebase.config";
+import { useLocation } from "react-router-dom";
 
 export const AuthContext = createContext();
 
@@ -14,11 +15,19 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
+    const location = useLocation()
+    const tmpStoreKeyNews = 'ToolsFinder(GoodToolsAi)RegularStoring:_newsId'
+    const tmpStoreKeyTool = 'ToolsFinder(GoodToolsAi)RegularStoring:_toolId'
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [toggle,setToggle] = useState(false);
-    const [newsId, setNewsId] = useState('');
-    const [toolId, setToolId] = useState('');
+
+    const storeNewsId = (value)=>{
+        sessionStorage.setItem(tmpStoreKeyNews, JSON.stringify(value))
+    }
+    const storeToolId = (value)=>{
+        sessionStorage.setItem(tmpStoreKeyTool, JSON.stringify(value))
+    }
 
     const setTrue=()=>{
         setToggle(true)
@@ -47,18 +56,17 @@ const AuthProvider = ({ children }) => {
         return () => unsubscribe();
     }, []);
 
+
     const authInfo = {
         logOut,
         user,
         loading,
         toggle,
-        toolId,
-        newsId,
         googleSignIn,
         setTrue,
         setFalse,
-        setToolId,
-        setNewsId
+        storeNewsId,
+        storeToolId
     };
 
     return (

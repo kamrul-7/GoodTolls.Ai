@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 const ManageTools = () => {
     const [currentPage, setCurrentPage] = useState(0);
+
     const [perPage, setPerPage] = useState(6);  // Setting default to 6 items per page
     const [totalPages, setTotalPages] = useState(0);
-
     const [itemToDelete, setItemToDelete] = useState(null);
     const [tools, setTools] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
