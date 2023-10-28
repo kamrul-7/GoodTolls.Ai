@@ -47,7 +47,7 @@ const SingleNews = () => {
 
     return (
         <div className='mx-auto font-paragraph '>
-            <div className='flex items-center mt[34px] ml-2'>
+            <div className='flex items-center ml-2'>
                 <a href='/'>Home</a>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
                     <g clipPath="url(#clip0_810_9466)">
@@ -63,7 +63,7 @@ const SingleNews = () => {
             </div>
             {/* Single News Section */}
             <div className='p-4'>
-                <div className='md:p-10 px-4 pt-4 pb-7 my-10 mb-26 border-[#E5E7EB] border rounded-2xl'>
+                <div className='md:p-10 px-4 pt-4 pb-7 my-4 mb-26 border-[#E5E7EB] border rounded-2xl'>
                     {/* Hero section */}
                     <div className="hero mb-10 rounded-lg md:h-[394px] h-[294px] mx-auto" style={{ backgroundImage: `url(https://api.goodtools.ai/uploads/${item.image})` }}>
                     </div>
@@ -127,7 +127,7 @@ const SingleNews = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='large-card md:mt-10 mb-40'>
+                    <div className='large-card md:mt-10 mb-15'>
                         <div className='large-right font-title '>
                             <p style={{ fontWeight: 500 }}>Let’s Contact With Us.</p>
                         </div>
