@@ -24,7 +24,7 @@ const Navbar = () => {
   // };
   const ourNavOption = (
     <>
-      <li className='mx-6'>
+      <li className='mx-6 font-paragraph'>
 
         <NavLink to="/" style={{ background: 'transparent', }} className={({ isActive }) => isActive ? "block remove" : "removes"}>
           {({ isActive }) => (

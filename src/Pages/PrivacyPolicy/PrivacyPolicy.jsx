@@ -18,8 +18,8 @@ const PrivacyPolicy = () => {
                 </svg>
                 <p>Privacy Policy</p>
             </div>
-            <div className='mx-10 my-10 mb-26'>
-                <div className='title mb-10'>Privacy Policy</div>
+            <div className='mx-10 my-10 mb-26 mt-8 border rounded-lg p-4 md:p-8'>
+            <div className='font-bold text-3xl mb-6'>Privacy Policy</div>
                 <div className='subtitle mb-4'>
                 Your privacy is important to us:
                 </div>

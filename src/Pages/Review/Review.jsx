@@ -132,7 +132,7 @@ const Review = ({ func, userRating, id, gmail, userName, product }) => {
 
 
   return (
-    <div className="">
+    <div className="font-paragraph">
       {/* <button
         className="btn"
         onClick={() => document.getElementById("my_modal_5").showModal()}
@@ -141,7 +141,7 @@ const Review = ({ func, userRating, id, gmail, userName, product }) => {
       </button> */}
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle ">
         <div className="modal-custom relative">
-          <h3 className="font-bold text-2xl mb-4">What is Your Rating?</h3>
+          <h3 className="font-bold text-2xl mb-4 font-title">What is Your Rating?</h3>
           <div>
             <Rating
               style={{ maxWidth: "234px", maxHeight: "39px", gap: "8px" }}
@@ -155,7 +155,7 @@ const Review = ({ func, userRating, id, gmail, userName, product }) => {
             <form method="dialog" className="w-full" onSubmit={handleSubmit}>
               <div>
                 <label className="label">
-                  <span className="text-xl font-medium mb-4">
+                  <span className="text-xl font-medium mb-4 font-title">
                     What is your review of the tool?
                   </span>
                 </label>

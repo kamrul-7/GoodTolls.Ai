@@ -7,8 +7,14 @@ export default {
     "./node_modules/tailwind-datepicker-react/dist/**/*.js"
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'title': ['Space Grotesk', 'sans-serif'],
+        'paragraph': ['Inter', 'sans-serif'],
+      },
+    },
   },
+  
   daisyui: {
     themes: [
       {

@@ -21,8 +21,8 @@ const SingleReview = ({ name = "None", rating = 0, date = 'Jan 1, 1970', comment
 
 
     return (
-        <div className='md:w-[535px] h-[263px] text-center md:text-left'>
-            <div className='text-2xl font-bold mb-3 '>{name}</div>
+        <div className='md:w-[535px] h-[263px] text-center md:text-left font-paragraph'>
+            <div className='text-2xl font-bold mb-3 font-title'>{name}</div>
             <div className="">
                 <div className="mx-auto md:mx-0 w-fit">
                     <Rating
