@@ -41,7 +41,7 @@ padding: 60px;
 justify-content: center;
 align-items: center;
 gap: 40px;
-align-self: stretch;
+
 
 border-radius: 20px;
 background: var(--Primary, #2970FF);

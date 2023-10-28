@@ -20,8 +20,8 @@ const Terms = () => {
                 </svg>
                 <p>Terms of Service</p>
             </div>
-            <div className='mx-10 my-10 mb-26'>
-                <div className='title mb-10'>Terms of Service</div>
+            <div className='mx-10 my-10 mb-26 border rounded-lg p-4 md:p-8'>
+                <div className='font-bold text-3xl mb-10'>Terms of Service</div>
                 <div className='subtitle mb-4'>
                 Terms of Service:
                 </div> 

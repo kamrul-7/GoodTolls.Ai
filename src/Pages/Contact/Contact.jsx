@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Contact = () => {
   return (
-    <div>
+    <div className="font-paragraph">
       <div className="breadcrumbs mb-5 text-sm font-normal mx-6">
         <ul>
           <li>
@@ -18,7 +18,7 @@ const Contact = () => {
         style={{ border: "1px solid #E5E7EB" }}
       >
         <div className="px-4 md:px-8">
-          <h2 className="card-title text-3xl md:text-5xl font-bold mb-6 md:mb-12 mt-8">
+          <h2 className="font-title text-3xl md:text-5xl font-bold mb-6 md:mb-12 mt-8">
             Contact Us
           </h2>
           <h2 className="text-base font-normal mb-6">
@@ -126,6 +126,7 @@ const Contact = () => {
           </button>
         </div>
       </div>
+
     </div>
   );
 };
