@@ -14,7 +14,7 @@ const SingleNews = () => {
     useEffect(() => {
         const storedNewsId = JSON.parse(sessionStorage.getItem(tmpStoreKeyNews))
         if(storedNewsId){
-            fetch(`http://localhost:3000/news/${storedNewsId}`)
+            fetch(`https://api.goodtools.ai/news/${storedNewsId}`)
             .then(response => response.json())
             .then(data => {
                 // Update the state with the data for the specific news item.
