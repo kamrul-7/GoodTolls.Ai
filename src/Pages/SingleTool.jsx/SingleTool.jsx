@@ -21,7 +21,7 @@ const SingleTool = () => {
         if(storedToolId){
             storageKey = `myHeartClicked-${storedToolId}`;
             isClicked = localStorage.getItem(storageKey) === "true"
-            fetch(`http://api.goodtools.ai/tools/${storedToolId}`)
+            fetch(`https://api.goodtools.ai/tools/${storedToolId}`)
             .then(response => response.json())
             .then(data => {
                 // Update the state with the data for the specific news item.
