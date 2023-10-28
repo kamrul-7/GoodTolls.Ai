@@ -13,17 +13,17 @@ const UserManagement = () => {
   const [itemToDelete, setItemToDelete] = useState(null);
   const [updatedEmail, setUpdatedEmail] = useState("");
   const [updatedPassword, setUpdatedPassword] = useState("");
-  const [isLoading,setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
 
 
-  const crossButton = () =>{
+  const crossButton = () => {
 
-      setUserName("");
-      setEmail("");
-      setPassword("");
+    setUserName("");
+    setEmail("");
+    setPassword("");
 
-      
-   }
+
+  }
 
   const fetchUsers = () => {
     fetch("https://api.goodtools.ai/users")
@@ -63,7 +63,7 @@ const UserManagement = () => {
             alert("Internal Server Error");
           }
         })
-        
+
       setItemToDelete(null);
       closeModal();
     }
@@ -168,7 +168,7 @@ const UserManagement = () => {
     setEmail(item.email);
     setPassword(item.password);
     setUserType(item.userType);
-  
+
     // Open the update modal
     const modal = document.getElementById("my_modal_6");
     modal.showModal();
@@ -245,88 +245,88 @@ const UserManagement = () => {
 
           {/* row */}
           {
-            users.length > 0 ?users.map(item => 
-            <tr className="border-b h-[64px] border-[#EAECF0] text-sm font-medium">
-              <td className="py-4 px-6 hover:bg-[#F9FAFB]">{item.userName}</td>
-              <td className="py-4 px-6 hover:bg-[#F9FAFB]">
-                {item.email}
-              </td>
-              <td className="py-4 px-6 hover:bg-[#F9FAFB]">{item.date}</td>
-              <td className="py-4 px-6 hover:bg-[#F9FAFB] font-normal">
-                <button className="btn-sm bg-[#FEF6EE] border-orange-200 border-2 text-xs font-medium text-[#B93815] rounded-3xl px-4">
-                  {item.userType}
-                </button>
-              </td>
-              {/* Action buttons */}
-              <td className="px-4 py-4 flex items-center justify-center hover:mt-[1px] hover:-mb-[1px] hover:-translate-y-[0.5px] hover:bg-[#F9FAFB]">
-                {/* Delete button */}
-              {
-                loggedIn.role === 'Admin' && <button  onClick={() => {
-                  // Open the modal
-                  document.getElementById("my_modal_14").showModal();
-      
-                  // Call the handleDelete function with the data you want to delete
-                  setItemToDelete(item)
-                  // itemToDelete(item)
-                  // handleDelete(item);
-              }} className="p-[10px] mr-1 w-[40px] hover:-translate-y-[0.5px]">
-                <svg
-                  width="18"
-                  height="20"
-                  viewBox="0 0 18 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12.3333 4.99999V4.33332C12.3333 3.3999 12.3333 2.93319 12.1517 2.57667C11.9919 2.26307 11.7369 2.0081 11.4233 1.84831C11.0668 1.66666 10.6001 1.66666 9.66667 1.66666H8.33333C7.39991 1.66666 6.9332 1.66666 6.57668 1.84831C6.26308 2.0081 6.00811 2.26307 5.84832 2.57667C5.66667 2.93319 5.66667 3.3999 5.66667 4.33332V4.99999M7.33333 9.58332V13.75M10.6667 9.58332V13.75M1.5 4.99999H16.5M14.8333 4.99999V14.3333C14.8333 15.7335 14.8333 16.4335 14.5608 16.9683C14.3212 17.4387 13.9387 17.8212 13.4683 18.0608C12.9335 18.3333 12.2335 18.3333 10.8333 18.3333H7.16667C5.76654 18.3333 5.06647 18.3333 4.53169 18.0608C4.06129 17.8212 3.67883 17.4387 3.43915 16.9683C3.16667 16.4335 3.16667 15.7335 3.16667 14.3333V4.99999"
-                    stroke="#475467"
-                    strokeWidth="1.66667"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-              }
-
-                {/* Edit button */}
-                <button
-                  onClick={() => {
-                    if (loggedIn.role === 'Admin') {
+            users.length > 0 ? users.map(item =>
+              <tr className="border-b h-[64px] border-[#EAECF0] text-sm font-medium">
+                <td className="py-4 px-6 hover:bg-[#F9FAFB]">{item.userName}</td>
+                <td className="py-4 px-6 hover:bg-[#F9FAFB]">
+                  {item.email}
+                </td>
+                <td className="py-4 px-6 hover:bg-[#F9FAFB]">{item.date}</td>
+                <td className="py-4 px-6 hover:bg-[#F9FAFB] font-normal">
+                  <button className="btn-sm bg-[#FEF6EE] border-orange-200 border-2 text-xs font-medium text-[#B93815] rounded-3xl px-4">
+                    {item.userType}
+                  </button>
+                </td>
+                {/* Action buttons */}
+                <td className="px-4 py-4 flex items-center justify-center hover:mt-[1px] hover:-mb-[1px] hover:-translate-y-[0.5px] hover:bg-[#F9FAFB]">
+                  {/* Delete button */}
+                  {
+                    loggedIn.role === 'Admin' && <button onClick={() => {
                       // Open the modal
-                      document.getElementById("my_modal_6").showModal();
-                      openUpdateModal(item);
-                      // Set the data in your state (setItemToDelete)
-                      setItemToDelete(item);
-                    } else {
-                      alert('Permission denied !\nYou are not an admin')
-                    }
+                      document.getElementById("my_modal_14").showModal();
 
-                  }}
-                  className="p-[10px] w-[40px] hover:-translate-y-[0.5px]"
-                >
-                  <svg
-                    width="19"
-                    height="19"
-                    viewBox="0 0 19 19"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+                      // Call the handleDelete function with the data you want to delete
+                      setItemToDelete(item)
+                      // itemToDelete(item)
+                      // handleDelete(item);
+                    }} className="p-[10px] mr-1 w-[40px] hover:-translate-y-[0.5px]">
+                      <svg
+                        width="18"
+                        height="20"
+                        viewBox="0 0 18 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12.3333 4.99999V4.33332C12.3333 3.3999 12.3333 2.93319 12.1517 2.57667C11.9919 2.26307 11.7369 2.0081 11.4233 1.84831C11.0668 1.66666 10.6001 1.66666 9.66667 1.66666H8.33333C7.39991 1.66666 6.9332 1.66666 6.57668 1.84831C6.26308 2.0081 6.00811 2.26307 5.84832 2.57667C5.66667 2.93319 5.66667 3.3999 5.66667 4.33332V4.99999M7.33333 9.58332V13.75M10.6667 9.58332V13.75M1.5 4.99999H16.5M14.8333 4.99999V14.3333C14.8333 15.7335 14.8333 16.4335 14.5608 16.9683C14.3212 17.4387 13.9387 17.8212 13.4683 18.0608C12.9335 18.3333 12.2335 18.3333 10.8333 18.3333H7.16667C5.76654 18.3333 5.06647 18.3333 4.53169 18.0608C4.06129 17.8212 3.67883 17.4387 3.43915 16.9683C3.16667 16.4335 3.16667 15.7335 3.16667 14.3333V4.99999"
+                          stroke="#475467"
+                          strokeWidth="1.66667"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  }
+
+                  {/* Edit button */}
+                  <button
+                    onClick={() => {
+                      if (loggedIn.role === 'Admin') {
+                        // Open the modal
+                        document.getElementById("my_modal_6").showModal();
+                        openUpdateModal(item);
+                        // Set the data in your state (setItemToDelete)
+                        setItemToDelete(item);
+                      } else {
+                        alert('Permission denied !\nYou are not an admin')
+                      }
+
+                    }}
+                    className="p-[10px] w-[40px] hover:-translate-y-[0.5px]"
                   >
-                    <path
-                      d="M1.39662 15.0964C1.43491 14.7518 1.45405 14.5795 1.50618 14.4185C1.55243 14.2756 1.61778 14.1396 1.70045 14.0142C1.79363 13.8729 1.91621 13.7504 2.16136 13.5052L13.1666 2.49999C14.0871 1.57951 15.5795 1.57951 16.4999 2.49999C17.4204 3.42046 17.4204 4.91285 16.4999 5.83332L5.49469 16.8386C5.24954 17.0837 5.12696 17.2063 4.98566 17.2995C4.86029 17.3821 4.72433 17.4475 4.58146 17.4937C4.42042 17.5459 4.24813 17.565 3.90356 17.6033L1.08325 17.9167L1.39662 15.0964Z"
-                      stroke="#475467"
-                      strokeWidth="1.66667"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-              </td>
-            </tr>)
-            : isLoading ?
-            <td className="px-auto py-10 flex justify-center w-full" colSpan={5}>
-              <span className="loading loading-ring w-20 h-20 ml-[300%]"></span>
-            </td>
-            : <td className="border-b text-[#475467] text-3xl p-10" colSpan={5}>There are no records to display</td>
+                    <svg
+                      width="19"
+                      height="19"
+                      viewBox="0 0 19 19"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1.39662 15.0964C1.43491 14.7518 1.45405 14.5795 1.50618 14.4185C1.55243 14.2756 1.61778 14.1396 1.70045 14.0142C1.79363 13.8729 1.91621 13.7504 2.16136 13.5052L13.1666 2.49999C14.0871 1.57951 15.5795 1.57951 16.4999 2.49999C17.4204 3.42046 17.4204 4.91285 16.4999 5.83332L5.49469 16.8386C5.24954 17.0837 5.12696 17.2063 4.98566 17.2995C4.86029 17.3821 4.72433 17.4475 4.58146 17.4937C4.42042 17.5459 4.24813 17.565 3.90356 17.6033L1.08325 17.9167L1.39662 15.0964Z"
+                        stroke="#475467"
+                        strokeWidth="1.66667"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </td>
+              </tr>)
+              : isLoading ?
+                <td className="px-auto py-10 flex justify-center w-full" colSpan={5}>
+                  <span className="loading loading-ring w-20 h-20 ml-[300%]"></span>
+                </td>
+                : <td className="border-b text-[#475467] text-3xl p-10" colSpan={5}>There are no records to display</td>
 
           }
 
@@ -429,17 +429,17 @@ const UserManagement = () => {
                   ✕
                 </button>
                 <div className="flex justify-between w-[618px] mx-auto">
-                <button
-  onClick={() => {
-    crossButton();
-    const modal = document.getElementById("my_modal_6");
-    modal.close();
-  }}
-  type="button" // Set type to "button" to prevent form submission
-  className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
->
-  Cancel
-</button>
+                  <button
+                    onClick={() => {
+                      crossButton();
+                      const modal = document.getElementById("my_modal_1");
+                      modal.close();
+                    }}
+                    type="button" // Set type to "button" to prevent form submission
+                    className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
+                  >
+                    Cancel
+                  </button>
 
 
                   <button onClick={() => {
@@ -541,28 +541,28 @@ const UserManagement = () => {
               <footer className="mt-4 flex justify-end space-x-2">
                 <button
                   className="btn-circle btn-ghost absolute top-4 right-4 text-2xl"
-                 
+
                   onClick={() => {
                     crossButton();
                     const modal = document.getElementById("my_modal_6");
                     modal.close();
                   }}
-                   type="button"
+                  type="button"
                 >
                   ✕
                 </button>
                 <div className="flex justify-between w-[618px] mx-auto">
-                <button
-  onClick={() => {
-    crossButton();
-    const modal = document.getElementById("my_modal_1");
-    modal.close();
-  }}
-  type="button" // Set type to "button" to prevent form submission
-  className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
->
-  Cancel
-</button>
+                  <button
+                    onClick={() => {
+                      crossButton();
+                      const modal = document.getElementById("my_modal_1");
+                      modal.close();
+                    }}
+                    type="button" // Set type to "button" to prevent form submission
+                    className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
+                  >
+                    Cancel
+                  </button>
 
                   <button onClick={() => {
                     const modal = document.getElementById("my_modal_6");

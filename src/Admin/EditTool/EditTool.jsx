@@ -280,8 +280,8 @@ const EditTool = () => {
         event.preventDefault()
         let imageId = toolData.image;
         const date = formateDate();
-        const description = finalDes.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">").replace(/\n/g, "").replace(/<img/, "<img style=' border-radius: 12px;'");
-        const works = finalWork.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">").replace(/\n/g, "").replace(/<img/, "<img style=' border-radius: 12px;'");
+        const description = finalDes.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">").replace(/\n/g, "").replace(/<img/, "<img style=' border-radius: 12px; margin:24px 0px'");
+        const works = finalWork.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">").replace(/\n/g, "").replace(/<img/, "<img style=' border-radius: 12px; margin:24px 0px'");
         if (toolNameState.length != 0 && selected.length != 0 && toolLink.length != 0 && imageId != null
             && toolPriceType.length != 0 && (toolPriceType.includes('Free') ? true : toolPrice.length != 0) && toolPriceDuration.length != 0 && date && description && works) {
             const formdata = new FormData()
