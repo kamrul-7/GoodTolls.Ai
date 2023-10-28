@@ -12,8 +12,8 @@ const Category = () => {
   const [itemToDelete, setItemToDelete] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const modalRef = useRef(null);
-  
- //For pagination
+
+  //For pagination
 
   const [currentPage, setCurrentPage] = useState(0);
   const [perPage, setPerPage] = useState(6);
@@ -62,23 +62,24 @@ const Category = () => {
   // useEffect(()=>{
   //   fetchCategory()
   // })
-  useEffect(()=>{console.log(currentPage, totalPages)
-    if(totalPages > currentPage && totalPages-currentPage == 2){
-      setCurrentPage(currentPage+1);
-    } else if(totalPages === currentPage){
-      setCurrentPage(currentPage-1)
+  useEffect(() => {
+    console.log(currentPage, totalPages)
+    if (totalPages > currentPage && totalPages - currentPage == 2) {
+      setCurrentPage(currentPage + 1);
+    } else if (totalPages === currentPage) {
+      setCurrentPage(currentPage - 1)
     }
-  },[totalPages])
+  }, [totalPages])
 
   const calculateTotalPages = () => {
     fetch("http://localhost:3000/totalCategory")
       .then((res) => res.json())
       .then((data) => setTotalPages(Math.ceil(data.totalCategory / perPage)));
-      // if(currentPage < Math.ceil(data.totalCategory / perPage)-1){
-      //   setCurrentPage(Math.ceil(data.totalCategory / perPage)-1)
-      // }
-      
-      // setCurrentPage(Math.ceil(data.totalCategory / perPage)-1)
+    // if(currentPage < Math.ceil(data.totalCategory / perPage)-1){
+    //   setCurrentPage(Math.ceil(data.totalCategory / perPage)-1)
+    // }
+
+    // setCurrentPage(Math.ceil(data.totalCategory / perPage)-1)
   };
 
   const handleSubmit = (event) => {
@@ -349,6 +350,45 @@ const Category = () => {
                 There are no records to display
               </td>
             )}
+            <tr>
+              <div className="pagination">
+                <p>Current Page {currentPage}</p>
+                {totalPages > 1 && (
+                  <button
+                    style={{ padding: 20 }}
+                    onClick={() =>
+                      currentPage > 0 ? setCurrentPage(currentPage - 1) : undefined
+                    }
+                  >
+                    &lt; Previous
+                  </button>
+                )}
+
+                {pageNumber.map((number) => (
+                  <button
+                    style={{ padding: 20 }}
+                    key={number}
+                    onClick={() => setCurrentPage(number)}
+                    className={currentPage === number ? "text-red-300" : " "}
+                  >
+                    {number + 1}
+                  </button>
+                ))}
+
+                {totalPages > 1 && (
+                  <button
+                    style={{ padding: 20 }}
+                    onClick={() =>
+                      currentPage < totalPages - 1
+                        ? setCurrentPage(currentPage + 1)
+                        : undefined
+                    }
+                  >
+                    Next &gt;
+                  </button>
+                )}
+              </div>
+            </tr>
           </table>
           {/* pagination section */}
           <div>
@@ -469,7 +509,7 @@ const Category = () => {
                   </div>
                 </footer>
               </form>
-            {/* <form onSubmit={handleSubmit}>
+              {/* <form onSubmit={handleSubmit}>
               <div className="space-y-4 relative">
                 <label className="block font-medium text-sm">
                   Category Name

@@ -49,28 +49,65 @@ const Home = () => {
         setTotal(value);
     }
 
+    useEffect(()=>{
+        if(sortOption === 'All'){
+            document.getElementById('All').checked = true;
+            document.getElementById('Free').checked = false;
+            document.getElementById('Premium').checked = false;
+            document.getElementById('Paid').checked = false;
+        } 
+        else if(sortOption === 'Free'){
+            document.getElementById('Free').checked = true;
+            document.getElementById('All').checked = false;
+            document.getElementById('Premium').checked = false;
+            document.getElementById('Paid').checked = false;
+        }
+        else if(sortOption === 'Premium'){
+            document.getElementById('Premium').checked = true;
+            document.getElementById('All').checked = false;
+            document.getElementById('Free').checked = false;
+            document.getElementById('Paid').checked = false;
+        }
+        else if(sortOption === 'Paid'){
+            document.getElementById('Paid').checked = true;
+            document.getElementById('All').checked = false;
+            document.getElementById('Free').checked = false;
+            document.getElementById('Premium').checked = false;
+        }
+    },[sortOption])
+
     const handleChecked = (event)=>{
         if(event.target.name === 'All' && event.target.checked){
             document.getElementById('Free').checked = false;
             document.getElementById('Premium').checked = false;
             document.getElementById('Paid').checked = false;
+            setSortOption(event.target.name)
         } 
         else if(event.target.name === 'Free' && event.target.checked){
             document.getElementById('All').checked = false;
             document.getElementById('Premium').checked = false;
             document.getElementById('Paid').checked = false;
+            setSortOption(event.target.name)
         }
         else if(event.target.name === 'Premium' && event.target.checked){
             document.getElementById('All').checked = false;
             document.getElementById('Free').checked = false;
             document.getElementById('Paid').checked = false;
+            setSortOption(event.target.name)
         }
         else if(event.target.name === 'Paid' && event.target.checked){
             document.getElementById('All').checked = false;
             document.getElementById('Free').checked = false;
             document.getElementById('Premium').checked = false;
+            setSortOption(event.target.name)
+        }else if(!event.target.checked){
+            document.getElementById('All').checked = true;
+            document.getElementById('Free').checked = false;
+            document.getElementById('Premium').checked = false;
+            document.getElementById('Paid').checked = false;
+            setSortOption('All')
         }
-        setSortOption(event.target.name)
+
     }
 
     const getSearchData = (data)=>{
@@ -96,18 +133,18 @@ const Home = () => {
                 <div className='ml-6 flex items-center w-fit'>
                     <span className='text-[#081120] font-medium mr-1'>Sort by : </span>
                     <div className='max-w-[300px] flex justify-between mt-1'>
-                        <div className='mx-2'>
+                        <button onClick={()=>setSortOption('All')} name="All"  className='mx-2'>
                             <input onClick={handleChecked} className='mx-1 h-3 w-3' type="checkbox" id="All" name="All" defaultChecked/>All
-                        </div>
-                        <div className='mr-2'>
+                        </button>
+                        <button onClick={()=>sortOption === 'Free' ? setSortOption('All') : setSortOption('Free')} name="Free"  className='mr-2'>
                             <input onClick={handleChecked} className='mx-1 h-3 w-3' type="checkbox" id="Free" name="Free" />Free
-                        </div>
-                        <div className='mr-2'>
+                        </button>
+                        <button onClick={()=>sortOption === 'Premium' ? setSortOption('All') : setSortOption('Premium')} name="Premium"  className='mr-2'>
                             <input onClick={handleChecked} className='mx-1 h-3 w-3' type="checkbox" id="Premium" name="Premium" />Premium
-                        </div>
-                        <div className=''>
+                        </button>
+                        <button onClick={()=>sortOption === 'Paid' ? setSortOption('All') : setSortOption('Paid')} name="Paid"  className=''>
                             <input onClick={handleChecked} className='mx-1 h-3 w-3' type="checkbox" id="Paid" name="Paid" />Paid
-                        </div>
+                        </button>
 
                     </div>
                 </div>
