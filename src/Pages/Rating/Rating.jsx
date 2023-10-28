@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import './Rating.css'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
@@ -10,11 +10,13 @@ const Rating = ({ card }) => {
   const toolId  = JSON.parse(sessionStorage.getItem(tmpStoreKeyTool))
   const [isToggled, setIsToggled] = useState(false);
   const storageKey = `myHeartClicked-${toolId}`;
-  const isClicked = localStorage.getItem(storageKey) === "true";
-  
-  const handleClick = () => {
-    console.log("djkafs");
+  const [isClicked,setIsClicked] = useState(localStorage.getItem(storageKey) === "true")
+
+  const handleClick = ()=>{
+    setIsClicked(!isClicked)
   }
+  useEffect(()=>localStorage.setItem(storageKey,isClicked),[isClicked])
+
   const styles = {
     button: {
       padding: "10px 20px",
@@ -27,17 +29,6 @@ const Rating = ({ card }) => {
   return (
     <div>
       <div className="">
-        <div className="breadcrumbs text-sm font-normal mb-8 md:mb-14 pl-6">
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/">Card</Link>
-            </li>
-            <li>Chapple</li>
-          </ul>
-        </div>
         <div className="border-b w-[343px] mx-auto md:w-[1170px] md:h-[570px] h-[563]">
           <div className="flex justify-between gap-2">
             <div>
@@ -46,8 +37,8 @@ const Rating = ({ card }) => {
             </div>
             <div className="mr-6 flex gap-4">
               <div>
-                {
-                  isClicked ? <button onClick={handleClick} ><AiFillHeart color="red" style={{ height: '24px', width: '24px' }}></AiFillHeart></button> : <button>
+              {
+                  isClicked ? <button onClick={handleClick} ><AiFillHeart color="red" style={{ height: '24px', width: '24px' }}></AiFillHeart></button> : <button onClick={handleClick}>
                     <AiOutlineHeart style={{ height: '24px', width: '24px' }}></AiOutlineHeart>
                   </button>
                 }

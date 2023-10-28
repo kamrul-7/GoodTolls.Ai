@@ -64,11 +64,7 @@ const Subcategory = () => {
   //       setIsLoading(false)
   //     })
 
-<<<<<<< HEAD
-  // // };
-=======
   // };
->>>>>>> 0187f873ea066793b47e04bb4a09fa6272429b4a
 
   useEffect(() => {
     fetchSubCategory();

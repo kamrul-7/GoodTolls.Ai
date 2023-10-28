@@ -37,7 +37,7 @@ const SingleReview = ({ name = "None", rating = 0, date = 'Jan 1, 1970', comment
                 {date}
             </div>
             <div className="text-[#4D5761] text-sm mb-6 h-[84px] overflow-y-scroll hide-scrollbar">
-                <div dangerouslySetInnerHTML={{__html: comment}}></div>
+                <div dangerouslySetInnerHTML={{ __html: comment }}></div>
             </div>
 
 
