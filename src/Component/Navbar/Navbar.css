@@ -12,14 +12,12 @@ background: var(--Primary, #2970FF);
 .remove{
   background-color: transparent !important;
 }
-.remove:hover{
+ .remove:hover{
   background-color: transparent !important;
 }
 .removes:not(.active):hover {
   background-color: transparent !important;
-  border-bottom: 2px solid rgb(37, 37, 218);
-  border-radius: 0%;
-}
+} 
 
 @media (max-width: 640px) {
     .hide-button {

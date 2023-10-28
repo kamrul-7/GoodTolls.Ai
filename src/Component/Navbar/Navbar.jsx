@@ -1,7 +1,27 @@
 import { Link, NavLink } from "react-router-dom";
 import './Navbar.css';
 import Login from "../Shared/Signup/Login";
+import { useEffect, useState } from "react";
 const Navbar = () => {
+  const [isNavbarHidden, setIsNavbarHidden] = useState(false);
+  console.log("state", isNavbarHidden);
+  const handleNavLinkClick = () => {
+    
+    setIsNavbarHidden(!isNavbarHidden);
+    console.log("handleNavlink", isNavbarHidden);
+  };
+  const toggle = () => {
+    setIsNavbarHidden(false);
+  };
+
+  // useEffect(() => {
+  //   setIsNavbarHidden(!isNavbarHidden);
+  // }, []);
+  // const toggleNavbar = () => {
+    
+  //   setIsNavbarHidden(!isNavbarHidden);
+  //   console.log("togglebar", isNavbarHidden);
+  // };
   const ourNavOption = (
     <>
       <li className='mx-6'>
@@ -82,35 +102,35 @@ const Navbar = () => {
 
         </div>
         <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="hide-menu btn-ghost btn">
+        <label onClick={toggle} tabIndex={0} className="hide-menu btn-ghost btn">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-5 h-5 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
           </label>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-base gap-1 ">
-            <li className='mx-6'>
-              <NavLink to="/" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] font-semibold p-0 hover:text-[#2970FF]" : "p-0"}>
-                AI Tools Finder
-              </NavLink>
-            </li>
-            <li className='mx-6'>
-              <NavLink to="/about" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] font-semibold p-0 hover:text-[#2970FF]" : "p-0"}>
-                About
-              </NavLink>
-            </li>
-            <li className='mx-6'>
-              <NavLink to="/contact" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] font-semibold p-0 hover:text-[#2970FF]" : "p-0"}>
-                Contacts
-              </NavLink>
-            </li>
-            <li className='mx-6'>
-              <NavLink to="/news" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] font-semibold p-0 hover:text-[#2970FF]" : "p-0"}>
-                News
-              </NavLink>
-            </li>
-            <li className='ml-4 mr-10'>
+      <ul tabIndex={0} className={`menu  menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-base gap-1 ${isNavbarHidden ? 'hidden' : ''} `}>
+        <li className='mx-6'>
+          <NavLink to="/" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] font-semibold p-0 hover:text-[#2970FF]" : "p-0"} onClick={handleNavLinkClick}>
+            AI Tools Finder
+          </NavLink>
+        </li>
+        <li className='mx-6'>
+          <NavLink to="/about" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] font-semibold p-0 hover:text-[#2970FF]" : "p-0"} onClick={handleNavLinkClick}>
+            About
+          </NavLink>
+        </li>
+        <li className='mx-6'>
+          <NavLink to="/contact" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] font-semibold p-0 hover:text-[#2970FF]" : "p-0"} onClick={handleNavLinkClick}>
+            Contacts
+          </NavLink>
+        </li>
+        <li className='mx-6'>
+          <NavLink to="/news" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] font-semibold p-0 hover:text-[#2970FF]" : "p-0"} onClick={handleNavLinkClick}>
+            News
+          </NavLink>
+        </li>
+        <li className='ml-4 mr-10'>
               <Login></Login>
             </li>
-          </ul>
-        </div>
+      </ul>
+    </div>
       </div>
     </div >
   );
