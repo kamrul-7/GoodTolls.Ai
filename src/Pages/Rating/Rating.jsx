@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import './Rating.css'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { AuthContext } from "../Context/AuthProvider";
+import { faChessKing } from "@fortawesome/free-solid-svg-icons";
 const Rating = ({ card }) => {
   // consoleisClicked
   const tmpStoreKeyTool = 'ToolsFinder(GoodToolsAi)RegularStoring:_toolId'
@@ -28,17 +29,6 @@ const Rating = ({ card }) => {
   return (
     <div>
       <div className="">
-        <div className="breadcrumbs text-sm font-normal mb-8 md:mb-14 pl-6">
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/">Card</Link>
-            </li>
-            <li>Chapple</li>
-          </ul>
-        </div>
         <div className="border-b w-[343px] mx-auto md:w-[1170px] md:h-[570px] h-[563]">
           <div className="flex justify-between gap-2">
             <div>
