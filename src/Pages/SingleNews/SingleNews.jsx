@@ -105,9 +105,9 @@ const SingleNews = () => {
 
                             <div className='category mt-8 mb-10 md:ml-8'>
                                 <div>Popular Categories</div>
-                                <div className='grid md:grid-cols-3 grid-cols-2 gap-2 mt-2 md:w-96 text-lg font-normal w-full p-2'>
+                                <div className='grid md:grid-cols-2 grid-cols-2 gap-2 mt-2 md:w-96 text-lg font-normal w-full p-2'>
                                     {cata?.map((subItem, index) => (
-                                        <p className=' border rounded-3xl text-center mb-4 py-1' key={index}>{subItem.Title}</p>
+                                        <p style={{textOverflow: 'ellipsis', overflow:'hidden'}} className='h-fit border rounded-3xl text-center mb-4 py-1' key={index}>{subItem.Title}</p>
                                     ))}
                                 </div>
                             </div>
@@ -116,7 +116,7 @@ const SingleNews = () => {
 
                             <div className='category mt-8 mb-10 md:ml-8'>
                                 <div>Tags</div>
-                                <div className='grid md:grid-cols-3 grid-cols-2 gap-2  mt-2 md:w-96 text-lg font-normal w-60 p-2 font-paragraph' >
+                                <div className='grid md:grid-cols-3 grid-cols-2 gap-2  mt-2 md:w-96 text-lg font-normal w-full p-2 font-paragraph' >
                                     <p className='border rounded-3xl text-center mb-4 py-1'>Ai Detection</p>
                                     <p className='border rounded-3xl text-center mb-4 py-1 '>Github</p>
                                     <p className='border rounded-3xl text-center mb-4 py-1'>Image</p>
