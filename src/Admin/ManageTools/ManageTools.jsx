@@ -14,7 +14,7 @@ const ManageTools = () => {
     const pageNumber = [...Array(totalPages).keys()];
     const modalRef = useRef(null);
     const fetchTools = async () => {
-        const response = await fetch(`http://localhost:3000/tools?page=${currentPage}&limit=${perPage}`);
+        const response = await fetch(`https://api.goodtools.ai/tools?page=${currentPage}&limit=${perPage}`);
         const data = await response.json();
         setTools(data);
         setIsLoading(false);
@@ -26,7 +26,7 @@ const ManageTools = () => {
 
 
     useEffect(() => {
-        fetch("http://localhost:3000/totalTools")  // Assuming this endpoint gives total number of tools
+        fetch("https://api.goodtools.ai/totalTools")  // Assuming this endpoint gives total number of tools
             .then(res => res.json())
             .then(data => {
                 const pages = Math.ceil(data.totalTools / perPage);

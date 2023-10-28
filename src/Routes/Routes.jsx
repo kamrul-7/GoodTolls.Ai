@@ -90,13 +90,13 @@ export const router = createBrowserRouter([
         {
           path:'/dashboard/category',
           element:<Category></Category>,
-          loader:()=>fetch ('http://localhost:3000/totalCategory')
+          loader:()=>fetch ('https://api.goodtools.ai/totalCategory')
 
         },
         {
           path:'/dashboard/subcategory',
           element:<Subcategory/>,
-          loader:()=>fetch ('http://localhost:3000/totalSubCategory')
+          loader:()=>fetch ('https://api.goodtools.ai/totalSubCategory')
         },
         {
           path:'/dashboard/manageTools',
