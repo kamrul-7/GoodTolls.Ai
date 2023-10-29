@@ -32,8 +32,8 @@ const Rating = ({ card }) => {
         <div className="border-b w-[343px] mx-auto md:w-[1170px] md:h-[570px] h-[563]">
           <div className="flex justify-between gap-2">
             <div>
-              <p className="text-base font-normal">Product Information</p>
-              <h1 className="md:text-5xl text-3xl font-bold mt-4 font-title">{card.toolName}</h1>
+              <p className="text-xl font-medium">Product Information</p>
+              <h1 className="md:text-5xl text-2xl  font-bold mt-4 font-title">{card.toolName}</h1>
             </div>
             <div className="mr-6 flex gap-4">
               <div>
@@ -376,7 +376,8 @@ const Rating = ({ card }) => {
                 borderRadius: "8px",
                 height: "49px",
                 margin: "8px",
-                width: "700px",
+                width: "500px",
+                fontSize: "20px",
                 backgroundColor: !isToggled ? "#FFFFFF" : "#F3F4F6",
               }}
             >
@@ -389,6 +390,8 @@ const Rating = ({ card }) => {
                 height: "49px",
                 margin: "8px",
                 width: "600px",
+                width: "500px",
+                fontSize: "20px",
                 backgroundColor: isToggled ? "#FFFFFF" : "#F3F4F6",
               }}
             >
