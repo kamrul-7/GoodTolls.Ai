@@ -35,16 +35,16 @@ const Rating = ({ card }) => {
               <p className="text-xl font-medium">Product Information</p>
               <h1 className="md:text-5xl text-2xl  font-bold mt-4 font-title">{card.toolName}</h1>
             </div>
-            <div className="mr-6 flex gap-4">
-              <div>
+            <div className="mr-6 flex gap-4 item-center">
+              <div className="svg-sizing p-4">
               {
-                  isClicked ? <button onClick={handleClick} ><AiFillHeart color="red" style={{ height: '24px', width: '24px' }}></AiFillHeart></button> : <button onClick={handleClick}>
+                  isClicked ? <button className="rounded-full p-1"  onClick={handleClick} ><AiFillHeart color="red" className="rounded-full " style={{ height: '24px', width: '24px' }}></AiFillHeart></button> : <button className="rounded-full p-1"   onClick={handleClick}>
                     <AiOutlineHeart style={{ height: '24px', width: '24px' }}></AiOutlineHeart>
                   </button>
                 }
               </div>
-              <div>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+              <div className="svg-sizing p-4" >
+              <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
   <g clip-path="url(#clip0_856_2153)">
     <path d="M18.5074 16.6435C17.3575 16.6435 16.3214 17.14 15.6024 17.93L9.13493 13.9243C9.3076 13.4823 9.40337 13.0022 9.40337 12.5C9.40337 11.9975 9.3076 11.5174 9.13493 11.0756L15.6024 7.06981C16.3214 7.85973 17.3575 8.35649 18.5074 8.35649C20.6735 8.35649 22.4357 6.59429 22.4357 4.42815C22.4357 2.26202 20.6735 0.5 18.5074 0.5C16.3412 0.5 14.579 2.2622 14.579 4.42834C14.579 4.93059 14.675 5.4107 14.8474 5.85271L8.38017 9.85832C7.66112 9.0684 6.62511 8.57164 5.47521 8.57164C3.30908 8.57164 1.54688 10.334 1.54688 12.5C1.54688 14.6661 3.30908 16.4283 5.47521 16.4283C6.62511 16.4283 7.66112 15.9317 8.38017 15.1416L14.8474 19.1472C14.675 19.5893 14.579 20.0694 14.579 20.5718C14.579 22.7377 16.3412 24.5 18.5074 24.5C20.6735 24.5 22.4357 22.7377 22.4357 20.5718C22.4357 18.4057 20.6735 16.6435 18.5074 16.6435ZM16.0114 4.42834C16.0114 3.05212 17.1311 1.93243 18.5074 1.93243C19.8836 1.93243 21.0033 3.05212 21.0033 4.42834C21.0033 5.80455 19.8836 6.92424 18.5074 6.92424C17.1311 6.92424 16.0114 5.80455 16.0114 4.42834ZM5.47521 14.9959C4.09881 14.9959 2.97912 13.8762 2.97912 12.5C2.97912 11.1238 4.09881 10.0041 5.47521 10.0041C6.85143 10.0041 7.97093 11.1238 7.97093 12.5C7.97093 13.8762 6.85143 14.9959 5.47521 14.9959ZM16.0114 20.5716C16.0114 19.1954 17.1311 18.0757 18.5074 18.0757C19.8836 18.0757 21.0033 19.1954 21.0033 20.5716C21.0033 21.9478 19.8836 23.0675 18.5074 23.0675C17.1311 23.0675 16.0114 21.9478 16.0114 20.5716Z" fill="#081120"/>
   </g>

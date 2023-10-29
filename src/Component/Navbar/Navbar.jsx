@@ -36,27 +36,7 @@ const Navbar = () => {
 
         </NavLink>
       </li>
-      <li className='mx-6'>
-        <NavLink to="/about" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "block remove" : "removes"}>
-          {({ isActive }) => (
-            <>
-              <span className={isActive ? "text-[#2970FF] font-semibold" : "block"}>About</span>
-              <hr className={isActive ? "border-[1.5px] rounded-full w-4 mx-auto border-[#2970FF]" : "hidden"} />
-            </>
-          )}
-
-        </NavLink>
-      </li>
-      <li className='mx-6'>
-        <NavLink to="/contact" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "block remove" : "removes"}>
-          {({ isActive }) => (
-            <>
-              <span className={isActive ? "text-[#2970FF] font-semibold " : "block"}>Contact</span>
-              <hr className={isActive ? "border-[1.5px] rounded-full w-4 mx-auto border-[#2970FF]" : "hidden"} />
-            </>
-          )}
-
-        </NavLink></li>
+      
       <li className='mx-6'>
         <NavLink to="/news" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "block remove" : "removes"}>
           {({ isActive }) => (
@@ -111,16 +91,8 @@ const Navbar = () => {
             AI Tools Finder
           </NavLink>
         </li>
-        <li className='mx-6'>
-          <NavLink to="/about" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] font-semibold p-0 hover:text-[#2970FF]" : "p-0"} onClick={handleNavLinkClick}>
-            About
-          </NavLink>
-        </li>
-        <li className='mx-6'>
-          <NavLink to="/contact" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] font-semibold p-0 hover:text-[#2970FF]" : "p-0"} onClick={handleNavLinkClick}>
-            Contacts
-          </NavLink>
-        </li>
+        
+        
         <li className='mx-6'>
           <NavLink to="/news" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] font-semibold p-0 hover:text-[#2970FF]" : "p-0"} onClick={handleNavLinkClick}>
             News
