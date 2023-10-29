@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import slugify from "slugify";
 import { AuthContext } from "../../Context/AuthProvider";
 const News = () => {
+  
   const { storeNewsId } = useContext(AuthContext);
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

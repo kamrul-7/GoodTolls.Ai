@@ -5,13 +5,13 @@ import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { AuthContext } from '../Context/AuthProvider';
 
 const RelatedCards = ({ subs, id }) => {
+    
     console.log(subs);
     const { storeToolId, setLoadData } = useContext(AuthContext)
     const [relatedTools, setRelatedTools] = useState([])
     const [isLoadingRelated, setIsLoadingRelated] = useState(true)
     const initialButtonStates = {};
-    let storageKey = '';
-    let isClicked = '';
+    
 
     useEffect(() => {
         subs ?
@@ -71,8 +71,8 @@ const RelatedCards = ({ subs, id }) => {
                                 className={`md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] left-[275px] md:left-[300px] bg-white`}
                             >
                                 <div className="">
-                                    {isClicked ? <AiFillHeart className="w-5 h-5" color="red" /> : <AiOutlineHeart className="w-5 h-5" />}
-                                </div>
+                  {isClicked ? <AiFillHeart className="w-5 h-5" color="red" /> : <AiOutlineHeart className="w-5 h-5" />}
+                </div>
                             </div>
 
                         </figure>
