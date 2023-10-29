@@ -97,7 +97,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
               {
                 name.length == 0 ?
                   <>
-                    <h1 className="md:text-5xl text-4xl font-bold hero-title ">We are listing the best AI
+                    <h1 className="md:text-5xl text-4xl md:font-bold hero-title ">We are listing the best AI
                       <br /> tools Everyday.</h1>
                     <p className={`hero-subtitle my-6`}>Find the best AI tools for your needs. Go to the filter <br /> and choose your  Category.  </p>
                   </> :
