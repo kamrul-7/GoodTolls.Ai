@@ -133,7 +133,7 @@ const News = () => {
           <div className="title  ">
 
             <p className="rs-title   md:ms-10 mt-10 my-12 md:text-5xl">
-            <p className="rs-title pt-4 md:ms-10 mt-10 my-12 text-3xl md:text-5xl font-bold font-title">
+            <p className="rs-title text-center pt-4 md:ms-10 mt-10 my-12 text-3xl md:text-5xl font-bold font-title">
 
               Latest Our AI News & Articles
             </p>
@@ -141,7 +141,7 @@ const News = () => {
           </div>
         </div>
 
-        <div className=" grid  md:grid-cols-2 gap-12 mt-2 mx-auto  md:pr-12 font-title">
+        <div className=" grid  md:grid-cols-2 gap-12 mt-6 mx-auto  md:pr-12 font-title">
           {isLoading ? (
             <span className=" md:w-40 md:h-40 w-20  mb-10 mt-5"></span>
           ) : (
@@ -151,17 +151,17 @@ const News = () => {
                 onClick={() => storeNewsId(item._id)}
                 to={`/news/${slugify(item.newsTitle)}`}
               >
-                <div className="p-8 mx-auto  rounded-xl shadow-lg">
-                  <div className="news-card-image">
+                <div className="p-4 md:p-6 text-center md:text-left mx-auto border rounded-xl shadow-lg">
+                  <div className="w-full">
                     <img
-                      className="news-card-image "
+                      className="w-full rounded-xl h-[286px]"
                       src={`https://api.goodtools.ai/uploads/${item.image}`}
                       alt=""
                     />
                   </div>
-                  <div className="date mt-6">
-                    <p className="date-title font-medium font-paragraph text-xl">Tools</p>
-                    <div className="vertical-line"></div>
+                  <div className=" mt-6 w-full flex md:justify-normal justify-between items-center md:w-full mx-auto">
+                    <p className="date-title font-medium font-paragraph text-xl mr-[18px]">Tools</p>
+                    <div className="vertical-line mr-[18px]"></div>
                     <p className="date-dates">{formateDte(item.date)}</p>
                   </div>
                   <div className="sub-section mt-4">
