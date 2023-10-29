@@ -120,7 +120,7 @@ const News = () => {
           <div className="title  ">
 
             <p className="rs-title   md:ms-10 mt-10 my-12 md:text-5xl">
-            <p className="rs-title md:ms-10 mt-10 my-12 text-3xl md:text-5xl font-bold font-title">
+            <p className="rs-title pt-4 md:ms-10 mt-10 my-12 text-3xl md:text-5xl font-bold font-title">
 
               Latest Our AI News & Articles
             </p>
