@@ -124,6 +124,7 @@ const News = () => {
 
               Latest Our AI News & Articles
             </p>
+            </p>
           </div>
         </div>
 

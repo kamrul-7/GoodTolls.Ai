@@ -73,7 +73,7 @@ const Rating = ({ card }) => {
             </div>
             <div className="">
               {/* Price per period */}
-              <h2 className="text-5xl font-bold font-title">
+              <h2 className="md:text-5xl text-3xl font-bold font-title">
                 ${card.price}
                 <span className="text-base font-normal text-[#4D5761] ml-4">
                   /{card.pricePeriod}
