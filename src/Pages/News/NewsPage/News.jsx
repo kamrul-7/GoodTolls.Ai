@@ -86,7 +86,7 @@ const News = () => {
 
     //         </div>
     <div className="font-paragraph">
-      <div className="flex items-center mt[34px] my-4 ml-2">
+      <div className="flex ms-2 items-center pb-4 mt[34px] my-4 ml-2">
         <a href="/">Home</a>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +118,10 @@ const News = () => {
       <div className="border p-4 pb-8 md:pl-16 m-2 rounded-lg">
         <div className=" my-4 md:mt-10  md:mb-26 md:rounded-xl md:pl-16">
           <div className="title mb-10">
-            <p className="rs-title md:ms-10 mt-10 my-12 md:text-5xl">
+
+            <p className="rs-title pt-6 md:ms-10 mt-10 my-12 md:text-5xl">
+            <p className="rs-title md:ms-10 mt-10 my-12 text-3xl md:text-5xl font-bold font-title">
+
               Latest Our AI News & Articles
             </p>
           </div>
@@ -137,18 +140,18 @@ const News = () => {
                 <div className="p-8 rounded-xl shadow-lg">
                   <div className="news-card-image">
                     <img
-                      className="news-card-image"
+                      className="news-card-image "
                       src={`https://api.goodtools.ai/uploads/${item.image}`}
                       alt=""
                     />
                   </div>
                   <div className="date mt-6">
-                    <p className="date-title">Tools</p>
+                    <p className="date-title font-medium font-paragraph text-xl">Tools</p>
                     <div className="vertical-line"></div>
                     <p className="date-dates">{item.date}</p>
                   </div>
                   <div className="sub-section mt-4">
-                    <p className="sub-text font-title"> {item.newsTitle} </p>
+                    <p className="sub-text font-title font-bold md:text-2xl"> {item.newsTitle} </p>
                   </div>
                   <div
                     className="text mt-4 mb-4"

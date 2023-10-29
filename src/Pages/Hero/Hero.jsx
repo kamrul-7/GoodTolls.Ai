@@ -86,7 +86,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
               <li>{category}</li>
               <li>{name}</li>
             </ul>
-          </div>
+          </div> 
           : undefined
       }
       <div className='text-center'>
@@ -131,16 +131,16 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
                         setChoice(`${item.Title}`)
                         handleClick(event, item.Title)
                       }} className={`item p-text me-4 ${choice === `${item.Title}` ? 'bg-gray-100' : 'bg-transparent'}`} style={{
-                        height: 'fit-content', // Fixed height
-                        whiteSpace: 'nowrap', // Prevent text from wrapping
-                        overflow: 'hidden', // Hide text that exceeds the button
-                        padding: '-1px',
-                        fontSize: '14px', // Adjust font size as needed
-                        textOverflow: 'ellipsis', // Add ellipsis for overflowing text
-                        whiteSpace: 'nowrap', // Prevent text from wrapping
-                        display: 'block',
-
-                      }}>{item.Title}</button>)
+        height: '34px', // Fixed height
+        whiteSpace: 'nowrap', // Prevent text from wrapping
+        overflow: 'hidden', // Hide text that exceeds the button
+        padding: '-1px', 
+        fontSize: '14px', // Adjust font size as needed
+        textOverflow: 'ellipsis', // Add ellipsis for overflowing text
+        whiteSpace: 'nowrap', // Prevent text from wrapping
+        display: 'block',
+        
+      }}>{item.Title}</button>)
                   }
                 </div>
               </div>

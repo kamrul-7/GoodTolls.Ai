@@ -5,19 +5,19 @@ import './Footer.css'
 import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
-    <div className='font-paragraph'>
-      <footer className="footer md:p-10 pb-6 pt-16 md:w-[1170px] w-11/12 md:h-[234px] text-base border-b-2 mx-auto grid md:grid-cols-3 grid-cols-2">
+    <div className='font-paragraph bg-[#F9FAFB] h-[318px]' >
+      <footer className="footer  md:p-10 pb-6 pt-16 md:w-[1170px] w-11/12 md:h-[234px] text-base border-b-2 mx-auto grid md:grid-cols-3 grid-cols-2">
 
         <div className='h-[94px] border-r-2 w-full my-auto'>
           <Link to='/privacypolicy' className="link link-hover nav-text block">Privacy Policy</Link>
           <Link to="/termsofservice" className="link link-hover nav-text block">Term of Service</Link>
-          <Link to='/about' className="link link-hover nav-text block">About us</Link>
+         
         </div>
 
-        <div className='h-[94px] md:border-r-2 w-full flex flex-col items-center my-auto'>
+        <div className='h-[94px] md:border-r-2 w-full flex flex-col items-center my-auto '>
           <div className='text-left'>
-            <a className="link link-hover nav-text block mb-4">Submit tool</a>
-            <a className="link link-hover nav-text block">Request a feature</a>
+          <Link to='/about' className="link mb-7 link-hover nav-text block">About Us</Link>
+          <Link to='/contact' className="link link-hover nav-text block">Contact</Link>
           </div>
         </div>
 

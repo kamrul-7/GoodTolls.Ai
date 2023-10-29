@@ -21,8 +21,10 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
   if (searchData.length === 0 && searchStat === true) {
     setSearchState(false);
   }
+  
 
   const fetchTools = () => {
+
     fetch("http://localhost:3000/tools")
       .then((res) => res.json())
       .then((data) => {
@@ -59,6 +61,23 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
     if (tool) {
       const storageKey = `myHeartClicked-${tool._id}`;
       const isClicked = loadStateFromLocalStorage(storageKey);
+
+// Define the truncateHtml function
+function truncateHtml(html, length) {
+  // Remove HTML tags and split the text into words
+  const text = html.replace(/<[^>]+>/g, ' ').split(' ');
+
+  // Take the first 'length' words and join them back together
+  const truncatedText = text.slice(0, length).join(' ');
+
+  // If the original HTML content has more words, add an ellipsis
+  if (text.length > length) {
+    return truncatedText + '...';
+  }
+
+  return truncatedText;
+}
+
 
 
 
@@ -104,24 +123,28 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
                       </defs>
                     </svg>
                   </div>
-                  <div className="pr-4">
+                  <div className="pr-4 font-normal text-xs">
                     <button className="">{tool?.priceType}</button>
                   </div>
                 </div>
               </div>
 
-              <div
-                className="h-[65px] mt-4 mb-4"
-                dangerouslySetInnerHTML={{
-                  __html: (tool?.description?.slice(0, 139).replace(/["\n]/g, '') || ''),
-                }}
-              ></div>
 
-              <div className="flex gap-3 mt-8">
+
+              <div
+
+  className="h-[65px] m-2 font-normal text-base font-paragraph"
+  dangerouslySetInnerHTML={{
+    __html: truncateHtml(tool?.description, 10),
+  }}
+></div>
+
+
+              <div className="flex gap-3">
                 {tool?.SubCategory.slice(0, 3).map((item, index) => (
                   <div key={index} className="flex justify-between grid-cols-4 gap-1">
                     <div className="card-category-item">
-                      <p className="card-category-text px-3 py-2">{item}</p>
+                      <p className="card-category-text px-3 py-2 font-normal text-xs">{item}</p>
                     </div>
                   </div>
                 ))}

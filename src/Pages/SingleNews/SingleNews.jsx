@@ -65,7 +65,7 @@ const SingleNews = () => {
             <div className='p-4'>
                 <div className='md:p-10 px-4 pt-4 pb-7 my-4 mb-26 border-[#E5E7EB] border rounded-2xl'>
                     {/* Hero section */}
-                    <div className="hero mb-10 rounded-lg md:h-[394px] h-[294px] mx-auto" style={{ backgroundImage: `url(https://api.goodtools.ai/uploads/${item.image})` }}>
+                    <div className="hero mb-10 rounded-lg md:h-[394px] h-[210px] mx-auto" style={{ backgroundImage: `url(https://api.goodtools.ai/uploads/${item.image})` }}>
                     </div>
                     <div className='md:grid md:grid-cols-2 '>
                         {/* right-div */}
