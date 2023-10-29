@@ -450,11 +450,13 @@ const Rating = ({ card }) => {
 
       {/* product descriptation and workings */}
       <div className="">
-        <div>
+        <div className="">
           <div
             className="mt-[24px] md:mt-16"
             style={{
               display: "flex",
+              width: "100%",
+              justifyContent:"space-between",
               backgroundColor: "#F3F4F6",
               borderRadius: "16px",
             }}
@@ -465,7 +467,7 @@ const Rating = ({ card }) => {
                 borderRadius: "8px",
                 height: "49px",
                 margin: "8px",
-                width: "500px",
+                width: "600px",
                 fontSize: "20px",
                 backgroundColor: !isToggled ? "#FFFFFF" : "#F3F4F6",
               }}
@@ -479,7 +481,6 @@ const Rating = ({ card }) => {
                 height: "49px",
                 margin: "8px",
                 width: "600px",
-                width: "500px",
                 fontSize: "20px",
                 backgroundColor: isToggled ? "#FFFFFF" : "#F3F4F6",
               }}
