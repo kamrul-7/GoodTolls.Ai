@@ -46,12 +46,12 @@ const SingleTool = () => {
 
 
     return (
-        <div className="md:my-7 my-4 rounded-md m-2">
+        <div className="md:my-7 my-4 rounded-md">
             {
                 isLoading ?
                     <span className="loading loading-ring md:w-40 md:h-40 w-20 h-20 md:ml-[45%] ml-[40%] md:my-40 my-20"></span>
-                    : <div className="breadcrumbs text-sm font-normal mb-10 md:mb-14 pl-6">
-                    <ul>
+                    : <div className="breadcrumbs text-sm font-normal mb-10 md:mb-14 ">
+                    <ul className="ml-2">
                       <li>
                         <Link to="/">Home</Link>
                       </li>
@@ -60,7 +60,7 @@ const SingleTool = () => {
                       </li>
                       <li>{cards.toolName}</li>
                     </ul>
-                    <div className='m-4 mt-10 p-4 border border-[#E5E7EB] rounded-2xl'>
+                    <div className=' mt-10 mx-3 md:mx-1 md:px-0 md:py-0 px-4 py-6 border border-[#E5E7EB] rounded-2xl'>
                         <Rattingg card={cards} />
                         <Rate id={cards._id} name={cards.toolName}></Rate>
                     </div>

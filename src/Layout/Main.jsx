@@ -4,6 +4,7 @@ import AuthProvider from '../Pages/Context/AuthProvider';
 import './Main.css'
 import Footer from "../Component/Footer/Footer";
 import { ToastContainer } from "react-toastify";
+import { useEffect } from "react";
 
 const Main = () => {
   // Get the current location using the useLocation hook
