@@ -34,8 +34,8 @@ const Rating = ({ card }) => {
           <div className="flex justify-between gap-2">
             {/* Product Info */}
             <div>
-              <p className="text-xl font-medium">Product Information</p>
-              <h1 className="md:text-5xl text-2xl  font-bold mt-4 font-title">{card.toolName}</h1>
+              <p className="md:text-xl font-medium text-base">Product Information</p>
+              <h1 className="md:text-5xl text-3xl  font-bold mt-4 font-title">{card.toolName}</h1>
             </div>
 
             {/* Heart and share button */}
@@ -73,7 +73,7 @@ const Rating = ({ card }) => {
             </div>
             <div className="">
               {/* Price per period */}
-              <h2 className="text-5xl font-bold font-title">
+              <h2 className="md:text-5xl text-3xl font-bold font-title">
                 ${card.price}
                 <span className="text-base font-normal text-[#4D5761] ml-4">
                   /{card.pricePeriod}
@@ -110,7 +110,7 @@ const Rating = ({ card }) => {
                   </svg>
                 </div>
                 <div>
-                  <h1 className="text-xl font-medium">284231 Users</h1>
+                  <h1 className="md:text-xl md:font-medium font-semibold text-base">284231 Users</h1>
                 </div>
               </div>
 
