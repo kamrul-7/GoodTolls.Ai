@@ -133,9 +133,9 @@ function truncateHtml(html, length) {
 
               <div
 
-  className="h-[65px] m-2 font-normal text-base font-paragraph"
+  className="h-[65px] font-normal text-base font-paragraph"
   dangerouslySetInnerHTML={{
-    __html: truncateHtml(tool?.description, 14),
+    __html: truncateHtml(tool?.description, 15),
   }}
 ></div>
 
