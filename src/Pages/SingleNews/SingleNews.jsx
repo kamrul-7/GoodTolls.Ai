@@ -45,6 +45,19 @@ const SingleNews = () => {
         return <span className="loading loading-ring md:w-40 md:h-40 w-20 h-20 md:ml-[45%] ml-[45%] md:my-40 my-20"></span>;
     }
 
+    const formateDte = (date)=>{
+        const months = [
+          "January", "February", "March", "April",
+          "May", "June", "July", "August",
+          "September", "October", "November", "December"
+        ]
+        const dateSplit = date.split('/')
+        const day = parseInt(dateSplit[0])
+        const month = months[parseInt(dateSplit[1])-1]
+        const year = parseInt(dateSplit[2])
+        return `${month} ${day}, ${year}`
+      }
+
     return (
         <div className='mx-auto font-paragraph '>
             <div className='flex items-center ml-2'>
@@ -73,7 +86,7 @@ const SingleNews = () => {
                             <div className='date'>
                                 <p className='date-title' >Tools</p>
                                 <div className="vertical-line"></div>
-                                <p className='date-dates'>{item.date}</p>
+                                <p className='date-dates'>{formateDte(item.date)}</p>
                             </div>
                             <div className='single-title mb-6 font-title'>
                                 {item.newsTitle}

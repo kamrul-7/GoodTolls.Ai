@@ -131,7 +131,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
                         setChoice(`${item.Title}`)
                         handleClick(event, item.Title)
                       }} className={`item p-text me-4 ${choice === `${item.Title}` ? 'bg-gray-100' : 'bg-transparent'}`} style={{
-        height: '34px', // Fixed height
+        height: 'fit-content', // Fixed height
         whiteSpace: 'nowrap', // Prevent text from wrapping
         overflow: 'hidden', // Hide text that exceeds the button
         padding: '-1px', 
