@@ -120,7 +120,7 @@ const SingleNews = () => {
                                 <div className='text-xl font-paragraph font-normal'>Popular Categories</div>
                                 <div className='grid md:grid-cols-2 grid-cols-2 gap-2 mt-2 md:w-96 text-lg font-normal w-full p-2'>
                                     {cata?.map((subItem, index) => (
-                                        <p style={{textOverflow: 'ellipsis', overflow:'hidden'}} className='h-fit border rounded-3xl text-center mb-4 py-1 font-paragraph font-normal text-sm' key={index}>{subItem.Title}</p>
+                                        <p style={{textOverflow: 'ellipsis', overflow:'hidden'}} className='h-fit border rounded-3xl text-center mb-4 py-1 font-paragraph font-normal text-sm text-[#4D5761]' key={index}>{subItem.Title}</p>
                                     ))}
                                 </div>
                             </div>
@@ -129,7 +129,7 @@ const SingleNews = () => {
 
                             <div className='category mt-8 mb-10 md:ml-8'>
                                 <div className='font-paragraph font-medium text-xl'>Tags</div>
-                                <div className='grid md:grid-cols-3 grid-cols-2 gap-2  mt-2 md:w-96 text-lg font-normal w-full p-2 font-paragraph' >
+                                <div className='grid md:grid-cols-3 grid-cols-2 gap-2  mt-2 md:w-96 text-lg font-normal w-full p-2 font-paragraph text-[#4D5761]' >
                                     <p className='border rounded-3xl text-center mb-4 py-1 font-paragraph font-normal text-sm'>Ai Detection</p>
                                     <p className='border rounded-3xl text-center mb-4 py-1 font-paragraph font-normal text-sm '>Github</p>
                                     <p className='border rounded-3xl text-center mb-4 py-1 font-paragraph font-normal text-sm'>Image</p>
