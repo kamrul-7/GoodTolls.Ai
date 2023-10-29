@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import slugify from "slugify";
 import { AuthContext } from "../../Context/AuthProvider";
 const News = () => {
+  
   const { storeNewsId } = useContext(AuthContext);
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -143,7 +144,7 @@ const News = () => {
 
         <div className=" grid  md:grid-cols-2 gap-12 mt-6 mx-auto  md:pr-12 font-title">
           {isLoading ? (
-            <span className=" md:w-40 md:h-40 w-20  mb-10 mt-5"></span>
+            <span className="loading loading-ring md:w-40 md:h-40 w-20  md:ml-[90%] ml-[50%] mb-10 mt-5"></span>
           ) : (
             news.map((item, index) => (
               <Link
