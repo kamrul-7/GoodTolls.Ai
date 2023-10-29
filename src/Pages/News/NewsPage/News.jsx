@@ -153,7 +153,7 @@ const News = () => {
                 to={`/news/${slugify(item.newsTitle)}`}
               >
                 <div className="p-8 mx-auto  rounded-xl shadow-lg">
-                  <div className="news-card-image">
+                  <div className="">
                     <img
                       className="news-card-image "
                       src={`https://api.goodtools.ai/uploads/${item.image}`}

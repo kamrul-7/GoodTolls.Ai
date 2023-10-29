@@ -91,7 +91,7 @@ const Rating = ({ card }) => {
             </div>
           </div>
           {/* Product image */}
-          <div className="md:grid grid-cols-2 md:w-[1090px] h-[244px] w-full mt-6 md:mt-14 gap-56">
+          <div className="md:grid grid-cols-2 md:w-[1090px] h-[244px] w-full mt-6 md:mt-14 md:gap-14">
             <div className="mb-6 md:mb-0">
               <img
                 src={`https://api.goodtools.ai/uploads/${card.image}`}
