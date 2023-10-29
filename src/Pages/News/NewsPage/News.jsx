@@ -99,7 +99,7 @@ const News = () => {
 
     //         </div>
     <div className="font-paragraph">
-      <div className="flex ms-2 items-center pb-4 mt[34px] my-4 ml-2">
+      <div className="flex  ms-2 items-center pb-4 mt[34px] my-4 ml-2">
         <a href="/">Home</a>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -128,12 +128,12 @@ const News = () => {
         </svg>
         <p>News</p>
       </div>
-      <div className="border p-4 pb-8 md:pl-16 m-2 rounded-lg">
-        <div className=" my-4 md:mt-10  md:mb-26 md:rounded-xl md:pl-16">
-          <div className="title mb-10">
+      <div className=" border p-4 pb-8 md:pl-16 m-2 rounded-lg">
+        <div className=" my-4  mx-auto md:mt-10  md:mb-26 md:rounded-xl md:pl-16">
+          <div className="title  ">
 
-            <p className="rs-title pt-6 md:ms-10 mt-10 my-12 md:text-5xl">
-            <p className="rs-title md:ms-10 mt-10 my-12 text-3xl md:text-5xl font-bold font-title">
+            <p className="rs-title   md:ms-10 mt-10 my-12 md:text-5xl">
+            <p className="rs-title pt-4 md:ms-10 mt-10 my-12 text-3xl md:text-5xl font-bold font-title">
 
               Latest Our AI News & Articles
             </p>
@@ -141,7 +141,7 @@ const News = () => {
           </div>
         </div>
 
-        <div className=" grid  md:grid-cols-2 gap-12 mt-2 mx-auto mr-4 pr-12 font-title">
+        <div className=" grid  md:grid-cols-2 gap-12 mt-2 mx-auto  md:pr-12 font-title">
           {isLoading ? (
             <span className=" md:w-40 md:h-40 w-20  mb-10 mt-5"></span>
           ) : (
@@ -151,7 +151,7 @@ const News = () => {
                 onClick={() => storeNewsId(item._id)}
                 to={`/news/${slugify(item.newsTitle)}`}
               >
-                <div className="p-8 rounded-xl shadow-lg">
+                <div className="p-8 mx-auto  rounded-xl shadow-lg">
                   <div className="news-card-image">
                     <img
                       className="news-card-image "
