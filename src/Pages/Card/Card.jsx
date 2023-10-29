@@ -23,7 +23,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
   }
 
   const fetchTools = () => {
-    fetch("https://api.goodtools.ai/tools")
+    fetch("http://localhost:3000/tools")
       .then((res) => res.json())
       .then((data) => {
         setIsLoading(false)
@@ -62,20 +62,21 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
 
 
 
+
       return (
-        <div key={indx} className="card size bg-base-100 shadow-xl mb-8 md:mb-24 md:mx-0 mx-auto font-paragraph">
+        <div key={indx} className="border p-5 rounded-2xl bg-base-100 shadow-xl  md:mx-0 mx-auto font-paragraph md:w-full w-[374px]">
           <Link onClick={() => storeToolId(tool._id)} to={`/tool/${slugify(tool.toolName)}`} >
-            <figure className="relative">
-              <img
+            <figure className="relative w-full mb-6">
+            <img
                 src={`https://api.goodtools.ai/uploads/${tool?.image}`}
                 alt="Image not found"
                 className="rounded-xl"
-                style={{ width: "344px", height: "240px" }}
+                style={{ width: '100%', height: "240px" }}
               />
 
               <div
-                onClick={(event) => handleClick(event,storageKey)}
-                className={`md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] left-[268px] bg-white`}
+                onClick={(event) => handleClick(event, storageKey)}
+                className={`md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] left-[275px] md:left-[300px] bg-white`}
               >
                 <div className="">
                   {isClicked ? <AiFillHeart className="w-5 h-5" color="red" /> : <AiOutlineHeart className="w-5 h-5" />}
@@ -84,10 +85,10 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
 
             </figure>
 
-            <div className="h-[243] mt-8">
+            <div className="h-[243]">
               <div className="flex justify-between">
                 <div className="Title">
-                  <h2 className="font-title">{tool?.toolName}</h2>
+                  <h2 className="font-title font-bold text-[24px]">{tool?.toolName}</h2>
                 </div>
                 <div className="flex justify-between subscription items-center py-4">
                   <div className="">
@@ -153,7 +154,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
     return null;
   };
 
-  const handleClick = (event,storageKey) => {
+  const handleClick = (event, storageKey) => {
     event.preventDefault()
     const isClicked = loadStateFromLocalStorage(storageKey);
     localStorage.setItem(storageKey, String(!isClicked));
@@ -168,7 +169,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
   const [updateState, setUpdateState] = useState(0);
   const forceUpdate = () => setUpdateState(updateState + 1);
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1">
+    <div id='cards' className=" grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 md:gap-6 gap-4">
       {
         isLoading ?
           <span className="loading loading-ring md:w-40 md:h-40 w-20 h-20 md:ml-[140%] ml-[40%] md:my-40 my-20"></span>
