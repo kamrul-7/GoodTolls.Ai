@@ -36,7 +36,7 @@ const Rating = ({ card }) => {
           <div className="flex justify-between gap-2">
             {/* Product Info */}
             <div>
-              <p className="md:text-xl font-medium text-base">
+                  <p className="D font-normal text-base text-[#6C737F]">
                 Product Information
               </p>
               <h1 className="md:text-5xl text-3xl  font-bold mt-4 font-title">
