@@ -24,6 +24,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
         }
       });
   }, [name]);;
+  console.log(data);
 
   const firstSixItem = data.slice(0, 6)
   const handleKeyPress = (e) => {
@@ -127,10 +128,10 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
                 <div className='popular-item flex'>
                   {
                     firstSixItem.map((item, index) =>
-                      <button key={index} name={`${item.Title}`} onClick={(event) => {
-                        setChoice(`${item.Title}`)
-                        handleClick(event, item.Title)
-                      }} className={`item p-text me-4 ${choice === `${item.Title}` ? 'bg-gray-100' : 'bg-transparent'}`} style={{
+                      <button key={index} name={`${item.SubCategory}`} onClick={(event) => {
+                        setChoice(`${item.SubCategory}`)
+                        handleClick(event, item.SubCategory)
+                      }} className={`item p-text me-4 ${choice === `${item.SubCategory}` ? 'bg-gray-100' : 'bg-transparent'}`} style={{
         height: 'fit-content', // Fixed height
         whiteSpace: 'nowrap', // Prevent text from wrapping
         overflow: 'hidden', // Hide text that exceeds the button
@@ -140,7 +141,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
         whiteSpace: 'nowrap', // Prevent text from wrapping
         display: 'block',
         
-      }}>{item.Title}</button>)
+      }}>{item.SubCategory}</button>)
                   }
                 </div>
               </div>
