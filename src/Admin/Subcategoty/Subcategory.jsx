@@ -97,7 +97,7 @@ const Subcategory = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.stat) {
-            alert('SubCategory Title Already exists\nUnable to create new SubCategory')
+            alert('SubCategory Already exists\nUnable to create new SubCategory')
             document.getElementById("my_modal_16").open()
           }
           else if (data.acknowledged) {

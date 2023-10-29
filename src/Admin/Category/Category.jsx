@@ -101,7 +101,7 @@ const Category = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.stat) {
-            alert('Category Title Already exists')
+            alert('Category Already exists')
           }
           else if (data.acknowledged) {
 
