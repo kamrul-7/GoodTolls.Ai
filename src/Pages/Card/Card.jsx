@@ -63,7 +63,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
 
 
       return (
-        <div key={indx} className="card size bg-base-100 shadow-xl mb-8 md:mb-24 md:mx-0 mx-auto font-paragraph">
+        <div key={indx} className="card size bg-base-100 shadow-xl mb-8 md:mb-24 md:mx-0 mx-auto">
           <Link onClick={() => storeToolId(tool._id)} to={`/tool/${slugify(tool.toolName)}`} >
             <figure className="relative">
               <img
@@ -87,7 +87,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
             <div className="h-[243] mt-8">
               <div className="flex justify-between">
                 <div className="Title">
-                  <h2 className="font-title">{tool?.toolName}</h2>
+                  <h2 className="font-title font-bold text-2xl">{tool?.toolName}</h2>
                 </div>
                 <div className="flex justify-between subscription items-center py-4">
                   <div className="">
@@ -103,14 +103,14 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
                       </defs>
                     </svg>
                   </div>
-                  <div className="pr-4">
+                  <div className="pr-4 font-normal text-xs">
                     <button className="">{tool?.priceType}</button>
                   </div>
                 </div>
               </div>
 
               <div
-                className="h-[65px] mt-4 mb-4"
+                className="h-[65px] mt-4 mb-4 font-normal text-base font-paragraph"
                 dangerouslySetInnerHTML={{
                   __html: (tool?.description?.slice(0, 139).replace(/["\n]/g, '') || ''),
                 }}
@@ -120,7 +120,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
                 {tool?.SubCategory.slice(0, 3).map((item, index) => (
                   <div key={index} className="flex justify-between grid-cols-4 gap-1">
                     <div className="card-category-item">
-                      <p className="card-category-text px-3 py-2">{item}</p>
+                      <p className="card-category-text px-3 py-2 font-normal text-xs">{item}</p>
                     </div>
                   </div>
                 ))}

@@ -97,9 +97,9 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
               {
                 name.length == 0 ?
                   <>
-                    <h1 className="md:text-5xl text-4xl font-bold hero-title ">We are listing the best AI
+                    <h1 className="md:text-5xl text-6xl font-bold hero-title font-title">We are listing the best AI
                       <br /> tools Everyday.</h1>
-                    <p className={`hero-subtitle my-6`}>Find the best AI tools for your needs. Go to the filter <br /> and choose your  Category.  </p>
+                    <p className={`hero-subtitle text-5xl my-6`}>Find the best AI tools for your needs. Go to the filter <br /> and choose your  Category.  </p>
                   </> :
                   <>
                     <h1 className="md:text-5xl md:w-[592px] text-4xl font-bold text-[#081120] text-center w-fit mx-auto mb-[35px]">Browse {count}+ Best AI {name} Tools</h1>
@@ -123,7 +123,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
                 </div>
               </div>
               <div className='popular-section'>
-                <p className='popular-title mb-4'>Popular Categories</p>
+                <p className='popular-title mb-4 font-medium text-base'>Popular Categories</p>
                 <div className='popular-item flex'>
                   {
                     firstSixItem.map((item, index) =>
