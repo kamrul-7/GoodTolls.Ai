@@ -21,6 +21,7 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [toggle,setToggle] = useState(false);
+    const [loadData, setLoadData] = useState(false);
 
     const storeNewsId = (value)=>{
         sessionStorage.setItem(tmpStoreKeyNews, JSON.stringify(value))
@@ -66,7 +67,9 @@ const AuthProvider = ({ children }) => {
         setTrue,
         setFalse,
         storeNewsId,
-        storeToolId
+        storeToolId,
+        loadData,
+        setLoadData
     };
 
     return (
