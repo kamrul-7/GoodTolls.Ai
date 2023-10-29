@@ -44,7 +44,7 @@ const Filter = (props) => {
 
                 <div className='flex items-center justify-between px-4 py-2'>
 
-                    <span>{choice ? choice : 'Filter'}</span>
+                    <span className='font-normal text-base font-paragraph'>{choice ? choice : 'Filter'}</span>
 
 
                     <svg className={toggle ? '' : "hidden"} width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -66,7 +66,7 @@ const Filter = (props) => {
                             <ul key={index} className="py-2 text-sm text-gray-700 w-full text-left">
 
                                 <li>
-                                    <button disabled href="#" className="w-full text-left block font-medium px-4 py-2 hover:bg-gray-100 " value={value._id}>{value._id}</button>
+                                    <button disabled href="#" className="w-full text-left block px-4 py-2 hover:bg-gray-100 font-paragraph font-medium text-base" value={value._id}>{value._id}</button>
                                 </li>
                                 {
                                     value.SubCategories.sort().map((value, index) => {
@@ -74,7 +74,7 @@ const Filter = (props) => {
                                             <button onClick={(event) => {
                                                 setChoice(`${value}`)
                                                 handleClick(event, value)
-                                            }} href="#" className={`w-full text-left block px-4 py-2 hover:bg-gray-100 ${choice === `${value}` ? 'bg-gray-100' : 'bg-white'} `} name={`${value}`}>{value}</button>
+                                            }} href="#" className={`w-full text-left block px-4 py-2 hover:bg-gray-100 ${choice === `${value}` ? 'bg-gray-100 font-paragraph font-normal text-sm' : 'bg-white font-paragraph font-normal text-sm'} `} name={`${value}`}>{value}</button>
                                         </li>
                                     })
                                 }

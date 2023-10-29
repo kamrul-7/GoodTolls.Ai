@@ -87,14 +87,14 @@ const Navbar = () => {
           </label>
       <ul tabIndex={0} className={`menu  menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-base gap-1 ${isNavbarHidden ? 'hidden' : ''} `}>
         <li className='mx-6 font-paragraph text-base font-normal'>
-          <NavLink to="/" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] font-semibold p-0 hover:text-[#2970FF]" : "p-0"} onClick={handleNavLinkClick}>
+          <NavLink to="/" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] p-0 hover:text-[#2970FF] font-paragraph font-normal text-base" : "p-0 font-paragraph font-normal text-base"} onClick={handleNavLinkClick}>
             AI Tools Finder
           </NavLink>
         </li>
         
         
         <li className='mx-6 font-paragraph text-base font-normal'>
-          <NavLink to="/news" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] font-semibold p-0 hover:text-[#2970FF]" : "p-0"} onClick={handleNavLinkClick}>
+          <NavLink to="/news" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] p-0 hover:text-[#2970FF] font-paragraph font-normal text-base" : "p-0 font-paragraph font-normal text-base"} onClick={handleNavLinkClick}>
             News
           </NavLink>
         </li>
