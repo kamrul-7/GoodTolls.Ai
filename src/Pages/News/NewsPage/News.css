@@ -212,6 +212,8 @@ height: 14px;
 .rs-title{
     font-style: italic;
     font-size: 32px;
+    background-color: red;
+    
 }
 
 .see-button{

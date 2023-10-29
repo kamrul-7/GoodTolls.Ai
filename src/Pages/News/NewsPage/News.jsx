@@ -130,14 +130,14 @@ const News = () => {
         <p>News</p>
       </div>
       <div className=" border p-4 pb-8 md:pl-16 m-2 rounded-lg">
-        <div className=" my-4  mx-auto md:mt-10  md:mb-26 md:rounded-xl md:pl-16">
-          <div className="title">
+        <div className="   mx-auto md:mt-10  md:mb-26 md:rounded-xl md:pl-16">
+          
 
-            <p className="rs-title pt-4 md:ms-10 mt-10 my-12 text-3xl md:text-5xl font-bold font-title">
+            <p className="   text-center pt-4 md:ms-10  text-3xl md:text-5xl font-bold font-title">
 
               Latest Our AI News & Articles
             </p>
-          </div>
+          
         </div>
 
         <div className=" grid  md:grid-cols-2 gap-12 mt-6 mx-auto  md:pr-12 font-title">
