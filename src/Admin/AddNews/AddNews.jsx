@@ -20,6 +20,7 @@ const AddNews = () => {
     const [finalDes, setDesFinal] = useState('')
     const [finalDesChars, setFinalDesChars] = useState(0)
 
+
     useEffect(() => {
         const contentBlock = htmlToDraft(initDes)
 
@@ -88,8 +89,8 @@ const AddNews = () => {
         const month = today.getMonth();
         const day = today.getDate();
         const year = today.getFullYear();
-        return`${day}/${month}/${year}`
-      }
+        return `${day}/${month}/${year}`
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -97,7 +98,7 @@ const AddNews = () => {
         const image = file;
         const description = finalDes.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">").replace(/\n/g, "").replace(/<img/, "<img style=' border-radius: 12px; margin:24px 0px'");
 
-        
+
 
         if (toolName.length != 0 && file != null && description) {
             const formdata = new FormData()
@@ -111,18 +112,18 @@ const AddNews = () => {
                 },
                 body: formdata,
             })
-            .then((res) => res.json())
-            .then(data => {
-                if (data.acknowledged) {
-                    event.target.reset()
-                    setImage(null)
-                    setFile(null)
-                    setEditorDesState(EditorState.createEmpty())
-                    // alert('New news data submitted')
-                    navigate('/dashboard/manageNews')
-                }
-            })
-        } else{
+                .then((res) => res.json())
+                .then(data => {
+                    if (data.acknowledged) {
+                        event.target.reset()
+                        setImage(null)
+                        setFile(null)
+                        setEditorDesState(EditorState.createEmpty())
+                        // alert('New news data submitted')
+                        navigate('/dashboard/manageNews')
+                    }
+                })
+        } else {
             alert('No fields can remain empty')
         }
     }

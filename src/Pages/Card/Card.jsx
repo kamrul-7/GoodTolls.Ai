@@ -95,7 +95,7 @@ function truncateHtml(html, length) {
 
               <div
                 onClick={(event) => handleClick(event, storageKey)}
-                className={`md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] left-[275px] md:left-[300px] bg-white`}
+                className={`md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] left-[375px] md:left-[300px] bg-white`}
               >
                 <div className="">
                   {isClicked ? <AiFillHeart className="w-5 h-5" color="red" /> : <AiOutlineHeart className="w-5 h-5" />}
