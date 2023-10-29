@@ -108,6 +108,10 @@ const Category = () => {
             fetchCategory();
             toast.success("Category Added Successfully");
             calculateTotalPages()
+            setCatName("");
+            setTitle("");
+            setMessage("");
+            closeModal();
           } else {
             toast.error(data.message);
           }
@@ -398,7 +402,6 @@ const Category = () => {
         {/* Add new category */}
         <div>
           <dialog
-            ref={modalRef}
             id="my_modal_22"
             className="modal modal-bottom sm:modal-middle"
           >
@@ -489,7 +492,7 @@ const Category = () => {
                     <button
                       onClick={() => {
                         crossButton(); // Call the function to clear form data
-                        closeModal("my_modal_22"); // Close the modal
+                        document.getElementById("my_modal_22").close() // Close the modal
                       }}
                       className="px-4 py-2 rounded-md w-[48%] hover:bg-gray-200 btn my-6 border-2"
                       type="button" // Set type to "button" to prevent form submission
