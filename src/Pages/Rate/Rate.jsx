@@ -218,7 +218,7 @@ const Rate = ({id,name}) => {
                             <span className="font-bold text-[32px]">{isNaN(avgRating) ? '0.0' : avgRating}</span>
                             <Rating
                                 style={{ display: "inline-flex", maxWidth: "126px", maxHeight: "22px", gap: "4px", margin: "0px 12px 0px 12px" }}
-                                value={avgRating}
+                                value={isNaN(avgRating) ? 0 : avgRating}
                                 itemStyles={customStyles}
                                 readOnly
                             />
