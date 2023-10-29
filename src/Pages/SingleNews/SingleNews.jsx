@@ -71,7 +71,7 @@ const SingleNews = () => {
                         {/* right-div */}
                         <div className=' md:w-[752px]'>
                             <div className='date'>
-                                <p className='date-title' >Tools</p>
+                                <p className='date-title font-medium text-xl' >Tools</p>
                                 <div className="vertical-line"></div>
                                 <p className='date-dates'>{item.date}</p>
                             </div>
@@ -103,11 +103,11 @@ const SingleNews = () => {
                             {/* Popular */}
 
 
-                            <div className='category mt-8 mb-10 md:ml-8'>
-                                <div>Popular Categories</div>
+                            <div className='category mt-8 mb-10 md:ml-8 text-xl font-paragraph font-medium'>
+                                <div className='text-xl font-paragraph font-normal'>Popular Categories</div>
                                 <div className='grid md:grid-cols-2 grid-cols-2 gap-2 mt-2 md:w-96 text-lg font-normal w-full p-2'>
                                     {cata?.map((subItem, index) => (
-                                        <p style={{textOverflow: 'ellipsis', overflow:'hidden'}} className='h-fit border rounded-3xl text-center mb-4 py-1' key={index}>{subItem.Title}</p>
+                                        <p style={{textOverflow: 'ellipsis', overflow:'hidden'}} className='h-fit border rounded-3xl text-center mb-4 py-1 font-paragraph font-normal text-sm' key={index}>{subItem.Title}</p>
                                     ))}
                                 </div>
                             </div>
@@ -115,21 +115,21 @@ const SingleNews = () => {
 
 
                             <div className='category mt-8 mb-10 md:ml-8'>
-                                <div>Tags</div>
+                                <div className='font-paragraph font-medium text-xl'>Tags</div>
                                 <div className='grid md:grid-cols-3 grid-cols-2 gap-2  mt-2 md:w-96 text-lg font-normal w-full p-2 font-paragraph' >
-                                    <p className='border rounded-3xl text-center mb-4 py-1'>Ai Detection</p>
-                                    <p className='border rounded-3xl text-center mb-4 py-1 '>Github</p>
-                                    <p className='border rounded-3xl text-center mb-4 py-1'>Image</p>
-                                    <p className='border rounded-3xl text-center mb-4 py-1'>Machine</p>
-                                    <p className='border rounded-3xl text-center mb-4 py-1'>Inspiration</p>
-                                    <p className='border rounded-3xl text-center mb-4 py-1'>Code</p>
+                                    <p className='border rounded-3xl text-center mb-4 py-1 font-paragraph font-normal text-sm'>Ai Detection</p>
+                                    <p className='border rounded-3xl text-center mb-4 py-1 font-paragraph font-normal text-sm '>Github</p>
+                                    <p className='border rounded-3xl text-center mb-4 py-1 font-paragraph font-normal text-sm'>Image</p>
+                                    <p className='border rounded-3xl text-center mb-4 py-1 font-paragraph font-normal text-sm'>Machine</p>
+                                    <p className='border rounded-3xl text-center mb-4 py-1 font-paragraph font-normal text-sm'>Inspiration</p>
+                                    <p className='border rounded-3xl text-center mb-4 py-1 font-paragraph font-normal text-sm'>Code</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className='large-card md:mt-10 mb-15'>
                         <div className='large-right font-title '>
-                            <p style={{ fontWeight: 500 }}>Let’s Contact With Us.</p>
+                            <p className='font font-bold text-4xl' >Let’s Contact With Us.</p>
                         </div>
                         <div className='vertical'>
                         </div>

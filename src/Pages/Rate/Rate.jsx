@@ -222,7 +222,7 @@ const Rate = ({id,name}) => {
                                 itemStyles={customStyles}
                                 readOnly
                             />
-                            <span className="text[#4D5761] text-base block text-center">Based on {reviews.length} rating</span>
+                            <span className="text[#4D5761] text-2xl block text-center">Based on {reviews.length} rating</span>
                         </div>
 
                         <p className="text-[#081120] text-xl font-medium my-7">Overall Rating</p>
