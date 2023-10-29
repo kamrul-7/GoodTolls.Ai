@@ -4,3 +4,15 @@
  
     }
   }
+  .svg-sizing{
+    
+    display: flex;
+width: 44px;
+height: 44px;
+padding: 10px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+border-radius: 100px;
+background: var(--neutral-100, #F3F4F6);
+  }
