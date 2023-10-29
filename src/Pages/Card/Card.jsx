@@ -21,6 +21,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
   if (searchData.length === 0 && searchStat === true) {
     setSearchState(false);
   }
+  
 
   const fetchTools = () => {
     fetch("http://localhost:3000/tool")
@@ -59,6 +60,23 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
     if (tool) {
       const storageKey = `myHeartClicked-${tool._id}`;
       const isClicked = loadStateFromLocalStorage(storageKey);
+
+// Define the truncateHtml function
+function truncateHtml(html, length) {
+  // Remove HTML tags and split the text into words
+  const text = html.replace(/<[^>]+>/g, ' ').split(' ');
+
+  // Take the first 'length' words and join them back together
+  const truncatedText = text.slice(0, length).join(' ');
+
+  // If the original HTML content has more words, add an ellipsis
+  if (text.length > length) {
+    return truncatedText + '...';
+  }
+
+  return truncatedText;
+}
+
 
 
 
@@ -109,14 +127,18 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
                 </div>
               </div>
 
-              <div
-                className="h-[65px] mt-4 mb-4 font-normal text-base font-paragraph"
-                dangerouslySetInnerHTML={{
-                  __html: (tool?.description?.replace(/["\n]/g, '') || ''),
-                }}
-              ></div>
 
-              <div className="flex gap-3 mt-8">
+
+              <div
+
+  className="h-[65px] m-2 font-normal text-base font-paragraph"
+  dangerouslySetInnerHTML={{
+    __html: truncateHtml(tool?.description, 10),
+  }}
+></div>
+
+
+              <div className="flex gap-3">
                 {tool?.SubCategory.slice(0, 3).map((item, index) => (
                   <div key={index} className="flex justify-between grid-cols-4 gap-1">
                     <div className="card-category-item">
