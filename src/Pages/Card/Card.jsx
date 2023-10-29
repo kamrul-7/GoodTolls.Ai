@@ -23,7 +23,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
   }
 
   const fetchTools = () => {
-    fetch("https://api.goodtools.ai/tools")
+    fetch("http://localhost:3000/tool")
       .then((res) => res.json())
       .then((data) => {
         setIsLoading(false)
@@ -112,7 +112,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
               <div
                 className="h-[65px] mt-4 mb-4 font-normal text-base font-paragraph"
                 dangerouslySetInnerHTML={{
-                  __html: (tool?.description?.slice(0, 139).replace(/["\n]/g, '') || ''),
+                  __html: (tool?.description?.replace(/["\n]/g, '') || ''),
                 }}
               ></div>
 
