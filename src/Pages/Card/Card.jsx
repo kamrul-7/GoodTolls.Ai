@@ -25,7 +25,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
 
   const fetchTools = () => {
 
-    fetch("http://localhost:3000/tools")
+    fetch("http://localhost:3000/tool")
       .then((res) => res.json())
       .then((data) => {
         setIsLoading(false)
