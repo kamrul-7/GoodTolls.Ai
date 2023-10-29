@@ -136,22 +136,22 @@ const Home = () => {
                     </div>
                 </div>
                 <div className='ml-6 flex items-center w-fit'>
-                    <span className='text-[#081120] font-medium mr-1 font-paragraph'>Sort by : </span>
+                    <span className='text-[#081120] md:font-medium mr-1 font-paragraph text-xl font-normal'>Sort by : </span>
                     <div className='max-w-[300px] flex justify-between mt-1'>
 
 
                         <button onClick={() => setSortOption('All')} name="All" className='mx-2 font-paragraph'>
-                            <input onClick={handleChecked} className='mx-1 h-3 w-3' type="checkbox" id="All" name="All" defaultChecked />All
+                            <input onClick={handleChecked} className='mx-1 h-3 w-3 font-paragraph font-normal text-base' type="checkbox" id="All" name="All" defaultChecked />All
                         </button>
                         <button onClick={() => sortOption === 'Free' ? setSortOption('All') : setSortOption('Free')} name="Free" className='mr-2'>
 
-                            <input onClick={handleChecked} className='mx-1 h-3 w-3' type="checkbox" id="Free" name="Free" />Free
+                            <input onClick={handleChecked} className='mx-1 h-3 w-3 font-paragraph font-normal text-base' type="checkbox" id="Free" name="Free" />Free
                         </button>
                         <button onClick={() => sortOption === 'Premium' ? setSortOption('All') : setSortOption('Premium')} name="Premium" className='mr-2'>
-                            <input onClick={handleChecked} className='mx-1 h-3 w-3' type="checkbox" id="Premium" name="Premium" />Premium
+                            <input onClick={handleChecked} className='mx-1 h-3 w-3 font-paragraph font-normal text-base' type="checkbox" id="Premium" name="Premium" />Premium
                         </button>
                         <button onClick={() => sortOption === 'Paid' ? setSortOption('All') : setSortOption('Paid')} name="Paid" className=''>
-                            <input onClick={handleChecked} className='mx-1 h-3 w-3' type="checkbox" id="Paid" name="Paid" />Paid
+                            <input onClick={handleChecked} className='mx-1 h-3 w-3 font-paragraph font-normal text-base' type="checkbox" id="Paid" name="Paid" />Paid
                         </button>
 
                     </div>

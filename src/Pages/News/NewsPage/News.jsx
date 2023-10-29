@@ -26,6 +26,19 @@ const News = () => {
       });
   }, []);
 
+  const formateDte = (date)=>{
+    const months = [
+      "January", "February", "March", "April",
+      "May", "June", "July", "August",
+      "September", "October", "November", "December"
+    ]
+    const dateSplit = date.split('/')
+    const day = parseInt(dateSplit[0])
+    const month = months[parseInt(dateSplit[1])-1]
+    const year = parseInt(dateSplit[2])
+    return `${month} ${day}, ${year}`
+  }
+
   return (
     //         <div className='news mb-8'>
     //             <div className='flex items-center mt[34px] ms-8'>
@@ -149,7 +162,7 @@ const News = () => {
                   <div className="date mt-6">
                     <p className="date-title font-medium font-paragraph text-xl">Tools</p>
                     <div className="vertical-line"></div>
-                    <p className="date-dates">{item.date}</p>
+                    <p className="date-dates">{formateDte(item.date)}</p>
                   </div>
                   <div className="sub-section mt-4">
                     <p className="sub-text font-title font-bold md:text-2xl"> {item.newsTitle} </p>

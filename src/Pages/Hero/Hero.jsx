@@ -130,7 +130,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
                       <button key={index} name={`${item.Title}`} onClick={(event) => {
                         setChoice(`${item.Title}`)
                         handleClick(event, item.Title)
-                      }} className={`item p-text  me-4 ${choice === `${item.Title}` ? 'bg-gray-100' : 'bg-transparent'}`} style={{
+                      }} className={`item p-text me-4 ${choice === `${item.Title}` ? 'bg-gray-100' : 'bg-transparent'}`} style={{
         height: 'fit-content', // Fixed height
         whiteSpace: 'nowrap', // Prevent text from wrapping
         overflow: 'hidden', // Hide text that exceeds the button

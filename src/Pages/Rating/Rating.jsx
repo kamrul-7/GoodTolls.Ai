@@ -183,10 +183,10 @@ const Rating = ({ card }) => {
                   </svg>
                 </div>
                 <div>
-                  <h1 className="text-base font-medium">
+                  <h1 className="text-base font-semibold">
                     Tool Type:
                     {card.SubCategory.map(sub => {
-                      return (<button className="bg-[#E5E7EB] mt-4 px-4 pl-4 py-[5px] ml-4 rounded-full text-xs font-normal">
+                      return (<button className="border mt-4 px-4 pl-4 py-[5px] ml-4 rounded-full text-xs font-normal">
                         {sub}
                       </button>)
                     }
@@ -284,7 +284,7 @@ const Rating = ({ card }) => {
                   </svg>
                 </div>
                 <div>
-                  <h1 className="text-base font-medium">
+                  <h1 className="text-base font-semibold">
                     Published on {card?.date}
                   </h1>
                 </div>
