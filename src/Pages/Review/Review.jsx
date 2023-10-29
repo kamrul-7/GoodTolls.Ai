@@ -175,10 +175,10 @@ const Review = ({ func, userRating, id, gmail, userName, product }) => {
               >
                 ✕
               </button>
-              <div className="flex justify-between md:w-[618px] w-full md:mx-auto">
+              <div className=" w-[97%] md:w-[100%] md:mx-auto grid grid-cols-2 gap-3">
                 <div>
                   <button
-                    className="btn my-6 w-fit md:w-[303px] border-2"
+                    className="btn my-6 w-full md:w-[full] border-2"
                     type="button"
                     onClick={closeModal}
                   >
@@ -187,7 +187,7 @@ const Review = ({ func, userRating, id, gmail, userName, product }) => {
                 </div>
                 <div>
                   <button
-                    className="btn btn-primary text-white btn-active my-6 w-fit md:w-[303px]"
+                    className="btn btn-primary w-full text-white btn-active my-6 md:w-[full]"
                     type="submit"
                   >
                     Submit
