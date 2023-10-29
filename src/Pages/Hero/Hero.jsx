@@ -98,8 +98,8 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
                 name.length == 0 ?
                   <>
                     <h1 className="md:text-5xl text-4xl font-bold hero-title ">We are listing the best AI
-                      <br /> tools Everyday.</h1>
-                    <p className={`hero-subtitle my-6`}>Find the best AI tools for your needs. Go to the filter <br /> and choose your  Category.  </p>
+                      <br />tools Everyday.</h1>
+                    <p className={`hero-subtitle  my-6`}>Find the best AI tools for your needs. Go to the filter <br /> and choose your  Category.  </p>
                   </> :
                   <>
                     <h1 className="md:text-5xl md:w-[592px] text-4xl font-bold text-[#081120] text-center w-fit mx-auto mb-[35px]">Browse {count}+ Best AI {name} Tools</h1>
@@ -130,8 +130,8 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
                       <button key={index} name={`${item.Title}`} onClick={(event) => {
                         setChoice(`${item.Title}`)
                         handleClick(event, item.Title)
-                      }} className={`item p-text me-4 ${choice === `${item.Title}` ? 'bg-gray-100' : 'bg-transparent'}`} style={{
-        height: '34px', // Fixed height
+                      }} className={`item p-text  me-4 ${choice === `${item.Title}` ? 'bg-gray-100' : 'bg-transparent'}`} style={{
+        height: 'fit-content', // Fixed height
         whiteSpace: 'nowrap', // Prevent text from wrapping
         overflow: 'hidden', // Hide text that exceeds the button
         padding: '-1px', 
