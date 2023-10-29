@@ -12,19 +12,22 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
   useEffect(() => setChoice(name), [name])
 
   useEffect(() => {
-    fetch('https://api.goodtools.ai/subcategory')
+    fetch('http://localhost:3000/allsubcategories')
       .then((res) => res.json())
       .then((data) => {
-        const matchingItem = data.find((item) => item.SubCategory === name);
+
         setData(data);
-        if (matchingItem) {
-          setMessage(matchingItem.message);
-        } else {
-          setMessage('No matching data found');
-        }
+        console.log(data);
       });
-  }, [name]);;
-  console.log(data);
+  }, []);
+  useEffect(()=>{
+    const matchingItem = data.find((item) => item.SubCategory === name);
+    if (matchingItem) {
+      setMessage(matchingItem.message);
+    } else {
+      setMessage('No matching data found');
+    }
+  },[name])
 
   const firstSixItem = data.slice(0, 6)
   const handleKeyPress = (e) => {
