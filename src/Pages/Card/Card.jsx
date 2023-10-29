@@ -83,7 +83,7 @@ function truncateHtml(html, length) {
 
 
       return (
-        <div key={indx} className="border p-5 rounded-2xl bg-base-100 shadow-xl  md:mx-0 mx-auto font-paragraph md:w-full w-[374px]">
+        <div key={indx} className="border p-5 rounded-2xl bg-base-100 shadow-xl  md:mx-0 mx-auto font-paragraph md:w-full w-[95%]">
           <Link onClick={() => storeToolId(tool._id)} to={`/tool/${slugify(tool.toolName)}`} >
             <figure className="relative w-full mb-6">
             <img
