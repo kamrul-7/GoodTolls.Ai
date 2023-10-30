@@ -19,6 +19,12 @@ const AddNews = () => {
     const [initDes, setDesInit] = useState("")
     const [finalDes, setDesFinal] = useState('')
     const [finalDesChars, setFinalDesChars] = useState(0)
+    const editor = useRef(null)
+
+    const handlePasted = (text, html, editorState) => {
+        // This function handles paste from clipboard
+    }
+    
 
 
     useEffect(() => {
@@ -237,6 +243,7 @@ const AddNews = () => {
                             handleBeforeInput={handleDesInput}
                             placeholder="Write product description"
                             editorState={editorDesState}
+                            handlePastedText={handlePasted}
                             onEditorStateChange={handleDesChange}
                             wrapperClassName="full-wrap-news"
                             editorClassName="editor-wrap-news"

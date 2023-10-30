@@ -128,6 +128,10 @@ const AddTool = () => {
 
     }, [finalWork])
 
+    const handlePasted = (text, html, editorState) => {
+        // This function handles paste from clipboard
+    }
+
     useEffect(() => {
         fetch('https://api.goodtools.ai/subcategory')
             .then(res => res.json())
@@ -548,6 +552,7 @@ const AddTool = () => {
                     <div className=' px-[14px] rounded-lg w-[512px]'>
 
                         <Editor
+                            handlePastedText={handlePasted}
                             handleBeforeInput={handleDesInput}
                             placeholder="Write product description"
                             editorState={editorDesState}
@@ -572,6 +577,7 @@ const AddTool = () => {
                     <div className=' px-[14px] rounded-lg w-[512px]'>
 
                         <Editor
+                            handlePastedText={handlePasted}
                             handleBeforeInput={handleWorkInput}
                             placeholder="Write working description"
                             editorState={editorWorkState}
