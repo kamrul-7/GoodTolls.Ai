@@ -12,7 +12,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
   useEffect(() => setChoice(name), [name])
 
   useEffect(() => {
-    fetch('http://api.goodtools.ai/allsubcategories')
+    fetch('https://api.goodtools.ai/allsubcategories')
       .then((res) => res.json())
       .then((data) => {
 
