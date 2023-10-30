@@ -56,7 +56,7 @@ const RelatedCards = ({ subs, id }) => {
 
 
             return (
-                <div key={indx} className="border p-5 rounded-2xl bg-base-100 shadow-xl  md:mx-0 mx-auto font-paragraph md:w-full w-[95%]">
+                <div key={indx} className="border p-5 rounded-2xl bg-base-100 shadow-xl  md:mx-1 mx-auto font-paragraph md:w-full w-[95%]">
                     <Link onClick={() => {storeToolId(tool._id); setLoadData(true)}} to={`/tool/${slugify(tool.toolName)}`} >
                         <figure className="relative w-full mb-6">
                             <img
@@ -68,7 +68,7 @@ const RelatedCards = ({ subs, id }) => {
 
                             <div
                                 onClick={(event) => handleClick(event, storageKey)}
-                                className={`md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] left-[375px] md:left-[300px] bg-white`}
+                                className={`md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] right-0 mr-[5%] bg-white`}
                             >
                                 <div className="">
                   {isClicked ? <AiFillHeart className="w-5 h-5" color="red" /> : <AiOutlineHeart className="w-5 h-5" />}

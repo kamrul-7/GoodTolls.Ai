@@ -31,7 +31,7 @@ const Rating = ({ card }) => {
   return (
     <div className="font-paragraph md:p-10">
       <div className="">
-        <div className="border-b w-full mx-auto md:w-[1170px] md:h-[570px] h-[730px]">
+        <div className="border-b w-full mx-auto md:h-[570px] h-[730px]">
           {/* Product heading */}
           <div className="flex justify-between gap-2">
             {/* Product Info */}
@@ -44,10 +44,10 @@ const Rating = ({ card }) => {
               </h1>
             </div>
             {/* Heart and share button */}
-            <div className="mr-6 flex gap-4 item-center mt-8 md:mt-0">
+            <div className=" mr-6 flex gap-4 item-center mt-8 md:mt-0">
               <div className="svg-sizing p-4">
                 {isClicked ? (
-                  <button className="rounded-full p-1" onClick={handleClick}>
+                  <button className="rounded-full text-base p-1" onClick={handleClick}>
                     <AiFillHeart
                       color="red"
                       className="rounded-full "
@@ -91,7 +91,7 @@ const Rating = ({ card }) => {
             </div>
           </div>
           {/* Product image */}
-          <div className="md:grid grid-cols-2 md:w-[1090px] h-[244px] w-full mt-6 md:mt-14 md:gap-14">
+          <div className="md:grid grid-cols-2 md:w-full h-[244px] w-full mt-6 md:mt-14 md:gap-14">
             <div className="mb-6 md:mb-0">
               <img
                 src={`https://api.goodtools.ai/uploads/${card.image}`}
@@ -107,7 +107,7 @@ const Rating = ({ card }) => {
                   /{card.pricePeriod}
                 </span>
               </h2>
-              <div className="md:w-[477px]  mt-6">
+              <div className="md:w-[100%]  mt-6">
                 <hr />
               </div>
 
@@ -318,7 +318,7 @@ const Rating = ({ card }) => {
                   </h1>
                 </div>
               </div>
-              <div className=" my-6 md:w-[477px]">
+              <div className=" my-6 md:w-[100%]">
                 <hr />
               </div>
               {card.facebook == "" &&
@@ -493,21 +493,21 @@ const Rating = ({ card }) => {
             <div
               className="mt-8"
               dangerouslySetInnerHTML={{
-                __html: card?.description?.replace(/["\n]/g, "") || "",
+                __html: card?.works?.replace(/["\n]/g, "") || "",
               }}
             ></div>
           ) : (
             <div
               className="mt-8"
               dangerouslySetInnerHTML={{
-                __html: card?.works?.replace(/["\n]/g, "") || "",
+                __html: card?.description?.replace(/["\n]/g, "") || "",
               }}
             ></div>
           )}
         </div>
       </div>
       <div className="flex justify-center mt-10 border-b w-11/12 mx-auto pb-10 md:pb-24">
-        <a href={card.link}>
+        <a target="_blank" href={card.link}>
           <svg
             width="172"
             height="55"
