@@ -27,6 +27,8 @@ import Default from "../Default";
 import Test from "../test";
 import EditNews from "../Admin/EditNews/EditNews";
 import EditTool from "../Admin/EditTool/EditTool";
+import Speech from "../Pages/Speech/Speech";
+
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -75,7 +77,12 @@ export const router = createBrowserRouter([
         {
           path: '/tst',
           element: <Test></Test>
+        },
+        {
+          path: '/speech',
+          element: <Speech></Speech>
         }
+        
       ]
       
     },

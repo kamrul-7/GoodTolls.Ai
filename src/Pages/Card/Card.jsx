@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./Card.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { BsBookmark, BsBookmarkFill } from 'react-icons/bs';
 import { faUnlock } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
@@ -83,7 +83,7 @@ function truncateHtml(html, length) {
 
 
       return (
-        <div key={indx} className="border p-5 rounded-2xl bg-base-100 shadow-xl  md:mx-0 mx-auto font-paragraph md:w-full w-[95%]">
+        <div key={indx} className="border p-5 rounded-2xl card-shadow  md:mx-0 mx-auto font-paragraph md:w-full w-[95%]">
           <Link onClick={() => storeToolId(tool._id)} to={`/tool/${slugify(tool.toolName)}`} >
             <figure className="relative w-full mb-6">
             <img
@@ -98,7 +98,7 @@ function truncateHtml(html, length) {
                 className={`md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] right-0 mr-[5%] bg-white`}
               >
                 <div className="">
-                  {isClicked ? <AiFillHeart className="w-5 h-5" color="red" /> : <AiOutlineHeart className="w-5 h-5" />}
+                  {isClicked ? <BsBookmarkFill className="w-5 h-5"  /> : <BsBookmark className="w-5 h-5" />}
                 </div>
               </div>
 
