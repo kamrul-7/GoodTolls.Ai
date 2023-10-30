@@ -36,7 +36,7 @@ const Rating = ({ card }) => {
           <div className="flex justify-between gap-2">
             {/* Product Info */}
             <div>
-              <p className="D font-normal text-base text-[#6C737F]">
+                  <p className="D font-normal text-base text-[#6C737F]">
                 Product Information
               </p>
               <h1 className="md:text-5xl text-3xl  font-bold mt-4 font-title">
@@ -47,7 +47,7 @@ const Rating = ({ card }) => {
             <div className="mr-6 flex gap-4 item-center mt-8 md:mt-0">
               <div className="svg-sizing p-4">
                 {isClicked ? (
-                  <button className="w-30 h-30 rounded-full p-1" onClick={handleClick}>
+                  <button className="rounded-full p-1" onClick={handleClick}>
                     <AiFillHeart
                       color="red"
                       className="rounded-full "
@@ -55,7 +55,7 @@ const Rating = ({ card }) => {
                     ></AiFillHeart>
                   </button>
                 ) : (
-                  <button className="w-30 h-30 rounded-full p-1" onClick={handleClick}>
+                  <button className="rounded-full p-1" onClick={handleClick}>
                     <AiOutlineHeart
                       style={{ height: "24px", width: "24px" }}
                     ></AiOutlineHeart>
@@ -322,9 +322,9 @@ const Rating = ({ card }) => {
                 <hr />
               </div>
               {card.facebook == "" &&
-                card.linkedin == "" &&
-                card.twitter == "" &&
-                card.discord == "" ? (
+              card.linkedin == "" &&
+              card.twitter == "" &&
+              card.discord == "" ? (
                 <div></div>
               ) : (
                 <div className="social-links">
@@ -456,7 +456,7 @@ const Rating = ({ card }) => {
             style={{
               display: "flex",
               width: "100%",
-              justifyContent: "space-between",
+              justifyContent:"space-between",
               backgroundColor: "#F3F4F6",
               borderRadius: "16px",
             }}
