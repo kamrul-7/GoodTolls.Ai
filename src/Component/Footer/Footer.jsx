@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <div className='font-paragraph bg-[#F9FAFB] h-[318px]' >
-      <footer className="footer  md:p-10 pb-6 pt-16 md:w-[1170px] w-11/12 md:h-[234px] text-base border-b-2 mx-auto grid md:grid-cols-3 grid-cols-2">
+      <footer className="footer md:p-10 pb-6 pt-16 md:w-[1170px] w-11/12 md:h-[234px] text-base border-b-2 mx-auto grid md:grid-cols-3 grid-cols-2">
 
         <div className='h-[94px] border-r-2 w-full my-auto'>
           <Link to='/privacypolicy' className="link link-hover nav-text block">Privacy Policy</Link>

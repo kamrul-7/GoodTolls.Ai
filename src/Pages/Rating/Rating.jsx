@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Rating.css";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+
+import { BsBookmark, BsBookmarkFill } from 'react-icons/bs';
 import { AuthContext } from "../Context/AuthProvider";
 import { faChessKing } from "@fortawesome/free-solid-svg-icons";
 const Rating = ({ card }) => {
@@ -44,21 +45,21 @@ const Rating = ({ card }) => {
               </h1>
             </div>
             {/* Heart and share button */}
-            <div className=" mr-6 flex gap-4 item-center mt-8 md:mt-0">
+            <div className="  flex gap-4 item-center mt-8 md:mt-0">
               <div className="svg-sizing p-4">
                 {isClicked ? (
                   <button className="rounded-full text-base p-1" onClick={handleClick}>
-                    <AiFillHeart
-                      color="red"
+                    <BsBookmarkFill
+                      
                       className="rounded-full "
-                      style={{ height: "24px", width: "24px" }}
-                    ></AiFillHeart>
+                      style={{ height: "20px", width: "20px" }}
+                    ></BsBookmarkFill>
                   </button>
                 ) : (
                   <button className="rounded-full p-1" onClick={handleClick}>
-                    <AiOutlineHeart
-                      style={{ height: "24px", width: "24px" }}
-                    ></AiOutlineHeart>
+                    <BsBookmark
+                      style={{ height: "20px", width: "20px" }}
+                    ></BsBookmark>
                   </button>
                 )}
               </div>
