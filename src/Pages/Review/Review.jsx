@@ -123,9 +123,9 @@ const Review = ({ func, userRating, id, gmail, userName, product }) => {
       dropdownClassName: undefined,
       options: ['bold', 'italic'],
       bold: {
-        icon: '../public/bold.svg', className: 'bold'
+        icon: '../bold.svg', className: 'bold'
       },
-      italic: { icon: '../public/italic.svg', className: 'italic' }
+      italic: { icon: '../italic.svg', className: 'italic' }
 
     }
   }

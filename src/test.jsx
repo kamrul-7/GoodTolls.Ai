@@ -139,8 +139,8 @@ const Test = () => {
     //     [editorState]
     // )
 
-    // // en['components.controls.blocktype.h1'] = <img src={'/public/size.svg'} alt="font size" />;
-    // // en['components.controls.blocktype.blockquote'] = <img src={'/public/quote.svg'} alt="font size" />;
+    // // en['components.controls.blocktype.h1'] = <img src={'/size.svg'} alt="font size" />;
+    // // en['components.controls.blocktype.blockquote'] = <img src={'/quote.svg'} alt="font size" />;
     // // const localization = {
     // //     locale: 'en',
     // //     translations: en,
@@ -154,8 +154,8 @@ const Test = () => {
     // //         component: undefined,
     // //         dropdownClassName: undefined,
     // //         options: ['bold', 'italic',],
-    // //         bold: { icon: '/public/boldd.svg', className: undefined },
-    // //         italic: { icon: '/public/italicd.svg', className: undefined }
+    // //         bold: { icon: '/boldd.svg', className: undefined },
+    // //         italic: { icon: '/italicd.svg', className: undefined }
     // //     },
     // //     blockType: {
     // //         inDropdown: false,
@@ -176,8 +176,8 @@ const Test = () => {
     // //         component: undefined,
     // //         dropdownClassName: undefined,
     // //         options: ['unordered', 'ordered'],
-    // //         unordered: { icon: '/public/unordered.svg', className: undefined },
-    // //         ordered: { icon: '/public/ordered.svg', className: undefined },
+    // //         unordered: { icon: '/unordered.svg', className: undefined },
+    // //         ordered: { icon: '/ordered.svg', className: undefined },
     // //     },
     // //     link: {
     // //         inDropdown: false,
@@ -188,11 +188,11 @@ const Test = () => {
     // //         showOpenOptionOnHover: true,
     // //         defaultTargetOption: '_self',
     // //         options: ['link'],
-    // //         link: { icon: '/public/link.svg', className: undefined },
+    // //         link: { icon: '/link.svg', className: undefined },
     // //         linkCallback: undefined
     // //     },
     // //     image: {
-    // //         icon: '/public/image.svg',
+    // //         icon: '/image.svg',
     // //         className: undefined,
     // //         component: undefined,
     // //         popupClassName: undefined,

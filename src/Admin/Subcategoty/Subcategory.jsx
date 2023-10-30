@@ -87,7 +87,7 @@ const Subcategory = () => {
     if (category.length != 0 && Title.length != 0 && message.length != 0 && SubCategory != 0) {
       const data = { category, SubCategory, Title, message }
       console.log(data);
-      fetch("http://localhost:3000/subcategory", {
+      fetch("http://api.goodtools.ai/subcategory", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -138,7 +138,7 @@ const Subcategory = () => {
 
       };
 
-      fetch(`http://localhost:3000/subcategory/${itemToDelete._id}`, {
+      fetch(`http://api.goodtools.ai/subcategory/${itemToDelete._id}`, {
         method: "PUT", // Use the appropriate HTTP method for updating
         headers: {
           "Content-Type": "application/json",
@@ -168,7 +168,7 @@ const Subcategory = () => {
     if (itemToDelete) {
       const itemId = itemToDelete._id;
       console.log(itemId);
-      fetch(`http://localhost:3000/subcategory/${itemId}`, {
+      fetch(`http://api.goodtools.ai/subcategory/${itemId}`, {
         method: "DELETE",
       })
         .then((res) => {

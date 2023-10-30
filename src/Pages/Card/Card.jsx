@@ -25,7 +25,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
 
   const fetchTools = () => {
 
-    fetch("http://localhost:3000/tool")
+    fetch("http://api.goodtools.ai/tool")
       .then((res) => res.json())
       .then((data) => {
         setIsLoading(false)

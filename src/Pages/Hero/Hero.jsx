@@ -12,7 +12,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
   useEffect(() => setChoice(name), [name])
 
   useEffect(() => {
-    fetch('http://localhost:3000/allsubcategories')
+    fetch('http://api.goodtools.ai/allsubcategories')
       .then((res) => res.json())
       .then((data) => {
 
@@ -141,7 +141,6 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
                         padding: '-1px',
                         fontSize: '14px', // Adjust font size as needed
                         textOverflow: 'ellipsis', // Add ellipsis for overflowing text
-                        whiteSpace: 'nowrap', // Prevent text from wrapping
                         display: 'block',
 
                       }}>{item.SubCategory}</button>)

@@ -7,7 +7,7 @@ const Filter = (props) => {
     const [toggle, setToggle] = useState(true)
     const [subList, setSubList] = useState([])
     useEffect(() => {
-        fetch('http://localhost:3000/sublist')
+        fetch('http://api.goodtools.ai/sublist')
             .then(res => res.json())
             .then(data => setSubList(data))
     }, [])

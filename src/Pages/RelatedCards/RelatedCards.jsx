@@ -15,7 +15,7 @@ const RelatedCards = ({ subs, id }) => {
 
     useEffect(() => {
         subs ?
-            fetch(`http://localhost:3000/relatedtools/${subs}`)
+            fetch(`http://api.goodtools.ai/relatedtools/${subs}`)
                 .then(res => res.json())
                 .then(data => {
                     setRelatedTools(data)
