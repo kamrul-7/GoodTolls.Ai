@@ -130,14 +130,14 @@ const News = () => {
         <p>News</p>
       </div>
       <div className=" border p-4 pb-8 md:pl-16 m-2 rounded-lg">
-        <div className="   mx-auto md:mt-10  md:mb-26 md:rounded-xl md:pl-16">
-          
-
-            <p className="   text-center pt-4 md:ms-10  text-3xl md:text-5xl font-bold font-title">
-
-              Latest Our AI News & Articles
-            </p>
-          
+        <div>
+        <div className=" md:mt-10  md:mb-26 md:rounded-xl">
+          <p class="text-center pt-4  text-3xl md:text-5xl font-bold font-title md:text-left">
+     Latest Our AI News & Articles
+   </p>
+   
+             
+           </div>
         </div>
 
         <div className=" grid  md:grid-cols-2 gap-12 mt-6 mx-auto  md:pr-12 font-title">
@@ -160,7 +160,7 @@ const News = () => {
                   </div>
                   <div className=" mt-6 w-full flex md:justify-normal justify-between items-center md:w-full mx-auto">
                     <p className="date-title font-medium font-paragraph text-xl mr-[18px]">Tools</p>
-                    <div className="vertical-line mr-[18px]"></div>
+                    <div className=" invisible vertical-line mr-[18px]"></div>
                     <p className="date-dates">{formateDte(item.date)}</p>
                   </div>
                   <div className="sub-section mt-4">

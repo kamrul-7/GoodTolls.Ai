@@ -85,7 +85,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
           <div className="breadcrumbs  mb-5 text-sm font-normal mx-6">
             <ul>
               <li>
-                <Link to='/'>Home</Link>
+                <Link to='/home'>Home</Link>
               </li>
               <li>{category}</li>
               <li>{name}</li>

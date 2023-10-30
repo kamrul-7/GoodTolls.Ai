@@ -85,7 +85,7 @@ const SingleNews = () => {
                         <div className=' md:w-[752px]'>
                             <div className='date'>
                                 <p className='date-title font-medium text-xl' >Tools</p>
-                                <div className="vertical-line"></div>
+                                <div className=" invisible vertical-line"></div>
                                 <p className='date-dates'>{formateDte(item.date)}</p>
                             </div>
                             <div className='single-title mb-6 font-title'>
