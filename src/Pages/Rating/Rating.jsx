@@ -39,7 +39,7 @@ const Rating = ({ card }) => {
                   <p className="D font-normal text-base text-[#6C737F]">
                 Product Information
               </p>
-              <h1 className="md:text-5xl text-3xl  font-bold mt-4 font-title">
+              <h1 className="md:text-5xl text-3xl  font-bold mt-2 font-title">
                 {card.toolName}
               </h1>
             </div>
