@@ -73,7 +73,7 @@ const SingleTool = () => {
                             </li>
                             <li>{cards.toolName}</li>
                         </ul>
-                        <div className=' mt-10 mx-3 md:mx-1 md:px-0 md:py-0 px-4 py-6 border border-[#E5E7EB] rounded-2xl'>
+                        <div className='mt-10 mx-3 md:mx-1 md:px-0 md:py-0 px-4 py-6 border border-[#E5E7EB] rounded-2xl'>
                             <Rattingg card={cards} />
                             <Rate id={cards._id} name={cards.toolName}></Rate>
                         </div>
