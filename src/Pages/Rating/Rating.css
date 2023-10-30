@@ -14,20 +14,21 @@
 }
 
 @media only screen and (max-width: 767px) {
+  
   .my-element {
     margin-top: 0px;
 
   }
-
-  .svg-sizing {
+  .svg-sizing{
     display: flex;
-    width: 30px;
-    height: 30px;
-    padding: 7px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 100px;
-    background: var(--neutral-100, #F3F4F6);
+width: 44px;
+height: 44px;
+padding: 10px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+border-radius: 100px;
+background: var(--neutral-100, #F3F4F6);
   }
+  
 }
