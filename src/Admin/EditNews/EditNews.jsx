@@ -61,7 +61,7 @@ const EditNews = () => {
         return totalCharacters;
     }
 
-    
+
 
     useEffect(() => {
 
@@ -83,15 +83,15 @@ const EditNews = () => {
 
     const [file, setFile] = useState(null);
     const [image, setImage] = useState(null);
-    useEffect(()=>{
+    useEffect(() => {
         setImage(`https://api.goodtools.ai/uploads/${newsData.image}`)
-    },[])
+    }, [])
     const handleFileChange = (file) => {
         setFile(file);
         setImage(URL.createObjectURL(file));
     };
 
-    const handleNameChange = (event)=>{
+    const handleNameChange = (event) => {
         setNewsName(event.target.value)
     }
 
@@ -100,25 +100,29 @@ const EditNews = () => {
         const month = today.getMonth();
         const day = today.getDate();
         const year = today.getFullYear();
-        return`${day}/${month}/${year}`
-      }
+        return `${day}/${month}/${year}`
+    }
+
+    const handlePasted = (text, html, editorState) => {
+        // This function handles paste from clipboard
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault()
         const toolName = newsName;
         let imageId = newsData.image;
         let image = null;
-        if(file !== null){
+        if (file !== null) {
             image = file;
         }
         const description = finalDes.replace(/<h1>/g, "<h1 style= \"  display: block;font-size: 1.5em;margin-top: 0.83em;margin-bottom: 0.83em;margin-left: 0;margin-right: 0;font-weight: bold;\">").replace(/\n/g, "").replace(/<img/, "<img style=' border-radius: 12px; margin:24px 0px'");
 
-        
 
-        if (toolName.length != 0  && imageId != null && description) {
+
+        if (toolName.length != 0 && imageId != null && description) {
             const formdata = new FormData()
             formdata.append('newsTitle', toolName)
-            if(file != null){
+            if (file != null) {
                 formdata.append('image', file)
             }
             formdata.append('imageId', imageId)
@@ -131,20 +135,20 @@ const EditNews = () => {
                 },
                 body: formdata,
             })
-            .then((res) => res.json())
-            .then(data => {
-                if (data.acknowledged && data.modifiedCount > 0) {
-                    setNewsName('')
-                    setImage(null)
-                    setFile(null)
-                    setEditorDesState(EditorState.createEmpty())
-                    alert('News edited')
-                    navigate('/dashboard/manageNews')
-                } else {
-                    alert(data)
-                }
-            })
-        } else{
+                .then((res) => res.json())
+                .then(data => {
+                    if (data.acknowledged && data.modifiedCount > 0) {
+                        setNewsName('')
+                        setImage(null)
+                        setFile(null)
+                        setEditorDesState(EditorState.createEmpty())
+                        alert('News edited')
+                        navigate('/dashboard/manageNews')
+                    } else {
+                        alert(data)
+                    }
+                })
+        } else {
             alert('No fields can remain empty')
         }
     }
@@ -255,6 +259,7 @@ const EditNews = () => {
                     <div className=' px-[14px] rounded-lg w-[512px]'>
 
                         <Editor
+                            handlePastedText={handlePasted}
                             handleBeforeInput={handleDesInput}
                             placeholder="Write product description"
                             editorState={editorDesState}

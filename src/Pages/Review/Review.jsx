@@ -93,6 +93,10 @@ const Review = ({ func, userRating, id, gmail, userName, product }) => {
   const [init, setInit] = useState('')
   const [final, setFinal] = useState('')
 
+  const handlePasted = (text, html, editorState) => {
+    // This function handles paste from clipboard
+  }
+
   useEffect(() => {
     const contentBlock = htmlToDraft(init)
 
@@ -160,6 +164,7 @@ const Review = ({ func, userRating, id, gmail, userName, product }) => {
                   </span>
                 </label>
                 <Editor
+                  handlePastedText={handlePasted}
                   placeholder="Tell us about your opinon"
                   toolbar={tool}
                   editorState={editorState}

@@ -276,6 +276,11 @@ const EditTool = () => {
     }
 
 
+    const handlePasted = (text, html, editorState) => {
+        // This function handles paste from clipboard
+    }
+
+
     const handleSubmit = (event) => {
         event.preventDefault()
         let imageId = toolData.image;
@@ -614,6 +619,7 @@ const EditTool = () => {
                     <div className=' px-[14px] rounded-lg w-[512px]'>
 
                         <Editor
+                            handlePastedText={handlePasted}
                             handleBeforeInput={handleDesInput}
                             placeholder="Write product description"
                             editorState={editorDesState}
@@ -638,6 +644,7 @@ const EditTool = () => {
                     <div className=' px-[14px] rounded-lg w-[512px]'>
 
                         <Editor
+                            handlePastedText={handlePasted}
                             handleBeforeInput={handleWorkInput}
                             placeholder="Write working description"
                             editorState={editorWorkState}
