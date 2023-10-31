@@ -28,6 +28,7 @@ import Test from "../test";
 import EditNews from "../Admin/EditNews/EditNews";
 import EditTool from "../Admin/EditTool/EditTool";
 import Speech from "../Pages/Speech/Speech";
+import Slider from "../Pages/Slider/Slider";
 
 export const router = createBrowserRouter([
     {
@@ -81,6 +82,10 @@ export const router = createBrowserRouter([
         {
           path: '/speech',
           element: <Speech></Speech>
+        },
+        {
+          path: '/slider',
+          element: <Slider></Slider>
         }
         
       ]

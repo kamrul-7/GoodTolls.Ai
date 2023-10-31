@@ -1,5 +1,6 @@
 import Ripples from 'react-ripples'
 import './Hero.css'
+import { useSwipeable } from 'react-swipeable';
 import { Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
 const Hero = ({ name, category, count, getSearchData, popularSub }) => {
@@ -8,7 +9,15 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
   const [message, setMessage] = useState('');
   const [choice, setChoice] = useState('');
   // const [showSearch, setShowSearch] = useState(false);
-
+  const firstSixItem = data;
+  const [visibleStartIndex, setVisibleStartIndex] = useState(0);
+  const maxStartIndex = Math.max(firstSixItem.length - 6, 0); // Ensure it doesn't go negative
+  const handlers = useSwipeable({
+    onSwipedLeft: () => setVisibleStartIndex(prev => Math.min(prev + 1, maxStartIndex)),
+    onSwipedRight: () => setVisibleStartIndex(prev => Math.max(prev - 1, 0)),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true
+  });
   useEffect(() => setChoice(name), [name])
 
   useEffect(() => {
@@ -29,7 +38,8 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
     }
   },[name])
 
-  const firstSixItem = data.slice(0, 6)
+
+  console.log(firstSixItem.length);
   const handleKeyPress = (e) => {
     if (e.key !== "Enter") {
       setSearchData(e.target.value)
@@ -126,33 +136,73 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
 
                 </div>
               </div>
-              <div className='popular-section md:mt-6 mt-4 mb-4'>
-                <p className='popular-title mb-4'>Popular Categories</p>
-                <div className='popular-item flex'>
-                  {
-                    firstSixItem.map((item, index) =>
-                      <button key={index} name={`${item.SubCategory}`} onClick={(event) => {
-                        setChoice(`${item.SubCategory}`)
-                        handleClick(event, item.SubCategory)
-                      }} className={`item p-text me-4 ${choice === `${item.SubCategory}` ? 'bg-gray-100' : 'bg-transparent'}`} style={{
-                        height: 'fit-content', // Fixed height
-                        whiteSpace: 'nowrap', // Prevent text from wrapping
-                        overflow: 'hidden', // Hide text that exceeds the button
-                        padding: '-1px',
-                        fontSize: '14px', // Adjust font size as needed
-                        textOverflow: 'ellipsis', // Add ellipsis for overflowing text
-                        whiteSpace: 'nowrap', // Prevent text from wrapping
-                        display: 'block',
+              <div className='popular-section'>
+        <p className='popular-title mb-4'>Popular Categories</p>
+            
+        <div className='flex items-center gap-6'>
+        <button className='flex md:w-11 md:h-11 justify-center p-[var(--spacing-md,8px)] items-center gap-2.5  rounded-[100px] border border-[var(--neutral-300,#D2D6DB)]' onClick={() => setVisibleStartIndex(prev => Math.max(prev - 1, 0))}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 24" fill="none">
+<path d="M10.07 5.92999L4 12L10.07 18.07" stroke="#D2D6DB" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M21 12H4.17001" stroke="#D2D6DB" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+        </button>
+        
+        <div className=''> {/* Main Wrapper */}
+    <div>
+        <div 
+            className='items-container md:w-[781px]' 
+            style={{
+                 // 6 items of 110px each
+                overflow: 'hidden' // Ensure children don't overflow
+            }}
+        >
+            <div className='popular-item flex' {...handlers}
+                style={{ transform: `translateX(-${visibleStartIndex * 110}px)` }}>
+                {firstSixItem.map((item, index) => (
+                    <button
+                        key={index}
+                        name={`${item.SubCategory}`}
+                        onClick={(event) => {
+                            setChoice(`${item.SubCategory}`);
+                            handleClick(event, item.SubCategory);
+                        }}
+                        className={`item cursor-pointer hover:scale-105 ease-in-out duration-30 'hidden'p-text me-4 ${choice === `${item.SubCategory}` ? 'bg-gray-100' : 'bg-transparent'}`}
+                        style={{
+                            height: 'fit-content',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            padding: '-1px',
+                            fontSize: '14px',
+                            textOverflow: 'ellipsis',
+                            display: `${index < visibleStartIndex || index >= visibleStartIndex + 6 ? 'none' : 'block'}`, 
+                        }}
+                    >
+                        {item.SubCategory}
+                    </button>
+                ))}
+            </div>
+        </div>
+    </div>
+</div>
 
-                      }}>{item.SubCategory}</button>)
-                  }
-                </div>
-              </div>
+
+        <button className='flex md:w-11 md:h-11 justify-center p-[var(--spacing-md,8px)] items-center gap-2.5  rounded-[100px] border border-[var(--neutral-300,#D2D6DB)]' onClick={() => setVisibleStartIndex(prev => Math.min(prev + 1, maxStartIndex))}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+  <path d="M14.9301 5.92999L21.0001 12L14.9301 18.07" stroke="#6C737F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M4 12H20.83" stroke="#6C737F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+        </button>
+        </div>
+        
+      </div>
+
+      {/* ... Rest of your component */}
+    </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    
   );
 };
 
