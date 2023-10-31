@@ -54,7 +54,7 @@ const Navbar = () => {
     <div className="">
       <div className="navbar bg-base-100">
         <div className="navbar-start">
-          <Link to='/' className="w-[168px] h-[40px] flex items-center">
+          <Link to='/' className="w-[168px] h-[40px] flex items-center -ml-4">
             <img src="../../../public/logo.svg"/>
           </Link>
         </div>
