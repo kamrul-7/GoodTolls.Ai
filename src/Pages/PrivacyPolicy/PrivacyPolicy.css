@@ -28,3 +28,35 @@ font-style: normal;
 font-weight: 400;
 line-height: 150%; /* 24px */
 }
+.pp-title{
+    color: var(--neutral-950, #081120);
+
+/* Display Heading/Display 2 */
+font-family: Space Grotesk;
+font-size: 48px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+@media (max-width: 767px) {
+    .privacy-menu{
+        margin-left: 16px;
+        margin-right:16px;
+        
+    }
+    .pp{
+        margin-left: 16px;
+        margin-right:16px;
+        
+    }
+    .pp-title{
+        color: var(--neutral-950, #081120);
+    
+    /* Display Heading/Display 2 */
+    font-family: Space Grotesk;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    }
+  }

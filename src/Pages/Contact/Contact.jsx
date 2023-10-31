@@ -1,11 +1,11 @@
-import React from "react";
+ import React from "react";
 import Footer from "../../Component/Footer/Footer";
 import { Link } from "react-router-dom";
 
 const Contact = () => {
   return (
     <div className="font-paragraph">
-      <div className="breadcrumbs mb-5 text-sm font-normal mx-6">
+      <div className="breadcrumbs privacy-menu mb-5  text-sm font-normal ">
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -14,7 +14,7 @@ const Contact = () => {
         </ul>
       </div>
       <div
-        className="grid md:grid-cols-2 grid-cols-1 mx-6 rounded-xl mb-24"
+        className="grid md:grid-cols-2 grid-cols-1 pp rounded-xl mb-24"
         style={{ border: "1px solid #E5E7EB" }}
       >
         <div className="px-4 md:px-8">

@@ -15,6 +15,14 @@ box-shadow: 0px 8px 24px 0px rgba(41, 59, 85, 0.08);
 /* 02 */
 box-shadow: 0px 8px 24px 0px rgba(41, 59, 85, 0.08);
 }
+.div{
+    border:1px solid red;
+}
+.card-shadow{
+    border-radius: 16px;
+border: 1px solid var(--neutral-200, #E5E7EB);
+background: var(--neutral-white, #FFF);
+}
 .news-card-image{
     height: 286px;
     width: 485PX;

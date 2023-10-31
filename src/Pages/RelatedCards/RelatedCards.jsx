@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { BsBookmark, BsBookmarkFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import slugify from 'slugify';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
@@ -71,7 +72,7 @@ const RelatedCards = ({ subs, id }) => {
                                 className={`md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] right-0 mr-[5%] bg-white`}
                             >
                                 <div className="">
-                  {isClicked ? <AiFillHeart className="w-5 h-5" color="red" /> : <AiOutlineHeart className="w-5 h-5" />}
+                  {isClicked ? <BsBookmark className="w-5 h-5" /> : <BsBookmarkFill className="w-5 h-5" />}
                 </div>
                             </div>
 
