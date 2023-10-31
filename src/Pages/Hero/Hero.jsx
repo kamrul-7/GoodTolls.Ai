@@ -111,7 +111,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
               {
                 name.length == 0 ?
                   <>
-                    <h1 className="md:text-5xl text-4xl md:font-bold hero-title ">We are listing the best AI
+                    <h1 className="md:text-[56px] text-4xl md:font-bold hero-title ">We are listing the best AI
                       <br /> tools Everyday.</h1>
                     <p className={`hero-subtitle my-6`}>Find the best AI tools for your needs. Go to the filter <br /> and choose your  Category.  </p>
                   </> :
@@ -147,33 +147,44 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
 </svg>
         </button>
         
-        <div>
-          <div className='popular-item flex' {...handlers}>
-          {firstSixItem.map((item, index) => (
-            <button
-              key={index}
-              name={`${item.SubCategory}`}
-              onClick={(event) => {
-                setChoice(`${item.SubCategory}`);
-                handleClick(event, item.SubCategory);
-              }}
-              className={`item p-text me-4 ${choice === `${item.SubCategory}` ? 'bg-gray-100' : 'bg-transparent'}`}
-              style={{
-                // width:''
-                height: 'fit-content',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                padding: '-1px',
-                fontSize: '14px',
-                textOverflow: 'ellipsis',
-                display: `${index < visibleStartIndex || index >= visibleStartIndex + 6 ? 'none' : 'block'}`, 
-              }}
-            >
-              {item.SubCategory}
-            </button>
-          ))}
+        <div className=''> {/* Main Wrapper */}
+    <div>
+        <div 
+            className='items-container md:w-[781px]' 
+            style={{
+                 // 6 items of 110px each
+                overflow: 'hidden' // Ensure children don't overflow
+            }}
+        >
+            <div className='popular-item flex' {...handlers}
+                style={{ transform: `translateX(-${visibleStartIndex * 110}px)` }}>
+                {firstSixItem.map((item, index) => (
+                    <button
+                        key={index}
+                        name={`${item.SubCategory}`}
+                        onClick={(event) => {
+                            setChoice(`${item.SubCategory}`);
+                            handleClick(event, item.SubCategory);
+                        }}
+                        className={`item cursor-pointer hover:scale-105 ease-in-out duration-30 'hidden'p-text me-4 ${choice === `${item.SubCategory}` ? 'bg-gray-100' : 'bg-transparent'}`}
+                        style={{
+                            height: 'fit-content',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            padding: '-1px',
+                            fontSize: '14px',
+                            textOverflow: 'ellipsis',
+                            display: `${index < visibleStartIndex || index >= visibleStartIndex + 6 ? 'none' : 'block'}`, 
+                        }}
+                    >
+                        {item.SubCategory}
+                    </button>
+                ))}
+            </div>
         </div>
-        </div>
+    </div>
+</div>
+
 
         <button className='flex md:w-11 md:h-11 justify-center p-[var(--spacing-md,8px)] items-center gap-2.5  rounded-[100px] border border-[var(--neutral-300,#D2D6DB)]' onClick={() => setVisibleStartIndex(prev => Math.min(prev + 1, maxStartIndex))}>
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
