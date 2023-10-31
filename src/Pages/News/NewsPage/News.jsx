@@ -100,7 +100,7 @@ const News = () => {
 
     //         </div>
     <div className="font-paragraph">
-      <div className="flex  ms-2 items-center pb-4 mt[34px] my-4 ml-2">
+      <div className="flex mb-6 md:mb-10  items-center ml-2">
         <a href="/">Home</a>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -129,10 +129,10 @@ const News = () => {
         </svg>
         <p>News</p>
       </div>
-      <div className=" border p-4 pb-8 md:pl-16 m-2 rounded-lg">
+      <div className=" border  md:p-10   m-2 rounded-lg">
         <div>
-        <div className=" md:mt-10  md:mb-26 md:rounded-xl">
-          <p class="text-center pt-4  text-3xl md:text-5xl font-bold font-title md:text-left">
+        <div className="   md:rounded-xl">
+          <p class="text-center    text-3xl md:text-5xl  font-bold font-title md:text-left">
      Latest Our AI News & Articles
    </p>
    
@@ -140,7 +140,7 @@ const News = () => {
            </div>
         </div>
 
-        <div className=" grid  md:grid-cols-2 gap-12 mt-6 mx-auto  md:pr-12 font-title">
+        <div className=" text-center  grid  md:grid-cols-2 gap-6 md:mt-10 mt-6 mx-auto  font-title">
           {isLoading ? (
             <span className="loading loading-ring md:w-40 md:h-40 w-20  md:ml-[90%] ml-[50%] mb-10 mt-5"></span>
           ) : (
@@ -150,7 +150,7 @@ const News = () => {
                 onClick={() => storeNewsId(item._id)}
                 to={`/news/${slugify(item.newsTitle)}`}
               >
-                <div className="p-4 md:p-6 text-center md:text-left mx-auto border rounded-xl shadow-lg">
+                <div className="p-4 md:p-6 text-center md:text-left mx-auto border card-shadow ">
                   <div className="w-full">
                     <img
                       className="w-full rounded-xl h-[286px]"
