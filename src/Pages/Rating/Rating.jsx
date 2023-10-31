@@ -458,7 +458,7 @@ const Rating = ({ card }) => {
               display: "flex",
               width: "100%",
               justifyContent:"space-between",
-              backgroundColor: "#F3F4F6",
+              backgroundColor : "#F3F4F6",
               borderRadius: "16px",
             }}
           >
