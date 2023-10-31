@@ -207,14 +207,14 @@ const Rate = ({id,name}) => {
 
     return (
         <div>
-            <div className="md:p-10 w-full md:mt-24 mt-6">
+            <div className="md:px-10 w-full md:mt-[20px] mt-6">
 
                 {/* Rating section */}
                 <div className="md:grid grid-cols-2 mb-20 md:h-[375px] gap-x-20 hide-scrollbar">
                     <div className="hide-scrollbar ">
 
                         {/* Average rating */}
-                        <div className="md:flex text-center items-center pb-7 mb-7 border-b border-[#E5E7EB]">
+                        <div className="md:flex text-center items-center pb-6 md:pb-[30px] border-b border-[#E5E7EB]">
                             <span className="font-bold text-[32px]">{isNaN(avgRating) ? '0.0' : avgRating}</span>
                             <Rating
                                 style={{ display: "inline-flex", maxWidth: "126px", maxHeight: "22px", gap: "4px", margin: "0px 12px 0px 12px" }}
@@ -222,10 +222,10 @@ const Rate = ({id,name}) => {
                                 itemStyles={customStyles}
                                 readOnly
                             />
-                            <span className="text[#4D5761] text-base font-paragraph text-[#4D5761] block text-center">Based on {reviews.length} rating</span>
+                            <span className="text[#4D5761] text-base font-paragraph text-[#4D5761] block text-center mt-2">Based on {reviews.length} rating</span>
                         </div>
 
-                        <p className="text-[#081120] text-xl font-medium my-7">Overall Rating</p>
+                        <p className="text-[#081120] text-xl font-medium my-[30px]">Overall Rating</p>
 
 
                         {/* Progress bars */}
@@ -241,7 +241,7 @@ const Rate = ({id,name}) => {
 
                     <div className="relative">
                         {/* Rate item */}
-                        <div className="md:absolute top-0 right-0 p-11 mt-7 md:mt-0 border rounded-[20px] w-full md:w-[100%] h-fit md:h-fit">
+                        <div className="md:absolute top-0 right-0 p-[40px] mt-7 md:mt-0 border rounded-[20px] w-full md:w-[100%] h-fit md:h-fit">
                             <div className="text-2xl font-bold mb-[20px]">What do you think about {name}?</div>
                             <div className="text-sm mb-[32px]">If you have a moment, it would be greatly appreciated if you<br />could leave a review to share your thoughts with the<br />community. Your feedback is valuable to us and helps us<br />improve our services. Thank you!</div>
                             {/* Stars */}
