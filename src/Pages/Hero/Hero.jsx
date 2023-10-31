@@ -11,12 +11,12 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
   // const [showSearch, setShowSearch] = useState(false);
   const firstSixItem = data;
   const [visibleStartIndex, setVisibleStartIndex] = useState(0);
-  const maxStartIndex = Math.max(firstSixItem.length - 6, 0); // Ensure it doesn't go negative
-  const handlers = useSwipeable({
-    onSwipedLeft: () => setVisibleStartIndex(prev => Math.min(prev + 1, maxStartIndex)),
-    onSwipedRight: () => setVisibleStartIndex(prev => Math.max(prev - 1, 0)),
+  const maxStartIndex = Math.max(firstSixItem.length - 7, 0); // Ensure it doesn't go negative
+   const handlers = useSwipeable({
+    onSwipedLeft: () => setVisibleStartIndex(prev => Math.min(prev + 7, maxStartIndex)),
+    onSwipedRight: () => setVisibleStartIndex(prev => Math.max(prev - 7, 0)),
     preventDefaultTouchmoveEvent: true,
-    trackMouse: true
+    trackMouse: true,
   });
   useEffect(() => setChoice(name), [name])
 
@@ -38,7 +38,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
     }
   },[name])
 
-
+  let startPos = null;
   console.log(firstSixItem.length);
   const handleKeyPress = (e) => {
     if (e.key !== "Enter") {
@@ -148,41 +148,42 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
         </button>
         
         <div className=''> {/* Main Wrapper */}
-    <div>
-        <div 
-            className='items-container md:w-[781px]' 
-            style={{
-                 // 6 items of 110px each
-                overflow: 'hidden' // Ensure children don't overflow
-            }}
-        >
-            <div className='popular-item flex' {...handlers}
-                style={{ transform: `translateX(-${visibleStartIndex * 110}px)` }}>
-                {firstSixItem.map((item, index) => (
-                    <button
-                        key={index}
-                        name={`${item.SubCategory}`}
-                        onClick={(event) => {
-                            setChoice(`${item.SubCategory}`);
-                            handleClick(event, item.SubCategory);
-                        }}
-                        className={`item cursor-pointer hover:scale-105 ease-in-out duration-30 'hidden'p-text me-4 ${choice === `${item.SubCategory}` ? 'bg-gray-100' : 'bg-transparent'}`}
-                        style={{
-                            height: 'fit-content',
-                            whiteSpace: 'nowrap',
-                            overflow: 'hidden',
-                            padding: '-1px',
-                            fontSize: '14px',
-                            textOverflow: 'ellipsis',
-                            display: `${index < visibleStartIndex || index >= visibleStartIndex + 6 ? 'none' : 'block'}`, 
-                        }}
-                    >
-                        {item.SubCategory}
-                    </button>
-                ))}
-            </div>
+        <div>
+    <div className='items-container  max-w-3xl'
+        style={{
+            overflow: 'hidden' // Ensure children don't overflow
+        }}
+        {...handlers}  // Move handlers here
+    >
+        <div className='popular-item flex'
+            style={{ transform: `translateX(-${visibleStartIndex * 110}px)` }}>
+            {firstSixItem.map((item, index) => (
+                <button
+                    key={index}
+                    name={`${item.SubCategory}`}
+                    onClick={(event) => {
+                        setChoice(`${item.SubCategory}`);
+                        handleClick(event, item.SubCategory);
+                    }}
+                    className={`item select-none cursor-pointer hover:bg-slate-200 p-text me-4 ${choice === `${item.SubCategory}` ? 'bg-gray-100' : 'bg-transparent'}`}
+                    style={{
+                        height: 'fit-content',
+                        whiteSpace: 'nowrap',
+                        
+                        padding: '-1px',
+                        fontSize: '14px',
+                        textOverflow: 'ellipsis',
+                        display: `${index < visibleStartIndex || index >= visibleStartIndex + 7 ? 'none' : 'block'}`
+,
+                    }}
+                >
+                    {item.SubCategory}
+                </button>
+            ))}
         </div>
     </div>
+</div>
+
 </div>
 
 
