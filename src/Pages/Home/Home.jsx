@@ -126,12 +126,12 @@ const Home = () => {
 
             <Hero name={selectedSub} category={category} count={total} getSearchData={getSearchData} popularSub={handleSelectPopularSubmit}></Hero>
 
-            <div className='md:flex items-center justify-between mt-7 mb-5'>
+            <div className='md:flex items-center justify-between md:mt-20 mb-5'>
                 <div className='md:flex items-center '>
                     <div className='w-11/12 md:w-fit mx-auto'>
                         <Filter clickHandler={handleSubSubmit} selectedPopular={selectedPopular}></Filter>
                     </div>
-                    <div className='text-[#6C737F] font-medium ml-6 my-4 font-paragraph'>
+                    <div className='text-[#6C737F] font-medium ml-6 my-4 md:mt-12 md:mb-11  font-paragraph'>
                         Showing <span className='text-[#081120] font-paragraph'> {decoration(total)} Best</span> Ai Tools
                     </div>
                 </div>

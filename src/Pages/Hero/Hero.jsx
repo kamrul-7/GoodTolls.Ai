@@ -103,7 +103,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
                   <>
                     <h1 className="md:text-[56px] text-4xl md:font-bold hero-title ">We are listing the best AI
                       <br /> tools Everyday.</h1>
-                    <p className={`hero-subtitle my-6`}>Find the best AI tools for your needs. Go to the filter <br /> and choose your  Category.  </p>
+                    <p className={`hero-subtitle mt-6 md:mb-11 mb-6`}>Find the best AI tools for your needs. Go to the filter <br /> and choose your  Category.  </p>
                   </> :
                   <>
                     <h1 className="md:text-5xl md:w-[592px] text-4xl font-bold text-[#081120] text-center w-fit mx-auto mb-[35px]">Browse {count}+ Best AI {name} Tools</h1>
@@ -126,7 +126,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
 
                 </div>
               </div>
-              <div className='popular-section'>
+              <div className='popular-section md:mt-6 mt-4 mb-4'>
                 <p className='popular-title mb-4'>Popular Categories</p>
                 <div className='popular-item flex'>
                   {

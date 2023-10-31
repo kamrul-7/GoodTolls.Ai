@@ -56,7 +56,7 @@ const RelatedCards = ({ subs, id }) => {
 
 
             return (
-                <div key={indx} className="border p-5 rounded-2xl bg-base-100 shadow-xl  md:mx-1 mx-auto font-paragraph md:w-full w-[95%]">
+                <div key={indx} className="border p-5 rounded-2xl shadow-xl  md:mx-1 mx-auto font-paragraph md:w-full w-[95%]">
                     <Link onClick={() => {storeToolId(tool._id); setLoadData(true)}} to={`/tool/${slugify(tool.toolName)}`} >
                         <figure className="relative w-full mb-6">
                             <img
@@ -167,7 +167,7 @@ const RelatedCards = ({ subs, id }) => {
     const forceUpdate = () => setUpdateState(updateState + 1);
 
     return (
-        <div className={`${relatedTools.length > 1 ? 'block':'hidden'} grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 md:gap-6 gap-4 my-20`}>
+        <div className={`${relatedTools.length > 1 ? 'block':'hidden'} grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 md:gap-6 gap-4 mt-[60px]`}>
             {isLoadingRelated ?
                 <span className="loading loading-ring md:w-40 md:h-40 w-20 h-20 md:ml-[10%] ml-[5%] md:my-40 my-20"></span>
                 :
