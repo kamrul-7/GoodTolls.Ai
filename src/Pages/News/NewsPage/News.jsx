@@ -177,7 +177,7 @@ const News = () => {
                     }}
                   ></div>
                   <div className="btn-section md:w-44 md:my-[40px] mt-[16px]">
-                    <button className="md:w-44">Read More</button>
+                    <button className="md:w-44 text-[#4D5761] font-medium font-paragraph text-base">Read More</button>
                   </div>
                 </div>
               </Link>

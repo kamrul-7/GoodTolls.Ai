@@ -1,5 +1,13 @@
 
-
+.tt{
+  color: var(--neutral-950, #081120);
+/* Body Text/Inter 16px/Medium */
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: 150%;
+}
 .svg-sizing {
 
   display: flex;
@@ -18,6 +26,16 @@
   .my-element {
     margin-top: 0px;
 
+  }
+  .tt{
+    color: var(--neutral-950, #081120);
+
+/* Body Text/Inter 16px/Semi Bold */
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: 150%; /* 24px */
   }
   .svg-sizing{
     display: flex;

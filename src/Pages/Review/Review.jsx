@@ -159,7 +159,7 @@ const Review = ({ func, userRating, id, gmail, userName, product }) => {
             <form method="dialog" className="w-full" onSubmit={handleSubmit}>
               <div>
                 <label className="label">
-                  <span className="text-xl font-medium mb-4 font-title">
+                  <span className="text-xl text-[#081120] font-bold mb-4 font-title">
                     What is your review of the tool?
                   </span>
                 </label>
@@ -183,19 +183,19 @@ const Review = ({ func, userRating, id, gmail, userName, product }) => {
               <div className=" w-[97%] md:w-[100%] md:mx-auto grid grid-cols-2 gap-3">
                 <div>
                   <button
-                    className="btn my-6 w-full md:w-[full] border-2"
+                    className="cl-text btn my-6 w-full md:w-[full] border-2"
                     type="button"
                     onClick={closeModal}
                   >
-                    Close
+                    Cancel
                   </button>
                 </div>
                 <div>
                   <button
-                    className="btn btn-primary w-full text-white btn-active my-6 md:w-[full]"
+                    className="btn sb btn-primary w-full text-white btn-active my-6 md:w-[full]"
                     type="submit"
                   >
-                    Submit
+                    Save
                   </button>
                 </div>
               </div>
