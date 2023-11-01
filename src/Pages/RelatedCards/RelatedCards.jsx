@@ -123,7 +123,7 @@ const RelatedCards = ({ subs, id }) => {
                                     </div>
                                 ))}
                                 {tool?.SubCategory.length > 3 && (
-                                    <div className="px-3 py-[10px] flex items-center justify-between rounded-[100px] text-[10px] font-paragraph bg-[#F3F4F6]">More</div>
+                                    <div className="px-3 py-[10px] flex items-center justify-between rounded-[100px] text-[10px] font-paragraph bg-[#F3F4F6]">See More</div>
                                 )}
                             </div>
                             <div className="w-full h-[40px] gap-[10px] flex justify-center items-center px-[34px] py-4 border border-[#E5E7EB] rounded-xl">
