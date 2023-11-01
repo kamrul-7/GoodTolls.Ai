@@ -65,13 +65,13 @@ const SingleTool = () => {
                     <span className="loading loading-ring md:w-40 md:h-40 w-20 h-20 md:ml-[45%] ml-[40%] md:my-40 my-20"></span>
                     : <div className="breadcrumbs text-sm font-normal mb-10 md:mb-14 ">
                         <ul className="ml-[2.5%] md:ml-[0.5%]">
-                            <li>
+                            <li className='text-[#081120] font-paragraph text-sm'>
                                 <Link to="/">Home</Link>
                             </li>
-                            <li>
+                            <li className='text-[#081120] font-paragraph text-sm'>
                                 <Link to="/">Card</Link>
                             </li>
-                            <li>{cards.toolName}</li>
+                            <li className='text-[#6C737F] font-paragraph text-sm'>{cards.toolName}</li>
                         </ul>
                         <div className=' mt-10 mx-3 md:mx-1 md:px-0 md:py-0 px-4 py-6 border border-[#E5E7EB] rounded-2xl'>
                             <Rattingg card={cards} />

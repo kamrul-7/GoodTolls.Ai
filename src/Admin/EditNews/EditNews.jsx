@@ -129,7 +129,8 @@ const EditNews = () => {
             formdata.append('newsBody', description)
             formdata.append('date', date())
             formdata.append('newsId', newsData._id)
-            fetch("https://api.goodtools.ai/editnews", {
+            formdata.append('newsBodyPath', newsData.newsBodyPath)
+            fetch("http://localhost:3000/editnews", {
                 method: "PUT",
                 headers: {
                 },
@@ -200,7 +201,7 @@ const EditNews = () => {
                         <button onClick={handleClick} className='py-[10px] px-[14px] mr-3 border border-[#D0D5DD] rounded-lg bg-white hover:bg-gray-50 shadow-sm duration-300 text-[#344054] text-sm font-semibold'>
                             Cancel
                         </button>
-                        <input type='submit' value="Update" className='py-[10px] px-[14px] border rounded-lg bg-[#7F56D9] hover:bg-[#6d4ab8] shadow-sm duration-300 text-white text-sm font-semibold'>
+                        <input type='submit' value="Update" className='py-[10px] px-[14px] border rounded-lg bg-[#7F56D9] hover:bg-[#6d4ab8] focus:ring-0 shadow-sm duration-300 text-white text-sm font-semibold'>
 
                         </input>
                     </div>
@@ -212,7 +213,7 @@ const EditNews = () => {
                 <div className='w-full flex pb-5 mb-5 border-b border-[#EAECF0]'>
                     <div className=' w-4/12 text-sm font-semibold text-[#344054]'>News Title</div>
                     <div className='py-[10px] px-[14px] border rounded-lg h-[44px] w-[512px]'>
-                        <input onChange={handleNameChange} value={newsName} name='toolName' placeholder="Chapple" className=' h-full my-auto w-full focus:outline-0 text-base text-[#101828]' type="text" />
+                        <input onChange={handleNameChange} value={newsName} name='toolName' placeholder="Chapple" className=' h-full my-auto w-full focus:outline-0 border-0 focus:ring-0 text-base text-[#101828]' type="text" />
                     </div>
                 </div>
 

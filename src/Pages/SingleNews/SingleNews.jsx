@@ -61,7 +61,7 @@ const SingleNews = () => {
     return (
         <div className='mx-auto font-paragraph '>
             <div className='flex items-center ml-[3.5%] md:ml-[1.3%]'>
-                <a href='/'>Home</a>
+                <a href='/' className='text-[#081120] font-paragraph text-sm'>Home</a>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
                     <g clipPath="url(#clip0_810_9466)">
                         <path d="M8.3332 5.5L7.1582 6.675L10.9749 10.5L7.1582 14.325L8.3332 15.5L13.3332 10.5L8.3332 5.5Z" fill="#6C737F" />
@@ -72,7 +72,7 @@ const SingleNews = () => {
                         </clipPath>
                     </defs>
                 </svg>
-                <p >News Page</p>
+                <p className='text-[#6C737F] font-paragraph text-sm'>News Page</p>
             </div>
             {/* Single News Section */}
             <div className='p-4'>

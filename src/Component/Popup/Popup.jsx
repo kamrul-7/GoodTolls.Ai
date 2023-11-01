@@ -47,14 +47,14 @@ const CookiePopup = () => {
 
   return showPopup ? (
     <CookiePopupContainer>
-      <div className="flex items-center justify-around fixed bottom-0 left-0 w-full p-4 bg-gray-600 text-white text-center"
+      <div className="flex items-center justify-around fixed bottom-0 left-0 w-full px-4 py-5 bg-[#081120] text-white text-center"
             style={{
                 zIndex: 999, // You can adjust the z-index as needed
             }}>
         <CookieText className='text'>
           We use cookies to improve your experience on our site. If you continue to use this site, we will assume that you are happy with it.
         </CookieText>
-        <AcceptButton className='md:-ms-10' onClick={acceptCookies}>
+        <AcceptButton className='md:ml-10 ml-4' onClick={acceptCookies}>
           <p className="btn-text">OK</p>
         </AcceptButton>
       </div>

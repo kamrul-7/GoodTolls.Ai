@@ -24,12 +24,12 @@ const Navbar = () => {
   // };
   const ourNavOption = (
     <>
-      <li className='mx-6 font-paragraph'>
+      <li className=' font-paragraph md:px-6 md:py-3'>
 
         <NavLink to="/" style={{ background: 'transparent', }} className={({ isActive }) => isActive ? "block remove" : "removes"}>
           {({ isActive }) => (
             <>
-              <span className={isActive ? "text-[#2970FF] font-semibold" : "block hover:bg-transparent"}>AI Tools Finder</span>
+              <span className={`font-paragraph text-base ${isActive ? "text-[#2970FF] font-semibold" : "block hover:bg-transparent font-normal"}`}>AI Tools Finder</span>
               <hr className={isActive ? "border-[1.5px] rounded-full w-4 mx-auto border-[#2970FF]" : "hidden"} />
             </>
           )}
@@ -37,11 +37,11 @@ const Navbar = () => {
         </NavLink>
       </li>
       
-      <li className='mx-6'>
+      <li className=' md:px-6 md:py-3'>
         <NavLink to="/news" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "block remove" : "removes"}>
           {({ isActive }) => (
             <>
-              <span className={isActive ? "text-[#2970FF] font-semibold" : "block"}>News</span>
+              <span className={`font-paragraph text-base ${isActive ? "text-[#2970FF] font-semibold" : "block hover:bg-transparent font-normal"}`}>News</span>
               <hr className={isActive ? "border-[1.5px] rounded-full w-4 mx-auto border-[#2970FF]" : "hidden"} />
             </>
           )}
@@ -52,14 +52,14 @@ const Navbar = () => {
 
   return (
     <div className="">
-      <div className="navbar bg-base-100">
-        <div className="navbar-start">
+      <div className="p-0 md:p-[5px] navbar bg-base-100 ">
+        <div className=" navbar-start">
           <Link to='/' className="w-[168px] h-[40px] flex items-center md:-ml-4 -ml-2">
             <img src="../../../public/logo.svg"/>
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-base">
+        <div className=" navbar-center hidden lg:flex">
+          <ul className="flex px-1 text-base">
             {ourNavOption}
           </ul>
         </div>

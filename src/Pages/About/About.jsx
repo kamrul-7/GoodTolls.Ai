@@ -7,9 +7,9 @@ const About = () => {
       <div className="breadcrumbs  mb-5 text-sm font-normal mx-6">
         <ul>
           <li>
-            <Link to='/'>Home</Link>
+            <Link to='/' className='text-[#081120] font-paragraph text-sm'>Home</Link>
           </li>
-          <li>About Us</li>
+          <li className='text-[#6C737F] font-paragraph text-sm'>About Us</li>
         </ul>
       </div>
       <div>

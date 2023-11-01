@@ -19,10 +19,14 @@ const Main = () => {
     <div>
       <div className="h-screen overflow-y-scroll hide-scrollbar">
         <AuthProvider>
-        <ToastContainer />
+          <ToastContainer />
           <div className="max-w-screen-xl mx-auto">
-            <Navbar />
-            <Outlet />
+            <div className="md:mt-[26px] mt-1 mx-4 md:mx-0">
+              <Navbar />
+            </div>
+            <div className="">
+              <Outlet />
+            </div>
           </div>
           {/* Conditionally render the Footer based on the condition */}
           {!isHomePage && <Footer />}

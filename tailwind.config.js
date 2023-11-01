@@ -9,8 +9,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'title': ['Space Grotesk', 'sans-serif'],
-        'paragraph': ['Inter', 'sans-serif'],
+        'title': ['Space Grotesk',],
+        'paragraph': ['Inter',],
       },
     },
   },
@@ -31,4 +31,3 @@ export default {
     require("tailwind-scrollbar-hide")
   ]
 }
-

@@ -42,7 +42,7 @@ const Filter = (props) => {
         <div className='relative'>
             <button onClick={() => setToggle(!toggle)} className=" text-base text-[#081120] rounded-xl border border-[#E5E7EB] md:w-[200px] w-full">
 
-                <div className='flex items-center justify-between px-4 py-2'>
+                <div className='flex items-center justify-between px-[22px] py-3'>
 
                     <span className='font-normal text-base font-paragraph'>{choice ? choice : 'Filter'}</span>
 
@@ -66,7 +66,7 @@ const Filter = (props) => {
                             <ul key={index} className="py-2 text-sm text-gray-700 w-full text-left">
 
                                 <li>
-                                    <button disabled href="#" className="w-full text-left block px-4 py-2 hover:bg-gray-100 font-paragraph font-medium text-base" value={value._id}>{value._id}</button>
+                                    <button disabled href="#" className="w-full text-left block gap-4 pr-4 pl-[10px] py-2 hover:bg-gray-100 font-paragraph font-medium text-base" value={value._id}>{value._id}</button>
                                 </li>
                                 {
                                     value.SubCategories.sort().map((value, index) => {
@@ -74,7 +74,7 @@ const Filter = (props) => {
                                             <button onClick={(event) => {
                                                 setChoice(`${value}`)
                                                 handleClick(event, value)
-                                            }} href="#" className={`w-full text-left block px-4 py-2 hover:bg-gray-100 ${choice === `${value}` ? 'bg-gray-100 font-paragraph font-normal text-sm' : 'bg-white font-paragraph font-normal text-sm'} `} name={`${value}`}>{value}</button>
+                                            }} href="#" className={`w-full text-left block pr-4 pl-[10px] gap-4 py-2 hover:bg-gray-100 ${choice === `${value}` ? 'bg-gray-100 font-paragraph font-normal text-sm' : 'bg-white font-paragraph font-normal text-sm'} `} name={`${value}`}>{value}</button>
                                         </li>
                                     })
                                 }

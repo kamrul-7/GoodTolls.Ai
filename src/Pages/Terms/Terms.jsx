@@ -7,7 +7,7 @@ const Terms = () => {
         <div>
             <div>
             <div className='flex items-center mt[34px] ms-10'>
-                <a href='/'>Home</a>
+                <a href='/' className='text-[#081120] font-paragraph text-sm'>Home</a>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
                     <g clipPath="url(#clip0_810_9466)">
                         <path d="M8.3332 5.5L7.1582 6.675L10.9749 10.5L7.1582 14.325L8.3332 15.5L13.3332 10.5L8.3332 5.5Z" fill="#6C737F" />
@@ -18,7 +18,7 @@ const Terms = () => {
                         </clipPath>
                     </defs>
                 </svg>
-                <p>Terms of Service</p>
+                <p className='text-[#6C737F] font-paragraph text-sm'>Terms of Service</p>
             </div>
             <div className='mx-10 my-10 mb-26 border rounded-lg p-4 md:p-8'>
                 <div className='font-bold text-3xl mb-10'>Terms of Service</div>

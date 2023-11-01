@@ -7,10 +7,10 @@ const Contact = () => {
     <div className="font-paragraph">
       <div className="breadcrumbs mb-5 text-sm font-normal mx-6">
         <ul>
-          <li>
+          <li className='text-[#081120] font-paragraph text-sm'>
             <Link to="/">Home</Link>
           </li>
-          <li>Contact Us</li>
+          <li className='text-[#6C737F] font-paragraph text-sm'>Contact Us</li>
         </ul>
       </div>
       <div
