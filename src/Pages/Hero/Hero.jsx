@@ -11,12 +11,12 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
   // const [showSearch, setShowSearch] = useState(false);
   const firstSixItem = data;
   const [visibleStartIndex, setVisibleStartIndex] = useState(0);
-  const maxStartIndex = Math.max(firstSixItem.length - 6, 0); // Ensure it doesn't go negative
-  const handlers = useSwipeable({
-    onSwipedLeft: () => setVisibleStartIndex(prev => Math.min(prev + 1, maxStartIndex)),
-    onSwipedRight: () => setVisibleStartIndex(prev => Math.max(prev - 1, 0)),
+  const maxStartIndex = Math.max(firstSixItem.length - 7, 0); // Ensure it doesn't go negative
+   const handlers = useSwipeable({
+    onSwipedLeft: () => setVisibleStartIndex(prev => Math.min(prev + 7, maxStartIndex)),
+    onSwipedRight: () => setVisibleStartIndex(prev => Math.max(prev - 7, 0)),
     preventDefaultTouchmoveEvent: true,
-    trackMouse: true
+    trackMouse: true,
   });
   useEffect(() => setChoice(name), [name])
 
@@ -38,7 +38,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
     }
   }, [name])
 
-
+  let startPos = null;
   console.log(firstSixItem.length);
   const handleKeyPress = (e) => {
     if (e.key !== "Enter") {

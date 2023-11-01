@@ -18,8 +18,9 @@ const PrivacyPolicy = () => {
                 </svg>
                 <p className='text-[#6C737F] font-paragraph text-sm'>Privacy Policy</p>
             </div>
-            <div className='mx-10 my-10 mb-26 mt-8 border rounded-lg p-4 md:p-8'>
-            <div className='font-bold text-3xl mb-6'>Privacy Policy</div>
+            <div className=' pp my-10
+             mb-26 mt-8 border rounded-lg p-10 md:p-8'>
+            <div className=' font-title text-3xl mb-6 pp-title' >Privacy Policy</div>
                 <div className='subtitle mb-4'>
                 Your privacy is important to us:
                 </div>
