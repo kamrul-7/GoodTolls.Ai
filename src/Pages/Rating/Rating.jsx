@@ -32,7 +32,7 @@ const Rating = ({ card }) => {
   return (
     <div className="font-paragraph md:p-10">
       <div className="">
-        <div className="w-full mx-auto border-b md:h-[520px] h-[660px]">
+        <div className="w-full mx-auto ">
           {/* Product heading */}
           <div className="flex justify-between gap-2 items-center justify-center">
             {/* Product Info */}
@@ -45,21 +45,22 @@ const Rating = ({ card }) => {
               </h1>
             </div>
             {/* Heart and share button */}
-            <div className="  flex gap-2 item-center justify-center">
+            <div className="  flex gap-2 md:gap-4 item-center justify-center">
               <div className="svg-sizing p-4">
                 {isClicked ? (
-                  <button className="rounded-full text-base p-1" onClick={handleClick}>
+                  <button className="rounded-full text-base" onClick={handleClick}>
                     <BsBookmarkFill
                       
                       className="rounded-full"
-                      // style={{ height: "20px", width: "20px" }}
+                      // style={{ height: "16px", width: "16px" }}
                       
                     ></BsBookmarkFill>
                   </button>
                 ) : (
-                  <button className="rounded-full p-1" onClick={handleClick}>
+                  <button className="rounded-full" onClick={handleClick}>
                     <BsBookmark
-                      style={{ height: "20px", width: "20px" }}
+                      // style={{ height: "20px", width: "20px" }}
+                      className="md:w-5 w-4 h-4 md:h-5"
                     ></BsBookmark>
                   </button>
                 )}
@@ -67,8 +68,7 @@ const Rating = ({ card }) => {
               <div className="svg-sizing p-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="25"
+                  className="md:w-5 md:h-5 w-4 h-4"
                   viewBox="0 0 24 25"
                   fill="none"
                 >
@@ -92,13 +92,16 @@ const Rating = ({ card }) => {
               </div>
             </div>
           </div>
-          {/* Product image */}
-          <div className="md:grid grid-cols-2 md:h-[319] md:w-full h-[210px] w-full mt-6 md:mt-14 md:gap-14">
-            <div className="mb-6 md:mb-0">
+
+
+<div className=" border-green-500 flex">
+  {/* Product image */}
+          <div className="md:grid grid-cols-2  md:mt-10 mt-6 md:gap-[80px]">
+            <div className="">
               <img
                 src={`https://api.goodtools.ai/uploads/${card.image}`}
                 alt="img"
-                className=" md:w-[517px] w-full md:h-[319px] h-[210px] bg-black text-white md:rounded-2xl rounded-lg"
+                className="bg-black text-white md:rounded-2xl rounded-lg h-[210px] md:h-[344px]"
               />
             </div>
             <div className="">
@@ -113,10 +116,11 @@ const Rating = ({ card }) => {
                 <hr />
               </div>
 
-             <div>
+            <div>
+            <div className="mt-4 md:mt-[26px]">
                {/* Users */}
-              <div className="flex justify-start mt-[26px]">
-                <div className="pr-1">
+              <div className="flex  justify-start items-center">
+                <div className="pr-3">
                   <svg
                     width="24"
                     height="24"
@@ -148,8 +152,8 @@ const Rating = ({ card }) => {
               </div>
 
               {/* Tool type */}
-              <div className="flex justify-start mt-4">
-                <div className="pr-4 mt-4">
+              <div className="flex justify-start mt-4 items-center">
+                <div className="pr-[10px]">
                   <svg
                     width="24"
                     height="24"
@@ -216,11 +220,11 @@ const Rating = ({ card }) => {
                   </svg>
                 </div>
                 <div>
-                  <h1 className="text-base font-semibold">
-                    Tool Type:
+                  <h1 className="text-base font-medium">
+                  <span className="mr-2">Tool Type:</span>
                     {card.SubCategory.map((sub) => {
                       return (
-                        <button className="border mt-4 px-4 pl-4 py-[5px] ml-4 rounded-full text-xs font-normal">
+                        <button className="border ml-3 px-3 py-[6px] rounded-full font-normal">
                           {sub}
                         </button>
                       );
@@ -230,8 +234,8 @@ const Rating = ({ card }) => {
               </div>
 
               {/* Published date */}
-              <div className="flex justify-start md:mt-4 mt-6">
-                <div className="pr-4">
+              <div className="flex justify-start items-center md:mt-4 mt-6">
+                <div className="pr-3">
                   <svg
                     width="24"
                     height="24"
@@ -322,7 +326,10 @@ const Rating = ({ card }) => {
                 </div>
               </div>
              </div>
-              <div className=" my-6 md:w-[100%]">
+
+
+            </div>
+              <div className="my-[30px] md:my-[26.5px] md:w-[100%]">
                 <hr />
               </div>
               {card.facebook == "" &&
@@ -336,8 +343,8 @@ const Rating = ({ card }) => {
                   <div className="text-base font-normal">
                     <h2>Explore {card.toolName} on Social media</h2>
                   </div>
-                  <div className="mt-3">
-                    <div className="flex gap-3">
+                  <div className="mt-[11px]">
+                    <div className="flex gap-4 items-center">
                       {card.discord && (
                         <a href={card.discord}>
                           <svg
@@ -449,11 +456,23 @@ const Rating = ({ card }) => {
               )}
             </div>
           </div>
+          
+
+
+
+         
+</div>
+
+
+        
         </div>
+        <div className="my-[30px] md:my-[60px] md:w-[100%]">
+                <hr />
+              </div>
       </div>
 
       {/* product descriptation and workings */}
-      <div className="">
+      <div className="mb-[40px]">
         <div className="">
           <div
             className="mt-[30px] md:mt-[60px]"
