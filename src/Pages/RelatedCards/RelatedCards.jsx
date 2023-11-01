@@ -6,13 +6,13 @@ import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { AuthContext } from '../Context/AuthProvider';
 
 const RelatedCards = ({ subs, id }) => {
-    
+
     console.log(subs);
     const { storeToolId, setLoadData } = useContext(AuthContext)
     const [relatedTools, setRelatedTools] = useState([])
     const [isLoadingRelated, setIsLoadingRelated] = useState(true)
     const initialButtonStates = {};
-    
+
 
     useEffect(() => {
         subs ?
@@ -57,9 +57,9 @@ const RelatedCards = ({ subs, id }) => {
 
 
             return (
-                <div key={indx} className="border  p-5 rounded-2xl shadow-xl  md:mx-1 mx-auto font-paragraph md:w-full w-[95%]">
-                    <Link onClick={() => {storeToolId(tool._id); setLoadData(true)}} to={`/tool/${slugify(tool.toolName)}`} >
-                        <figure className="relative w-full mb-6">
+                <div key={indx} className="p-5 rounded-2xl card-shadow  md:mx-0 mx-auto font-paragraph md:w-full w-[100%]">
+                    <Link onClick={() => { storeToolId(tool._id); setLoadData(true) }} to={`/tool/${slugify(tool.toolName)}`} >
+                        <figure className="relative w-full md:mb-6 mb-4">
                             <img
                                 src={`https://api.goodtools.ai/uploads/${tool?.image}`}
                                 alt="Image not found"
@@ -69,21 +69,21 @@ const RelatedCards = ({ subs, id }) => {
 
                             <div
                                 onClick={(event) => handleClick(event, storageKey)}
-                                className={`md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-[16px] right-0 mr-[5%] bg-white`}
+                                className={`md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-0 right-0 mr-5 mt-4 bg-white`}
                             >
-                                <div className="">
-                  {isClicked ? <BsBookmark className="w-5 h-5" /> : <BsBookmarkFill className="w-5 h-5" />}
-                </div>
+                                <div className="gap-[10px] w-[46px] h-[46px] relative">
+                                    {isClicked ? <BsBookmark className="w-5 h-5 absolute md:top-[29%] md:right-[11%] top-[30%] right-[30%]" /> : <BsBookmarkFill className="w-5 h-5 absolute md:top-[29%] md:right-[11%] top-[30%] right-[30%]" />}
+                                </div>
                             </div>
 
                         </figure>
 
-                        <div className="h-[243]">
-                            <div className="flex justify-between">
+                        <div className="h-fit">
+                            <div className="flex justify-between items-center md:mb-6 mb-4">
                                 <div className="Title">
                                     <h2 className="font-title font-bold text-[24px]">{tool?.toolName}</h2>
                                 </div>
-                                <div className="flex justify-between subscription items-center py-4">
+                                <div className="inline-flex justify-between px-4 py-2 bg-[#F3F4F6] rounded-full gap-[10px] items-center">
                                     <div className="">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
                                             <g clipPath="url(#clip0_1454_1454)">
@@ -97,7 +97,7 @@ const RelatedCards = ({ subs, id }) => {
                                             </defs>
                                         </svg>
                                     </div>
-                                    <div className="pr-4 font-normal text-xs">
+                                    <div className=" font-paragraph text-xs">
                                         <button className="">{tool?.priceType}</button>
                                     </div>
                                 </div>
@@ -105,41 +105,30 @@ const RelatedCards = ({ subs, id }) => {
 
 
 
-                            <div
+                            <div className='md:mb-6 mb-4 min-h-[72px]'>
+                                <div
 
-                                className="h-[65px] m-2 font-normal text-base font-paragraph"
-                                dangerouslySetInnerHTML={{
-                                    __html: truncateHtml(tool?.description, 10),
-                                }}
-                            ></div>
+                                    className="h-[65px] para font-normal text-base font-paragraph text-[#4D5761]"
+                                    dangerouslySetInnerHTML={{
+                                        __html: truncateHtml(tool?.description, 10),
+                                    }}
+                                ></div>
+                            </div>
 
 
-                            <div className="flex gap-3">
+                            <div className=" flex flex-wrap justify-between items-center gap-y-[6px] mb-5">
                                 {tool?.SubCategory.slice(0, 3).map((item, index) => (
-                                    <div key={index} className="flex justify-between grid-cols-4 gap-1">
-                                        <div className="card-category-item">
-                                            <p className="card-category-text px-3 py-2 font-normal text-xs">{item}</p>
-                                        </div>
+                                    <div key={index} className="flex w-fit h-fit justify-between grid-cols-4 gap-1">
+                                        <div className="px-3 py-[10px] flex items-center justify-between border-[0.5px] border-[#E5E7EB] rounded-[100px]">{item}</div>
                                     </div>
                                 ))}
                                 {tool?.SubCategory.length > 3 && (
-                                    <div className="card-category-item">
-                                        <p className="card-category-text px-3 py-2">More</p>
-                                    </div>
+                                    <div className="px-3 py-[10px] flex items-center justify-between rounded-[100px] bg-[#F3F4F6]">More</div>
                                 )}
                             </div>
-                            <div className="button flex justify-center items-center mt-6">
-                                <svg
-                                    width="20px"
-                                    height="20px"
-                                    viewBox="0 0 16 20"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M0.326264 1.44821L0.293197 1.35842C0.149147 0.967665 0.171282 0.632891 0.359162 0.363644C0.517834 0.135893 0.780414 0 1.06141 0C1.28966 0 1.51244 0.084108 1.74134 0.256758L15.2421 8.89944L15.3054 8.94469C15.62 9.19366 15.801 9.55545 15.8023 9.9372C15.8035 10.319 15.6246 10.6818 15.3118 10.9329L15.2813 10.9574L1.74273 19.7389C1.51302 19.9145 1.28899 20 1.05887 20C0.778992 20 0.517191 19.8646 0.358418 19.6381C0.170639 19.3699 0.147352 19.036 0.289439 18.6453L0.321763 18.5563L5.94803 10.1871C5.9772 10.0466 5.97683 9.83535 5.94711 9.69472L0.326264 1.44821ZM3.34024 16.8509L13.9905 9.94278L13.9181 9.89638H7.52103C7.52601 10.2117 7.48292 10.5297 7.3893 10.7873L7.35688 10.8763L3.34024 16.8509Z"
-                                        fill="#4D5761"
-                                    />
+                            <div className="w-full h-[40px] gap-[10px] flex justify-center items-center px-[34px] py-4 border border-[#E5E7EB] rounded-xl">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2.32623 1.44821L2.29317 1.35842C2.14912 0.967665 2.17125 0.632891 2.35913 0.363644C2.5178 0.135893 2.78038 0 3.06137 0C3.28963 0 3.51241 0.084108 3.74131 0.256758L17.2421 8.89944L17.3054 8.94469C17.6199 9.19366 17.801 9.55545 17.8022 9.9372C17.8035 10.319 17.6246 10.6818 17.3117 10.9329L17.2813 10.9574L3.7427 19.7389C3.51299 19.9145 3.28896 20 3.05884 20C2.77896 20 2.51716 19.8646 2.35839 19.6381C2.17061 19.3699 2.14732 19.036 2.28941 18.6453L2.32173 18.5563L7.948 10.1871C7.97717 10.0466 7.9768 9.83535 7.94708 9.69472L2.32623 1.44821ZM5.34021 16.8509L15.9905 9.94278L15.9181 9.89638H9.521C9.52598 10.2117 9.48289 10.5297 9.38927 10.7873L9.35685 10.8763L5.34021 16.8509Z" fill="#4D5761" />
                                 </svg>
                             </div>
                         </div>
@@ -168,12 +157,12 @@ const RelatedCards = ({ subs, id }) => {
     const forceUpdate = () => setUpdateState(updateState + 1);
 
     return (
-        <div className={`${relatedTools.length > 1 ? 'block':'hidden'} grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 md:gap-6 gap-4 mt-[60px]`}>
+        <div className={`${relatedTools.length > 1 ? 'block' : 'hidden'}  grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 md:gap-6 gap-y-4`}>
             {isLoadingRelated ?
                 <span className="loading loading-ring md:w-40 md:h-40 w-20 h-20 md:ml-[10%] ml-[5%] md:my-40 my-20"></span>
                 :
                 relatedTools ? relatedTools.map((tool, indx) => (
-                     tool._id !== id ? component(tool,indx) : null
+                    tool._id !== id ? component(tool, indx) : null
 
                 )) : null
             }
