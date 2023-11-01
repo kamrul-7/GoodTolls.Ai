@@ -81,7 +81,7 @@ const RelatedCards = ({ subs, id }) => {
                         <div className="h-fit">
                             <div className="flex justify-between items-center md:mb-6 mb-4">
                                 <div className="Title">
-                                    <h2 className="font-title font-bold text-[24px]">{tool?.toolName}</h2>
+                                    <h2 className="font-title font-bold text-[24px] text-[#081120]">{tool?.toolName}</h2>
                                 </div>
                                 <div className="inline-flex justify-between px-4 py-2 bg-[#F3F4F6] rounded-full gap-[10px] items-center">
                                     <div className="">
@@ -97,18 +97,18 @@ const RelatedCards = ({ subs, id }) => {
                                             </defs>
                                         </svg>
                                     </div>
-                                    <div className=" font-paragraph text-xs">
-                                        <button className="">{tool?.priceType}</button>
+                                    <div className=" ">
+                                        <button className="font-paragraph text-xs text-[#081120]">{tool?.priceType}</button>
                                     </div>
                                 </div>
                             </div>
 
 
 
-                            <div className='md:mb-6 mb-4 min-h-[72px]'>
+                            <div className='md:mb-6 mb-4 min-h-[72px] font-paragraph text-[#4D5761] text-base'>
                                 <div
 
-                                    className="h-[65px] para font-normal text-base font-paragraph text-[#4D5761]"
+                                    className="h-[65px] font-normal text-base font-paragraph text-[#4D5761]"
                                     dangerouslySetInnerHTML={{
                                         __html: truncateHtml(tool?.description, 10),
                                     }}
@@ -116,14 +116,14 @@ const RelatedCards = ({ subs, id }) => {
                             </div>
 
 
-                            <div className=" flex flex-wrap justify-between items-center gap-y-[6px] mb-5">
+                            <div className=" flex flex-wrap gap-3 items-center gap-y-[6px] mb-5">
                                 {tool?.SubCategory.slice(0, 3).map((item, index) => (
                                     <div key={index} className="flex w-fit h-fit justify-between grid-cols-4 gap-1">
-                                        <div className="px-3 py-[10px] flex items-center justify-between border-[0.5px] border-[#E5E7EB] rounded-[100px]">{item}</div>
+                                        <div className="px-3 py-[10px] flex items-center justify-between border-[0.5px] font-paragraph text-[10px] border-[#E5E7EB] rounded-[100px]">{item}</div>
                                     </div>
                                 ))}
                                 {tool?.SubCategory.length > 3 && (
-                                    <div className="px-3 py-[10px] flex items-center justify-between rounded-[100px] bg-[#F3F4F6]">More</div>
+                                    <div className="px-3 py-[10px] flex items-center justify-between rounded-[100px] text-[10px] font-paragraph bg-[#F3F4F6]">More</div>
                                 )}
                             </div>
                             <div className="w-full h-[40px] gap-[10px] flex justify-center items-center px-[34px] py-4 border border-[#E5E7EB] rounded-xl">

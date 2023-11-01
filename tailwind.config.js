@@ -11,6 +11,7 @@ export default {
       fontFamily: {
         'title': ['Space Grotesk',],
         'paragraph': ['Inter',],
+        'paragraph-medium': ['Inter',],
       },
     },
   },
