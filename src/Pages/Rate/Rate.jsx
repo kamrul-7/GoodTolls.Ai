@@ -296,7 +296,7 @@ const Rate = ({id,name}) => {
                     </div>
 
                     {/* prev/next button */}
-                    <div className="w-full">
+                    <div className="w-full md:mb-10 mb-0">
                         <div className="flex justify-center items-center">
                             {/* Prev button */}
                             <button onClick={handlePrev} className="h-12 w-12 flex items-center justify-center border border-[#2970FF] rounded-full mr-5">
