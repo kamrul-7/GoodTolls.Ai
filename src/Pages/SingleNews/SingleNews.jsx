@@ -109,7 +109,7 @@ const SingleNews = () => {
                                 <div className='small-card-text'>
                                     Lorem ipsum dolor sit amet consectetur. Scelerisque tellus aliquet cursus faucibus sit neque duis senectus.
                                     <button className='explore-btn explore-btn-text mt-6 '>
-                                        Explore Now
+                                         Explore Now
                                     </button>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@ const SingleNews = () => {
 
 
                             <div className='category mt-6 mb-10  text-xl font-paragraph font-medium'>
-                                <div className='text-xl font-paragraph font-normal'>Popular Categories</div>
+                                <div className='text-xl font-paragraph font-medium'>Popular Categories</div>
                                 <div className='grid md:grid-cols-3 grid-cols-2 gap-4 mt-4 text-lg font-normal'>
                                     {cata?.map((subItem, index) => (
                                         <p style={{textOverflow: 'ellipsis', overflow:'hidden'}} className='h-fit w-fit border rounded-3xl text-center py-2 px-4 font-paragraph font-normal text-sm text-[#4D5761]' key={index}>{subItem.Title}</p>
@@ -128,7 +128,7 @@ const SingleNews = () => {
 
 
                             <div className='category mb-10 text-xl font-paragraph font-medium'>
-                                <div className='text-lg font-normal w-full'>Tags</div>
+                                <div className='text-xl  w-full font-medium'>Tags</div>
                                 <div className='grid md:grid-cols-3 grid-cols-2 gap-4  mt-2 text-lg font-normal w-full p-2 font-paragraph text-[#4D5761]' >
                                     <p className='h-fit w-fit border rounded-3xl text-center py-2 px-4 font-paragraph font-normal text-sm text-[#4D5761]'>Ai Detection</p>
                                     <p className='h-fit w-fit border rounded-3xl text-center py-2 px-4 font-paragraph font-normal text-sm text-[#4D5761]'>Github</p>
@@ -142,14 +142,15 @@ const SingleNews = () => {
                     </div>
                     <div className='large-card md:mt-10 mb-15'>
                         <div className='large-right font-title '>
-                            <p className='font font-bold text-4xl' >Let’s Contact With Us.</p>
+                            <p className='font font-bold text-[56px]'>Let’s Contact 
+                            <br />With Us.</p>
                         </div>
                         <div className='vertical'>
                         </div>
                         <div className='large-left'>
-                            <div className='small-card-text'>
+                            <div className='text-paragraph text-base font-normal text-white '>
                                 Lorem ipsum dolor sit amet consectetur. Scelerisque tellus aliquet cursus faucibus sit neque duis senectus.
-                                <button className='explore-btn explore-btn-text mt-6 '>
+                                <button className='explore-btn explore-btn-text font-medium text-paragraph text-base  mt-6  '>
                                     Explore Now
                                 </button>
 

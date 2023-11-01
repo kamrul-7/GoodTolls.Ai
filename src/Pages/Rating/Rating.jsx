@@ -106,9 +106,9 @@ const Rating = ({ card }) => {
             </div>
             <div className="">
               {/* Price per period */}
-              <h2 className="md:text-5xl text-[32px] font-bold font-title mt-6 md:mt-0">
+              <h2 className="md:text-5xl text-[#081120] text-[32px] font-bold font-title mt-6 md:mt-0">
                 ${card.price}
-                <span className="text-base font-normal text-[#4D5761] ml-4">
+                <span className="text-base ms-2 font-normal text-[#4D5761] ">
                   /{card.pricePeriod}
                 </span>
               </h2>
@@ -145,7 +145,7 @@ const Rating = ({ card }) => {
                   </svg>
                 </div>
                 <div>
-                  <h1 className="md:text-xl md:font-medium font-semibold text-base">
+                  <h1 className="md:text-xl  md:font-medium font-semibold text-base">
                     284231 Users
                   </h1>
                 </div>
@@ -220,11 +220,11 @@ const Rating = ({ card }) => {
                   </svg>
                 </div>
                 <div>
-                  <h1 className="text-base font-medium">
-                  <span className="mr-2">Tool Type:</span>
+                  <h1 className="text-base  font-medium">
+                  <span className="mr-2 tt">Tool Type:</span>
                     {card.SubCategory.map((sub) => {
                       return (
-                        <button className="border ml-3 px-3 py-[6px] rounded-full font-normal">
+                        <button className="border text-xs text-[#4D5761] ml-3 px-3 py-[6px] rounded-full font-normal">
                           {sub}
                         </button>
                       );
@@ -320,7 +320,7 @@ const Rating = ({ card }) => {
                   </svg>
                 </div>
                 <div>
-                  <h1 className="text-base font-semibold">
+                  <h1 className="text-base font-medium">
                     Published on {card?.date}
                   </h1>
                 </div>
@@ -340,7 +340,7 @@ const Rating = ({ card }) => {
               ) : (
                 <div className="social-links mt-4 md:mt-[26px]">
                   {/* link */}
-                  <div className="text-base font-normal">
+                  <div className="text-[#4D5761] text-base font-normal">
                     <h2>Explore {card.toolName} on Social media</h2>
                   </div>
                   <div className="mt-[11px]">
@@ -484,9 +484,10 @@ const Rating = ({ card }) => {
               borderRadius: "16px",
             }}
           >
-            <button
+            <button className="text-[#081120] font-medium"
               onClick={() => setIsToggled(false)}
               style={{
+                
                 borderRadius: "8px",
                 height: "49px",
                 margin: "8px",
@@ -497,7 +498,7 @@ const Rating = ({ card }) => {
             >
               Description
             </button>
-            <button
+            <button className="text-[#081120] font-medium"
               onClick={() => setIsToggled(true)}
               style={{
                 borderRadius: "8px",
