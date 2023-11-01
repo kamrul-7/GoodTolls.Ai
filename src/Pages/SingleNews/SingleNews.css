@@ -135,7 +135,6 @@
 .small-blue-card {
     display: flex;
     width: 398px;
-    padding: 40px;
     flex-direction: column;
     justify-content: center;
     align-items: center;

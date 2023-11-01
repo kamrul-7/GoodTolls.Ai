@@ -136,12 +136,12 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
                 <p className='popular-title mb-4 font-paragraph h-6 text-base'>Popular Categories</p>
 
                 <div className='flex items-center md:gap-6 gap-2'>
-                  <button className='flex md:w-11 md:h-11 justify-center p-[var(--spacing-md,8px)] items-center gap-2.5  rounded-[100px] border border-[var(--neutral-300,#D2D6DB)]' onClick={() => setVisibleStartIndex(prev => Math.max(prev - 1, 0))}>
+                  {/* <button className='flex md:w-11 md:h-11 justify-center p-[var(--spacing-md,8px)] items-center gap-2.5  rounded-[100px] border border-[var(--neutral-300,#D2D6DB)]' onClick={() => setVisibleStartIndex(prev => Math.max(prev - 1, 0))}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 24" fill="none">
                       <path d="M10.07 5.92999L4 12L10.07 18.07" stroke="#D2D6DB" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                       <path d="M21 12H4.17001" stroke="#D2D6DB" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                  </button>
+                  </button> */}
 
                   <div className=''> {/* Main Wrapper */}
                     <div>
@@ -152,7 +152,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
                           overflow: 'hidden' // Ensure children don't overflow
                         }}
                       >
-                        <div className='popular-item flex md:gap-4 gap-2' {...handlers}
+                        <div className='popular-item flex md:gap-4 gap-2 my-1 justify-center' {...handlers}
                           style={{ transform: `translateX(-${visibleStartIndex * 110}px)` }}>
                           {firstSixItem.map((item, index) => (
                             <button
@@ -182,12 +182,12 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
                   </div>
 
 
-                  <button className='flex md:w-11 md:h-11 justify-center p-[var(--spacing-md,8px)] items-center gap-2.5  rounded-[100px] border border-[var(--neutral-300,#D2D6DB)]' onClick={() => setVisibleStartIndex(prev => Math.min(prev + 1, maxStartIndex))}>
+                  {/* <button className='flex md:w-11 md:h-11 justify-center p-[var(--spacing-md,8px)] items-center gap-2.5  rounded-[100px] border border-[var(--neutral-300,#D2D6DB)]' onClick={() => setVisibleStartIndex(prev => Math.min(prev + 1, maxStartIndex))}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                       <path d="M14.9301 5.92999L21.0001 12L14.9301 18.07" stroke="#6C737F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                       <path d="M4 12H20.83" stroke="#6C737F" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                  </button>
+                  </button> */}
                 </div>
 
               </div>

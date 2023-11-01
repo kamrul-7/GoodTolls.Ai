@@ -51,7 +51,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="">
+    <div className="-ml-2 md:ml-2">
       <div className="p-0 md:p-[5px] navbar bg-base-100 ">
         <div className=" navbar-start">
           <Link to='/' className="w-[168px] h-[40px] flex items-center md:-ml-4 -ml-2">

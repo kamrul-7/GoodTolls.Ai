@@ -99,7 +99,7 @@ const News = () => {
     // </div>
 
     //         </div>
-    <div className="font-paragraph">
+    <div className="font-paragraph md:mb-[100px] mb-[40px] ">
       <div className="flex  ms-2 items-center pb-4 mt[34px] my-4 ml-2">
         <a href="/" className="text-[#081120] font-paragraph text-sm">Home</a>
         <svg
@@ -129,10 +129,10 @@ const News = () => {
         </svg>
         <p className='text-[#6C737F] font-paragraph text-sm'>News</p>
       </div>
-      <div className=" border  md:p-10   m-2 rounded-lg">
+      <div className=" border md:p-10 md:m-4 p-4 rounded-lg">
         <div>
-        <div className="   md:rounded-xl">
-          <p class="text-center    text-3xl md:text-5xl  font-bold font-title md:text-left">
+        <div className="md:rounded-xl">
+          <p class="text-center text-3xl md:text-5xl  font-bold font-title md:text-left">
      Latest Our AI News & Articles
    </p>
    
@@ -140,9 +140,9 @@ const News = () => {
            </div>
         </div>
 
-        <div className=" text-center  grid  md:grid-cols-2 gap-6 md:mt-10 mt-6 mx-auto  font-title">
+        <div className=" text-center grid  md:grid-cols-2 gap-6 md:mt-10 mt-6 mx-auto  font-title">
           {isLoading ? (
-            <span className="loading loading-ring md:w-40 md:h-40 w-20  md:ml-[90%] ml-[50%] mb-10 mt-5"></span>
+            <span className="loading  loading-ring md:w-40 md:h-40 w-20  md:ml-[90%] ml-[50%] mb-10 mt-5"></span>
           ) : (
             news.map((item, index) => (
               <Link
@@ -158,16 +158,16 @@ const News = () => {
                       alt=""
                     />
                   </div>
-                  <div className=" mt-6 w-full flex md:justify-normal justify-between items-center md:w-full mx-auto">
+                  <div className=" md:mt-6 mt-4 w-full flex md:justify-normal justify-between items-center md:w-full mx-auto">
                     <p className="date-title font-medium font-paragraph text-xl mr-[18px]">Tools</p>
                     <div className=" invisible vertical-line mr-[18px]"></div>
                     <p className="date-dates">{formateDte(item.date)}</p>
                   </div>
-                  <div className="sub-section mt-4">
+                  <div className="sub-section md:mt-6 mt-4">
                     <p className="sub-text font-title font-bold md:text-2xl"> {item.newsTitle} </p>
                   </div>
                   <div
-                    className="text mt-4 mb-4"
+                    className="text my-4 md:mb-6"
                     dangerouslySetInnerHTML={{
                       __html: (item?.newsBody?.replace(/["\n]/g, "") || "")
                         .replace(/<img(.)*>/g, "<p></p>")
@@ -176,7 +176,7 @@ const News = () => {
                         .join(" "),
                     }}
                   ></div>
-                  <div className="btn-section md:w-44">
+                  <div className="btn-section md:w-44 md:my-[40px] mt-[16px]">
                     <button className="md:w-44">Read More</button>
                   </div>
                 </div>

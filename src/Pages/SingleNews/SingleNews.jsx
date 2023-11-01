@@ -75,10 +75,10 @@ const SingleNews = () => {
                 <p className='text-[#6C737F] font-paragraph text-sm'>News Page</p>
             </div>
             {/* Single News Section */}
-            <div className='p-4'>
-                <div className='md:p-10 px-4 pt-4 pb-7 my-4 mb-26 border-[#E5E7EB] border rounded-2xl'>
+            <div className='md:pt-[40px] mb-[40px] pt-6 md:mx-0 mx-4'>
+                <div className='md:p-10 px-4 pt-4 pb-7 mb-26 border-[#E5E7EB] border rounded-2xl'>
                     {/* Hero section */}
-                    <div className="hero mb-10 rounded-lg md:h-[394px] h-[210px] mx-auto" style={{ backgroundImage: `url(https://api.goodtools.ai/uploads/${item.image})` }}>
+                    <div className="hero md:mb-10 mb-6 rounded-lg md:h-[394px] h-[210px] mx-auto" style={{ backgroundImage: `url(https://api.goodtools.ai/uploads/${item.image})` }}>
                     </div>
                     <div className='md:grid md:grid-cols-2 '>
                         {/* right-div */}
@@ -101,8 +101,8 @@ const SingleNews = () => {
                         </div>
 
                         {/* Left Div */}
-                        <div className='md:w-[398px] w-full md:ml-44 mx-auto md:mx-0 mt-7 md:mt-0'>
-                            <div className='small-blue-card'>
+                        <div className='md:w-[398px] w-full md:ml-[33%] mx-auto md:mx-0 mt-7 md:mt-0'>
+                            <div className='small-blue-card md:p-[40px] p-6'>
                                 <div className='small-card-title font-title'>
                                     Explore all of our Ai tools now
                                 </div>
@@ -116,26 +116,26 @@ const SingleNews = () => {
                             {/* Popular */}
 
 
-                            <div className='category mt-8 mb-10 md:ml-8 text-xl font-paragraph font-medium'>
+                            <div className='category mt-6 mb-10  text-xl font-paragraph font-medium'>
                                 <div className='text-xl font-paragraph font-normal'>Popular Categories</div>
-                                <div className='grid md:grid-cols-2 grid-cols-2 gap-2 mt-2 md:w-96 text-lg font-normal w-full p-2'>
+                                <div className='grid md:grid-cols-3 grid-cols-2 gap-4 mt-4 text-lg font-normal'>
                                     {cata?.map((subItem, index) => (
-                                        <p style={{textOverflow: 'ellipsis', overflow:'hidden'}} className='h-fit border rounded-3xl text-center mb-4 py-1 font-paragraph font-normal text-sm text-[#4D5761]' key={index}>{subItem.Title}</p>
+                                        <p style={{textOverflow: 'ellipsis', overflow:'hidden'}} className='h-fit w-fit border rounded-3xl text-center py-2 px-4 font-paragraph font-normal text-sm text-[#4D5761]' key={index}>{subItem.Title}</p>
                                     ))}
                                 </div>
                             </div>
 
 
 
-                            <div className='category mt-8 mb-10 md:ml-8'>
-                                <div className='font-paragraph font-medium text-xl'>Tags</div>
-                                <div className='grid md:grid-cols-3 grid-cols-2 gap-2  mt-2 md:w-96 text-lg font-normal w-full p-2 font-paragraph text-[#4D5761]' >
-                                    <p className='border rounded-3xl text-center mb-4 py-1 font-paragraph font-normal text-sm'>Ai Detection</p>
-                                    <p className='border rounded-3xl text-center mb-4 py-1 font-paragraph font-normal text-sm '>Github</p>
-                                    <p className='border rounded-3xl text-center mb-4 py-1 font-paragraph font-normal text-sm'>Image</p>
-                                    <p className='border rounded-3xl text-center mb-4 py-1 font-paragraph font-normal text-sm'>Machine</p>
-                                    <p className='border rounded-3xl text-center mb-4 py-1 font-paragraph font-normal text-sm'>Inspiration</p>
-                                    <p className='border rounded-3xl text-center mb-4 py-1 font-paragraph font-normal text-sm'>Code</p>
+                            <div className='category mb-10 text-xl font-paragraph font-medium'>
+                                <div className='text-lg font-normal w-full'>Tags</div>
+                                <div className='grid md:grid-cols-3 grid-cols-2 gap-4  mt-2 text-lg font-normal w-full p-2 font-paragraph text-[#4D5761]' >
+                                    <p className='h-fit w-fit border rounded-3xl text-center py-2 px-4 font-paragraph font-normal text-sm text-[#4D5761]'>Ai Detection</p>
+                                    <p className='h-fit w-fit border rounded-3xl text-center py-2 px-4 font-paragraph font-normal text-sm text-[#4D5761]'>Github</p>
+                                    <p className='h-fit w-fit border rounded-3xl text-center py-2 px-4 font-paragraph font-normal text-sm text-[#4D5761]'>Image</p>
+                                    <p className='h-fit w-fit border rounded-3xl text-center py-2 px-4 font-paragraph font-normal text-sm text-[#4D5761]'>Machine</p>
+                                    <p className='h-fit w-fit border rounded-3xl text-center py-2 px-4 font-paragraph font-normal text-sm text-[#4D5761]'>Inspiration</p>
+                                    <p className='h-fit w-fit border rounded-3xl text-center py-2 px-4 font-paragraph font-normal text-sm text-[#4D5761]'>Code</p>
                                 </div>
                             </div>
                         </div>
