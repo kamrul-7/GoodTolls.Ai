@@ -86,7 +86,7 @@ const SingleNews = () => {
                             <div className='date'>
                                 <p className='date-title font-medium text-xl' >Tools</p>
                                 <div className=" invisible vertical-line"></div>
-                                <p className='date-dates'>{formateDte(item.date)}</p>
+                                <p className='date-dates hidden'>{formateDte(item.date)}</p>
                             </div>
                             <div className='single-title mb-6 font-title'>
                                 {item.newsTitle}
@@ -118,7 +118,7 @@ const SingleNews = () => {
 
                             <div className='category mt-6 mb-10  text-xl font-paragraph font-medium'>
                                 <div className='text-xl font-paragraph font-normal'>Popular Categories</div>
-                                <div className='grid md:grid-cols-3 grid-cols-2 gap-4 mt-4 text-lg font-normal'>
+                                <div className='flex flex-wrap gap-4 mt-4 text-lg font-normal'>
                                     {cata?.map((subItem, index) => (
                                         <p style={{textOverflow: 'ellipsis', overflow:'hidden'}} className='h-fit w-fit border rounded-3xl text-center py-2 px-4 font-paragraph font-normal text-sm text-[#4D5761]' key={index}>{subItem.Title}</p>
                                     ))}
@@ -129,7 +129,7 @@ const SingleNews = () => {
 
                             <div className='category mb-10 text-xl font-paragraph font-medium'>
                                 <div className='text-lg font-normal w-full'>Tags</div>
-                                <div className='grid md:grid-cols-3 grid-cols-2 gap-4  mt-2 text-lg font-normal w-full p-2 font-paragraph text-[#4D5761]' >
+                                <div className='flex flex-wrap gap-4  mt-2 text-lg font-normal w-full p-2 font-paragraph text-[#4D5761]' >
                                     <p className='h-fit w-fit border rounded-3xl text-center py-2 px-4 font-paragraph font-normal text-sm text-[#4D5761]'>Ai Detection</p>
                                     <p className='h-fit w-fit border rounded-3xl text-center py-2 px-4 font-paragraph font-normal text-sm text-[#4D5761]'>Github</p>
                                     <p className='h-fit w-fit border rounded-3xl text-center py-2 px-4 font-paragraph font-normal text-sm text-[#4D5761]'>Image</p>

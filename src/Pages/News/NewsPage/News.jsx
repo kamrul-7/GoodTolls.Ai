@@ -99,8 +99,8 @@ const News = () => {
     // </div>
 
     //         </div>
-    <div className="font-paragraph md:mb-[100px] mb-[40px] ">
-      <div className="flex  ms-2 items-center pb-4 mt[34px] my-4 ml-2">
+    <div className="font-paragraph md:mb-[100px] mb-[40px] mx-4 md:mx-0">
+      <div className="flex items-center pb-4 mt[34px] my-4">
         <a href="/" className="text-[#081120] font-paragraph text-sm">Home</a>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +161,7 @@ const News = () => {
                   <div className=" md:mt-6 mt-4 w-full flex md:justify-normal justify-between items-center md:w-full mx-auto">
                     <p className="date-title font-medium font-paragraph text-xl mr-[18px]">Tools</p>
                     <div className=" invisible vertical-line mr-[18px]"></div>
-                    <p className="date-dates">{formateDte(item.date)}</p>
+                    <p className="date-dates hidden">{formateDte(item.date)}</p>
                   </div>
                   <div className="sub-section md:mt-6 mt-4">
                     <p className="sub-text font-title font-bold md:text-2xl"> {item.newsTitle} </p>

@@ -145,19 +145,19 @@ const Home = () => {
 
                 <div className=' md:flex items-center justify-between md:mb-11 mb-[30px]'>
                     <div className='md:flex items-center '>
-                        <div className='w-full md:w-fit mx-auto'>
+                        <div className='w-full md:w-fit mx-auto mb-4 md:mb-0'>
                             <Filter clickHandler={handleSubSubmit} selectedPopular={selectedPopular}></Filter>
                         </div>
-                        <div className='text-[#6C737F] my-auto h-fit w-fit text-base font-medium md:ml-[32px] font-paragraph mt-4'>
+                        <div className='text-[#6C737F] my-auto h-fit w-fit text-base font-medium md:ml-[32px] font-paragraph '>
                             Showing <span className='text-[#081120] font-paragraph'> {decoration(total)} Best</span> Ai Tools
                         </div>
                     </div>
                     <div className=' flex items-center justify-between md:justify-normal md:w-fit w-full md:mt-0 mt-6'>
-                        <span className='text-[#081120] md:font-medium md:mr-6 font-paragraph md:text-xl text-base font-normal pr-2'>Sort by : </span>
+                        <span className='text-[#081120] md:font-medium md:mr-6 font-paragraph  md:text-xl text-base font-normal'>Sort by : </span>
                         <div className='w-fit flex justify-between gap-4 mt-1'>
 
 
-                            <button onClick={() => setSortOption('All')} name="All" className='flex items-center gap-2 font-paragraph'>
+                            <button onClick={() => setSortOption('All')} name="All" className='flex items-center md:gap-2 gap-1 font-paragraph'>
                                 <input onClick={handleChecked} className='focus:ring-0 focus:outline-0 rounded-sm h-3 w-3 font-paragraph font-normal text-base' type="checkbox" id="All" name="All" defaultChecked />
                                 <div className='col'>All</div>
                             </button>
