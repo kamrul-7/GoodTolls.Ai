@@ -109,7 +109,7 @@ const SingleNews = () => {
                                 <div className='small-card-text'>
                                     Lorem ipsum dolor sit amet consectetur. Scelerisque tellus aliquet cursus faucibus sit neque duis senectus.
                                     <button className='explore-btn explore-btn-text mt-6 '>
-                                        Explore Now
+                                         Explore Now
                                     </button>
                                 </div>
                             </div>
@@ -142,14 +142,15 @@ const SingleNews = () => {
                     </div>
                     <div className='large-card md:mt-10 mb-15'>
                         <div className='large-right font-title '>
-                            <p className='font font-bold text-4xl' >Let’s Contact With Us.</p>
+                            <p className='font font-bold text-[56px]'>Let’s Contact 
+                            <br />With Us.</p>
                         </div>
                         <div className='vertical'>
                         </div>
                         <div className='large-left'>
-                            <div className='small-card-text'>
+                            <div className='text-paragraph text-base font-normal text-white '>
                                 Lorem ipsum dolor sit amet consectetur. Scelerisque tellus aliquet cursus faucibus sit neque duis senectus.
-                                <button className='explore-btn explore-btn-text mt-6 '>
+                                <button className='explore-btn explore-btn-text font-medium text-paragraph text-base  mt-6  '>
                                     Explore Now
                                 </button>
 

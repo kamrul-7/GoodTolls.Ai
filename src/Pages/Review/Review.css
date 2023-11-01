@@ -30,9 +30,35 @@
     -ms-overflow-style: none !important;
     scrollbar-width: none !important;
 }
-
+.cl{
+    border-radius: 12px;
+    border: 1px solid var(--neutral-200, #E5E7EB);
+}
+.cl-text{
+    color: var(--neutral-600, #4D5761);
+    /* Body Text/Inter 16px/Medium */
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+}
 .editor-wrap-review::-webkit-scrollbar{
     display: none;
+}
+.sb{
+    border-radius: 12px;
+background: var(--Primary, #2970FF);
+}
+.sb-text{
+    color: var(--neutral-white, #FFF);
+
+/* Body Text/Inter 16px/Medium */
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: 150%; /* 24px */
 }
 
 @media (max-width: 767px) {
