@@ -95,10 +95,12 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
 
               <div
                 onClick={(event) => handleClick(event, storageKey)}
-                className={`md:w-[46px] md:h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-0 right-0 mr-5 mt-4 bg-white`}
+                className={`w-[46px] h-[46px] p-[10px] rounded-full flex items-center justify-center absolute top-0 right-0 mr-5 mt-4 bg-white`}
               >
-                <div className="gap-[10px] w-[46px] h-[46px] relative">
-                  {isClicked ? <BsBookmarkFill className="w-5 h-5 absolute md:top-[29%] md:right-[11%] top-[30%] right-[30%]" /> : <BsBookmark className="w-5 h-5 absolute md:top-[29%] md:right-[11%] top-[30%] right-[30%]" />}
+                <div className="w-[46px] h-[46px] relative">
+                  {isClicked ?
+                    <BsBookmarkFill className=" w-[26px] h-[26px] absolute md:top-[21%] top-[23%] right-0" />
+                    : <BsBookmark className=" w-[26px] h-[26px] absolute md:top-[21%] top-[23%] right-0" />}
                 </div>
               </div>
 
