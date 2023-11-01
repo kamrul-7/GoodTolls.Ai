@@ -135,7 +135,7 @@ const Hero = ({ name, category, count, getSearchData, popularSub }) => {
               <div className='popular-section md:mt-6 mt-4 max'>
                 <p className='popular-title mb-4 font-paragraph h-6 text-base'>Popular Categories</p>
 
-                <div className='flex items-center md:gap-6 gap-2'>
+                <div className='flex items-center md:gap-6 gap-2 cata'>
                   {/* <button className='flex md:w-11 md:h-11 justify-center p-[var(--spacing-md,8px)] items-center gap-2.5  rounded-[100px] border border-[var(--neutral-300,#D2D6DB)]' onClick={() => setVisibleStartIndex(prev => Math.max(prev - 1, 0))}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 24" fill="none">
                       <path d="M10.07 5.92999L4 12L10.07 18.07" stroke="#D2D6DB" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />

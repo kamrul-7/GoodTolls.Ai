@@ -153,30 +153,30 @@ const Home = () => {
                         </div>
                     </div>
                     <div className=' flex items-center justify-between md:justify-normal md:w-fit w-full md:mt-0 mt-6'>
-                        <span className='text-[#081120] md:font-medium md:mr-6 font-paragraph text-xl font-normal '>Sort by : </span>
+                        <span className='text-[#081120] md:font-medium md:mr-6 font-paragraph md:text-xl text-base font-normal pr-2'>Sort by : </span>
                         <div className='w-fit flex justify-between gap-4 mt-1'>
 
 
                             <button onClick={() => setSortOption('All')} name="All" className='flex items-center gap-2 font-paragraph'>
                                 <input onClick={handleChecked} className='focus:ring-0 focus:outline-0 rounded-sm h-3 w-3 font-paragraph font-normal text-base' type="checkbox" id="All" name="All" defaultChecked />
-                                <div>All</div>
+                                <div className='col'>All</div>
                             </button>
                             <button onClick={() => sortOption === 'Free' ? setSortOption('All') : setSortOption('Free')} name="Free" className='flex items-center gap-2 font-paragraph'>
 
                                 <input onClick={handleChecked} className='focus:ring-0 focus:outline-0 rounded-sm h-3 w-3 font-paragraph font-normal text-base' type="checkbox" id="Free" name="Free" />
-                                <div>
+                                <div className='col'>
                                     Free
                                 </div>
                             </button>
                             <button onClick={() => sortOption === 'Premium' ? setSortOption('All') : setSortOption('Premium')} name="Premium" className='flex items-center gap-2 font-paragraph'>
                                 <input onClick={handleChecked} className='focus:ring-0 focus:outline-0 rounded-sm h-3 w-3 font-paragraph font-normal text-base' type="checkbox" id="Premium" name="Premium" />
-                                <div>
+                                <div className='col'>
                                     Premium
                                 </div>
                             </button>
                             <button onClick={() => sortOption === 'Paid' ? setSortOption('All') : setSortOption('Paid')} name="Paid" className='flex items-center gap-2 font-paragraph'>
                                 <input onClick={handleChecked} className='focus:ring-0 focus:outline-0 rounded-sm h-3 w-3 font-paragraph font-normal text-base' type="checkbox" id="Paid" name="Paid" />
-                                <div>
+                                <div className='col'>
                                     Paid
                                 </div>
                             </button>
