@@ -107,7 +107,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
             <div className="h-fit">
               <div className="flex justify-between items-center md:mb-6 mb-4">
                 <div className="Title">
-                  <h2 className="font-title font-bold text-[24px]">{tool?.toolName}</h2>
+                  <h2 className="hd font-bold font text-[24px]">{tool?.toolName}</h2>
                 </div>
                 <div className="flex justify-between subscription items-center px-4 py-2">
                   <div className="">
@@ -135,7 +135,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
                 <div
 
 
-                  className="h-[65px] font-normal text-base font-paragraph"
+                  className="h-[65px] para font-normal text-base font-paragraph text-[#4D5761]"
 
                   dangerouslySetInnerHTML={{
                     __html: truncateHtml(tool?.description, 16),

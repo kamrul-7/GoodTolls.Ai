@@ -24,7 +24,7 @@ const Navbar = () => {
   // };
   const ourNavOption = (
     <>
-      <li className=' font-paragraph md:px-6 md:py-3'>
+      <li className=' font-paragraph md:px-6 md:py-3 navi'>
 
         <NavLink to="/" style={{ background: 'transparent', }} className={({ isActive }) => isActive ? "block remove" : "removes"}>
           {({ isActive }) => (
@@ -37,7 +37,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       
-      <li className=' md:px-6 md:py-3'>
+      <li className=' md:px-6 md:py-3 navi'>
         <NavLink to="/news" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "block remove" : "removes"}>
           {({ isActive }) => (
             <>
@@ -73,7 +73,7 @@ const Navbar = () => {
         <label onClick={toggle} tabIndex={0} className="hide-menu btn-ghost btn">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-5 h-5 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
           </label>
-      <ul tabIndex={0} className={`menu  menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-base gap-1 ${isNavbarHidden ? 'hidden' : ''} `}>
+      <ul tabIndex={0} className={`menu  menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 gap-1 navi ${isNavbarHidden ? 'hidden' : ''} `}>
         <li className='mx-6 font-paragraph text-base font-normal'>
           <NavLink to="/" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] p-0 hover:text-[#2970FF] font-paragraph font-normal text-base" : "p-0 font-paragraph font-normal text-base"} onClick={handleNavLinkClick}>
             AI Tools Finder
@@ -81,7 +81,7 @@ const Navbar = () => {
         </li>
         
         
-        <li className='mx-6 font-paragraph text-base font-normal'>
+        <li className='mx-6 navi'>
           <NavLink to="/news" style={{ background: 'transparent' }} className={({ isActive }) => isActive ? "text-[#2970FF] p-0 hover:text-[#2970FF] font-paragraph font-normal text-base" : "p-0 font-paragraph font-normal text-base"} onClick={handleNavLinkClick}>
             News
           </NavLink>
