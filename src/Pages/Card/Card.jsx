@@ -109,7 +109,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
                 <div className="Title">
                   <h2 className="hd font-bold font text-[24px]">{tool?.toolName}</h2>
                 </div>
-                <div className="flex justify-between subscription items-center px-4 py-2">
+                <div className="inline-flex justify-between px-4 py-2 bg-[#F3F4F6] rounded-full gap-[10px] items-center">
                   <div className="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
                       <g clipPath="url(#clip0_1454_1454)">
@@ -123,7 +123,7 @@ const Card = ({ getToolsCount, selectedSub, sortOption, searchData }) => {
                       </defs>
                     </svg>
                   </div>
-                  <div className="mr-[10px] font-normal text-xs mt-[2px]">
+                  <div className=" font-paragraph text-xs">
                     <button className="">{tool?.priceType}</button>
                   </div>
                 </div>

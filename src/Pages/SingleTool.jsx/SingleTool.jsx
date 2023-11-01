@@ -8,7 +8,7 @@ import RelatedCards from "../RelatedCards/RelatedCards";
 
 const SingleTool = () => {
     const tmpStoreKeyTool = 'ToolsFinder(GoodToolsAi)RegularStoring:_toolId'
-     const { loadData, setLoadData } = useContext(AuthContext);
+    const { loadData, setLoadData } = useContext(AuthContext);
     const [cards, setCards] = useState(null);
     const [isLoading, setIsloading] = useState(true)
 
@@ -63,7 +63,8 @@ const SingleTool = () => {
             {
                 isLoading ?
                     <span className="loading loading-ring md:w-40 md:h-40 w-20 h-20 md:ml-[45%] ml-[40%] md:my-40 my-20"></span>
-                    : <div className="breadcrumbs text-sm font-normal mb-10 md:mb-14 ">
+                    : 
+                    <div className="breadcrumbs text-sm font-normal mb-10 md:mb-14 mx-0 md:mx-4">
                         <ul className="ml-[2.5%] md:ml-[0.5%]">
                             <li className='text-[#081120] font-paragraph text-sm'>
                                 <Link to="/">Home</Link>
@@ -77,7 +78,10 @@ const SingleTool = () => {
                             <Rattingg card={cards} />
                             <Rate id={cards._id} name={cards.toolName}></Rate>
                         </div>
-                        <RelatedCards id={cards._id} subs={cards.SubCategory}></RelatedCards>
+                        <div className="md:my-[60px] mt-10 mb-5 mx-4 md:mx-0">
+                            <RelatedCards id={cards._id} subs={cards.SubCategory}></RelatedCards>
+                        </div>
+
                     </div>
             }
 
