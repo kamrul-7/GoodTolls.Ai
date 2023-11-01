@@ -100,8 +100,8 @@ const News = () => {
 
     //         </div>
     <div className="font-paragraph">
-      <div className="flex mb-6 md:mb-10  items-center ml-2">
-        <a href="/">Home</a>
+      <div className="flex  ms-2 items-center pb-4 mt[34px] my-4 ml-2">
+        <a href="/" className="text-[#081120] font-paragraph text-sm">Home</a>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -127,7 +127,7 @@ const News = () => {
             </clipPath>
           </defs>
         </svg>
-        <p>News</p>
+        <p className='text-[#6C737F] font-paragraph text-sm'>News</p>
       </div>
       <div className=" border  md:p-10   m-2 rounded-lg">
         <div>

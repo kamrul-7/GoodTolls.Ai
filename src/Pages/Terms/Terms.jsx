@@ -6,8 +6,8 @@ const Terms = () => {
     return (
         <div>
             <div>
-            <div className='flex privacy-menu items-center font-paragraph  font-normal text-sm '>
-                <a href='/'>Home</a>
+            <div className='flex items-center mt[34px] ms-10'>
+                <a href='/' className='text-[#081120] font-paragraph text-sm'>Home</a>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
                     <g clipPath="url(#clip0_810_9466)">
                         <path d="M8.3332 5.5L7.1582 6.675L10.9749 10.5L7.1582 14.325L8.3332 15.5L13.3332 10.5L8.3332 5.5Z" fill="#6C737F" />
@@ -18,8 +18,7 @@ const Terms = () => {
                         </clipPath>
                     </defs>
                 </svg>
-                <p className='font-paragraph font-normal' style={{color: "var(--neutral-500, #6C737F)"}}>Terms of Services</p>
-
+                <p className='text-[#6C737F] font-paragraph text-sm'>Terms of Service</p>
             </div>
             <div className='pp my-10
              mb-26 mt-8 border rounded-lg p-10 md:p-8'>

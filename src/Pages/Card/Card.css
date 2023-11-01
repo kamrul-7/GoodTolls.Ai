@@ -72,17 +72,17 @@
 }
 
 .card-category-text {
-    color: var(--neutral-600, #4D5761);
-    /* leading-trim: both;
+    /* color: var(--neutral-600, #4D5761);
+    leading-trim: both;
     text-edge: cap; */
 
     /* Body Text/Inter 10px/Regular */
     /* font-family: Inter; */
-    font-size: 10px;
+    /* font-size: 10px;
     font-style: normal;
     font-weight: 400;
     line-height: 150%;
-    /* 15px */
+    15px */
 }
 .card-shadow{
     background: var(--neutral-white, #FFF);

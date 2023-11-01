@@ -3,8 +3,9 @@ import Card from '../Card/Card';
 import Hero from '../Hero/Hero';
 import Filter from '../Filter/Filter';
 import { useEffect, useState } from 'react';
-import { useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import CookiePopup from '../../Component/Popup/Popup';
+import './Home.css'
 
 
 const Home = () => {
@@ -122,45 +123,74 @@ const Home = () => {
 
 
     return (
-        <div id='home'>
-
-            <Hero name={selectedSub} category={category} count={total} getSearchData={getSearchData} popularSub={handleSelectPopularSubmit}></Hero>
-
-            <div className='md:flex items-center justify-between md:mt-20 mb-5'>
-                <div className='md:flex items-center '>
-                    <div className='w-11/12 md:w-fit mx-auto'>
-                        <Filter clickHandler={handleSubSubmit} selectedPopular={selectedPopular}></Filter>
+        <div className=''>
+            {
+                selectedSub && category ?
+                    <div className="breadcrumbs py-0 text-sm font-normal mx-4 md:mx-0">
+                        <ul>
+                            <li className='text-[#081120] font-paragraph text-sm'>
+                                <Link to='/home'>Home</Link>
+                            </li>
+                            <li className='text-[#081120] font-paragraph text-sm'>{category}</li>
+                            <li className='text-[#6C737F] font-paragraph text-sm'>{selectedSub}</li>
+                        </ul>
                     </div>
-                    <div className='text-[#6C737F] font-medium ml-6 my-4 md:mt-12 md:mb-11  font-paragraph'>
-                        Showing <span className='text-[#081120] font-paragraph'> {decoration(total)} Best</span> Ai Tools
+                    : undefined
+            }
+            <div className={selectedSub && category ? 'mx-4 md:mt-[40px] mt-[40px]' : 'mx-4 md:mt-[66px] mt-[40px]'}>
+
+                <div className=' md:mb-[100px] mb-[41.5px]'>
+                    <Hero name={selectedSub} category={category} count={total} getSearchData={getSearchData} popularSub={handleSelectPopularSubmit}></Hero>
+                </div>
+
+                <div className=' md:flex items-center justify-between md:mb-11 mb-[30px]'>
+                    <div className='md:flex items-center '>
+                        <div className='w-full md:w-fit mx-auto'>
+                            <Filter clickHandler={handleSubSubmit} selectedPopular={selectedPopular}></Filter>
+                        </div>
+                        <div className='text-[#6C737F] my-auto h-fit w-fit text-base font-medium md:ml-[32px] font-paragraph mt-4'>
+                            Showing <span className='text-[#081120] font-paragraph'> {decoration(total)} Best</span> Ai Tools
+                        </div>
+                    </div>
+                    <div className=' flex items-center justify-between md:justify-normal md:w-fit w-full md:mt-0 mt-6'>
+                        <span className='text-[#081120] md:font-medium md:mr-6 font-paragraph text-xl font-normal '>Sort by : </span>
+                        <div className='w-fit flex justify-between gap-4 mt-1'>
+
+
+                            <button onClick={() => setSortOption('All')} name="All" className='flex items-center gap-2 font-paragraph'>
+                                <input onClick={handleChecked} className='focus:ring-0 focus:outline-0 rounded-sm h-3 w-3 font-paragraph font-normal text-base' type="checkbox" id="All" name="All" defaultChecked />
+                                <div>All</div>
+                            </button>
+                            <button onClick={() => sortOption === 'Free' ? setSortOption('All') : setSortOption('Free')} name="Free" className='flex items-center gap-2 font-paragraph'>
+
+                                <input onClick={handleChecked} className='focus:ring-0 focus:outline-0 rounded-sm h-3 w-3 font-paragraph font-normal text-base' type="checkbox" id="Free" name="Free" />
+                                <div>
+                                    Free
+                                </div>
+                            </button>
+                            <button onClick={() => sortOption === 'Premium' ? setSortOption('All') : setSortOption('Premium')} name="Premium" className='flex items-center gap-2 font-paragraph'>
+                                <input onClick={handleChecked} className='focus:ring-0 focus:outline-0 rounded-sm h-3 w-3 font-paragraph font-normal text-base' type="checkbox" id="Premium" name="Premium" />
+                                <div>
+                                    Premium
+                                </div>
+                            </button>
+                            <button onClick={() => sortOption === 'Paid' ? setSortOption('All') : setSortOption('Paid')} name="Paid" className='flex items-center gap-2 font-paragraph'>
+                                <input onClick={handleChecked} className='focus:ring-0 focus:outline-0 rounded-sm h-3 w-3 font-paragraph font-normal text-base' type="checkbox" id="Paid" name="Paid" />
+                                <div>
+                                    Paid
+                                </div>
+                            </button>
+
+                        </div>
                     </div>
                 </div>
-                <div className='ml-6 flex items-center w-fit'>
-                    <span className='text-[#081120] md:font-medium mr-1 font-paragraph text-xl font-normal'>Sort by : </span>
-                    <div className='max-w-[300px] flex justify-between mt-1'>
 
-
-                        <button onClick={() => setSortOption('All')} name="All" className='mx-2 font-paragraph'>
-                            <input onClick={handleChecked} className='mx-1 h-3 w-3 font-paragraph font-normal text-base' type="checkbox" id="All" name="All" defaultChecked />All
-                        </button>
-                        <button onClick={() => sortOption === 'Free' ? setSortOption('All') : setSortOption('Free')} name="Free" className='mr-2'>
-
-                            <input onClick={handleChecked} className='mx-1 h-3 w-3 font-paragraph font-normal text-base' type="checkbox" id="Free" name="Free" />Free
-                        </button>
-                        <button onClick={() => sortOption === 'Premium' ? setSortOption('All') : setSortOption('Premium')} name="Premium" className='mr-2'>
-                            <input onClick={handleChecked} className='mx-1 h-3 w-3 font-paragraph font-normal text-base' type="checkbox" id="Premium" name="Premium" />Premium
-                        </button>
-                        <button onClick={() => sortOption === 'Paid' ? setSortOption('All') : setSortOption('Paid')} name="Paid" className=''>
-                            <input onClick={handleChecked} className='mx-1 h-3 w-3 font-paragraph font-normal text-base' type="checkbox" id="Paid" name="Paid" />Paid
-                        </button>
-
-                    </div>
+                <div className=''>
+                    <Card getToolsCount={getToolsCount} selectedSub={selectedSub} sortOption={sortOption} searchData={searchData}></Card>
                 </div>
+
+                <CookiePopup></CookiePopup>
             </div>
-
-            <Card getToolsCount={getToolsCount} selectedSub={selectedSub} sortOption={sortOption} searchData={searchData}></Card>
-
-            <CookiePopup></CookiePopup>
         </div>
     );
 };
