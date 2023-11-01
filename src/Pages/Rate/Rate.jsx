@@ -230,10 +230,10 @@ const Rate = ({id,name}) => {
 
                         {/* Progress bars */}
                         <div className="gap-4">
-                            <Progress rating="5" val={vstar}></Progress>
-                            <Progress rating="4" val={ivstar}></Progress>
-                            <Progress rating="3" val={iiistar}></Progress>
-                            <Progress rating="2" val={iistar}></Progress>
+                            <Progress className="mb-4" rating="5" val={vstar}></Progress>
+                            <Progress className="mb-4" rating="4" val={ivstar}></Progress>
+                            <Progress className="mb-4" rating="3" val={iiistar}></Progress>
+                            <Progress className="mb-4" rating="2" val={iistar}></Progress>
                             <Progress rating="1" val={istar}></Progress>
 
                         </div>
@@ -257,7 +257,7 @@ const Rate = ({id,name}) => {
 
                             {/* Rate button */}
                             <div onClick={handleClick} className="w-full flex justify-center">
-                                <button className="border border-[#E5E7EB] rounded-xl px-[34px] py-[16px] flex items-center justify-center w-fit">
+                                <button className="border border-[#E5E7EB] rounded-xl mt-[6px] px-[34px] py-[16px] flex items-center justify-center w-fit">
                                     <span className="text-base font-medium mr-4">Rate {name}</span>
                                     <svg className="h-5" width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M0.326234 1.94821L0.293166 1.85842C0.149117 1.46766 0.171251 1.13289 0.359132 0.863644C0.517803 0.635893 0.780383 0.5 1.06137 0.5C1.28963 0.5 1.51241 0.584108 1.74131 0.756758L15.2421 9.39944L15.3054 9.44469C15.6199 9.69366 15.801 10.0554 15.8022 10.4372C15.8035 10.819 15.6246 11.1818 15.3117 11.4329L15.2813 11.4574L1.7427 20.2389C1.51299 20.4145 1.28896 20.5 1.05884 20.5C0.778961 20.5 0.51716 20.3646 0.358388 20.1381C0.170609 19.8699 0.147322 19.536 0.289409 19.1453L0.321733 19.0563L5.948 10.6871C5.97717 10.5466 5.9768 10.3354 5.94708 10.1947L0.326234 1.94821ZM3.34021 17.3509L13.9905 10.4428L13.9181 10.3964H7.521C7.52598 10.7117 7.48289 11.0297 7.38927 11.2873L7.35685 11.3763L3.34021 17.3509Z" fill="#4D5761" />

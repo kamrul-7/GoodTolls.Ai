@@ -57,7 +57,7 @@ const RelatedCards = ({ subs, id }) => {
 
 
             return (
-                <div key={indx} className="border p-5 rounded-2xl shadow-xl  md:mx-1 mx-auto font-paragraph md:w-full w-[95%]">
+                <div key={indx} className="border  p-5 rounded-2xl shadow-xl  md:mx-1 mx-auto font-paragraph md:w-full w-[95%]">
                     <Link onClick={() => {storeToolId(tool._id); setLoadData(true)}} to={`/tool/${slugify(tool.toolName)}`} >
                         <figure className="relative w-full mb-6">
                             <img
